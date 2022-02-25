@@ -24,6 +24,9 @@ import model.Film;
 import model.Proiezione;
 import model.Sala;
 
+/**
+* Controller che gestiscee la finestra per l'aggiunta di un proiezione
+*/
 public class AddProiezioneController implements Initializable {
 	@FXML
 	public ChoiceBox choiceTitolo;
@@ -56,6 +59,10 @@ public class AddProiezioneController implements Initializable {
     	setupFascieOrarie();
     }
     
+    /**
+	* Effettua una query per ottenere tutte le sale e le imposta
+	* nella relativa ChoiceBox
+	*/
     private void setupSale() {
     	listaSale = MySQLConnection.getAllSale();
     	
@@ -73,6 +80,10 @@ public class AddProiezioneController implements Initializable {
     	if (sale.size() > 0) choiceSala.setValue(sale.get(0));
     }
     
+    /**
+	* Effettua una query per ottenere tutte le fascie orarie e le imposta
+	* nella relativa ChoiceBox
+	*/
     private void setupFascieOrarie() {
     	listaFascieOrarie = MySQLConnection.getAllFascieOrarie();
     	
@@ -90,6 +101,10 @@ public class AddProiezioneController implements Initializable {
     	if (fascieOrarie.size() > 0) choiceFasciaOraria.setValue(fascieOrarie.get(0));
     }
     
+    /**
+	* Effettua una query per ottenere tutti i titoli e le imposta
+	* nella relativa ChoiceBox
+	*/
     private void setupTitoli() {
     	listaFilm = MySQLConnection.getAllFilms();
     	
@@ -156,14 +171,10 @@ public class AddProiezioneController implements Initializable {
 		
 		Alert alert;
 		
-		try {
-			if (MySQLConnection.insertProiezione(proiezione)) {
-				alert = new Alert(AlertType.INFORMATION, "Proiezione aggiunta con successo");
-			} else {
-				alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta della proiezione, controlla i dati");
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+
+		if (MySQLConnection.insertProiezione(proiezione)) {
+			alert = new Alert(AlertType.INFORMATION, "Proiezione aggiunta con successo");
+		} else {
 			alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta della proiezione, controlla i dati");
 		}
 		

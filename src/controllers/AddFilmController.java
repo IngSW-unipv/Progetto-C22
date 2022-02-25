@@ -12,6 +12,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Film;
 
+/**
+* Controller che gestiscee la finestra per l'aggiunta di un film
+*/
 public class AddFilmController {
 	@FXML
 	private TextField txtTitolo;
@@ -51,17 +54,13 @@ public class AddFilmController {
 				selectedTrailerPath);
 		
 		Alert alert;
-		
-		try {
-			if (MySQLConnection.insertFilm(film)) {
-				alert = new Alert(AlertType.INFORMATION, "Film aggiunto con successo");
-			} else {
-				alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta del film, controlla i dati");
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+
+		if (MySQLConnection.insertFilm(film)) {
+			alert = new Alert(AlertType.INFORMATION, "Film aggiunto con successo");
+		} else {
 			alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta del film, controlla i dati");
 		}
+
 		
 		alert.showAndWait();
 		Stage stage = (Stage) txtTitolo.getScene().getWindow();

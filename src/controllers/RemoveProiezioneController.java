@@ -11,6 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Proiezione;
 
+/**
+* Controller che gestisce la finestra di rimozione di
+* una proiezione
+*/
 public class RemoveProiezioneController implements Initializable {
 	@FXML
 	private TableView<Proiezione> tableView;
@@ -43,14 +47,10 @@ public class RemoveProiezioneController implements Initializable {
 	*/
 	@FXML
 	public void removeProiezione() {
-		try {
-			MySQLConnection.removeProiezione(tableView.getSelectionModel().getSelectedItem());
+		MySQLConnection.removeProiezione(tableView.getSelectionModel().getSelectedItem());
 		
-			//Aggiorno la UI
-			tableView.getItems().setAll(MySQLConnection.getAllProiezioni());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		//Aggiorno la UI
+		tableView.getItems().setAll(MySQLConnection.getAllProiezioni());
 	}
 	
 }

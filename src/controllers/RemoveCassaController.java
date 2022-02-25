@@ -11,6 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Cassa;
 
+/**
+* Controller che gestisce la finestra di rimozione della 
+* cassa
+*/
 public class RemoveCassaController implements Initializable {
 	@FXML
 	private TableView<Cassa> tableView;

@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"controllers","c":"AddCassaController","l":"addCassa()"},{"p":"controllers","c":"AddCassaController","l":"AddCassaController()","u":"%3Cinit%3E()"}];updateSearchResults();

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Classe che modella un oggetto di tipo FasciaOraria
+ */
 public class FasciaOraria {
 	private String possibilita;
 	

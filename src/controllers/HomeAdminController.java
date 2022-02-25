@@ -1,8 +1,12 @@
 package controllers;
 
 import javafx.fxml.FXML;
+
 import view.WindowsHandler;
 
+/**
+* Controller che gestisce la finestra admin
+*/
 public class HomeAdminController {
 	/**
 	* Apre la finestra per l'aggiunta di un film

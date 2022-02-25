@@ -9,6 +9,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Cassa;
 
+/**
+* Controller che gestisce la finestra per l'aggiunta di una cassa
+*/
 public class AddCassaController {
 	@FXML
 	private TextField txtID;
@@ -29,13 +32,13 @@ public class AddCassaController {
 		
 		try {
 			if (MySQLConnection.insertCassa(cassa)) {
-				alert = new Alert(AlertType.INFORMATION, "Film aggiunto con successo");
+				alert = new Alert(AlertType.INFORMATION, "Cassa aggiunta con successo");
 			} else {
-				alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta del film, controlla i dati");
+				alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta della cassa, controlla i dati");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta del film, controlla i dati");
+			alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta della cassa, controlla i dati");
 			return false;
 		}
 		

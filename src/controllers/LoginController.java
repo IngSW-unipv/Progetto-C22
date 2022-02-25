@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import view.WindowsHandler;
 
+/**
+* Contoller che gestisce la pagina di Login
+*/
 public class LoginController {
 
 	

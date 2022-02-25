@@ -11,6 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Film;
 
+/**
+* Controller che gestisce la finestra di rimozione di un film
+*/
 public class RemoveFilmController implements Initializable {
 	@FXML
 	private TableView<Film> tableView;
@@ -39,14 +42,10 @@ public class RemoveFilmController implements Initializable {
 	*/
 	@FXML
 	public void removeFilm() {
-		try {
-			MySQLConnection.removeFilm(tableView.getSelectionModel().getSelectedItem());
-		
-			//Aggiorno la UI
-			tableView.getItems().setAll(MySQLConnection.getAllFilms());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		MySQLConnection.removeFilm(tableView.getSelectionModel().getSelectedItem());
+	
+		//Aggiorno la UI
+		tableView.getItems().setAll(MySQLConnection.getAllFilms());
 	}
 	
 }

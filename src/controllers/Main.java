@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+* Punto di partenza del programma
+*/
 public class Main extends Application {
 
 	/**

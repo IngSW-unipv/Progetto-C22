@@ -1,7 +1,17 @@
 package model;
 
+/**
+ * Classe che modella un oggetto di tipo Cassa
+ */
 public class Cassa {
+	/** 
+	* ID della cassa
+	*/
 	private int ID_cash;
+	
+	/** 
+	* Password della cassa
+	*/
 	private String pw_cash;
 	
 	/** 

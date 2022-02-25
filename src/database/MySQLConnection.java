@@ -17,8 +17,16 @@ import model.Film;
 import model.Proiezione;
 import model.Sala;
 
+/**
+* Classe che espone diverse funzioni statiche che
+* permettono di interfacciarsi al database
+*/
 public class MySQLConnection {
-  public static void connect() throws ClassNotFoundException {
+	
+	/**
+	* Funzione che testa il collegamento al database
+	*/
+  public static boolean connect() {
     Connection con = null;
 
     String url = "jdbc:mysql://localhost:3306/oocinema";
@@ -30,21 +38,19 @@ public class MySQLConnection {
       con = DriverManager.getConnection(url, username, password);
 
       System.out.println("Connected!");
-
-    } catch (SQLException ex) {
-        throw new Error("Error ", ex);
-    } finally {
-      try {
-        if (con != null) {
-            con.close();
-        }
-      } catch (SQLException ex) {
-          System.out.println(ex.getMessage());
-      }
+      return true;
+      
+    } catch (Exception ex) {
+      return false;
     }
   }
   
-  public static boolean insertFilm(Film film) throws ClassNotFoundException {
+  /**
+	* Funzione che inserisce un film all'interno del database
+	* @return true se l'inserimento è andato a buon fine, false altrimenti
+	* @param film da inserire
+	*/
+  public static boolean insertFilm(Film film) {
 	  String query = " insert into film (ID_film, Titolo, Descrizione, Genere, Durata, Regista, Cast, Costo, CoverPath, TrailerPath)"
 		        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	  
@@ -75,7 +81,66 @@ public class MySQLConnection {
 	  }
   }
   
-  public static boolean removeFilm(Film film) throws ClassNotFoundException {
+  /**
+	* Funzione che inserisce una sala all'interno del database
+	* @return true se l'inserimento è andato a buon fine, false altrimenti
+	* @param sala da inserire
+	*/
+  public static boolean insertSala(Sala sala) {
+	  String query = " insert into sala (ID_sala, n_sala, capienza_max)"
+		        + " values (?, ?, ?)";
+	  
+	  try {
+		  Connection conn = getConnection();
+		  
+		  PreparedStatement preparedStmt = conn.prepareStatement(query);
+	      preparedStmt.setString (1, sala.getID_sala());
+	      preparedStmt.setString (2, sala.getN_sala());
+	      preparedStmt.setInt (3, sala.getCapienza_max());
+	     
+	      preparedStmt.execute();
+	      
+	      conn.close();
+	      
+	      return true;
+	  } catch (Exception e) {
+		  e.printStackTrace();
+		  return false;
+	  }
+  }
+  
+  /**
+	* Funzione che inserisce una fascia oraria all'interno del database
+	* @return true se l'inserimento è andato a buon fine, false altrimenti
+	* @param fascia oraria da inserire
+	*/
+  public static boolean insertFasciaOraria(FasciaOraria fasciaOraria) {
+	  String query = " insert into fascia_oraria (possibilita)"
+		        + " values (?)";
+	  
+	  try {
+		  Connection conn = getConnection();
+		  
+		  PreparedStatement preparedStmt = conn.prepareStatement(query);
+	      preparedStmt.setString (1, fasciaOraria.getPossibilita());
+	     
+	      preparedStmt.execute();
+	      
+	      conn.close();
+	      
+	      return true;
+	  } catch (Exception e) {
+		  e.printStackTrace();
+		  return false;
+	  }
+  }
+  
+  /**
+	* Funzione che rimuove un film all'interno del database
+	* @return true se la rimozione è andata a buon fine, false altrimenti
+	* @param film da rimuovere
+	*/
+  public static boolean removeFilm(Film film) {
 	  String query = "DELETE FROM film where ID_film = ?";
 		  
 	  try {
@@ -95,8 +160,61 @@ public class MySQLConnection {
 	  }
   }
   
+  /**
+	* Funzione che rimuove una sala all'interno del database
+	* @return true se la rimozione è andata a buon fine, false altrimenti
+	* @param sala da rimuovere
+	*/
+  public static boolean removeSala(Sala sala) {
+	  String query = "DELETE FROM sala where ID_sala = ?";
+		  
+	  try {
+		  Connection conn = getConnection();
+		  
+		  PreparedStatement preparedStmt = conn.prepareStatement(query);
+	      preparedStmt.setString (1, sala.getID_sala());
+	      
+	      preparedStmt.execute();
+	      
+	      conn.close();
+	      
+	      return true;
+	  } catch (Exception e) {
+		  e.printStackTrace();
+		  return false;
+	  }
+  }
+  
+  /**
+	* Funzione che rimuove una fascia oraria all'interno del database
+	* @return true se la rimozione è andata a buon fine, false altrimenti
+	* @param fascia oraria da rimuovere
+	*/
+  public static boolean removeFasciaOraria(FasciaOraria fasciaOraria) {
+	  String query = "DELETE FROM fascia_oraria where possibilita = ?";
+		  
+	  try {
+		  Connection conn = getConnection();
+		  
+		  PreparedStatement preparedStmt = conn.prepareStatement(query);
+	      preparedStmt.setString (1, fasciaOraria.getPossibilita());
+	      
+	      preparedStmt.execute();
+	      
+	      conn.close();
+	      
+	      return true;
+	  } catch (Exception e) {
+		  e.printStackTrace();
+		  return false;
+	  }
+  }
   
   
+  /**
+	* Funzione che ritorna tutti i film nel database
+	* @return lista di Film presenti nel database
+	*/
   public static List<Film> getAllFilms() {
     try {
       Connection con = getConnection();
@@ -137,6 +255,11 @@ public class MySQLConnection {
     }
   }
   
+  
+  /**
+	* Funzione che ritorna tutte le sale nel database
+	* @return lista di Sale presenti nel database
+	*/
   public static List<Sala> getAllSale() {
 	    try {
 	      Connection con = getConnection();
@@ -171,6 +294,11 @@ public class MySQLConnection {
 	    }
 	  }
   
+  
+  /**
+	* Funzione che ritorna tutte le fascie orarie nel database
+	* @return lista di FasciaOraria presenti nel database
+	*/
   public static List<FasciaOraria> getAllFascieOrarie() {
 	    try {
 	      Connection con = getConnection();
@@ -202,6 +330,11 @@ public class MySQLConnection {
 	    }
 	  }
   
+  
+  /**
+	* Funzione che ritorna tutte le proiezioni nel database
+	* @return lista di Proiezione presenti nel database
+	*/
   public static List<Proiezione> getAllProiezioni() {
 	    try {
 	      Connection con = getConnection();
@@ -237,6 +370,12 @@ public class MySQLConnection {
 	    }
 	  }
   
+  
+  /**
+	* Funzione che inserisce una cassa all'interno del database
+	* @return true se l'inserimento è andato a buon fine, false altrimenti
+	* @param cassa da inserire
+	*/
   public static boolean insertCassa(Cassa cassa) throws ClassNotFoundException {
 	  String query = " insert into cassa (ID_cash, pw_cash)"
 		        + " values (?, ?)";
@@ -259,7 +398,12 @@ public class MySQLConnection {
 	  }
   }
   
-  public static boolean insertProiezione(Proiezione proiezione) throws ClassNotFoundException {
+  /**
+	* Funzione che inserisce una proiezione all'interno del database
+	* @return true se l'inserimento è andato a buon fine, false altrimenti
+	* @param proiezione da inserire
+	*/
+  public static boolean insertProiezione(Proiezione proiezione) {
 	  String query = " insert into proiezione (ID_Film, Giorno_to, Giorno_from, ID_sala, Orario)"
 		        + " values (?, ?, ?, ?, ?)";
 	  
@@ -279,11 +423,16 @@ public class MySQLConnection {
 	      
 	      return true;
 	  } catch (Exception e) {
-		  e.printStackTrace();
+		  //e.printStackTrace();
 		  return false;
 	  }
   }
   
+  /**
+	* Funzione che rimuove una cassa all'interno del database
+	* @return true se la rimozione è andata a buon fine, false altrimenti
+	* @param cassa da rimuovere
+	*/
   public static boolean removeCassa(Cassa cassa) throws ClassNotFoundException {
 	  String query = "DELETE FROM cassa where ID_cash = ?";
 		  
@@ -304,7 +453,12 @@ public class MySQLConnection {
 	  }
   }
   
-  public static boolean removeProiezione(Proiezione proiezione) throws ClassNotFoundException {
+  /**
+	* Funzione che rimuove una proiezione all'interno del database
+	* @return true se la rimozione è andata a buon fine, false altrimenti
+	* @param proiezione da rimuovere
+	*/
+  public static boolean removeProiezione(Proiezione proiezione) {
 	  String query = "DELETE FROM proiezione where ID_Film = ? and ID_sala = ? and Giorno_from = ?";
 		  
 	  try {
@@ -327,6 +481,10 @@ public class MySQLConnection {
 	  }
   }
  
+  /**
+	* Funzione che ritorna tutte le casse nel database
+	* @return lista di Cassa presenti nel database
+	*/
   public static List<Cassa> getAllCassa() {
     try {
       Connection con = getConnection();
@@ -358,6 +516,11 @@ public class MySQLConnection {
     }
   }
   
+  /**
+	* Funzione che crea un oggetto di tipo connection al database
+	* @return connection al db
+	* @throws errore se la connessione non è stata creata
+	*/
   public static Connection getConnection() throws ClassNotFoundException, SQLException {
 	  String url = "jdbc:mysql://localhost:3306/oocinema";
 	  String usernameDb = "root";
@@ -367,6 +530,11 @@ public class MySQLConnection {
 	  return DriverManager.getConnection(url, usernameDb, passwordDb);
   }
   
+  /**
+	* Funzione che effettua il login al database
+	* @return true se il login ha avuto successo, false altrimenti
+	* @param email e password dell'utente
+	*/
   public static boolean login(String email, String password) throws ClassNotFoundException {
 	    Connection con = null;
 
