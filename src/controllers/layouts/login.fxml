@@ -16,12 +16,12 @@
    <children>
       <ImageView fitHeight="375.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../assets/sfondologin.jpeg" />
+            <Image url="@../../../assets/sfondo.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="75.0" fitWidth="115.0" layoutX="406.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Cassa/Immagini%20cassa/login_cassa-removebg-preview.png" />
+            <Image url="@../../../assets/login_cassa-removebg-preview.png" />
          </image>
          <effect>
             <Glow level="1.0" />

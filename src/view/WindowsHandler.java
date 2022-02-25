@@ -1,5 +1,9 @@
 package view;
 
+/**
+* Classe che espone metodi per la gestione della finestra
+
+*/
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;

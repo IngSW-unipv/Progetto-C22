@@ -29,7 +29,7 @@ public class MySQLConnection {
   public static boolean connect() {
     Connection con = null;
 
-    String url = "jdbc:mysql://localhost:3306/oocinema";
+    String url = "jdbc:mysql://localhost:3306/ooc?serverTimezone=Europe/Rome";
     String username = "root";
     String password = "root";
 
@@ -522,7 +522,7 @@ public class MySQLConnection {
 	* @throws errore se la connessione non è stata creata
 	*/
   public static Connection getConnection() throws ClassNotFoundException, SQLException {
-	  String url = "jdbc:mysql://localhost:3306/oocinema";
+	  String url = "jdbc:mysql://localhost:3306/ooc?serverTimezone=Europe/Rome";
 	  String usernameDb = "root";
 	  String passwordDb = "root";
 
@@ -538,7 +538,7 @@ public class MySQLConnection {
   public static boolean login(String email, String password) throws ClassNotFoundException {
 	    Connection con = null;
 
-	    String url = "jdbc:mysql://localhost:3306/oocinema";
+	    String url = "jdbc:mysql://localhost:3306/ooc?serverTimezone=Europe/Rome";     //BUG risolto così:https://github.com/TdP-2019/materiale/blob/master/faq/timezone.md
 	    String usernameDb = "root";
 	    String passwordDb = "root";
 	    

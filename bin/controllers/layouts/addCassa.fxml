@@ -44,17 +44,17 @@
       <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: #6495ED; -fx-border-color: #090086;" textFill="#3016dd" />
       <ImageView fitHeight="50.0" fitWidth="78.0" layoutX="542.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Immagini%20Admin/user-removebg-preview.png" />
+            <Image url="@../../../assets/user-removebg-preview.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="29.0" fitWidth="50.0" layoutX="29.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Immagini%20Admin/logo_small_icon_only.png" />
+            <Image url="@../../../assets/logo_small_icon_only.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="228.0" fitWidth="261.0" layoutX="33.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Immagini%20cassa/sofondo_aggiungi_cassa.png" />
+            <Image url="@../../../assets/sofondo_aggiungi_cassa.png" />
          </image>
       </ImageView>
       <TextField fx:id="txtID" layoutX="345.0" layoutY="138.0" prefHeight="40.0" prefWidth="186.0" promptText="Aggiungi ID cassa...">

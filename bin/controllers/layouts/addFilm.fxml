@@ -52,12 +52,12 @@
             <Button layoutX="-6.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="86.0" style="-fx-background-color: #6495ED; -fx-border-color: #090086;" textFill="#3016dd" />
             <ImageView fitHeight="50.0" fitWidth="78.0" layoutX="627.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Immagini%20Admin/user-removebg-preview.png" />
+                  <Image url="@../../../assets/user-removebg-preview.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="29.0" fitWidth="50.0" layoutX="23.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Immagini%20Admin/logo_small_icon_only.png" />
+                  <Image url="@../../../assets//logo_small_icon_only.png" />
                </image>
             </ImageView>
          </children>

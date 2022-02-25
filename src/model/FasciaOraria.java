@@ -14,6 +14,11 @@ public class FasciaOraria {
 		this.possibilita = possibilita;
 	}
 
+	/**
+	 * Per ottenere la fascia oraria della mia proiezione
+	 * 
+	 * @return possibilita ovvero la fascia oraria
+	 */
 	public String getPossibilita() {
 		return possibilita;
 	}
