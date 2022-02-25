@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeAdminController">
+   <children>
+      <MenuButton alignment="CENTER" layoutX="82.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" style="-fx-background-color: #6495ED; -fx-border-color: #090086;" text="FILM" textFill="#3016dd" AnchorPane.leftAnchor="82.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Aggiungi film" onAction="#openAddFilmWindow"  />
+          <MenuItem mnemonicParsing="false" text="Rimuovi film" onAction="#openRemoveFilmWindow" />
+        </items>
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </MenuButton>
+      <MenuButton alignment="CENTER" layoutX="233.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" style="-fx-background-color: #6495ED; -fx-border-color: #090086;" text="PROIEZIONI" textFill="#3016dd">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Aggiungi proiezione" onAction="#openAddProiezioneWindow" />
+          <MenuItem mnemonicParsing="false" text="Rimuovi proiezione" onAction="#openRemoveProiezioneWindow"/>
+        </items>
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </MenuButton>
+      <MenuButton alignment="CENTER" layoutX="384.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" style="-fx-background-color: #6495ED; -fx-border-color: #090086;" text="CASSA" textFill="#3016dd">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Aggiungi cassa" onAction="#openAddCassaWindow" />
+          <MenuItem mnemonicParsing="false" text="Rimuovi cassa" onAction="#openRemoveCassaWindow" />
+        </items>
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </MenuButton>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="86.0" style="-fx-background-color: #6495ED; -fx-border-color: #090086;" textFill="#3016dd" />
+      <ImageView fitHeight="50.0" fitWidth="78.0" layoutX="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Immagini%20Admin/user-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="50.0" layoutX="29.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Immagini%20Admin/logo_small_icon_only.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="374.0" fitWidth="600.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Immagini%20Admin/sondo.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="385.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Immagini%20Admin/icon-administrator-g%20copia.png" />
+         </image>
+      </ImageView>
+      <Text fill="#fff7f7" layoutX="439.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="40.0" fitWidth="181.0" layoutX="383.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Immagini%20Admin/scritta.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="0.14" hue="0.02" saturation="0.83" />
+         </effect>
+      </ImageView>
+   </children>
+</AnchorPane>
