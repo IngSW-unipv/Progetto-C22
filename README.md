@@ -2,7 +2,8 @@
 Progetto studenti (gruppo GoF)
 
 
-![logo](https://user-images.githubusercontent.com/97592246/155824464-fe945adf-b29f-4711-9e07-957a32af28a3.png)
+![logo_small](https://user-images.githubusercontent.com/97592246/155824498-0deea996-3510-463d-917f-9dc0049a640e.png)
+
 
 
 Progettazione di un sistema per la gestione di un cinema.
