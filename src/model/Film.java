@@ -1,5 +1,7 @@
 package model;
-
+/**
+ * Classe che modella un oggetto di tipo Film
+ */
 public class Film {
 	private String ID_film;
 	private String titolo;

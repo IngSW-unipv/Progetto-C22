@@ -1,12 +1,10 @@
 package controllers;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import database.MySQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,11 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
-import model.Cassa;
 import model.FasciaOraria;
 import model.Film;
 import model.Proiezione;
@@ -29,13 +25,13 @@ import model.Sala;
 */
 public class AddProiezioneController implements Initializable {
 	@FXML
-	public ChoiceBox choiceTitolo;
+	public ChoiceBox<String> choiceTitolo;
 	
 	@FXML
-	public ChoiceBox choiceSala;
+	public ChoiceBox<String> choiceSala;
 	
 	@FXML
-	public ChoiceBox choiceFasciaOraria;
+	public ChoiceBox<String> choiceFasciaOraria;
 	
 	@FXML
 	public DatePicker dataDa;
@@ -141,7 +137,7 @@ public class AddProiezioneController implements Initializable {
 			}
 		}
 		
-		String s= choiceSala.getValue().toString();
+		// String s= choiceSala.getValue().toString();
 		
 		for (int i = 0; i < listaSale.size(); i++) {
 			if (listaSale.get(i).getN_sala() == choiceSala.getValue().toString()) {
