@@ -1,4 +1,5 @@
 package model;
+
 /**
  * Classe che modella un oggetto di tipo Film
  */
@@ -13,11 +14,15 @@ public class Film {
 	private int costo;
 	private String coverPath;
 	private String trailerPath;
-	
-	public Film() {}
-	
-	public Film(String ID_film, String titolo, String descrizione, String genere, int durata, String regista, String cast,
-			int costo, String coverPath, String trailerPath) {
+
+	public Film() {
+	}
+
+	/**
+	 * Costruttore con tutte le variabili
+	 */
+	public Film(String ID_film, String titolo, String descrizione, String genere, int durata, String regista,
+			String cast, int costo, String coverPath, String trailerPath) {
 		this.ID_film = ID_film;
 		this.titolo = titolo;
 		this.descrizione = descrizione;
@@ -29,7 +34,11 @@ public class Film {
 		this.coverPath = coverPath;
 		this.trailerPath = trailerPath;
 	}
-	
+
+	/**
+	 * Getter and Setter
+	 */
+
 	public void setID_film(String iD_film) {
 		ID_film = iD_film;
 	}
@@ -65,38 +74,49 @@ public class Film {
 	public String getID_film() {
 		return ID_film;
 	}
+
 	public String getTitolo() {
 		return titolo;
 	}
+
 	public String getDescrizione() {
 		return descrizione;
 	}
+
 	public String getGenere() {
 		return genere;
 	}
+
 	public int getDurata() {
 		return durata;
 	}
+
 	public String getRegista() {
 		return regista;
 	}
+
 	public String getCast() {
 		return cast;
 	}
+
 	public int getCosto() {
 		return costo;
 	}
+
 	public String getTrailerPath() {
 		return trailerPath;
 	}
+
 	public String getCoverPath() {
 		return coverPath;
 	}
+
 	public void setTrailerPath(String trailerPath) {
 		this.trailerPath = trailerPath;
 	}
+
 	public void setCoverPath(String coverPath) {
 		this.coverPath = coverPath;
 	}
-	
+
 }
