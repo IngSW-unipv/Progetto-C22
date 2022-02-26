@@ -32,7 +32,7 @@ public class LoginController {
     private void handleSignInButton() {
         System.out.println("-- Faccio login con " + txtUsername.getText() + " - " + txtPassword.getText() + " --");
         try {
-			if (true || MySQLConnection.login(txtUsername.getText(), txtPassword.getText())) {
+			if (/**true ||*/ MySQLConnection.login(txtUsername.getText(), txtPassword.getText())) {
 				System.out.print("- Login avvenuto con successo -");
 				
 				Alert alert = new Alert(AlertType.INFORMATION, "Login avvenuto con successo, benvenuto " + txtUsername.getText());
