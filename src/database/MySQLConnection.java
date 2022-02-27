@@ -21,6 +21,9 @@ import model.Sala;
  * Classe che espone diverse funzioni statiche che permettono di interfacciarsi
  * al database
  */
+
+//Mi aspetto che i miei colleghi del gruppo poi, dovendo aggiungere altre classi, implementino meglio la persistenza con il pattern Dao
+
 public class MySQLConnection {
 
 	/**
