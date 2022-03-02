@@ -35,8 +35,8 @@ public class WindowsHandler {
 																														// apparirà
 																														// nella
 																														// barra
-																														// di
-																														// controllo
+																														// delle
+																														// applicazioni
 																														// del
 																														// pc
 			stage.setScene(new Scene(root, 700, 400));
