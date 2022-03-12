@@ -1,0 +1,2 @@
+#discount.strategy.class.name = it.unipv.po.oocinema.model.sconti.ScontoNatale
+discount.strategy.class.name = it.unipv.po.oocinema.model.sconti.ScontoPercentuale

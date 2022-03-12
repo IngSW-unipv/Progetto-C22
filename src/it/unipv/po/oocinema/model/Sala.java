@@ -6,20 +6,17 @@ package it.unipv.po.oocinema.model;
 
 public class Sala {
 	private String ID_sala;
-	private String n_sala;
-	private int capienza_max;
+	private int righe;
+	private int colonne;
 
-	public Sala() {
-
-	}
 
 	/**
 	 * Costruttore con tutte le variabili
 	 */
-	public Sala(String ID_sala, String n_sala, int capienza_max) {
+	public Sala(String ID_sala, int righe, int colonne) {
 		this.ID_sala = ID_sala;
-		this.n_sala = n_sala;
-		this.capienza_max = capienza_max;
+		this.righe = righe;
+		this.colonne = colonne;
 	}
 
 	/**
@@ -33,19 +30,20 @@ public class Sala {
 		this.ID_sala = ID_sala;
 	}
 
-	public String getN_sala() {
-		return n_sala;
+
+	public int getRighe() {
+		return righe;
 	}
 
-	public void setN_sala(String n_sala) {
-		this.n_sala = n_sala;
+	public void setRighe(int righe) {
+		this.righe = righe;
 	}
 
-	public int getCapienza_max() {
-		return capienza_max;
+	public int getColonne() {
+		return colonne;
 	}
 
-	public void setCapienza_max(int capienza_max) {
-		this.capienza_max = capienza_max;
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
 	}
 }

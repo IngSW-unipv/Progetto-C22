@@ -3,57 +3,50 @@ package it.unipv.po.oocinema.model;
 /**
  * Classe che modella un oggetto di tipo Cassa
  */
-public class Cassa {
+public class Cassa implements IAcquirente{
 	/** 
 	* ID della cassa
 	*/
-	private int ID_cash;
+	private int ID_cassa;
 	
 	/** 
 	* Password della cassa
 	*/
-	private String pw_cash;
+	private String pw_cassa;
 	
 	/** 
 	* Costruttore con tutte le variabili
 	*/
-	public Cassa(int ID_cash, String pw_cash) {
-		this.ID_cash = ID_cash;
-		this.pw_cash = pw_cash;
-	}
-	
-	/** 
-	* Costruttore vuoto
-	*/
-	public Cassa() {
-		
+	public Cassa(int ID_cassa, String pw_cassa) {
+		this.ID_cassa = ID_cassa;
+		this.pw_cassa = pw_cassa;
 	}
 	
 	/**
 	 * Per ottenere l'ID della cassa
 	 * 
-	 * @return ID_cash  l'ID della cassa
+	 * @return ID_cassa  l'ID della cassa
 	 */
-	public int getID_cash() {
-		return ID_cash;
+	public int getID_cassa() {
+		return ID_cassa;
 	}
 	
 	/**
 	* Setta l'ID della cassa
 	*
-	* @param ID_cash  l'ID da impostare
+	* @param ID_cassa  l'ID da impostare
 	*/
-	public void setID_cash(int ID_cash) {
-		this.ID_cash = ID_cash;
+	public void setID_cash(int ID_cassa) {
+		this.ID_cassa = ID_cassa;
 	}
 	
 	/**
 	 * Per ottenere la password della cassa
 	 * 
-	 * @return pw_cash  la password della cassa
+	 * @return pw_cassa  la password della cassa
 	 */
-	public String getPw_cash() {
-		return pw_cash;
+	public String getPw_cassa() {
+		return pw_cassa;
 	}
 	
 	/**
@@ -61,8 +54,8 @@ public class Cassa {
 	*
 	* @param pw_cash  la password da impostare
 	*/
-	public void setPw_cash(String pw_cash) {
-		this.pw_cash = pw_cash;
+	public void setPw_cassa(String pw_cassa) {
+		this.pw_cassa = pw_cassa;
 	}
 	
 	

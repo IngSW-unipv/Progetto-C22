@@ -4,25 +4,33 @@ package it.unipv.po.oocinema.model;
  * Classe che modella un oggetto di tipo Film
  */
 public class Film {
+	/**
+	 * Id del film.
+	 */
 	private String ID_film;
+	
+	/**
+	 * Titolo del film.
+	 */
 	private String titolo;
+	
+	/**
+	 * Descrizione del film.
+	 */
 	private String descrizione;
 	private String genere;
 	private int durata;
 	private String regista;
 	private String cast;
-	private int costo;
 	private String coverPath;
 	private String trailerPath;
 
-	public Film() {
-	}
 
 	/**
 	 * Costruttore con tutte le variabili
 	 */
 	public Film(String ID_film, String titolo, String descrizione, String genere, int durata, String regista,
-			String cast, int costo, String coverPath, String trailerPath) {
+			String cast, String coverPath, String trailerPath) {
 		this.ID_film = ID_film;
 		this.titolo = titolo;
 		this.descrizione = descrizione;
@@ -30,7 +38,6 @@ public class Film {
 		this.durata = durata;
 		this.regista = regista;
 		this.cast = cast;
-		this.costo = costo;
 		this.coverPath = coverPath;
 		this.trailerPath = trailerPath;
 	}
@@ -67,10 +74,6 @@ public class Film {
 		this.cast = cast;
 	}
 
-	public void setCosto(int costo) {
-		this.costo = costo;
-	}
-
 	public String getID_film() {
 		return ID_film;
 	}
@@ -97,10 +100,6 @@ public class Film {
 
 	public String getCast() {
 		return cast;
-	}
-
-	public int getCosto() {
-		return costo;
 	}
 
 	public String getTrailerPath() {

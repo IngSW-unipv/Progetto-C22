@@ -4,14 +4,10 @@ package it.unipv.po.oocinema.model;
  * Classe che modella un oggetto di tipo FasciaOraria
  */
 public class FasciaOraria {
-	private String possibilita;
+	private String ora;
 	
-	public FasciaOraria() {
-		
-	}
-	
-	public FasciaOraria(String possibilita) {
-		this.possibilita = possibilita;
+	public FasciaOraria(String ora) {
+		this.ora = ora;
 	}
 
 	/**
@@ -19,11 +15,11 @@ public class FasciaOraria {
 	 * 
 	 * @return possibilita ovvero la fascia oraria
 	 */
-	public String getPossibilita() {
-		return possibilita;
+	public String getOra() {
+		return ora;
 	}
 
-	public void setPossibilita(String possibilita) {
-		this.possibilita = possibilita;
+	public void setOra(String ora) {
+		this.ora = ora;
 	}
 }
