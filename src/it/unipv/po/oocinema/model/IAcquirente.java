@@ -1,7 +1,9 @@
 package it.unipv.po.oocinema.model;
 
+import java.time.LocalDate;
+
 public interface IAcquirente {
 	
-	//Scegli posto
+	public LocalDate getCompleanno();
 
 }

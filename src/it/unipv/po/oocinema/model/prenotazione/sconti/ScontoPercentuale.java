@@ -1,6 +1,6 @@
-package it.unipv.po.oocinema.model.sconti;
+package it.unipv.po.oocinema.model.prenotazione.sconti;
 
-import it.unipv.po.oocinema.model.Prenotazione;
+import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
 public class ScontoPercentuale implements IScontoPrenotazioneStrategy{
 	

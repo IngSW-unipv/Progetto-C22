@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.model.sconti;
+package it.unipv.po.oocinema.model.prenotazione.sconti;
 
 import java.io.FileInputStream;
 import java.lang.reflect.Constructor;

@@ -1,5 +1,7 @@
 package it.unipv.po.oocinema.model;
 
+import java.time.LocalDate;
+
 /**
  * Classe che modella un oggetto di tipo Cassa
  */
@@ -56,6 +58,12 @@ public class Cassa implements IAcquirente{
 	*/
 	public void setPw_cassa(String pw_cassa) {
 		this.pw_cassa = pw_cassa;
+	}
+
+	@Override
+	public LocalDate getCompleanno() {
+		return LocalDate.of(2022, 12, 25);
+		 
 	}
 	
 	

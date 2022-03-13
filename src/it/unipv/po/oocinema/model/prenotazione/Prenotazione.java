@@ -1,10 +1,13 @@
-package it.unipv.po.oocinema.model;
+package it.unipv.po.oocinema.model.prenotazione;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import it.unipv.po.oocinema.model.sconti.IScontoPrenotazioneStrategy;
-import it.unipv.po.oocinema.model.sconti.ScontoFactory;
+import it.unipv.po.oocinema.model.IAcquirente;
+import it.unipv.po.oocinema.model.Posto;
+import it.unipv.po.oocinema.model.Proiezione;
+import it.unipv.po.oocinema.model.prenotazione.sconti.IScontoPrenotazioneStrategy;
+import it.unipv.po.oocinema.model.prenotazione.sconti.ScontoFactory;
 
 public class Prenotazione {
 	
@@ -144,17 +147,6 @@ public class Prenotazione {
 	public void setProiezione(Proiezione proiezione) {
 		this.proiezione = proiezione;
 	}
-
-
-	public IScontoPrenotazioneStrategy getRd() {
-		return rd;
-	}
-
-
-	public void setRd(IScontoPrenotazioneStrategy rd) {
-		this.rd = rd;
-	}
-
 
 	public long getId() {
 		return id;
