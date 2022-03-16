@@ -1,8 +1,8 @@
 package it.unipv.po.oocinema.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 /**
@@ -11,25 +11,20 @@ import java.util.Date;
 
 public class Proiezione {
 	private Film film;
-	private LocalDate giorno_to;
-	private LocalDate giorno_from;
+	private LocalDate giorno;
 	private Sala sala;
 	private double prezzo;
-	
-
 	private ArrayList<ArrayList<Posto>> posti;
-	
-	private FasciaOraria orario;
+	private ArrayList<LocalTime> orari;
 
 	/**
 	 * Costruttore con tutte le variabili
 	 */
 
-	public Proiezione(Film film, LocalDate giorno_to, LocalDate giorno_from, Sala sala, FasciaOraria orario) {
+	public Proiezione(Film film, LocalDate giorno, Sala sala, ArrayList<LocalTime> orari) {
 		this.film = film;
-		this.giorno_to = giorno_to;
-		this.giorno_from = giorno_from;
-		this.setOrario(orario);
+		this.giorno=giorno;
+		this.orari = orari;
 		this.posti = new ArrayList<ArrayList<Posto>>();
 		this.setSala(sala);
 	}
@@ -79,23 +74,6 @@ public class Proiezione {
 		this.posti = posti;
 	}
 
-	public LocalDate getGiorno_to() {
-		return giorno_to;
-	}
-
-	public void setGiorno_to(LocalDate giorno_to) {
-		this.giorno_to = giorno_to;
-	}
-
-	public LocalDate getGiorno_from() {
-		return giorno_from;
-	}
-
-	public void setGiorno_from(LocalDate giorno_from) {
-		this.giorno_from = giorno_from;
-	}
-
-
 	public Film getFilm() {
 		return film;
 	}
@@ -122,12 +100,12 @@ public class Proiezione {
 		}
 	}
 
-	public FasciaOraria getOrario() {
-		return orario;
+	public ArrayList<LocalTime> getOrari() {
+		return orari;
 	}
 
-	public void setOrario(FasciaOraria orario) {
-		this.orario = orario;
+	public void setOrari(ArrayList<LocalTime> orari) {
+		this.orari = orari;
 	}
 	
 	public double getPrezzo() {
@@ -137,4 +115,13 @@ public class Proiezione {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
+	
+	public LocalDate getGiorno() {
+		return giorno;
+	}
+
+	public void setGiorno(LocalDate giorno) {
+		this.giorno = giorno;
+	}
+
 }

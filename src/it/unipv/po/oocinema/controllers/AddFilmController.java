@@ -2,7 +2,7 @@ package it.unipv.po.oocinema.controllers;
 
 import java.io.File;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.Film;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -49,7 +49,7 @@ public class AddFilmController {
 
 		Alert alert;
 
-		if (MySQLConnection.insertFilm(film)) {
+		if (MySQLConnectionFactory.insertFilm(film)) {
 			alert = new Alert(AlertType.INFORMATION, "Film aggiunto con successo");
 		} else {
 			alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta del film, controlla i dati");

@@ -3,7 +3,7 @@ package it.unipv.po.oocinema.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.Film;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,7 +33,7 @@ public class RemoveFilmController implements Initializable {
 		ID_film.setCellValueFactory(new PropertyValueFactory<Film, String>("ID_film"));
 		titolo.setCellValueFactory(new PropertyValueFactory<Film, String>("titolo"));
 
-		tableView.getItems().setAll(MySQLConnection.getAllFilms());
+		tableView.getItems().setAll(MySQLConnectionFactory.getAllFilms());
 	}
 
 	/**
@@ -44,10 +44,10 @@ public class RemoveFilmController implements Initializable {
 	 */
 	@FXML
 	public void removeFilm() {
-		MySQLConnection.removeFilm(tableView.getSelectionModel().getSelectedItem());
+		MySQLConnectionFactory.removeFilm(tableView.getSelectionModel().getSelectedItem());
 
 		// Aggiorno la UI
-		tableView.getItems().setAll(MySQLConnection.getAllFilms());
+		tableView.getItems().setAll(MySQLConnectionFactory.getAllFilms());
 	}
 
 }

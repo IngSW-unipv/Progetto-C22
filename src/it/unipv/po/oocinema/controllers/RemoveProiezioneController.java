@@ -3,7 +3,7 @@ package it.unipv.po.oocinema.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.Proiezione;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +36,7 @@ public class RemoveProiezioneController implements Initializable {
 		columnSala.setCellValueFactory(new PropertyValueFactory<Proiezione, String>("ID_sala"));
 		columnOrario.setCellValueFactory(new PropertyValueFactory<Proiezione, String>("Giorno_from"));
 
-		tableView.getItems().setAll(MySQLConnection.getAllProiezioni());
+		tableView.getItems().setAll(MySQLConnectionFactory.getAllProiezioni());
 	}
 
 	/**
@@ -47,10 +47,10 @@ public class RemoveProiezioneController implements Initializable {
 	 */
 	@FXML
 	public void removeProiezione() {
-		MySQLConnection.removeProiezione(tableView.getSelectionModel().getSelectedItem());
+		MySQLConnectionFactory.removeProiezione(tableView.getSelectionModel().getSelectedItem());
 
 		// Aggiorno la UI
-		tableView.getItems().setAll(MySQLConnection.getAllProiezioni());
+		tableView.getItems().setAll(MySQLConnectionFactory.getAllProiezioni());
 	}
 
 }

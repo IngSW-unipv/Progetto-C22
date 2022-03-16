@@ -59,6 +59,16 @@ public class Cliente implements IAcquirente {
 	public void setCompleanno(LocalDate compleanno) {
 		this.compleanno = compleanno;
 	}
+
+	@Override
+	public String getUser() {
+		return email;
+	}
+
+	@Override
+	public String getPassword() {
+		return psw;
+	}
 	
 	
 	

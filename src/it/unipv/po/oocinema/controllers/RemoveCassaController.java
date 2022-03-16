@@ -3,7 +3,7 @@ package it.unipv.po.oocinema.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.Cassa;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,7 +33,7 @@ public class RemoveCassaController implements Initializable {
 		ID_cash.setCellValueFactory(new PropertyValueFactory<Cassa, String>("ID_cash"));
 		pw_cash.setCellValueFactory(new PropertyValueFactory<Cassa, String>("pw_cash"));
 
-		tableView.getItems().setAll(MySQLConnection.getAllCassa());
+		tableView.getItems().setAll(MySQLConnectionFactory.getAllCassa());
 	}
 
 	/**
@@ -45,10 +45,10 @@ public class RemoveCassaController implements Initializable {
 	@FXML
 	public void removeCassa() {
 		try {
-			MySQLConnection.removeCassa(tableView.getSelectionModel().getSelectedItem());
+			MySQLConnectionFactory.removeCassa(tableView.getSelectionModel().getSelectedItem());
 
 			// Aggiorno la UI
-			tableView.getItems().setAll(MySQLConnection.getAllCassa());
+			tableView.getItems().setAll(MySQLConnectionFactory.getAllCassa());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 

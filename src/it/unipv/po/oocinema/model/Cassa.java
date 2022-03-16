@@ -9,7 +9,7 @@ public class Cassa implements IAcquirente{
 	/** 
 	* ID della cassa
 	*/
-	private int ID_cassa;
+	private String user;
 	
 	/** 
 	* Password della cassa
@@ -19,27 +19,19 @@ public class Cassa implements IAcquirente{
 	/** 
 	* Costruttore con tutte le variabili
 	*/
-	public Cassa(int ID_cassa, String pw_cassa) {
-		this.ID_cassa = ID_cassa;
+	public Cassa(String user, String pw_cassa) {
+		this.user = user;
 		this.pw_cassa = pw_cassa;
 	}
-	
-	/**
-	 * Per ottenere l'ID della cassa
-	 * 
-	 * @return ID_cassa  l'ID della cassa
-	 */
-	public int getID_cassa() {
-		return ID_cassa;
-	}
+
 	
 	/**
 	* Setta l'ID della cassa
 	*
 	* @param ID_cassa  l'ID da impostare
 	*/
-	public void setID_cash(int ID_cassa) {
-		this.ID_cassa = ID_cassa;
+	public void setUser(String user) {
+		this.user = user;
 	}
 	
 	/**
@@ -64,6 +56,16 @@ public class Cassa implements IAcquirente{
 	public LocalDate getCompleanno() {
 		return LocalDate.of(2022, 12, 25);
 		 
+	}
+
+	@Override
+	public String getUser() {
+		return user;
+	}
+
+	@Override
+	public String getPassword() {
+		return pw_cassa;
 	}
 	
 	

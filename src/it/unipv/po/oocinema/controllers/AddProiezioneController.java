@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.FasciaOraria;
 import it.unipv.po.oocinema.model.Film;
 import it.unipv.po.oocinema.model.Proiezione;
@@ -62,7 +62,7 @@ public class AddProiezioneController implements Initializable {
 	 * ChoiceBox
 	 */
 	private void setupSale() {
-		listaSale = MySQLConnection.getAllSale();
+		listaSale = MySQLConnectionFactory.getAllSale();
 
 		List<String> nomiSale = new ArrayList<String>();
 
@@ -84,7 +84,7 @@ public class AddProiezioneController implements Initializable {
 	 * relativa ChoiceBox
 	 */
 	private void setupFascieOrarie() {
-		listaFascieOrarie = MySQLConnection.getAllFascieOrarie();
+		listaFascieOrarie = MySQLConnectionFactory.getAllFascieOrarie();
 
 		List<String> nomiFascieOrarie = new ArrayList<String>();
 
@@ -106,7 +106,7 @@ public class AddProiezioneController implements Initializable {
 	 * ChoiceBox
 	 */
 	private void setupTitoli() {
-		listaFilm = MySQLConnection.getAllFilms();
+		listaFilm = MySQLConnectionFactory.getAllFilms();
 
 		List<String> nomiFilm = new ArrayList<String>();
 
@@ -165,7 +165,7 @@ public class AddProiezioneController implements Initializable {
 
 		Alert alert;
 
-		if (MySQLConnection.insertProiezione(proiezione)) {
+		if (MySQLConnectionFactory.insertProiezione(proiezione)) {
 			alert = new Alert(AlertType.INFORMATION, "Proiezione aggiunta con successo");
 		} else {
 			alert = new Alert(AlertType.ERROR,

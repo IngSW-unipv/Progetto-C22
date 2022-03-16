@@ -7,7 +7,7 @@ public class Film {
 	/**
 	 * Id del film.
 	 */
-	private String ID_film;
+	private int ID_film;
 	
 	/**
 	 * Titolo del film.
@@ -29,7 +29,7 @@ public class Film {
 	/**
 	 * Costruttore con tutte le variabili
 	 */
-	public Film(String ID_film, String titolo, String descrizione, String genere, int durata, String regista,
+	public Film(int ID_film, String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
 		this.ID_film = ID_film;
 		this.titolo = titolo;
@@ -46,7 +46,7 @@ public class Film {
 	 * Getter and Setter
 	 */
 
-	public void setID_film(String iD_film) {
+	public void setID_film(int iD_film) {
 		ID_film = iD_film;
 	}
 
@@ -74,7 +74,7 @@ public class Film {
 		this.cast = cast;
 	}
 
-	public String getID_film() {
+	public int getID_film() {
 		return ID_film;
 	}
 

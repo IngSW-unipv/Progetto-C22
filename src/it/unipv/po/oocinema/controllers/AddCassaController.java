@@ -1,6 +1,6 @@
 package it.unipv.po.oocinema.controllers;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.Cassa;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -31,7 +31,7 @@ public class AddCassaController {
 		Alert alert;
 
 		try {
-			if (MySQLConnection.insertCassa(cassa)) {
+			if (MySQLConnectionFactory.insertCassa(cassa)) {
 				alert = new Alert(AlertType.INFORMATION, "Cassa aggiunta con successo");
 			} else {
 				alert = new Alert(AlertType.ERROR, "C'è stato un problema nell'aggiunta della cassa, controlla i dati");

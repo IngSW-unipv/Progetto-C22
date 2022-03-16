@@ -1,6 +1,6 @@
 package it.unipv.po.oocinema.controllers;
 
-import it.unipv.po.oocinema.database.MySQLConnection;
+import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.view.WindowsHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -32,7 +32,7 @@ public class LoginController {
     private void handleSignInButton() {
         System.out.println("-- Faccio login con " + txtUsername.getText() + " - " + txtPassword.getText() + " --");
         try {
-			if (/**true ||*/ MySQLConnection.login(txtUsername.getText(), txtPassword.getText())) {  //avevo messo true || in modo tale da debaggure prima il programma
+			if (/**true ||*/ MySQLConnectionFactory.login(txtUsername.getText(), txtPassword.getText())) {  //avevo messo true || in modo tale da debaggure prima il programma
 				System.out.print("- Login avvenuto con successo -");
 				
 				Alert alert = new Alert(AlertType.INFORMATION, "Login avvenuto con successo, benvenuto " + txtUsername.getText());
