@@ -4,9 +4,9 @@ package it.unipv.po.oocinema.model.prenotazione;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import it.unipv.po.oocinema.model.IAcquirente;
 import it.unipv.po.oocinema.model.Posto;
 import it.unipv.po.oocinema.model.Proiezione;
+import it.unipv.po.oocinema.model.acquirenti.IAcquirente;
 import it.unipv.po.oocinema.model.prenotazione.sconti.IScontoPrenotazioneStrategy;
 import it.unipv.po.oocinema.model.prenotazione.sconti.ScontoFactory;
 

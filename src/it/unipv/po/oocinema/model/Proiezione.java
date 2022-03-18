@@ -15,16 +15,16 @@ public class Proiezione {
 	private Sala sala;
 	private double prezzo;
 	private ArrayList<ArrayList<Posto>> posti;
-	private ArrayList<LocalTime> orari;
+	private LocalTime orario;
 
 	/**
 	 * Costruttore con tutte le variabili
 	 */
 
-	public Proiezione(Film film, LocalDate giorno, Sala sala, ArrayList<LocalTime> orari) {
+	public Proiezione(Film film, LocalDate giorno, Sala sala, LocalTime orario) {
 		this.film = film;
 		this.giorno=giorno;
-		this.orari = orari;
+		this.orario = orario;
 		this.posti = new ArrayList<ArrayList<Posto>>();
 		this.setSala(sala);
 	}
@@ -36,8 +36,8 @@ public class Proiezione {
 	public int getPostiOccupati() {
 		int count = 0;
 		for(int i = 0; i < getSala().getRighe(); i++) {
-			for (int j = 0; j < getSala().getRighe(); j++) {
-				if(posti.get(i).get(j).isAvailable()) {
+			for (int j = 0; j < getSala().getColonne(); j++) {
+				if(!posti.get(i).get(j).isAvailable()) {
 					count++;
 				}
 			}
@@ -88,9 +88,7 @@ public class Proiezione {
 
 	public void setSala(Sala sala) {
 		this.sala = sala;
-		if (posti.size() != 0) {
-			posti.removeAll(posti);
-		}
+		
 		for (int i = 0; i < sala.getRighe(); i++) {
 			ArrayList<Posto> riga = new ArrayList<Posto>();
 			for (int j = 0; j < sala.getColonne(); j++) {
@@ -100,12 +98,12 @@ public class Proiezione {
 		}
 	}
 
-	public ArrayList<LocalTime> getOrari() {
-		return orari;
+	public LocalTime getOrario() {
+		return orario;
 	}
 
-	public void setOrari(ArrayList<LocalTime> orari) {
-		this.orari = orari;
+	public void setOrario(LocalTime orario) {
+		this.orario = orario;
 	}
 	
 	public double getPrezzo() {

@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.unipv.po.oocinema.database.MySQLConnectionFactory;
-import it.unipv.po.oocinema.model.Cassa;
+import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.cell.PropertyValueFactory;

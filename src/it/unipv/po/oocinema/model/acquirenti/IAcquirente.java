@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.model;
+package it.unipv.po.oocinema.model.acquirenti;
 
 import java.time.LocalDate;
 

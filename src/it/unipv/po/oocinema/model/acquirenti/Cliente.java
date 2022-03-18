@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.model;
+package it.unipv.po.oocinema.model.acquirenti;
 
 import java.time.LocalDate;
 
@@ -8,7 +8,6 @@ public class Cliente implements IAcquirente {
 	private String nome;
 	private String cognome;
 	private String psw;
-	
 	private LocalDate compleanno;
 	
 
@@ -52,6 +51,7 @@ public class Cliente implements IAcquirente {
 		this.psw = psw;
 	}
 	
+	@Override
 	public LocalDate getCompleanno() {
 		return compleanno;
 	}

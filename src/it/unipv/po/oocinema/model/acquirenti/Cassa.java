@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.model;
+package it.unipv.po.oocinema.model.acquirenti;
 
 import java.time.LocalDate;
 
@@ -54,8 +54,7 @@ public class Cassa implements IAcquirente{
 
 	@Override
 	public LocalDate getCompleanno() {
-		return LocalDate.of(2022, 12, 25);
-		 
+		return null;
 	}
 
 	@Override

@@ -11,10 +11,6 @@ public class ScontoFactory {
 	private static final String PROPERTYNAME = "discount.strategy.class.name";
 	
 	
-	private ScontoFactory() {
-		
-	}
-	
 	public static ScontoFactory getInstance() {
 		if(instance == null) {
 			instance = new ScontoFactory();
