@@ -2,8 +2,8 @@ package it.unipv.po.oocinema.controllers;
 
 import java.io.File;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
-import it.unipv.po.oocinema.model.Film;
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

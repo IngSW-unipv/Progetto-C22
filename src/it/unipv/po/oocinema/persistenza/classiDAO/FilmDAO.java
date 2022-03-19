@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.database.classiDAO;
+package it.unipv.po.oocinema.persistenza.classiDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
-import it.unipv.po.oocinema.database.interfaccieDAO.IFilmDAO;
-import it.unipv.po.oocinema.model.Film;
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
+import it.unipv.po.oocinema.persistenza.interfaccieDAO.IFilmDAO;
 
 
 public class FilmDAO implements IFilmDAO {
@@ -69,14 +69,7 @@ public class FilmDAO implements IFilmDAO {
 		return film;
 		
 	}
-
-	
 		
-		
-		
-		
-		
-		
-	}
+}
 
 

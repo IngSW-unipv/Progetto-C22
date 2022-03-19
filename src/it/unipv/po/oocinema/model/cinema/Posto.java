@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.model;
+package it.unipv.po.oocinema.model.cinema;
 
 public class Posto { 
 	

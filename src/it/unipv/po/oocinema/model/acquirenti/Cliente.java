@@ -2,29 +2,16 @@ package it.unipv.po.oocinema.model.acquirenti;
 
 import java.time.LocalDate;
 
-public class Cliente implements IAcquirente {
+public class Cliente extends Acquirente {
 	
-	private String email;
 	private String nome;
 	private String cognome;
-	private String psw;
-	private LocalDate compleanno;
 	
 
 	public Cliente(String email, String nome, String cognome, String psw, LocalDate compleanno) {
-		this.email = email;
+		super(email,psw,compleanno);
 		this.nome = nome;
 		this.cognome = cognome;
-		this.psw = psw;
-		this.compleanno = compleanno;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getNome() {
@@ -41,36 +28,6 @@ public class Cliente implements IAcquirente {
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
-	}
-
-	public String getPsw() {
-		return psw;
-	}
-
-	public void setPsw(String psw) {
-		this.psw = psw;
-	}
-	
-	@Override
-	public LocalDate getCompleanno() {
-		return compleanno;
-	}
-
-	public void setCompleanno(LocalDate compleanno) {
-		this.compleanno = compleanno;
-	}
-
-	@Override
-	public String getUser() {
-		return email;
-	}
-
-	@Override
-	public String getPassword() {
-		return psw;
-	}
-	
-	
-	
+	}	
 
 }

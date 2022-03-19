@@ -1,7 +1,7 @@
 package it.unipv.po.oocinema.controllers;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

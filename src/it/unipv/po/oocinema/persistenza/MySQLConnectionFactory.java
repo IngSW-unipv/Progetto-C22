@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.database;
+package it.unipv.po.oocinema.persistenza;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

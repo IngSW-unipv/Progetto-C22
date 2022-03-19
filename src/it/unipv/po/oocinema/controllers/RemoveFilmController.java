@@ -3,8 +3,8 @@ package it.unipv.po.oocinema.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
-import it.unipv.po.oocinema.model.Film;
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.cell.PropertyValueFactory;

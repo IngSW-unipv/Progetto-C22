@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.model;
+package it.unipv.po.oocinema.model.cinema;
 
 /**
  * Classe che modella un oggetto di tipo Sala del cinema

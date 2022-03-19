@@ -4,11 +4,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.FasciaOraria;
-import it.unipv.po.oocinema.model.Film;
-import it.unipv.po.oocinema.model.Proiezione;
-import it.unipv.po.oocinema.model.Sala;
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
  
 public class CinemaTest {
 	

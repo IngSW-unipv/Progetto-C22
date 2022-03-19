@@ -4,9 +4,9 @@ package it.unipv.po.oocinema.model.prenotazione;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import it.unipv.po.oocinema.model.Posto;
-import it.unipv.po.oocinema.model.Proiezione;
-import it.unipv.po.oocinema.model.acquirenti.IAcquirente;
+import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+import it.unipv.po.oocinema.model.cinema.Posto;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.prenotazione.sconti.IScontoPrenotazioneStrategy;
 import it.unipv.po.oocinema.model.prenotazione.sconti.ScontoFactory;
 
@@ -18,7 +18,7 @@ public class Prenotazione {
 	private LocalDate dataAcquisto;
 
 	
-	private IAcquirente acquirente;
+	private Acquirente acquirente;
 
 	private ArrayList<Posto> posti;
 
@@ -120,12 +120,12 @@ public class Prenotazione {
 	}
 
 
-	public IAcquirente getAcquirente() {
+	public Acquirente getAcquirente() {
 		return acquirente;
 	}
 
 
-	public void setAcquirente(IAcquirente acquirente) {
+	public void setAcquirente(Acquirente acquirente) {
 		this.acquirente = acquirente;
 	}
 

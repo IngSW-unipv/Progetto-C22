@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
 import it.unipv.po.oocinema.model.FasciaOraria;
-import it.unipv.po.oocinema.model.Film;
-import it.unipv.po.oocinema.model.Proiezione;
-import it.unipv.po.oocinema.model.Sala;
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
