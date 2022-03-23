@@ -34,5 +34,12 @@ public class Posto {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
+	
+	@Override
+	public String toString() {
+		
+		return"Fila: "+(this.getRiga()+'A')+" Posto: "+this.getColonna()+"\n";
+		
+	}
 
 }

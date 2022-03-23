@@ -13,7 +13,7 @@ import it.unipv.po.oocinema.model.prenotazione.sconti.ScontoFactory;
 public class Prenotazione {
 	
 	
-	private final long id;
+	private final int id;
 
 	private LocalDate dataAcquisto;
 
@@ -27,17 +27,18 @@ public class Prenotazione {
 
 	public IScontoPrenotazioneStrategy strategy;
 
-
-	public Prenotazione(IScontoPrenotazioneStrategy strategy, long id) {
+	
+	public Prenotazione(int id, Acquirente acquirente,Proiezione proiezione) {
+		super();
 		this.id = id;
-		dataAcquisto = java.time.LocalDate.now();
-		posti = new ArrayList<Posto>();
-		
+		this.dataAcquisto = java.time.LocalDate.now();
+		this.acquirente = acquirente;
+		this.posti = new ArrayList<Posto>();
+		this.proiezione = proiezione;
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
 	}
 
-	
 	public void addPosto(int row, int col) {
 		boolean duplicato = false;
 		if (proiezione.checkPostoDisponibile(row, col)) {
@@ -149,7 +150,7 @@ public class Prenotazione {
 		this.proiezione = proiezione;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	

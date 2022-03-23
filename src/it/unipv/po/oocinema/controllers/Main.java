@@ -21,29 +21,11 @@ public class Main extends Application {
 		primaryStage.setTitle("OOCinema");
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.getIcons()
-				.add(new Image("https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/512x512/shadow/movie.png")); // mi
-																														// permette
-																														// di
-																														// avere
-																														// un
-																														// immagine
-																														// nell'icona
-																														// della
-																														// finestra
-																														// di
-																														// dialogo
-																														// che
-																														// apparirà
-																														// nella
-																														// barra
-																														// di
-																														// controllo
-																														// del
-																														// pc
+				.add(new Image("https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/512x512/shadow/movie.png")); 
 		primaryStage.show();
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		launch(args);
-	}
+	}*/
 }
