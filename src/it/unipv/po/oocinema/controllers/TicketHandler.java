@@ -18,17 +18,14 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Font.FontStyle;
+import com.itextpdf.text.TabStop.Alignment;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.qrcode.BitMatrix;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.cinema.Film;
@@ -40,8 +37,8 @@ public class TicketHandler {
 	
 	private final String file;
 
-	public TicketHandler(Prenotazione prenotazione) {
-		file = "./tickets/"+Integer.toString(prenotazione.getId())+".pdf";
+	public TicketHandler(Prenotazione prenotazione) throws WriterException, IOException {
+		file = "tickets/"+prenotazione.getId()+".pdf";
 		createTicket(prenotazione);
 	}
 	public void createTicket(Prenotazione prenotazione){
@@ -58,16 +55,39 @@ public class TicketHandler {
 		}
 	}
 	
-	public void addInformazioniPrenotazione(Document document, Prenotazione prenotazione) throws MalformedURLException, IOException, DocumentException {
+	public void addInformazioniPrenotazione(Document document, Prenotazione prenotazione) throws MalformedURLException, IOException, DocumentException, WriterException {
 		document.addTitle("Prenotazione numero: " + prenotazione.getId());
 		document.addCreationDate();
 		document.addAuthor("Lo Staff di Oocinema");
 		Image locandina = Image.getInstance(new URL(prenotazione.getProiezione().getFilm().getCoverPath()));
-		locandina.scalePercent(20f);
-		locandina.setAbsolutePosition(10, 10);
-		document.add(locandina);
-		document.add(new Paragraph("Prenotazine effettuata da: "+ prenotazione.getAcquirente().getUser(), new Font(Font.FontFamily.HELVETICA, 33, Font.BOLD)));
 		
+		for(int i = 0; i<prenotazione.getNumPosti();i++) {
+			locandina.scalePercent(35f);
+			locandina.setAbsolutePosition(10,300);
+			document.add(locandina);
+			document.add(createParagrafoPrenotazione(prenotazione,i));
+			printQRcode(prenotazione,i);
+			Image qrcode = Image.getInstance(new URL("file:tickets/QRcodes/"+prenotazione.getId()+"_"+i+".png"));
+			qrcode.scalePercent(20f);
+			locandina.setAbsolutePosition(0, 10);
+			document.add(qrcode);
+			document.newPage();
+		}
+	}
+	
+	public Paragraph createParagrafoPrenotazione(Prenotazione prenotazione, int i) {
+		
+		String giorno = ""+prenotazione.getProiezione().getGiorno().getDayOfWeek().getValue();
+		String mese = ""+prenotazione.getProiezione().getGiorno().getMonth().getValue();
+		String anno = ""+prenotazione.getProiezione().getGiorno().getYear();
+		String data = giorno + '/' + mese  + '/' + anno;
+		
+		Paragraph paragrafo = new Paragraph("Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()
+				+ "\n" + "Sala "+ prenotazione.getProiezione().getSala().getID_sala() +prenotazione.getPosti().get(i).toString()+
+				"   -   " + data + "  alle  "
+				+ prenotazione.getProiezione().getOrario().getHour()+":"+prenotazione.getProiezione().getOrario().getMinute());
+		paragrafo.setSpacingBefore(30);
+		return paragrafo;
 	}
  
 	
@@ -76,50 +96,32 @@ public class TicketHandler {
 		com.google.zxing.common.BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);  
 		MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));  
 	}  
-		//main() method  
-		public void printQRcode(Prenotazione prenotazione) throws WriterException, IOException
-		{  
-		//data that we want to store in the QR code  
-		String str= "Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()+ ".\n Numero di posti: "+prenotazione.getNumPosti()+"\n ID: "+prenotazione.getId();
-		//path where we want to get QR Code  
-		String path = "C:\\Users\\teora\\Documents\\GitHub\\Progetto-C22\\tickets\\Quote.png";  
 		
+	public void printQRcode(Prenotazione prenotazione, int i) throws WriterException, IOException{   
+		String str= "Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()+ ".\n Posto: "+prenotazione.getPosti().get(i).toString()+"\n ID: "+prenotazione.getId();
+		String path = "tickets/QRcodes/"+prenotazione.getId()+"_"+i+".png";  
 		String charset = "UTF-8";  
 		Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();  
-		//generates QR code with Low level(L) error correction capability  
+		
 		hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);  
-		//invoking the user-defined method that creates the QR code  
-		generateQRcode(str, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly   
-		  
-		System.out.println("QR Code created successfully.");  
-		}  
+	
+		generateQRcode(str, path, charset, hashMap, 200, 200);
+	}  
 		
 	
 	
-	/*public Paragraph createPrenotazioneString(Prenotazione prenotazione) {
-		String dayOfWeek = prenotazione.getProiezione().getGiorno().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ITALIAN);
-		String month = prenotazione.getProiezione().getGiorno().getMonth().getDisplayName(TextStyle.FULL,
-				Locale.ITALIAN);
-		Paragraph infoReservationP = new Paragraph("Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()
-				+ "\n" + "Sala "+ prenotazione.getProiezione().getSala().getID_sala() + 
-				"   -   " + dayOfWeek.toUpperCase().charAt(0)
-				+ " " + reservation.getProjection().getDateTime().getDayOfMonth() + " "
-				+ month.toUpperCase().charAt(0) + month.substring(1) + " "
-				+ prenotazione.getProiezione().getDateTime().getYear() + "  alle  "
-				+ String.format("%02d", reservation.getProjection().getDateTime().getHour()) + ":"
-				+ String.format("%02d", reservation.getProjection().getDateTime().getMinute()),
-				allFonts.get("subFont25"));
-		infoReservationP.setSpacingBefore(30);
-		return infoReservationP;
-	}*/
+	
 	
 	public static void main(String[] args) throws WriterException, IOException {
 		Acquirente a = new Acquirente("user","psw",null);
-		Film f = new Film(2,"Avengers", null,"Fantastico", 180,"Matteo","Ragni","file:///C:/Users/teora/Documents/GitHub/Progetto-C22/assets/2.jpeg",null);
+		Film f = new Film(2,"Avengers", null,"Fantastico", 180,"Regi","sta","file:assets/2.jpeg",null);
 		Proiezione p = new Proiezione(f, LocalDate.now(), new Sala("SALA 1",2,2),LocalTime.now());
-		Prenotazione prenotazione = new Prenotazione(1,a,p);
+		Prenotazione prenotazione = new Prenotazione(5,a,p);
+		prenotazione.addPosto(0, 1);
+		prenotazione.addPosto(0, 0);
+		prenotazione.acquista();
 		TicketHandler t = new TicketHandler(prenotazione);
-		t.printQRcode(prenotazione);
+
 	}
 	
 	

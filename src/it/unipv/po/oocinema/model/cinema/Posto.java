@@ -38,7 +38,7 @@ public class Posto {
 	@Override
 	public String toString() {
 		
-		return"Fila: "+(this.getRiga()+'A')+" Posto: "+this.getColonna()+"\n";
+		return"Fila: "+(char)(this.getRiga()+'A')+" Posto: "+this.getColonna()+"\n";
 		
 	}
 
