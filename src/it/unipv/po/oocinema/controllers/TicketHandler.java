@@ -116,7 +116,7 @@ public class TicketHandler {
 		Acquirente a = new Acquirente("user","psw",null);
 		Film f = new Film(2,"Avengers", null,"Fantastico", 180,"Regi","sta","file:assets/2.jpeg",null);
 		Proiezione p = new Proiezione(f, LocalDate.now(), new Sala("SALA 1",2,2),LocalTime.now());
-		Prenotazione prenotazione = new Prenotazione(5,a,p);
+		Prenotazione prenotazione = new Prenotazione(10,a,p);
 		prenotazione.addPosto(0, 1);
 		prenotazione.addPosto(0, 0);
 		prenotazione.acquista();
