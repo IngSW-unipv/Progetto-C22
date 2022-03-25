@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.persistenza;
+package it.unipv.po.oocinema.persistenza.classiDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import it.unipv.po.oocinema.database.MySQLConnectionFactory;
-import it.unipv.po.oocinema.database.interfaccieDAO.ISalaDAO;
-import it.unipv.po.oocinema.model.Sala;
+import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
+import it.unipv.po.oocinema.persistenza.interfaccieDAO.ISalaDAO;
+import it.unipv.po.oocinema.model.cinema.Sala; 
 
 public class SalaDAO implements ISalaDAO {
 	
@@ -17,7 +17,7 @@ public class SalaDAO implements ISalaDAO {
 
 	public SalaDAO() {
 		super();
-		conn = MySQLConnectionFactory.connect(conn);
+		conn = MySQLConnectionFactory.connect(conn); //prova
 	}
 	
 	@Override
@@ -46,7 +46,7 @@ public class SalaDAO implements ISalaDAO {
 		result = st1.executeQuery();
 		ArrayList<Sala> sala = new ArrayList<Sala>();
 		while (result.next()) {
-			sala.add(new Sala(result.getInt("id"), result.getInt("riga"), result.getInt("colonna")));
+			sala.add(new Sala(result.getString("id"), result.getInt("riga"), result.getInt("colonna")));
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return sala;
