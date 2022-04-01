@@ -28,7 +28,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.setString(1, ""+inputProiezione.getId());
 		result = st1.executeQuery();
 		Proiezione proiezione = new Proiezione(result.getInt("film_id"), result.getString("giorno"), 
-								result.getInt("sala_id"), result.getString("orario"));
+								result.getInt("sala_id"),result.getDouble("prezzo"), result.getString("orario"));
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
 	}
