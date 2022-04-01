@@ -29,6 +29,9 @@ public class Film {
 	private String trailerPath;
 
 
+	public Film(String titolo) {
+		this.titolo = titolo;
+	}
 	/**
 	 * Costruttore con tutte le variabili
 	 */

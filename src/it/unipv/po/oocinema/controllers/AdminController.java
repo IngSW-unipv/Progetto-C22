@@ -2,15 +2,20 @@ package it.unipv.po.oocinema.controllers;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.JFileChooser;
 
 
 import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import it.unipv.po.oocinema.view.WindowsHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -23,7 +28,7 @@ public class AdminController {
 	//private DBFacade facade = new DBFacade();
 
     @FXML
-    private ToggleButton aggiungi;
+    private ToggleButton aggiungiFilm;
 
     @FXML
     private Label cassa;
@@ -62,6 +67,25 @@ public class AdminController {
 
     @FXML
     private Button trailer;
+    
+    @FXML
+    private ToggleButton aggiungiProiezione;
+
+
+    @FXML
+    private ComboBox<?> filmCombo;
+
+    @FXML
+    private DatePicker giorno;
+
+    @FXML
+    private ComboBox<?> oraCombo;
+
+    @FXML
+    private TextField prezzo;
+
+    @FXML
+    private ComboBox<?> salaCombo;
 
     
     private File l;
@@ -70,8 +94,16 @@ public class AdminController {
     public void aggiungiFilm(MouseEvent event) {
     	
     	Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
-    			Integer.parseInt(durata.getText()),regista.getText(),cast.getText(), l.getPath(),t.getPath());
+    			Integer.parseInt(durata.getText()),regista.getText(),cast.getText(), "resources/locandine/"+l.getName(),"resources/trailer/"+t.getName());
     	//facade.aggiungiFilm(f);
+    }
+    
+    @FXML
+    void aggiungiProiezione(MouseEvent event) {
+    	//Film f = facade.getFilmbyTitolo(new Film(filmCombo.getPromptText()));
+    	//Sala s = facade.getSala(new Sala (salaCombo.getPromptText()));
+    	//Proiezione p = new Proiezione(f, (LocalDate)giorno.getValue(),s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
+    	//facade.aggiungiProiezione(p);
     }
 
     @FXML

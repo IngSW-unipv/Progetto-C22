@@ -17,13 +17,13 @@ public class Proiezione {
 	private Sala sala;
 	private double prezzo;
 	private ArrayList<ArrayList<Posto>> posti;
-	private LocalTime orario;
+	private String orario;
 
 	/**
 	 * Costruttore con tutte le variabili
 	 */
 
-	public Proiezione(Film film, LocalDate giorno, Sala sala, double prezzo, LocalTime orario) {
+	public Proiezione(Film film, LocalDate giorno, Sala sala, double prezzo, String orario) {
 		this.id = progressivo;
 		progressivo++;
 		this.film = film;
@@ -104,11 +104,11 @@ public class Proiezione {
 		}
 	}
 
-	public LocalTime getOrario() {
+	public String getOrario() {
 		return orario;
 	}
 
-	public void setOrario(LocalTime orario) {
+	public void setOrario(String orario) {
 		this.orario = orario;
 	}
 	

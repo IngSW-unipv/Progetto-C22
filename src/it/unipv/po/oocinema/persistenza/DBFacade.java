@@ -2,8 +2,11 @@ package it.unipv.po.oocinema.persistenza;
 
 import java.sql.SQLException;
 
+
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.classiDAO.AcquirenteDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.FilmDAO;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
@@ -34,4 +37,25 @@ public class DBFacade {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public Film getFilmbyTitolo(Film film) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public void aggiungiProiezione(Proiezione p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public Sala getSala(it.unipv.po.oocinema.model.cinema.Sala sala) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 }

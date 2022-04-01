@@ -13,12 +13,15 @@ public class Sala {
 	/**
 	 * Costruttore con tutte le variabili
 	 */
-	public Sala(String ID_sala, int righe, int colonne) {
-		this.id = ID_sala;
+	public Sala(String id, int righe, int colonne) {
+		this.id = id;
 		this.righe = righe;
 		this.colonne = colonne;
 	}
-
+	
+	public Sala(String id) {
+		this.id = id;
+	}
 	/**
 	 * Getter and Setter
 	 */
