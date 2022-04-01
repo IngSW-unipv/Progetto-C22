@@ -1,5 +1,11 @@
 package it.unipv.po.oocinema.controllers;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +15,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 
 public class AdminController {
+	
+	private DBFacade facade = new DBFacade();
 
     @FXML
     private ToggleButton aggiungi;
@@ -42,6 +50,8 @@ public class AdminController {
 
     @FXML
     private TextField regista;
+    @FXML
+    private TextField cast;
 
     @FXML
     private TextField titolo;
@@ -50,17 +60,23 @@ public class AdminController {
     private Button trailer;
 
     @FXML
-    void aggiungiFilm(MouseEvent event) {
-
+    public void aggiungiFilm(MouseEvent event) {
+    	
+    	Film f = new Film(Film.getProgressivo(),titolo.getText(),descrizione.getText(), genere.getText(),
+    			Integer.parseInt(durata.getText()),regista.getText(),cast.getText(), caricaLocandina(event),caricaTrailer(event));
+    	Film.incrementaProgressivo();
+    	facade.aggiungiFilm(f);
     }
 
     @FXML
-    void caricaLocandina(MouseEvent event) {
-
+    public String caricaLocandina(MouseEvent event) {
+    	JFileChooser fc = new JFileChooser();
+    	File file = fc.getSelectedFile();
+    	return file.getPath();
     }
 
     @FXML
-    void caricaTrailer(MouseEvent event) {
+    public String caricaTrailer(MouseEvent event) {
 
     }
 

@@ -4,7 +4,10 @@ package it.unipv.po.oocinema.model.cinema;
  * Classe che modella un oggetto di tipo Film
  */
 public class Film {
+	
+	private static int progressivo = 0;
 	/**
+	 * 
 	 * Id del film.
 	 */
 	private int id;
@@ -49,6 +52,15 @@ public class Film {
 	public void setId(int iD_film) {
 		id = iD_film;
 	}
+
+	public static int getProgressivo() {
+		return progressivo;
+	}
+	
+	public static void incrementaProgressivo() {
+		progressivo = progressivo+1;
+	}
+	
 
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;

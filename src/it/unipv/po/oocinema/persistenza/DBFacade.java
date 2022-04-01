@@ -3,6 +3,7 @@ package it.unipv.po.oocinema.persistenza;
 import java.sql.SQLException;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.classiDAO.AcquirenteDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.FilmDAO;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
@@ -26,5 +27,11 @@ public class DBFacade {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+
+	public void aggiungiFilm(Film f) {
+		// TODO Auto-generated method stub
+		
 	}
 }

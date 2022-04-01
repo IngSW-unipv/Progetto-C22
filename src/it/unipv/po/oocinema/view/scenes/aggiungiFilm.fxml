@@ -152,6 +152,12 @@
                               <Image url="@../icons8-aggiungi-24.png" />
                            </image>
                         </ImageView>
+                        <TextField fx:id="cast" layoutX="112.0" layoutY="248.0" prefHeight="36.0" prefWidth="298.0" promptText="Inserisci cast..." styleClass="controls" stylesheets="@style.css" />
+                        <Text layoutX="62.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cast:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Text>
                      </children>
                   </Pane>
                </children>
