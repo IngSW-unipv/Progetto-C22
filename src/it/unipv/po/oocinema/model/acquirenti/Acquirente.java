@@ -6,13 +6,11 @@ public class Acquirente {
 	
 	public String user;
 	public String password;
-	public LocalDate compleanno;
 	
 	
-	public Acquirente(String user, String password, LocalDate compleanno) {
+	public Acquirente(String user, String password) {
 		this.user = user;
 		this.password = password;
-		this.compleanno = compleanno;
 	}
 	public String getUser() {
 		return user;
@@ -26,12 +24,8 @@ public class Acquirente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public LocalDate getCompleanno() {
-		return compleanno;
+		return null;
 	}
-	public void setCompleanno(LocalDate compleanno) {
-		this.compleanno = compleanno;
-	}
-	
-	
 }

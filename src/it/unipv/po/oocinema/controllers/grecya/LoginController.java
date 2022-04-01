@@ -18,32 +18,49 @@ public class LoginController {
 
 	
     @FXML 
-    private TextField txtUsername;
+    private TextField userTxt;
     @FXML
-    private PasswordField txtPassword;
-    @FXML
-    private Label lblErrors;
+    private PasswordField pswTxt;
     
-   public DBFacade f = new DBFacade();
+    private DBFacade f;
+    
+    public LoginController() {
+    	f = new DBFacade();
+    }
     
     @FXML
-    private void handleSignInButton() {
+    private void login() {
  
-    	if (f.login(new Acquirente(txtUsername.getText(),txtPassword.getText(),null))) {  
+    	if (f.login(new Acquirente(userTxt.getText(),pswTxt.getText()))) {  
 			System.out.print("- Login avvenuto con successo -");
-			Alert alert = new Alert(AlertType.INFORMATION, "Login avvenuto con successo, benvenuto " + txtUsername.getText());
+			Alert alert = new Alert(AlertType.INFORMATION, "Login avvenuto con successo, benvenuto " + userTxt.getText());
 			alert.showAndWait();
-			WindowsHandler.openWindow(getClass(), "homeAdmin.fxml");
-			Stage stage = (Stage) txtUsername.getScene().getWindow();
-			stage.close();
+			/*
+			 * WindowsHandler.openWindow(getClass(), "homeAdmin.fxml"); Stage stage =
+			 * (Stage) userTxt.getScene().getWindow(); 
+			 * stage.close();*/
 		} else {
 			System.out.print("- Login fallito, email o password errati -");
 			Alert alert = new Alert(AlertType.ERROR, "Email o password errati, riprova");
 			alert.showAndWait();
-			lblErrors.setText("Login fallito");
-			}
+		}
+    	
+    	
     }
     
+    @FXML
+    private void nuovoUtente() {
+    	WindowsHandler.openWindow(getClass(), "registrazione.fxml"); 
+    	Stage stage = (Stage) userTxt.getScene().getWindow(); 
+   		stage.close();
+    }
+    
+    @FXML
+    private void passwordDimenticata() {
+    	WindowsHandler.openWindow(getClass(), "password_dimenticata.fxml"); 
+    	Stage stage = (Stage) userTxt.getScene().getWindow(); 
+   		stage.close();
+    }
 
     	
  

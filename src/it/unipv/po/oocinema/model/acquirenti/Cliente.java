@@ -4,30 +4,17 @@ import java.time.LocalDate;
 
 public class Cliente extends Acquirente {
 	
-	private String nome;
-	private String cognome;
-	
+	private LocalDate compleanno;
 
-	public Cliente(String email, String nome, String cognome, String psw, LocalDate compleanno) {
-		super(email,psw,compleanno);
-		this.nome = nome;
-		this.cognome = cognome;
+	public Cliente(String email, String psw, LocalDate compleanno) {
+		super(email,psw);
+		this.compleanno = compleanno;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCognome() {
-		return cognome;
-	}
-
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
+	@Override
+	public LocalDate getCompleanno() {
+		
+		return compleanno;
 	}	
 
 }

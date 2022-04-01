@@ -7,8 +7,13 @@ import java.time.LocalDate;
  */
 public class Cassa extends Acquirente{
 
-	public Cassa(String user, String pw_cassa, LocalDate compleanno) {
-		super(user,pw_cassa, null);
+	public Cassa(String user, String pw_cassa) {
+		super(user,pw_cassa);
+	}
+
+	@Override
+	public LocalDate getCompleanno() {
+		return null;
 	}
 	
 }

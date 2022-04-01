@@ -25,6 +25,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.TabStop.Alignment;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
@@ -44,7 +45,7 @@ public class TicketHandler {
 	public void createTicket(Prenotazione prenotazione){
 		
 		try {
-			Document document = new Document(PageSize.POSTCARD);
+			Document document = new Document(PageSize.A4);
 			PdfWriter.getInstance(document, new FileOutputStream(file));
 			
 		    document.open();
@@ -60,16 +61,20 @@ public class TicketHandler {
 		document.addCreationDate();
 		document.addAuthor("Lo Staff di Oocinema");
 		Image locandina = Image.getInstance(new URL(prenotazione.getProiezione().getFilm().getCoverPath()));
-		
 		for(int i = 0; i<prenotazione.getNumPosti();i++) {
+			
+			Paragraph p = createParagrafoPrenotazione(prenotazione,i);
+			p.setSpacingBefore(100);
+			document.add(p);
+			
 			locandina.scalePercent(35f);
-			locandina.setAbsolutePosition(10,300);
-			document.add(locandina);
-			document.add(createParagrafoPrenotazione(prenotazione,i));
+			locandina.setAlignment(Image.BOTTOM);
+			document.add(locandina); 
+			
 			printQRcode(prenotazione,i);
 			Image qrcode = Image.getInstance(new URL("file:tickets/QRcodes/"+prenotazione.getId()+"_"+i+".png"));
 			qrcode.scalePercent(20f);
-			locandina.setAbsolutePosition(0, 10);
+			locandina.setAlignment(Image.BOTTOM);
 			document.add(qrcode);
 			document.newPage();
 		}
@@ -83,10 +88,9 @@ public class TicketHandler {
 		String data = giorno + '/' + mese  + '/' + anno;
 		
 		Paragraph paragrafo = new Paragraph("Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()
-				+ "\n" + "Sala "+ prenotazione.getProiezione().getSala().getID_sala() +prenotazione.getPosti().get(i).toString()+
-				"   -   " + data + "  alle  "
-				+ prenotazione.getProiezione().getOrario().getHour()+":"+prenotazione.getProiezione().getOrario().getMinute());
-		paragrafo.setSpacingBefore(30);
+				+ "\n" + prenotazione.getProiezione().getSala().getID_sala() + " "+prenotazione.getPosti().get(i).toString()+
+				"\n" + data + "  alle  "+ prenotazione.getProiezione().getOrario().getHour()+":"+prenotazione.getProiezione().getOrario().getMinute());
+
 		return paragrafo;
 	}
  
@@ -105,7 +109,7 @@ public class TicketHandler {
 		
 		hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);  
 	
-		generateQRcode(str, path, charset, hashMap, 200, 200);
+		generateQRcode(str, path, charset, hashMap, 500, 500);
 	}  
 		
 	
@@ -113,7 +117,7 @@ public class TicketHandler {
 	
 	
 	public static void main(String[] args) throws WriterException, IOException {
-		Acquirente a = new Acquirente("user","psw",null);
+		Acquirente a = new Acquirente("user","psw");
 		Film f = new Film(2,"Avengers", null,"Fantastico", 180,"Regi","sta","file:assets/2.jpeg",null);
 		Proiezione p = new Proiezione(f, LocalDate.now(), new Sala("SALA 1",2,2),LocalTime.now());
 		Prenotazione prenotazione = new Prenotazione(10,a,p);
