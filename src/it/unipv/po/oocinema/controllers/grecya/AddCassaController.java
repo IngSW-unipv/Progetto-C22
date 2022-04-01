@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.grecya;
 
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;

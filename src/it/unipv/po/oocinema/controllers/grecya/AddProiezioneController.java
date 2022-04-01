@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.grecya;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;

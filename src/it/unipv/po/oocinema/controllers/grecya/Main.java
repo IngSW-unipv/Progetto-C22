@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.grecya;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
