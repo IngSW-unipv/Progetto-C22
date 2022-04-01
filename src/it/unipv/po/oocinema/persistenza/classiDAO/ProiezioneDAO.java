@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IProiezioneDAO;
+import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 
@@ -24,9 +27,9 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputProiezione.getId());
 		result = st1.executeQuery();
-		Proiezione proiezione = new Proiezione(salaInput.getID_sala(), result.getInt("riga"), result.getInt("colonna"));
+		Proiezione proiezione = new Proiezione(result.getInt("film_id"), result.getString("giorno"), 
+								result.getInt("sala_id"), result.getString("orario"));
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
 	}
-
 }

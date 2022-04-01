@@ -36,7 +36,7 @@ public class FilmDAO implements IFilmDAO {
 		result=st1.executeQuery(query);
 
 		
-		Film f=new Film(result.getInt("id_film"), result.getString("titolo"), result.getString("descrizione"),
+		Film f=new Film(result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), result.getString("cast"), result.getString("duration"),
 					result.getString("trailerPath"));
 			
@@ -59,7 +59,7 @@ public class FilmDAO implements IFilmDAO {
 		ArrayList<Film> film = new ArrayList<Film>();
 		
 		while (result.next()) {
-			film.add(new Film(result.getInt("id_film"), result.getString("titolo"), result.getString("descrizione"),
+			film.add(new Film(result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), result.getString("cast"), result.getString("duration"),
 					result.getString("trailerPath")));
 		}
