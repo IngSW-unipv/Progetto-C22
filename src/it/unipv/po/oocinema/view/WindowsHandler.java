@@ -15,14 +15,14 @@ public class WindowsHandler {
 	public static void openWindow(Class c, String fxmlName) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(c.getResource("layouts/" + fxmlName));
+			root = FXMLLoader.load(c.getResource("../view/scenes/" + fxmlName));
 			Stage stage = new Stage();
-			stage.setTitle("Home admin");
 																														// pc
-			stage.setScene(new Scene(root, 700, 400));
+			stage.setScene(new Scene(root));
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
