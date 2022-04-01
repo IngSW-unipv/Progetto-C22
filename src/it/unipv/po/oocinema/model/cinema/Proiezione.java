@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class Proiezione {
+	private static int progressivo = 0;
 	private int id;
 	private Film film;
 	private LocalDate giorno;
@@ -22,9 +23,13 @@ public class Proiezione {
 	 * Costruttore con tutte le variabili
 	 */
 
-	public Proiezione(Film film, LocalDate giorno, Sala sala, LocalTime orario) {
+	public Proiezione(Film film, LocalDate giorno, Sala sala, double prezzo, LocalTime orario) {
+		this.id = progressivo;
+		progressivo++;
 		this.film = film;
 		this.giorno=giorno;
+		this.sala=sala;
+		this.prezzo=prezzo;
 		this.orario = orario;
 		this.posti = new ArrayList<ArrayList<Posto>>();
 		this.setSala(sala);
