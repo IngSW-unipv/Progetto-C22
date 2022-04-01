@@ -32,9 +32,10 @@ public class Film {
 	/**
 	 * Costruttore con tutte le variabili
 	 */
-	public Film(int ID_film, String titolo, String descrizione, String genere, int durata, String regista,
+	public Film(String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
-		this.id = ID_film;
+		this.id = progressivo;
+		progressivo++;
 		this.titolo = titolo;
 		this.descrizione = descrizione;
 		this.genere = genere;
@@ -51,16 +52,7 @@ public class Film {
 
 	public void setId(int iD_film) {
 		id = iD_film;
-	}
-
-	public static int getProgressivo() {
-		return progressivo;
-	}
-	
-	public static void incrementaProgressivo() {
-		progressivo = progressivo+1;
-	}
-	
+	}	
 
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;

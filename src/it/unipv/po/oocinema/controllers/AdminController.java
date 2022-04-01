@@ -59,24 +59,25 @@ public class AdminController {
     @FXML
     private Button trailer;
 
+    
+    private File l;
+    private File t;
     @FXML
     public void aggiungiFilm(MouseEvent event) {
     	
-    	Film f = new Film(Film.getProgressivo(),titolo.getText(),descrizione.getText(), genere.getText(),
+    	Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
     			Integer.parseInt(durata.getText()),regista.getText(),cast.getText(), caricaLocandina(event),caricaTrailer(event));
-    	Film.incrementaProgressivo();
     	facade.aggiungiFilm(f);
     }
 
     @FXML
-    public String caricaLocandina(MouseEvent event) {
+    public void caricaLocandina(MouseEvent event) {
     	JFileChooser fc = new JFileChooser();
-    	File file = fc.getSelectedFile();
-    	return file.getPath();
+    	l = fc.getSelectedFile();
     }
 
     @FXML
-    public String caricaTrailer(MouseEvent event) {
+    public void caricaTrailer(MouseEvent event) {
 
     }
 
