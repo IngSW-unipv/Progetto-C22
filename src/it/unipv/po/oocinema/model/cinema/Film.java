@@ -7,7 +7,7 @@ public class Film {
 	/**
 	 * Id del film.
 	 */
-	private int ID_film;
+	private int id;
 	
 	/**
 	 * Titolo del film.
@@ -31,7 +31,7 @@ public class Film {
 	 */
 	public Film(int ID_film, String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
-		this.ID_film = ID_film;
+		this.id = ID_film;
 		this.titolo = titolo;
 		this.descrizione = descrizione;
 		this.genere = genere;
@@ -46,8 +46,8 @@ public class Film {
 	 * Getter and Setter
 	 */
 
-	public void setID_film(int iD_film) {
-		ID_film = iD_film;
+	public void setId(int iD_film) {
+		id = iD_film;
 	}
 
 	public void setTitolo(String titolo) {
@@ -74,8 +74,8 @@ public class Film {
 		this.cast = cast;
 	}
 
-	public int getID_film() {
-		return ID_film;
+	public int getId() {
+		return id;
 	}
 
 	public String getTitolo() {

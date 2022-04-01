@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class Proiezione {
+	private int id;
 	private Film film;
 	private LocalDate giorno;
 	private Sala sala;
@@ -120,6 +121,14 @@ public class Proiezione {
 
 	public void setGiorno(LocalDate giorno) {
 		this.giorno = giorno;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

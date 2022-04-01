@@ -31,7 +31,7 @@ public class FilmDAO implements IFilmDAO {
 		
 		String query = "SELECT * FROM film where id_film=?;";
 		st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+filmInput.getID_film());
+		st1.setString(1, ""+filmInput.getId());
 
 		result=st1.executeQuery(query);
 

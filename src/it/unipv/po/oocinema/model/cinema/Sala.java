@@ -5,7 +5,7 @@ package it.unipv.po.oocinema.model.cinema;
  */
 
 public class Sala {
-	private String ID_sala;
+	private String id;
 	private int righe;
 	private int colonne;
 
@@ -14,7 +14,7 @@ public class Sala {
 	 * Costruttore con tutte le variabili
 	 */
 	public Sala(String ID_sala, int righe, int colonne) {
-		this.ID_sala = ID_sala;
+		this.id = ID_sala;
 		this.righe = righe;
 		this.colonne = colonne;
 	}
@@ -22,12 +22,12 @@ public class Sala {
 	/**
 	 * Getter and Setter
 	 */
-	public String getID_sala() {
-		return ID_sala;
+	public String getId() {
+		return id;
 	}
 
-	public void setID_sala(String ID_sala) {
-		this.ID_sala = ID_sala;
+	public void setId(String ID_sala) {
+		this.id = ID_sala;
 	}
 
 

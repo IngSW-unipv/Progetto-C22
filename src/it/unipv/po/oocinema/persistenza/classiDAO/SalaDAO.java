@@ -26,11 +26,11 @@ public class SalaDAO implements ISalaDAO {
 		PreparedStatement st1;
 		ResultSet result;
 		
-		String query = "SELECT * FROM Sala WHERE id = ?;";
+		String query = "SELECT * FROM sala WHERE id = ?;";
 		st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+salaInput.getID_sala());
+		st1.setString(1, ""+salaInput.getId());
 		result = st1.executeQuery();
-		Sala sala = new Sala(salaInput.getID_sala(), result.getInt("riga"), result.getInt("colonna"));
+		Sala sala = new Sala(salaInput.getId(), result.getInt("riga"), result.getInt("colonna"));
 		MySQLConnectionFactory.closeConnection(conn);
 		return sala;
 	}
@@ -41,7 +41,7 @@ public class SalaDAO implements ISalaDAO {
 		PreparedStatement st1;
 		ResultSet result;
 		
-		String query = "SELECT * FROM Sala;";
+		String query = "SELECT * FROM sala;";
 		st1 = conn.prepareStatement(query);
 		result = st1.executeQuery();
 		ArrayList<Sala> sala = new ArrayList<Sala>();

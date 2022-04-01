@@ -7,10 +7,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
-import it.unipv.po.oocinema.persistenza.interfaccieDAO.IPrenotazioneDAO;
-import it.unipv.po.oocinema.model.cinema.Prenotazione; 
+import it.unipv.po.oocinema.persistenza.interfaccieDAO.IProiezioneDAO;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
 
-public class ProiezioneDAO implements IPrenotazioneDAO{
+public class ProiezioneDAO implements IProiezioneDAO{
 	private Connection conn;
+	
+	@Override
+	public Proiezione getProiezione(Proiezione inputProiezione) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		PreparedStatement st1;
+		ResultSet result;
+		
+		String query = "SELECT * FROM proiezione WHERE id = ?;";
+		st1 = conn.prepareStatement(query);
+		st1.setString(1, ""+inputProiezione.getId());
+		result = st1.executeQuery();
+		Proiezione proiezione = new Proiezione(salaInput.getID_sala(), result.getInt("riga"), result.getInt("colonna"));
+		MySQLConnectionFactory.closeConnection(conn);
+		return proiezione;
+	}
 
 }
