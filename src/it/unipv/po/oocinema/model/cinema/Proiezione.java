@@ -33,6 +33,10 @@ public class Proiezione {
 		this.posti = new ArrayList<ArrayList<Posto>>();
 		this.setSala(sala);
 	}
+	
+	public Proiezione() {
+		
+	}
 
 	public boolean checkPostoDisponibile(int row, int col) {
 		return posti.get(row).get(col).isAvailable();

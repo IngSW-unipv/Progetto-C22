@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
-import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.acquirenti.Cliente;
 
 public interface IPrenotazioneDAO {
-	public ArrayList<Prenotazione> getPrenotazioneByProiezione(Proiezione inputProiezione) throws SQLException;
+	public ArrayList<Prenotazione> getPrenotazioneByCliente(Cliente inputCliente) throws SQLException;
 
 }

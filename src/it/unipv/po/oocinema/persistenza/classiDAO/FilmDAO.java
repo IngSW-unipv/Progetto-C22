@@ -31,7 +31,6 @@ public class FilmDAO implements IFilmDAO {
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputFilm.getId());
 		ResultSet result=st1.executeQuery(query);
-
 		
 		Film f=new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
@@ -96,7 +95,7 @@ public class FilmDAO implements IFilmDAO {
 		ResultSet result=st1.executeQuery(query);
 
 		
-		Film f=new Film(result.getString("titolo"), result.getString("descrizione"),
+		Film f=new Film(result.getInt("id"), result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
 					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath"));
 	
