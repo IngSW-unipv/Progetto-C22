@@ -21,16 +21,16 @@ public class SalaDAO implements ISalaDAO {
 	}
 	
 	@Override
-	public Sala getSalaById(Sala salaInput) throws SQLException {
+	public Sala getSalaById(Sala inputSala) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
 		
 		String query = "SELECT * FROM sala WHERE id = ?;";
 		st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+salaInput.getId());
+		st1.setString(1, ""+inputSala.getId());
 		result = st1.executeQuery();
-		Sala sala = new Sala(salaInput.getId(), result.getInt("riga"), result.getInt("colonna"));
+		Sala sala = new Sala (result.getInt("id"), result.getInt("riga"), result.getInt("colonna"));
 		MySQLConnectionFactory.closeConnection(conn);
 		return sala;
 	}

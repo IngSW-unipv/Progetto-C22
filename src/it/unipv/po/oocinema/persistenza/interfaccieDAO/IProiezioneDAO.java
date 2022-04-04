@@ -11,11 +11,11 @@ public interface IProiezioneDAO {
 	
 	public Proiezione getProiezione(Proiezione inputProiezione) throws SQLException;
 	
-	public ArrayList<Proiezione> getAllProiezioniByFilmId(Film inputFilm) throws SQLException;
+	//public ArrayList<Proiezione> getAllProiezioniByFilmId(Film inputFilm) throws SQLException;
 	
-	public ArrayList<Proiezione> getAllProiezioni() throws SQLException;
+	//public ArrayList<Proiezione> getAllProiezioni() throws SQLException;
 	
-	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException;
+	//public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException;
 	
-	public void aggiungiProiezione(Proiezione nuovaProiezione) throws SQLException;
+	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException;
 }

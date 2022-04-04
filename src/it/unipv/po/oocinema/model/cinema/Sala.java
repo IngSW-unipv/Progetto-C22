@@ -21,6 +21,12 @@ public class Sala {
 		this.colonne = colonne;
 	}
 	
+	public Sala(int id, int righe, int colonne) {
+		this.id = id;
+		this.righe = righe;
+		this.colonne = colonne;
+	}
+	
 	public Sala() {
 	}
 	

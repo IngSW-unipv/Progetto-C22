@@ -46,6 +46,19 @@ public class Film {
 		this.trailerPath = trailerPath;
 	}
 	
+	public Film(int id, String titolo, String descrizione, String genere, int durata, String regista,
+			String cast, String coverPath, String trailerPath) {
+		this.id = id;
+		this.titolo = titolo;
+		this.descrizione = descrizione;
+		this.genere = genere;
+		this.durata = durata;
+		this.regista = regista;
+		this.cast = cast;
+		this.coverPath = coverPath;
+		this.trailerPath = trailerPath;
+	}
+	
 	public Film() {		
 	}
 

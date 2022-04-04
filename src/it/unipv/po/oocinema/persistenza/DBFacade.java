@@ -9,6 +9,7 @@ import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.classiDAO.AcquirenteDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.FilmDAO;
+import it.unipv.po.oocinema.persistenza.classiDAO.ProiezioneDAO;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IFilmDAO;
 
@@ -33,25 +34,26 @@ public class DBFacade {
 	}
 
 
-	public void aggiungiFilm(Film f) {
-		// TODO Auto-generated method stub
+	public void aggiungiFilm(Film inputFilm) throws SQLException {
+		FilmDAO f= new FilmDAO();
+		f.aggiungiFilm(inputFilm);
 		
 	}
 
 
-	public Film getFilmbyTitolo(Film film) {
-		// TODO Auto-generated method stub
-		return null;
+	public Film getFilmbyTitolo(Film inputFilm) throws SQLException{
+		FilmDAO f=new FilmDAO();
+		return f.getFilmbyTitolo(inputFilm);
 	}
 
 
-	public void aggiungiProiezione(Proiezione p) {
-		// TODO Auto-generated method stub
-		
+	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
+		ProiezioneDAO p= new ProiezioneDAO();
+		p.aggiungiProiezione(inputProiezione);
 	}
 
 
-	public Sala getSala(it.unipv.po.oocinema.model.cinema.Sala sala) {
+	public Sala getSala(Sala sala) throws SQLException{
 		// TODO Auto-generated method stub
 		return null;
 	}

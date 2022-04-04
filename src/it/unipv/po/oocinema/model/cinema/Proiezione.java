@@ -1,7 +1,7 @@
 package it.unipv.po.oocinema.model.cinema;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -12,7 +12,7 @@ public class Proiezione {
 	private static int progressivo = 0;
 	private int id;
 	private Film film;
-	private LocalDate giorno;
+	private Date giorno;
 	private Sala sala;
 	private double prezzo;
 	private ArrayList<ArrayList<Posto>> posti;
@@ -22,7 +22,7 @@ public class Proiezione {
 	 * Costruttore con tutte le variabili
 	 */
 
-	public Proiezione(Film film, LocalDate giorno, Sala sala, double prezzo, String orario) {
+	public Proiezione(Film film, Date giorno, Sala sala, double prezzo, String orario) {
 		this.id = progressivo;
 		progressivo++;
 		this.film = film;
@@ -119,11 +119,11 @@ public class Proiezione {
 		this.prezzo = prezzo;
 	}
 	
-	public LocalDate getGiorno() {
+	public Date getGiorno() {
 		return giorno;
 	}
 
-	public void setGiorno(LocalDate giorno) {
+	public void setGiorno(Date giorno) {
 		this.giorno = giorno;
 	}
 	
