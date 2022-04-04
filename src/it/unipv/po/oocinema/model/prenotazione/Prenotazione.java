@@ -1,8 +1,10 @@
 package it.unipv.po.oocinema.model.prenotazione;
 
 
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.cinema.Posto;
@@ -15,7 +17,7 @@ public class Prenotazione {
 	
 	private final int id;
 
-	private LocalDate dataAcquisto;
+	private String dataAcquisto;
 
 	
 	private Acquirente acquirente;
@@ -31,7 +33,9 @@ public class Prenotazione {
 	public Prenotazione(int id, Acquirente acquirente,Proiezione proiezione) {
 		super();
 		this.id = id;
-		this.dataAcquisto = java.time.LocalDate.now();
+		DateFormat d=new SimpleDateFormat("dd/MM/yyyy");
+		Calendar c= Calendar.getInstance();
+		this.dataAcquisto = d.format(c.getTime());
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
 		this.proiezione = proiezione;
@@ -111,12 +115,12 @@ public class Prenotazione {
 	}
 
 
-	public LocalDate getDataAcquisto() {
+	public String getDataAcquisto() {
 		return dataAcquisto;
 	}
 
 
-	public void setDataAcquisto(LocalDate dataAcquisto) {
+	public void setDataAcquisto(String dataAcquisto) {
 		this.dataAcquisto = dataAcquisto;
 	}
 

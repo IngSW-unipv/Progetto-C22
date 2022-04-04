@@ -1,7 +1,6 @@
 package it.unipv.po.oocinema.model.cinema;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 
