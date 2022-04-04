@@ -1,7 +1,7 @@
 package it.unipv.po.oocinema.model.cinema;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 
 /**

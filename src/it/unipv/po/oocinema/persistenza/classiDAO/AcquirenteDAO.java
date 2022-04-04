@@ -13,7 +13,6 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 
 	private Connection conn;
 
-
 	public AcquirenteDAO() {
 		super();
 		conn = MySQLConnectionFactory.connect(conn);
