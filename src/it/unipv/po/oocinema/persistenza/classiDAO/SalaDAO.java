@@ -46,7 +46,7 @@ public class SalaDAO implements ISalaDAO {
 		result = st1.executeQuery();
 		ArrayList<Sala> sala = new ArrayList<Sala>();
 		while (result.next()) {
-			sala.add(new Sala(result.getString("id"), result.getInt("riga"), result.getInt("colonna")));
+			sala.add(new Sala(result.getInt("id"), result.getInt("riga"), result.getInt("colonna")));
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return sala;

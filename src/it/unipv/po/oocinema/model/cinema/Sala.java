@@ -10,10 +10,6 @@ public class Sala {
 	private int righe;
 	private int colonne;
 
-
-	/**
-	 * Costruttore con tutte le variabili
-	 */
 	public Sala(int righe, int colonne) {
 		this.id = progressivo;
 		progressivo++;
