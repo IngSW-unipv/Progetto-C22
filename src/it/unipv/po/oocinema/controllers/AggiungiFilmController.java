@@ -2,6 +2,7 @@ package it.unipv.po.oocinema.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JFileChooser;
@@ -12,7 +13,6 @@ import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import it.unipv.po.oocinema.view.WindowsHandler;
-import it.unipv.po.oocinema.view.scenes.MenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -27,7 +27,7 @@ import javafx.stage.Window;
 
 public class AggiungiFilmController extends MenuController {
 	
-	//private DBFacade facade = new DBFacade();
+	private DBFacade facade = new DBFacade();
 
 	private final String NOMEFILE = "aggiungiFilm.fxml";
     @FXML
@@ -63,12 +63,16 @@ public class AggiungiFilmController extends MenuController {
     @FXML
     public void aggiungiFilm(MouseEvent event) {
     	
-		/*
-		 * Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
-		 * Integer.parseInt(durata.getText()),regista.getText(),cast.getText(),
-		 * "resources/locandine/"+l.getName(),"resources/trailer/"+t.getName());
-		 * facade.aggiungiFilm(f);
-		 */
+		
+		 Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
+		 Integer.parseInt(durata.getText()),regista.getText(),cast.getText(),
+		 "resources/locandine/"+l.getName(),"resources/trailer/"+t.getName());
+		 try {
+			facade.aggiungiFilm(f);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		 
     }
     
     

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
@@ -56,6 +57,12 @@ public class DBFacade {
 	public Sala getSala(Sala sala) throws SQLException{
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public void aggiungiCassa(Cassa c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

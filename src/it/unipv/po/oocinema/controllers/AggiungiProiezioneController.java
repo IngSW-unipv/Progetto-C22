@@ -2,13 +2,14 @@ package it.unipv.po.oocinema.controllers;
 
 
 
-import java.time.LocalDate;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.DBFacade;
-import it.unipv.po.oocinema.view.scenes.MenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -56,11 +57,17 @@ public class AggiungiProiezioneController extends MenuController {
     private ComboBox<String> salaCombo;
 
 	@FXML
-    void aggiungiProiezione(MouseEvent event) {
-    	Film f = facade.getFilmbyTitolo(new Film(filmCombo.getPromptText()));
-    	Sala s = facade.getSala(new Sala (salaCombo.getPromptText()));
-    	Proiezione p = new Proiezione(f, (LocalDate)giorno.getValue(),s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
-    	facade.aggiungiProiezione(p);
+    void aggiungiProiezione(MouseEvent event) throws NumberFormatException, ParseException {
+
+		try {
+			Film f = facade.getFilmbyTitolo(new Film(filmCombo.getPromptText()));
+			Sala s = facade.getSala(new Sala (Integer.parseInt(salaCombo.getPromptText()),0,0));
+	    	Proiezione p = new Proiezione(f, new SimpleDateFormat("dd/MM/yyyy").parse(giorno.getPromptText()),s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
+	    	facade.aggiungiProiezione(p);
+		} catch (SQLException e) {
+			
+		}
+    	
     }
 	
 	@Override
@@ -69,6 +76,6 @@ public class AggiungiProiezioneController extends MenuController {
 	}
 
 	public Window getWindow() {
-	    return prezzo.getScene().getWindow();
+	    return prezzo.getScene().getWindow(); // ATTENZIONE non molto corretto ma funzionante
 	}
 }

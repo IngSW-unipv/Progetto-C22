@@ -61,6 +61,10 @@ public class Film {
 	
 	public Film() {		
 	}
+	
+	public Film(String titolo) {		
+		this.titolo = titolo;
+	}
 
 	/**
 	 * Getter and Setter
