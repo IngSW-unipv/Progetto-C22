@@ -54,7 +54,7 @@ public class DBFacade {
 	}
 
 
-	public Sala getSala(Sala sala) throws SQLException{
+	public Sala getSalaById(Sala sala) throws SQLException{
 		// TODO Auto-generated method stub
 		return null;
 	}
