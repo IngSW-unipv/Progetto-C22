@@ -1,6 +1,6 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  * Classe che modella un oggetto di tipo Cassa
@@ -12,7 +12,7 @@ public class Cassa extends Acquirente{
 	}
 
 	@Override
-	public LocalDate getCompleanno() {
+	public Date getCompleanno() {
 		return null;
 	}
 	

@@ -39,9 +39,10 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		while (result.next()) {
 			Proiezione proiezione= new Proiezione();
 			proiezione.setId(result.getInt("id"));
-			//daoproiezione
-			p.add(new Prenotazione(result.getInt("id"), result.getDate("data_acquisto"), null,
-					);
+			ProiezioneDAO proiezioneDAO= new ProiezioneDAO();
+			proiezione=proiezioneDAO.getProiezione(proiezione);
+			p.add(new Prenotazione(result.getInt("id"), result.getDate("data_acquisto"), inputCliente, proiezione
+					));
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return p;

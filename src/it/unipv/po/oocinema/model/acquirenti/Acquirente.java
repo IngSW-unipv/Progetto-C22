@@ -1,6 +1,6 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Acquirente {
 	
@@ -25,7 +25,7 @@ public class Acquirente {
 		this.password = password;
 	}
 
-	public LocalDate getCompleanno() {
+	public Date getCompleanno() {
 		return null;
 	}
 }
