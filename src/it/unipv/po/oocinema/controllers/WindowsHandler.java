@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.view;
+package it.unipv.po.oocinema.controllers;
 
 /**
 * Classe che espone metodi per la gestione della finestra

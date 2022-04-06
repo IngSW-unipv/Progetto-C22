@@ -12,7 +12,6 @@ import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.DBFacade;
-import it.unipv.po.oocinema.view.WindowsHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

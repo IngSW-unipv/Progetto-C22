@@ -93,22 +93,17 @@
                         <RowConstraints maxHeight="249.9999796549479" minHeight="10.0" prefHeight="249.9999796549479" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TableView fx:id="tabella" editable="true" fixedCellSize="0.0" prefHeight="279.0" prefWidth="842.0" GridPane.rowIndex="1">
+                        <TableView fx:id="tabella" editable="true" fixedCellSize="0.0" prefHeight="250.0" prefWidth="825.0" GridPane.rowIndex="1">
                            <columns>
-                              <TableColumn prefWidth="113.99996948242188" text="Seleziona" />
-                              <TableColumn prefWidth="176.66668701171875" text="ID" />
-                              <TableColumn prefWidth="549.3333129882812" text="Titolo" />
+                              <TableColumn fx:id="colonnaId" prefWidth="145.99996948242188" text="ID" />
+                              <TableColumn fx:id="colonnaTitolo" prefWidth="509.3332824707031" text="Titolo" />
+                              <TableColumn fx:id="colonnaNumero" prefWidth="184.6666259765625" text="Numero di proiezioni" />
                            </columns>
                         </TableView>
                         <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="842.0" spacing="10.0">
                            <children>
                               <Pane prefHeight="83.0" prefWidth="842.0">
                                  <children>
-                                    <TextField layoutX="46.0" layoutY="66.0" prefHeight="25.0" prefWidth="245.0" styleClass="controls" stylesheets="@style.css">
-                                       <font>
-                                          <Font name="Cambria" size="18.0" />
-                                       </font>
-                                    </TextField>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons8-cerca-di-più-24.png" />
@@ -135,11 +130,16 @@
                   </GridPane>
                   <Pane prefHeight="214.0" prefWidth="842.0">
                      <children>
-                        <Button fx:id="rimuovi" contentDisplay="RIGHT" graphicTextGap="15.0" layoutX="673.0" layoutY="14.0" mnemonicParsing="false" onMousePressed="#rimuoviFilm" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi FILM" textFill="#fffefe">
+                        <Button fx:id="rimuovi" contentDisplay="RIGHT" graphicTextGap="15.0" layoutX="677.0" layoutY="24.0" mnemonicParsing="false" onMousePressed="#rimuoviFilm" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi FILM" textFill="#fffefe">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </Button>
+                        <TextField fx:id="idFilm" layoutX="537.0" layoutY="31.0" prefHeight="37.0" prefWidth="102.0" promptText="ID" styleClass="controls" stylesheets="@style.css">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </Pane>
                </children>

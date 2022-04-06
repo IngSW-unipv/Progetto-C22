@@ -1,8 +1,8 @@
 package it.unipv.po.oocinema.controllers.grecya;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
-import it.unipv.po.oocinema.view.WindowsHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
