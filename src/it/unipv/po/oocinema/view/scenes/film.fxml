@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.FilmController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
          <left>
@@ -36,22 +36,22 @@
                   <Pane prefHeight="67.0" prefWidth="305.0" />
                   <Pane prefHeight="362.0" prefWidth="305.0">
                      <children>
-                        <Label fx:id="fruitNameLable2" alignment="CENTER" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable" alignment="CENTER" layoutY="74.0" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable1" alignment="CENTER" layoutY="146.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezione" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable11" alignment="CENTER" layoutY="215.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="215.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -60,7 +60,7 @@
                   </Pane>
                   <Pane prefHeight="269.0" prefWidth="298.0">
                      <children>
-                        <Label fx:id="fruitNameLable111" alignment="CENTER" layoutX="114.0" layoutY="83.0" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -93,7 +93,7 @@
                         <RowConstraints maxHeight="249.9999796549479" minHeight="10.0" prefHeight="249.9999796549479" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TableView editable="true" fixedCellSize="0.0" prefHeight="279.0" prefWidth="842.0" GridPane.rowIndex="1">
+                        <TableView fx:id="tabella" editable="true" fixedCellSize="0.0" prefHeight="279.0" prefWidth="842.0" GridPane.rowIndex="1">
                            <columns>
                               <TableColumn prefWidth="113.99996948242188" text="Seleziona" />
                               <TableColumn prefWidth="176.66668701171875" text="ID" />
@@ -114,7 +114,7 @@
                                           <Image url="@../icons8-cerca-di-più-24.png" />
                                        </image>
                                     </ImageView>
-                                    <Button graphicTextGap="15.0" layoutX="648.0" layoutY="58.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="   Aggiungi FILM" textFill="#fffefe">
+                                    <Button fx:id="aggiungi" graphicTextGap="15.0" layoutX="648.0" layoutY="58.0" mnemonicParsing="false" onMousePressed="#aggiungiFilm" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="   Aggiungi FILM" textFill="#fffefe">
                                        <font>
                                           <Font name="Cambria" size="18.0" />
                                        </font>
@@ -135,7 +135,7 @@
                   </GridPane>
                   <Pane prefHeight="214.0" prefWidth="842.0">
                      <children>
-                        <Button contentDisplay="RIGHT" graphicTextGap="15.0" layoutX="673.0" layoutY="14.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi FILM" textFill="#fffefe">
+                        <Button fx:id="rimuovi" contentDisplay="RIGHT" graphicTextGap="15.0" layoutX="673.0" layoutY="14.0" mnemonicParsing="false" onMousePressed="#rimuoviFilm" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi FILM" textFill="#fffefe">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>

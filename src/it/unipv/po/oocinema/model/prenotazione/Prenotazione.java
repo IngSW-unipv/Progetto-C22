@@ -126,12 +126,12 @@ public class Prenotazione {
 	}
 
 
-	public String getDataAcquisto() {
+	public Date getDataAcquisto() {
 		return dataAcquisto;
 	}
 
 
-	public void setDataAcquisto(String dataAcquisto) {
+	public void setDataAcquisto(Date dataAcquisto) {
 		this.dataAcquisto = dataAcquisto;
 	}
 

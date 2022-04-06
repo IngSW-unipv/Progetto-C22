@@ -2,6 +2,7 @@ package it.unipv.po.oocinema.controllers;
 
 
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,11 +59,11 @@ public class AggiungiProiezioneController extends MenuController {
 
 	@FXML
     void aggiungiProiezione(MouseEvent event) throws NumberFormatException, ParseException {
-
+		Date d = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(giorno.getPromptText());
 		try {
 			Film f = facade.getFilmbyTitolo(new Film(filmCombo.getPromptText()));
-			Sala s = facade.getSala(new Sala (Integer.parseInt(salaCombo.getPromptText()),0,0));
-	    	Proiezione p = new Proiezione(f, new SimpleDateFormat("dd/MM/yyyy").parse(giorno.getPromptText()),s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
+			Sala s = facade.getSalaById(new Sala (Integer.parseInt(salaCombo.getPromptText()),0,0));
+	    	Proiezione p = new Proiezione(f,d,s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
 	    	facade.aggiungiProiezione(p);
 		} catch (SQLException e) {
 			

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.AggiungiCassaController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
          <left>
@@ -30,22 +30,22 @@
                   <Pane prefHeight="67.0" prefWidth="305.0" />
                   <Pane prefHeight="362.0" prefWidth="305.0">
                      <children>
-                        <Label fx:id="fruitNameLable2" alignment="CENTER" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable1" alignment="CENTER" layoutY="74.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable11" alignment="CENTER" layoutY="146.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezioni" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable111" alignment="CENTER" layoutY="215.0" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="215.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -54,7 +54,7 @@
                   </Pane>
                   <Pane prefHeight="269.0" prefWidth="298.0">
                      <children>
-                        <Label fx:id="fruitNameLable1111" alignment="CENTER" layoutX="114.0" layoutY="83.0" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -89,7 +89,7 @@
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </Label>
-                        <ToggleButton layoutX="510.0" layoutY="373.0" mnemonicParsing="false" onAction="#addFilm" prefHeight="51.0" prefWidth="162.0" styleClass="menu_button" stylesheets="@style.css" text="    Aggiungi" textFill="WHITE">
+                        <ToggleButton layoutX="510.0" layoutY="373.0" mnemonicParsing="false" onAction="#aggiungiCassa" onMousePressed="#aggiungiCassa" prefHeight="51.0" prefWidth="162.0" styleClass="menu_button" stylesheets="@style.css" text="    Aggiungi" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
@@ -99,8 +99,8 @@
                               <Image url="@../icons8-aggiungi-24.png" />
                            </image>
                         </ImageView>
-                        <TextField layoutX="422.0" layoutY="253.0" prefHeight="36.0" prefWidth="250.0" styleClass="controls" stylesheets="@style.css" />
-                        <TextField layoutX="422.0" layoutY="160.0" prefHeight="36.0" prefWidth="250.0" styleClass="controls" stylesheets="@style.css" />
+                        <TextField fx:id="password" layoutX="422.0" layoutY="253.0" prefHeight="36.0" prefWidth="250.0" styleClass="controls" stylesheets="@style.css" />
+                        <TextField fx:id="username" layoutX="422.0" layoutY="160.0" prefHeight="36.0" prefWidth="250.0" styleClass="controls" stylesheets="@style.css" />
                      </children>
                   </Pane>
                </children>
