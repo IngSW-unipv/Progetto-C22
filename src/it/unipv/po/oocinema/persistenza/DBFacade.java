@@ -30,7 +30,7 @@ public class DBFacade {
 		prenotazioneDAO= new PrenotazioneDAO();
 		salaDAO=new SalaDAO();
 	}
-	
+
 	public boolean login(Acquirente inputAcq) {
 		try {
 			return acquirenteDAO.login(inputAcq);
@@ -62,8 +62,8 @@ public class DBFacade {
 		return filmDAO.getTuttiFilm();
 	}
 	
-	public ArrayList<Integer> getNumProiezioni() throws SQLException {
-		return null;
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException {
+		return filmDAO.getNumProiezioniByFilm(inputFilm);
 	}
 
 

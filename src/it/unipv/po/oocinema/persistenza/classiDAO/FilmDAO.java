@@ -20,48 +20,6 @@ public class FilmDAO implements IFilmDAO {
 		super();
 	}
 	
-
-	@Override
-	public Film getFilmbyId(Film inputFilm) throws SQLException{
-		
-		conn = MySQLConnectionFactory.connect(conn);
-	
-		String query = "SELECT * FROM film where id=?;";
-		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+inputFilm.getId());
-		ResultSet result=st1.executeQuery(query);
-		
-		Film f=new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
-					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
-					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath"));
-	
-		MySQLConnectionFactory.closeConnection(conn);
-		return f;
-		
-	}
-
-
-	@Override
-	public ArrayList<Film> getTuttiFilm() throws SQLException {
-		
-		conn = MySQLConnectionFactory.connect(conn);
-				
-		String query = "SELECT * FROM film;";
-		PreparedStatement st1 = conn.prepareStatement(query);
-		ResultSet result = st1.executeQuery();
-		
-		ArrayList<Film> film = new ArrayList<Film>();
-		while (result.next()) {
-			film.add(new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
-					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
-					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath")));
-		}
-		
-		MySQLConnectionFactory.closeConnection(conn);
-	
-		return film;
-	}
-	
 	@Override
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -83,6 +41,57 @@ public class FilmDAO implements IFilmDAO {
 	}
 	
 	@Override
+	public void rimuoviFilm(Film inputFilm) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "DELETE FROM film where id=?";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		
+		st1.setInt(1, inputFilm.getId());
+		
+		MySQLConnectionFactory.closeConnection(conn);
+	}
+	
+	@Override
+	public ArrayList<Film> getTuttiFilm() throws SQLException {
+		
+		conn = MySQLConnectionFactory.connect(conn);
+				
+		String query = "SELECT * FROM film;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		ResultSet result = st1.executeQuery();
+		
+		ArrayList<Film> film = new ArrayList<Film>();
+		while (result.next()) {
+			film.add(new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
+					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
+					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath")));
+		}
+		
+		MySQLConnectionFactory.closeConnection(conn);
+	
+		return film;
+	}
+
+	@Override
+	public Film getFilmbyId(Film inputFilm) throws SQLException{
+		
+		conn = MySQLConnectionFactory.connect(conn);
+	
+		String query = "SELECT * FROM film where id=?;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		st1.setString(1, ""+inputFilm.getId());
+		ResultSet result=st1.executeQuery(query);
+		
+		Film f=new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
+					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
+					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath"));
+	
+		MySQLConnectionFactory.closeConnection(conn);
+		return f;
+	}
+	
+	@Override
 	public Film getFilmbyTitolo(Film inputFilm) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
@@ -99,18 +108,22 @@ public class FilmDAO implements IFilmDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 		return f;
 	}
-	
+
 	@Override
-	public void rimuoviFilm(Film inputFilm) throws SQLException {
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "DELETE FROM film where id=?";
+		String query = "SELECT count(*) as NUM FROM proiezioni GROUP BY film_id having film_id = ?";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
-		st1.setInt(1, inputFilm.getId());
+		st1.setString(1, ""+inputFilm.getId());
+		ResultSet result=st1.executeQuery(query);
 		
 		MySQLConnectionFactory.closeConnection(conn);
+
+		return result.getInt("NUM");
 	}
+	
+	
 		
 }
 

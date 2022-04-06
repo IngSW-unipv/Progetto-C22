@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import it.unipv.po.oocinema.model.cinema.Film;
 
 public interface IFilmDAO {
-	public ArrayList<Film> getTuttiFilm() throws SQLException;
-	public ArrayList<Integer> getNumProiezioni() throws SQLException;
-	public Film getFilmbyId(Film filmInput) throws SQLException;
-	public void aggiungiFilm(Film filmInput) throws SQLException;
+	public void aggiungiFilm(Film inputFilm) throws SQLException;
 	public void rimuoviFilm(Film inputFilm) throws SQLException;
-	public Film getFilmbyTitolo(Film film) throws SQLException;
+	public ArrayList<Film> getTuttiFilm() throws SQLException;
+	public Film getFilmbyId(Film filmInput) throws SQLException;
+	public Film getFilmbyTitolo(Film inputFilm) throws SQLException;
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException;
 }
