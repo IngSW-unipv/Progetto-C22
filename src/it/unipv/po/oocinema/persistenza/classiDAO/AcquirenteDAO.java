@@ -18,7 +18,6 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 
 	public AcquirenteDAO() {
 		super();
-		conn = MySQLConnectionFactory.connect(conn);
 	}
 
 	@Override
@@ -55,6 +54,19 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		st1.setString(4, "CASSA");
 		
 		MySQLConnectionFactory.closeConnection(conn);
+	}
+	
+	@Override
+	public void rimuoviCassa(Cassa inputCassa) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "DELETE FROM acquirente where user=?";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		
+		st1.setString(1, inputCassa.getUser());
+		
+		MySQLConnectionFactory.closeConnection(conn);
+		
 	}
 
 }

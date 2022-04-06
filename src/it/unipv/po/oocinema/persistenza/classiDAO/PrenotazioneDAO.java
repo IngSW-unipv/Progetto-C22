@@ -22,7 +22,6 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 
 	public PrenotazioneDAO() {
 		super();
-		conn = MySQLConnectionFactory.connect(conn);
 	}
 	
 	@Override

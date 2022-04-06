@@ -15,7 +15,6 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 
 	public CinemaInfoDAO() {
 		super();
-		conn = MySQLConnectionFactory.connect(conn);
 	}
 	
 	@Override

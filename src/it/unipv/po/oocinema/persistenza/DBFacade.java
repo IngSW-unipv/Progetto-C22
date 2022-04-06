@@ -31,21 +31,39 @@ public class DBFacade {
 		salaDAO=new SalaDAO();
 	}
 	
-
 	public boolean login(Acquirente inputAcq) {
 		try {
 			return acquirenteDAO.login(inputAcq);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public void aggiungiCassa(Cassa inputCassa) throws SQLException {
+		acquirenteDAO.aggiungiCassa(inputCassa);
+	}
+	
+	public void rimuoviCassa(Cassa inputCassa) throws SQLException {
+		acquirenteDAO.rimuoviCassa(inputCassa);
 	}
 
 
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
 		filmDAO.aggiungiFilm(inputFilm);
-		
+	}
+	
+	public void rimuoviFilm(Film inputFilm) throws SQLException {
+		filmDAO.rimuoviFilm(inputFilm);
+	}
+	
+	public ArrayList<Film> getTuttiFilm() throws SQLException {
+		return filmDAO.getTuttiFilm();
+	}
+	
+	public ArrayList<Integer> getNumProiezioni() throws SQLException {
+		return null;
 	}
 
 
@@ -58,6 +76,10 @@ public class DBFacade {
 		 proiezioneDAO.aggiungiProiezione(inputProiezione);
 	}
 	
+	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException {
+		proiezioneDAO.rimuoviProiezione(inputProiezione);
+	}
+	
 	public ArrayList<Prenotazione> getPrenotazioneByCliente(Cliente inputCliente) throws SQLException{
 		return prenotazioneDAO.getPrenotazioneByCliente(inputCliente);
 	}
@@ -66,12 +88,8 @@ public class DBFacade {
 	public Sala getSalaById(Sala inputSala) throws SQLException{
 		return salaDAO.getSalaById(inputSala);
 	}
-
-
-	public void aggiungiCassa(Cassa inputCassa) throws SQLException {
-		acquirenteDAO.aggiungiCassa(inputCassa);
-	}
-
-
+	
+	
+	
 	
 }

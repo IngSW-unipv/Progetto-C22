@@ -14,6 +14,10 @@ import it.unipv.po.oocinema.model.cinema.Sala;
 public class ProiezioneDAO implements IProiezioneDAO{
 	private Connection conn;
 	
+	public ProiezioneDAO() {
+		super();
+	}
+	
 	@Override
 	public Proiezione getProiezione(Proiezione inputProiezione) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -49,5 +53,18 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.setString(6, inputProiezione.getOrario());
 		
 		MySQLConnectionFactory.closeConnection(conn);
+	}
+	
+	@Override
+	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "DELETE FROM proiezione where id= ?";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		
+		st1.setInt(1, inputProiezione.getId());
+		
+		MySQLConnectionFactory.closeConnection(conn);
+		
 	}
 }

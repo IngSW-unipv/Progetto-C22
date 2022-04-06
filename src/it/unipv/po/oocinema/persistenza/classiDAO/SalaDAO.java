@@ -17,7 +17,6 @@ public class SalaDAO implements ISalaDAO {
 
 	public SalaDAO() {
 		super();
-		conn = MySQLConnectionFactory.connect(conn); //prova
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ public interface IProiezioneDAO {
 	
 	//public ArrayList<Proiezione> getAllProiezioni() throws SQLException;
 	
-	//public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException;
+	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException;
 	
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException;
 }

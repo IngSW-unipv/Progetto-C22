@@ -10,4 +10,5 @@ public interface IAcquirenteDAO {
 	
 	public boolean login(Acquirente inputAcq) throws SQLException;
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException;
+	public void rimuoviCassa(Cassa inputCassa) throws SQLException;
 }

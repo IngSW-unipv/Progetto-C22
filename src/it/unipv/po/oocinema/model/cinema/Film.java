@@ -28,10 +28,6 @@ public class Film {
 	private String coverPath;
 	private String trailerPath;
 
-
-	/**
-	 * Costruttore con tutte le variabili
-	 */
 	public Film(String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
 		this.id = progressivo;

@@ -18,7 +18,6 @@ public class FilmDAO implements IFilmDAO {
 
 	public FilmDAO() {
 		super();
-		conn = MySQLConnectionFactory.connect(conn);
 	}
 	
 
@@ -43,19 +42,17 @@ public class FilmDAO implements IFilmDAO {
 
 
 	@Override
-	public ArrayList<Film> selectAll() throws SQLException {
+	public ArrayList<Film> getTuttiFilm() throws SQLException {
 		
 		conn = MySQLConnectionFactory.connect(conn);
-		PreparedStatement st1;
-		
-		String query = "SELECT * FROM film where flag = true;";
-		st1 = conn.prepareStatement(query);
+				
+		String query = "SELECT * FROM film;";
+		PreparedStatement st1 = conn.prepareStatement(query);
 		ResultSet result = st1.executeQuery();
 		
 		ArrayList<Film> film = new ArrayList<Film>();
-		
 		while (result.next()) {
-			film.add(new Film(result.getString("titolo"), result.getString("descrizione"),
+			film.add(new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
 					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath")));
 		}
@@ -101,6 +98,18 @@ public class FilmDAO implements IFilmDAO {
 	
 		MySQLConnectionFactory.closeConnection(conn);
 		return f;
+	}
+	
+	@Override
+	public void rimuoviFilm(Film inputFilm) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "DELETE FROM film where id=?";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		
+		st1.setInt(1, inputFilm.getId());
+		
+		MySQLConnectionFactory.closeConnection(conn);
 	}
 		
 }
