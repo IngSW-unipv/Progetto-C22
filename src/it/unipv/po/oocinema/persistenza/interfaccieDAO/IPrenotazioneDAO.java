@@ -7,6 +7,6 @@ import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
 
 public interface IPrenotazioneDAO {
-	public ArrayList<Prenotazione> getPrenotazioneByCliente(Cliente inputCliente) throws SQLException;
+	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Cliente inputCliente) throws SQLException;
 
 }

@@ -25,10 +25,10 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 	}
 	
 	@Override
-	public ArrayList<Prenotazione> getPrenotazioneByCliente(Cliente inputCliente) throws SQLException{
+	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Cliente inputCliente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "SELECT * FROM prenotazione where acquirente_user=?;";
+		String query = "SELECT * FROM prenotazione where acquirente_user=? and giorno=curdate();";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputCliente.getUser());
 		ResultSet result=st1.executeQuery(query);
@@ -45,7 +45,6 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return p;
-		
 	}
 	
 }

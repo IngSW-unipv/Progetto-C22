@@ -16,7 +16,7 @@ public class Proiezione {
 	private Sala sala;
 	private double prezzo;
 	private ArrayList<ArrayList<Posto>> posti;
-	private String orario;
+	private String orario;  //problema con il confronto delle proiezioni
 
 	/**
 	 * Costruttore con tutte le variabili

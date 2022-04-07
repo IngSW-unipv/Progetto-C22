@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IProiezioneDAO;
@@ -65,6 +66,11 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.setInt(1, inputProiezione.getId());
 		
 		MySQLConnectionFactory.closeConnection(conn);
-		
+	}
+
+	@Override
+	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
