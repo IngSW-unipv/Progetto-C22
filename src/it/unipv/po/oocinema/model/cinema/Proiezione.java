@@ -21,6 +21,17 @@ public class Proiezione {
 	/**
 	 * Costruttore con tutte le variabili
 	 */
+	
+	public Proiezione(int id, Film film, Date giorno, Sala sala, double prezzo, String orario) {
+		this.id = id;
+		this.film = film;
+		this.giorno=giorno;
+		this.sala=sala;
+		this.prezzo=prezzo;
+		this.orario = orario;
+		this.posti = new ArrayList<ArrayList<Posto>>();
+		this.setSala(sala);
+	}
 
 	public Proiezione(Film film, Date giorno, Sala sala, double prezzo, String orario) {
 		this.id = progressivo;

@@ -30,10 +30,10 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.setString(1, ""+inputProiezione.getId());
 		result = st1.executeQuery();
 		Film f=new Film();
-		f.setId(result.getInt("film_id"));
+		f.setId(result.getInt("film_id")); //sto passando un oggetto film con solo l'id
 		Sala s=new Sala();
 		s.setId(result.getInt("sala_id"));
-		Proiezione proiezione = new Proiezione( f, result.getDate("giorno"), s
+		Proiezione proiezione = new Proiezione( inputProiezione.getId() ,f, result.getDate("giorno"), s
 								,result.getDouble("prezzo"), result.getString("orario"));
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
@@ -70,7 +70,23 @@ public class ProiezioneDAO implements IProiezioneDAO{
 
 	@Override
 	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "SELECT * FROM proiezioni where giorno>curdate();";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		ResultSet result=st1.executeQuery(query);
+		
+		ArrayList<Proiezione> p = new ArrayList<Proiezione>();
+		
+		while (result.next()) {
+			Film f=new Film();
+			f.setId(result.getInt("film_id")); //sto passando un oggetto film con solo l'id
+			Sala s=new Sala();
+			s.setId(result.getInt("sala_id"));
+			p.add(new Proiezione(result.getInt("id"),f, result.getDate("giorno"), s, 
+					result.getDouble("prezzo"), result.getString("orario")));
+		}
+		MySQLConnectionFactory.closeConnection(conn);
+		return p;
 	}
 }
