@@ -31,13 +31,8 @@ public class DBFacade {
 		salaDAO=new SalaDAO();
 	}
 
-	public boolean login(Acquirente inputAcq) {
-		try {
-			return acquirenteDAO.login(inputAcq);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean login(Acquirente inputAcq) throws SQLException {
+		return acquirenteDAO.login(inputAcq);
 	}
 	
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException {

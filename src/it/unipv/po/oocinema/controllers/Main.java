@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,13 +25,15 @@ public class Main extends Application {
 	 */
 	@Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/aggiungiFilm.fxml"));
-        primaryStage.setTitle("Home OOCinema");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setHeight(670);
-        primaryStage.setWidth(1210);
-        primaryStage.centerOnScreen();
-        primaryStage.show();
+		/*
+		 * Parent root =
+		 * FXMLLoader.load(getClass().getResource("../view/scenes/film.fxml"));
+		 * primaryStage.setTitle("Home OOCinema"); primaryStage.setScene(new
+		 * Scene(root)); primaryStage.setHeight(670); primaryStage.setWidth(1210);
+		 * primaryStage.centerOnScreen(); primaryStage.show();
+		 */
+		DBFacade f = new DBFacade();
+		f.aggiungiFilm(new Film("titolo"));
     }
 
 

@@ -37,6 +37,8 @@ public class FilmDAO implements IFilmDAO {
 		st1.setString(8, inputFilm.getCoverPath());
 		st1.setString(9, inputFilm.getTrailerPath());
 		
+		st1.executeQuery();
+		
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	

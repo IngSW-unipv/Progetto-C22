@@ -73,7 +73,6 @@ public class MySQLConnectionFactory {
 		try {
 			conn.close();
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}
 		conn = null;
