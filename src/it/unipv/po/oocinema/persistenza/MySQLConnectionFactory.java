@@ -26,7 +26,7 @@ public class MySQLConnectionFactory {
 	private static String DB_psw;
 	
 	
-	private static void init() {
+	private static void init() { // ATTENZIONE QUESTO METODO NON è USATO. SE USATO NON VA DATABASES
 		Properties p = new Properties(System.getProperties());
 		try {
 			p.load(new FileInputStream("properties/properties"));
@@ -44,12 +44,12 @@ public class MySQLConnectionFactory {
 		
 		init();
 		
-		if ( isOpen(conn) )
+		if (isOpen(conn))
 			closeConnection(conn);
 		
 		try {
-			Class.forName(DB_driver);
-			conn = DriverManager.getConnection(DB_url, DB_user, DB_psw);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/oocinema","cinema_user","Password2021!");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

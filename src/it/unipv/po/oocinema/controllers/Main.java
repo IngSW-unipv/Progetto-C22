@@ -1,9 +1,11 @@
 package it.unipv.po.oocinema.controllers;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import it.unipv.po.oocinema.model.cinema.Film;
@@ -25,20 +27,17 @@ public class Main extends Application {
 	 */
 	@Override
     public void start(Stage primaryStage) throws Exception{
-		/*
-		 * Parent root =
-		 * FXMLLoader.load(getClass().getResource("../view/scenes/film.fxml"));
-		 * primaryStage.setTitle("Home OOCinema"); primaryStage.setScene(new
-		 * Scene(root)); primaryStage.setHeight(670); primaryStage.setWidth(1210);
-		 * primaryStage.centerOnScreen(); primaryStage.show();
-		 */
-		DBFacade f = new DBFacade();
-		f.aggiungiFilm(new Film("titolo"));
+		
+		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/film.fxml"));
+		  primaryStage.setTitle("Home OOCinema"); primaryStage.setScene(new
+		  Scene(root)); primaryStage.setHeight(670); primaryStage.setWidth(1210);
+		  primaryStage.centerOnScreen(); primaryStage.show();
+		 
+		
     }
 
 
     public static void main(String[] args) {
         launch(args);
-        
     }
 }

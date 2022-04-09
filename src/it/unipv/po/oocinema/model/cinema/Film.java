@@ -138,4 +138,11 @@ public class Film {
 		this.coverPath = coverPath;
 	}
 
+	@Override
+	public String toString() {
+		return "Film [id=" + id + ", titolo=" + titolo + ", descrizione=" + descrizione + ", genere=" + genere
+				+ ", durata=" + durata + ", regista=" + regista + ", cast=" + cast + ", coverPath=" + coverPath
+				+ ", trailerPath=" + trailerPath + "]";
+	}
+
 }

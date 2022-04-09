@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.cinema.Film;
@@ -24,8 +25,8 @@ public class FilmDAO implements IFilmDAO {
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "INSERT INTO film VALUES(?,?,?,?,?,?,?,?,?)";
-		PreparedStatement st1 = conn.prepareStatement(query);
+		//String query = ;
+		PreparedStatement st1 = conn.prepareStatement("INSERT INTO film VALUES(?,?,?,?,?,?,?,?,?)");
 		
 		st1.setInt(1, inputFilm.getId());
 		st1.setString(2, inputFilm.getTitolo());
@@ -37,8 +38,9 @@ public class FilmDAO implements IFilmDAO {
 		st1.setString(8, inputFilm.getCoverPath());
 		st1.setString(9, inputFilm.getTrailerPath());
 		
-		st1.executeQuery();
 		
+		st1.executeUpdate()
+		;
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
@@ -67,7 +69,7 @@ public class FilmDAO implements IFilmDAO {
 		while (result.next()) {
 			film.add(new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
-					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath")));
+					result.getString("cast"), result.getString("durata"),	result.getString("trailerPath")));
 		}
 		
 		MySQLConnectionFactory.closeConnection(conn);
@@ -105,7 +107,7 @@ public class FilmDAO implements IFilmDAO {
 		
 		Film f=new Film(result.getInt("id"), result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
-					result.getString("cast"), result.getString("duration"),	result.getString("trailerPath"));
+					result.getString("cast"), result.getString("durata"),	result.getString("trailerPath"));
 	
 		MySQLConnectionFactory.closeConnection(conn);
 		return f;
@@ -114,15 +116,17 @@ public class FilmDAO implements IFilmDAO {
 	@Override
 	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
-		String query = "SELECT count(*) as NUM FROM proiezioni GROUP BY film_id having film_id = ?";
+		int r;
+		String query = "SELECT count(*) as NUM FROM proiezione GROUP BY film_id having film_id = ?";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+inputFilm.getId());
-		ResultSet result=st1.executeQuery(query);
-		
+		st1.setInt(1, inputFilm.getId());
+		ResultSet result = st1.executeQuery();
+		if(result.next())
+			r = result.getInt(1);
+		else r = 0;
 		MySQLConnectionFactory.closeConnection(conn);
 
-		return result.getInt("NUM");
+		return r;
 	}
 	
 	

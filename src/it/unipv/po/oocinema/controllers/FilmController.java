@@ -1,12 +1,17 @@
 package it.unipv.po.oocinema.controllers;
 
 import java.net.URL;
+import javafx.beans.value.ObservableValue;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -15,11 +20,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
+import javafx.util.Callback;
 
-public class FilmController extends MenuController implements Initializable{
+public class FilmController extends MenuController{
 
 	private final String NOMEFILE = "film.fxml";
 	
@@ -38,18 +45,20 @@ public class FilmController extends MenuController implements Initializable{
     private TableView<InnerFilm> tabella;
     
     @FXML
-    private TableColumn<InnerFilm, Integer> colonnaId;
+    private TableColumn<InnerFilm,Integer> colonnaId;
 
     @FXML
-    private TableColumn<InnerFilm, Integer> colonnaNumero;
+    private TableColumn<InnerFilm,Integer> colonnaNumero;
 
     @FXML
-    private TableColumn<InnerFilm, String> colonnaTitolo;
+    private TableColumn<InnerFilm,String> colonnaTitolo;
 
     @FXML
     void aggiungiFilm(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "aggiungiFilm.fxml");
 	    WindowsHandler.closeWindow(getWindow());
+	    SceneCreator.launchScene();
+	    initialize();
     }
 
 
@@ -81,9 +90,34 @@ public class FilmController extends MenuController implements Initializable{
 	}
 
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize() {
+		/*
+		colonnaId = new TableColumn<>("ID");
+		colonnaId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<InnerFilm, Number>, ObservableValue<Number>>() {
+
+            @Override
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<InnerFilm, Number> param) {
+                return param.getValue().getId();
+            }
+        });
 		
+		colonnaTitolo = new TableColumn<>("Titolo");
+		colonnaId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<InnerFilm, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<InnerFilm, String> param) {
+                return param.getValue().getTitolo();
+            }
+        });
+		
+		colonnaNumero = new TableColumn<>("Numero di Proiezioni");
+		colonnaNumero.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<InnerFilm, Number>, ObservableValue<Number>>() {
+
+            @Override
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<InnerFilm, Number> param) {
+                return param.getValue().getNp();
+            }
+        });*/
 		ArrayList<Film> elencoFilm = new ArrayList<Film>();
 		try {
 			elencoFilm = facade.getTuttiFilm();
@@ -91,21 +125,15 @@ public class FilmController extends MenuController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ArrayList<InnerFilm> righeTabella = costruisciElementiTabella(elencoFilm);
-		
-		tabella.getColumns().add(colonnaId);
-		tabella.getColumns().add(colonnaTitolo);
-		tabella.getColumns().add(colonnaNumero);
-		
-		for(InnerFilm riga : righeTabella) {
-			tabella.getItems().add(riga);
-		}
+		ObservableList<InnerFilm> righeTabella = costruisciElementiTabella(elencoFilm);
+
+		tabella.setItems(righeTabella);
 		
 		
 	}
 	
-	public ArrayList<InnerFilm> costruisciElementiTabella(ArrayList<Film> elencoFilm) {
-		ArrayList<InnerFilm> righeTabella = new ArrayList<InnerFilm>();
+	public ObservableList<InnerFilm> costruisciElementiTabella(ArrayList<Film> elencoFilm) {
+		ObservableList<InnerFilm> righeTabella = FXCollections.observableArrayList();
 		for(int i = 0; i < elencoFilm.size(); i++) {
 			try {
 				righeTabella.add(new InnerFilm(elencoFilm.get(i).getId(),elencoFilm.get(i).getTitolo(),facade.getNumProiezioniByFilm(elencoFilm.get(i))));
@@ -114,37 +142,49 @@ public class FilmController extends MenuController implements Initializable{
 				e.printStackTrace();
 			}
 		}
-		return righeTabella;
+		return (ObservableList<InnerFilm>) righeTabella;
 	}
     
 	private class InnerFilm{
-		private int id;
-		private String titolo;
-		private int np;
+		private SimpleIntegerProperty id;
+		private SimpleStringProperty titolo;
+		private SimpleIntegerProperty np;
 		
 		public InnerFilm(int id, String titolo, int np) {
-			this.id = id;
-			this.titolo = titolo;
-			this.np = np;
+			this.id = new SimpleIntegerProperty(id);
+			this.titolo = new SimpleStringProperty(titolo);
+			this.np = new SimpleIntegerProperty(np);
 		}
 		
-		public int getId() {
+		
+
+		public SimpleIntegerProperty getId() {
 			return id;
 		}
-		public void setId(int id) {
+
+		public void setId(SimpleIntegerProperty id) {
 			this.id = id;
 		}
-		public String getTitolo() {
+
+		public SimpleStringProperty getTitolo() {
 			return titolo;
 		}
-		public void setTitolo(String titolo) {
+
+		public void setTitolo(SimpleStringProperty titolo) {
 			this.titolo = titolo;
 		}
-		public int getNp() {
+
+		public SimpleIntegerProperty getNp() {
 			return np;
 		}
-		public void setNp(int np) {
+
+		public void setNp(SimpleIntegerProperty np) {
 			this.np = np;
+		}
+
+		@Override
+		public String toString() {
+			return "InnerFilm [id=" + id + ", titolo=" + titolo + ", np=" + np + "]";
 		}
 		
 		

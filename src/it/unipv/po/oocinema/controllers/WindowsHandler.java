@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class WindowsHandler {
+	
 	public static void openWindow(Class<?> c, String fxmlName) {
 		Parent root;
 		try {

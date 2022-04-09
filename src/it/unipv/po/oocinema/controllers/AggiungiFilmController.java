@@ -62,10 +62,12 @@ public class AggiungiFilmController extends MenuController {
     @FXML
     public void aggiungiFilm(MouseEvent event) {
     	
+		String s = "resources/locandine/"+l.getName();
+		String s1 = "resources/trailer/"+t.getName();
 		
 		 Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
 		 Integer.parseInt(durata.getText()),regista.getText(),cast.getText(),
-		 "resources/locandine/"+l.getName(),"resources/trailer/"+t.getName());
+		 "prova","prova");
 		 try {
 			facade.aggiungiFilm(f);
 		} catch (SQLException e) {
