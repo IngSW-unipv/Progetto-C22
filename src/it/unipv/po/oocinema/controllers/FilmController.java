@@ -4,6 +4,8 @@ import java.net.URL;
 import javafx.beans.value.ObservableValue;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import it.unipv.po.oocinema.model.cinema.Film;
@@ -26,7 +28,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 import javafx.util.Callback;
 
-public class FilmController extends MenuController{
+public class FilmController extends MenuController implements Initializable{
 
 	private final String NOMEFILE = "film.fxml";
 	
@@ -34,7 +36,7 @@ public class FilmController extends MenuController{
 	
     @FXML
     private Button aggiungi;
-
+   
     @FXML
     private Button rimuovi;
     
@@ -52,32 +54,35 @@ public class FilmController extends MenuController{
 
     @FXML
     private TableColumn<InnerFilm,String> colonnaTitolo;
+    
+    ObservableList<InnerFilm> datiTabella = FXCollections.observableArrayList();
 
     @FXML
     void aggiungiFilm(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "aggiungiFilm.fxml");
 	    WindowsHandler.closeWindow(getWindow());
-	    SceneCreator.launchScene();
-	    initialize();
     }
 
 
     @FXML
     void rimuoviFilm(MouseEvent event) {
-    	Alert alert = new Alert(AlertType.CONFIRMATION, "Rimuovendo il film verranno eliminate tutte le proiezioni e prenotazioni ad esso associate");
-    	alert.showAndWait();
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Verranno rimossi tutti i dati associati al film");
+    	alert.showAndWait(); // VEDERE COME FARE A OTTENERE IL RISULTATO
     	
+    
     	Film f = new Film();
     	f.setId(Integer.parseInt(idFilm.getText()));
     	try {
-			facade.rimuoviFilm(f);
+			facade.rimuoviFilm(f);	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	aggiorna();
     }
-
-
+    
+  
 	@Override
 	public Window getWindow() {
 		return rimuovi.getScene().getWindow();
@@ -89,96 +94,74 @@ public class FilmController extends MenuController{
 		return NOMEFILE;
 	}
 
-
-	public void initialize() {
-		/*
-		colonnaId = new TableColumn<>("ID");
-		colonnaId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<InnerFilm, Number>, ObservableValue<Number>>() {
-
-            @Override
-            public ObservableValue<Number> call(TableColumn.CellDataFeatures<InnerFilm, Number> param) {
-                return param.getValue().getId();
-            }
-        });
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		colonnaTitolo = new TableColumn<>("Titolo");
-		colonnaId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<InnerFilm, String>, ObservableValue<String>>() {
-
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<InnerFilm, String> param) {
-                return param.getValue().getTitolo();
-            }
-        });
+		colonnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
+		colonnaNumero.setCellValueFactory(new PropertyValueFactory<>("np"));
 		
-		colonnaNumero = new TableColumn<>("Numero di Proiezioni");
-		colonnaNumero.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<InnerFilm, Number>, ObservableValue<Number>>() {
-
-            @Override
-            public ObservableValue<Number> call(TableColumn.CellDataFeatures<InnerFilm, Number> param) {
-                return param.getValue().getNp();
-            }
-        });*/
+		aggiorna();
+		
+	}
+	
+	public  void costruisciElementiTabella(ObservableList<InnerFilm> datiTabella) {
+		
+		datiTabella.removeAll(datiTabella);
 		ArrayList<Film> elencoFilm = new ArrayList<Film>();
 		try {
 			elencoFilm = facade.getTuttiFilm();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ObservableList<InnerFilm> righeTabella = costruisciElementiTabella(elencoFilm);
-
-		tabella.setItems(righeTabella);
 		
-		
-	}
-	
-	public ObservableList<InnerFilm> costruisciElementiTabella(ArrayList<Film> elencoFilm) {
-		ObservableList<InnerFilm> righeTabella = FXCollections.observableArrayList();
 		for(int i = 0; i < elencoFilm.size(); i++) {
 			try {
-				righeTabella.add(new InnerFilm(elencoFilm.get(i).getId(),elencoFilm.get(i).getTitolo(),facade.getNumProiezioniByFilm(elencoFilm.get(i))));
+				datiTabella.add(new InnerFilm(elencoFilm.get(i).getId(),elencoFilm.get(i).getTitolo(),facade.getNumProiezioniByFilm(elencoFilm.get(i))));
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return (ObservableList<InnerFilm>) righeTabella;
+	}
+	
+	public void aggiorna() {
+		costruisciElementiTabella(datiTabella);
+		tabella.setItems(datiTabella);
 	}
     
-	private class InnerFilm{
-		private SimpleIntegerProperty id;
-		private SimpleStringProperty titolo;
-		private SimpleIntegerProperty np;
-		
-		public InnerFilm(int id, String titolo, int np) {
-			this.id = new SimpleIntegerProperty(id);
-			this.titolo = new SimpleStringProperty(titolo);
-			this.np = new SimpleIntegerProperty(np);
-		}
-		
-		
+	 public class InnerFilm{
+		 int id;
+		 String titolo;
+		 int np;
 
-		public SimpleIntegerProperty getId() {
+		public InnerFilm(int id, String titolo, int np) {
+			super();
+			this.id = id;
+			this.titolo = titolo;
+			this.np = np;
+		}
+
+		public int getId() {
 			return id;
 		}
 
-		public void setId(SimpleIntegerProperty id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 
-		public SimpleStringProperty getTitolo() {
+		public String getTitolo() {
 			return titolo;
 		}
 
-		public void setTitolo(SimpleStringProperty titolo) {
+		public void setTitolo(String titolo) {
 			this.titolo = titolo;
 		}
 
-		public SimpleIntegerProperty getNp() {
+		public int getNp() {
 			return np;
 		}
 
-		public void setNp(SimpleIntegerProperty np) {
+		public void setNp(int np) {
 			this.np = np;
 		}
 
@@ -189,5 +172,7 @@ public class FilmController extends MenuController{
 		
 		
 	}
+
+
 
 }

@@ -39,8 +39,7 @@ public class FilmDAO implements IFilmDAO {
 		st1.setString(9, inputFilm.getTrailerPath());
 		
 		
-		st1.executeUpdate()
-		;
+		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
@@ -52,7 +51,7 @@ public class FilmDAO implements IFilmDAO {
 		PreparedStatement st1 = conn.prepareStatement(query);
 		
 		st1.setInt(1, inputFilm.getId());
-		
+		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
@@ -69,7 +68,7 @@ public class FilmDAO implements IFilmDAO {
 		while (result.next()) {
 			film.add(new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
-					result.getString("cast"), result.getString("durata"),	result.getString("trailerPath")));
+					result.getString("cast"), result.getString("coverPath"),	result.getString("trailerPath")));
 		}
 		
 		MySQLConnectionFactory.closeConnection(conn);
@@ -122,7 +121,7 @@ public class FilmDAO implements IFilmDAO {
 		st1.setInt(1, inputFilm.getId());
 		ResultSet result = st1.executeQuery();
 		if(result.next())
-			r = result.getInt(1);
+			r = result.getInt("NUM");
 		else r = 0;
 		MySQLConnectionFactory.closeConnection(conn);
 

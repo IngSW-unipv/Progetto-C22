@@ -28,7 +28,7 @@ public class Main extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception{
 		
-		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/film.fxml"));
+		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/homeCLI.fxml"));
 		  primaryStage.setTitle("Home OOCinema"); primaryStage.setScene(new
 		  Scene(root)); primaryStage.setHeight(670); primaryStage.setWidth(1210);
 		  primaryStage.centerOnScreen(); primaryStage.show();

@@ -13,6 +13,7 @@ import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -61,18 +63,20 @@ public class AggiungiFilmController extends MenuController {
     private File t;
     @FXML
     public void aggiungiFilm(MouseEvent event) {
-    	
-		String s = "resources/locandine/"+l.getName();
-		String s1 = "resources/trailer/"+t.getName();
 		
 		 Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
 		 Integer.parseInt(durata.getText()),regista.getText(),cast.getText(),
-		 "prova","prova");
+		 "/resources/locandine/"+l.getName(),"/resources/trailer/"+t.getName());
 		 try {
 			facade.aggiungiFilm(f);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Alert errore = new Alert(AlertType.ERROR, "ERRORE");
+			errore.showAndWait();
 		}
+		 
+		Alert successo = new Alert(AlertType.INFORMATION, "SUCCESSO");
+	    successo.showAndWait();
 		 
     }
     

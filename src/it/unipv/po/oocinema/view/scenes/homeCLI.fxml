@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.CLIController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@style.css">
          <left>
@@ -36,15 +36,15 @@
                   <Pane prefHeight="37.0" prefWidth="435.0" />
                   <Pane>
                      <children>
-                        <VBox fx:id="chosenFruitCard" alignment="CENTER" layoutX="40.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
+                        <VBox alignment="CENTER" layoutX="40.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
                            <children>
                               <Pane prefHeight="0.0" prefWidth="297.0" />
-                              <Label fx:id="fruitNameLable" alignment="CENTER" prefHeight="44.0" prefWidth="297.0" text="Titolo" textFill="WHITE">
+                              <Label fx:id="titoloFilmSel" alignment="CENTER" prefHeight="0.0" prefWidth="222.0" text="Titolo" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="24.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="fruitImg" fitHeight="170.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="locandinaFilmSel" fitHeight="170.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -60,7 +60,7 @@
                                     <Separator prefHeight="10.0" prefWidth="125.0" />
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="142.0" styleClass="add-btn" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css" text="SCHEDA FILM" textFill="#063c69">
+                              <Button fx:id="schedaFilm" mnemonicParsing="false" onMousePressed="#schedaFilm" prefHeight="39.0" prefWidth="142.0" styleClass="add-btn" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css" text="SCHEDA FILM" textFill="#063c69">
                                  <VBox.margin>
                                     <Insets bottom="20.0" top="30.0" />
                                  </VBox.margin>
@@ -85,23 +85,23 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="165.0" text="Film" textFill="#063c69">
+                        <Label fx:id="film" alignment="CENTER" contentDisplay="CENTER" onMousePressed="#film" prefHeight="62.0" prefWidth="165.0" text="Film" textFill="#063c69">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="62.0" prefWidth="165.0" text="I miei ORDINI" textFill="#063c69">
+                        <Label fx:id="ordini" alignment="CENTER" onMousePressed="#ordini" prefHeight="62.0" prefWidth="165.0" text="I miei ORDINI" textFill="#063c69">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="62.0" prefWidth="165.0" text="Info" textFill="#063c69">
+                        <Label fx:id="info" alignment="CENTER" onMousePressed="#info" prefHeight="62.0" prefWidth="165.0" text="Info" textFill="#063c69">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </Label>
                         <Pane prefHeight="65.0" prefWidth="291.0" HBox.hgrow="ALWAYS" />
-                        <Label prefHeight="62.0" prefWidth="102.0" text="Esci" textFill="#063c69">
+                        <Label fx:id="esci" onMousePressed="#esci" prefHeight="62.0" prefWidth="102.0" text="Esci" textFill="#063c69">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
