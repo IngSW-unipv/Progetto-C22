@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,9 +68,9 @@ public class FilmController extends MenuController implements Initializable{
     @FXML
     void rimuoviFilm(MouseEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION, "Verranno rimossi tutti i dati associati al film");
-    	alert.showAndWait(); // VEDERE COME FARE A OTTENERE IL RISULTATO
+    	alert.showAndWait(); 
     	
-    
+    	if(alert.getResult().equals(ButtonType.OK)) {
     	Film f = new Film();
     	f.setId(Integer.parseInt(idFilm.getText()));
     	try {
@@ -80,6 +81,7 @@ public class FilmController extends MenuController implements Initializable{
 		}
     	
     	aggiorna();
+    	}
     }
     
   
