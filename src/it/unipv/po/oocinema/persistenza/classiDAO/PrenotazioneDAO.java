@@ -1,15 +1,12 @@
 package it.unipv.po.oocinema.persistenza.classiDAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
-import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IPrenotazioneDAO;
@@ -39,7 +36,7 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 			Proiezione proiezione= new Proiezione();
 			proiezione.setId(result.getInt("id"));
 			ProiezioneDAO proiezioneDAO= new ProiezioneDAO();
-			proiezione=proiezioneDAO.getProiezione(proiezione);
+			proiezione=proiezioneDAO.getProiezioneById(proiezione);
 			p.add(new Prenotazione(result.getInt("id"), result.getDate("data_acquisto"), inputCliente, proiezione
 					));
 		}

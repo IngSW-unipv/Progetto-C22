@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
+import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 
@@ -41,6 +42,22 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	}	
 	
 	@Override
+	public void registrazione(Cliente inputCliente) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "INSERT INTO acquirente VALUES(?,?,?,?)";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		
+		st1.setString(1, inputCliente.getUser());
+		st1.setString(2, inputCliente.getPassword());
+		st1.setDate(3, inputCliente.getCompleanno());
+		st1.setString(4, "CLIENTE");
+		
+		st1.executeUpdate();
+		MySQLConnectionFactory.closeConnection(conn);
+	}
+	
+	@Override
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
@@ -52,6 +69,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		st1.setDate(3, inputCassa.getCompleanno());
 		st1.setString(4, "CASSA");
 		
+		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
@@ -64,6 +82,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		
 		st1.setString(1, inputCassa.getUser());
 		
+		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 		
 	}

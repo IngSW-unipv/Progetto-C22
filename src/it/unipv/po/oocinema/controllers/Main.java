@@ -32,8 +32,7 @@ public class Main extends Application {
 		  primaryStage.setTitle("Home OOCinema"); primaryStage.setScene(new
 		  Scene(root)); primaryStage.setHeight(670); primaryStage.setWidth(1210);
 		  primaryStage.centerOnScreen(); primaryStage.show();
-		 
-		
+
     }
 
 

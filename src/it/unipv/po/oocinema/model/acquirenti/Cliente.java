@@ -16,13 +16,8 @@ public class Cliente extends Acquirente {
 		this.compleanno = compleanno;
 	}
 
-
 	@Override
 	public Date getCompleanno() {
-		
 		return compleanno;
 	}
-
-	
-
 }

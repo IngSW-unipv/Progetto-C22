@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.cinema.Film;
@@ -25,8 +24,8 @@ public class FilmDAO implements IFilmDAO {
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		//String query = ;
-		PreparedStatement st1 = conn.prepareStatement("INSERT INTO film VALUES(?,?,?,?,?,?,?,?,?)");
+		String query = "INSERT INTO film VALUES(?,?,?,?,?,?,?,?,?)";
+		PreparedStatement st1 = conn.prepareStatement(query);
 		
 		st1.setInt(1, inputFilm.getId());
 		st1.setString(2, inputFilm.getTitolo());
@@ -38,8 +37,8 @@ public class FilmDAO implements IFilmDAO {
 		st1.setString(8, inputFilm.getCoverPath());
 		st1.setString(9, inputFilm.getTrailerPath());
 		
-		
 		st1.executeUpdate();
+		
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
@@ -51,13 +50,14 @@ public class FilmDAO implements IFilmDAO {
 		PreparedStatement st1 = conn.prepareStatement(query);
 		
 		st1.setInt(1, inputFilm.getId());
+		
 		st1.executeUpdate();
+		
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
 	@Override
 	public ArrayList<Film> getTuttiFilm() throws SQLException {
-		
 		conn = MySQLConnectionFactory.connect(conn);
 				
 		String query = "SELECT * FROM film;";
@@ -78,7 +78,6 @@ public class FilmDAO implements IFilmDAO {
 
 	@Override
 	public Film getFilmbyId(Film inputFilm) throws SQLException{
-		
 		conn = MySQLConnectionFactory.connect(conn);
 	
 		String query = "SELECT * FROM film where id=?;";
@@ -126,10 +125,7 @@ public class FilmDAO implements IFilmDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 
 		return r;
-	}
-	
-	
-		
+	}	
 }
 
 

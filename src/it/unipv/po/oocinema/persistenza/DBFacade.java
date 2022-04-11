@@ -35,6 +35,10 @@ public class DBFacade {
 		return acquirenteDAO.login(inputAcq);
 	}
 	
+	public void registrazione(Cliente inputCliente) throws SQLException{
+		acquirenteDAO.registrazione(inputCliente);
+	}
+	
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException {
 		acquirenteDAO.aggiungiCassa(inputCassa);
 	}
@@ -68,7 +72,6 @@ public class DBFacade {
 		return filmDAO.getFilmbyTitolo(inputFilm);
 	}
 
-
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
 		 proiezioneDAO.aggiungiProiezione(inputProiezione);
 	}
@@ -77,8 +80,8 @@ public class DBFacade {
 		proiezioneDAO.rimuoviProiezione(inputProiezione);
 	}
 	
-	public Proiezione getProiezione(Proiezione inputProiezione) throws SQLException{
-		return proiezioneDAO.getProiezione(inputProiezione);
+	public Proiezione getProiezioneById(Proiezione inputProiezione) throws SQLException{
+		return proiezioneDAO.getProiezioneById(inputProiezione);
 	}
 	
 	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
