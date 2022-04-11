@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMousePressed="#click" prefHeight="247.0" prefWidth="201.0" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.PosterController">
+<AnchorPane onMousePressed="#click" prefHeight="247.0" prefWidth="201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.PosterController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="38.0" prefHeight="247.0" prefWidth="201.0" styleClass="background" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="38.0" prefHeight="247.0" prefWidth="201.0" styleClass="film_scelto" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="titolo" alignment="CENTER" prefHeight="49.0" prefWidth="202.0" styleClass="background" stylesheets="@style.css" text="titolo" textFill="WHITE">
+            <Label fx:id="titolo" alignment="CENTER" prefHeight="49.0" prefWidth="202.0" styleClass="film_scelto" stylesheets="@style.css" text="titolo" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
@@ -29,6 +29,6 @@
    </children>
    <styleClass>
       <String fx:value="fruit-item" />
-      <String fx:value="shadow" />
+      <String fx:value="film_scelto" />
    </styleClass>
 </AnchorPane>

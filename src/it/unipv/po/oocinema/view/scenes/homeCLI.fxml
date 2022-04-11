@@ -60,7 +60,7 @@
                                     <Separator prefHeight="10.0" prefWidth="125.0" />
                                  </children>
                               </HBox>
-                              <Button fx:id="schedaFilm" mnemonicParsing="false" onMousePressed="#schedaFilm" prefHeight="39.0" prefWidth="142.0" styleClass="add-btn" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css" text="SCHEDA FILM" textFill="#063c69">
+                              <Button fx:id="schedaFilm" mnemonicParsing="false" onMousePressed="#schedaFilm" prefHeight="39.0" prefWidth="142.0" styleClass="add-btn" stylesheets="@style.css" text="SCHEDA FILM" textFill="#063c69">
                                  <VBox.margin>
                                     <Insets bottom="20.0" top="30.0" />
                                  </VBox.margin>
@@ -111,7 +111,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="280.0" styleClass="free-delivery-card" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="280.0" styleClass="free-delivery-card" stylesheets="@style.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="407.0">
                                  <children>
@@ -130,7 +130,7 @@
                            </children>
                         </HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="285.0" styleClass="shopping-online-card" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="285.0" styleClass="shopping-online-card" stylesheets="@style.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="407.0">
                                  <children>
@@ -153,7 +153,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="425.0" prefWidth="865.0" styleClass="transparent" stylesheets="@../../Downloads/Fruits-Market-master/Fruits-Market-master/FruitMarket/src/values/style.css">
+                        <ScrollPane fx:id="scroll" prefHeight="425.0" prefWidth="865.0" styleClass="transparent" stylesheets="@style.css">
                            <content>
                               <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                                  <rowConstraints>

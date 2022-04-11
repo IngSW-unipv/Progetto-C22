@@ -1,13 +1,18 @@
 package it.unipv.po.oocinema.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
+
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Window;
 
 
 public class CLIController implements Initializable {
@@ -82,11 +88,11 @@ public class CLIController implements Initializable {
         int row = 1;
         try {
             for (int i = 0; i < films.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/views/film_poster.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+            	
+            	
+                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/scenes/film_poster.fxml"));
 
-                PosterController posterController = fxmlLoader.getController();
+                PosterController posterController = new PosterController();
                 posterController.setData(films.get(i),myListener);
 
                 if (column == 3) {
@@ -115,37 +121,52 @@ public class CLIController implements Initializable {
 		
     private void setFilmSel(Film film) {
         titoloFilmSel.setText(film.getTitolo());
-        System.out.println(film.getCoverPath());
-        image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
+        image = readImage(new File(film.getCoverPath()));
         locandinaFilmSel.setImage(image);
     }
 
+    public Image readImage(File file) { 
+    	try { 
+    		BufferedImage bimg = ImageIO.read(file); 
+    		return SwingFXUtils.toFXImage(bimg, null); 
+    		} catch( IOException e ) {
+    	}
+    	return null;
+    }
+    
     @FXML
     void esci(MouseEvent event) {
-
+    	WindowsHandler.openWindow(getClass(), "login.fxml");
+	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void film(MouseEvent event) {
-
+    	WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
+	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void info(MouseEvent event) {
-
+    	WindowsHandler.openWindow(getClass(), "info.fxml");
+	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void ordini(MouseEvent event) {
-
+    	WindowsHandler.openWindow(getClass(), "ordini.fxml");
+	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void schedaFilm(MouseEvent event) {
-
+    	WindowsHandler.openWindow(getClass(), "schedaFilm.fxml");
+	    WindowsHandler.closeWindow(getWindow());
     }
 
-    
+    public Window getWindow() {
+    	return film.getScene().getWindow();
+    }
 	
 
 }
