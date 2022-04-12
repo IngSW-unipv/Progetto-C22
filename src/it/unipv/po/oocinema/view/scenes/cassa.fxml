@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.CassaController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
          <left>
@@ -36,22 +36,22 @@
                   <Pane prefHeight="67.0" prefWidth="305.0" />
                   <Pane prefHeight="362.0" prefWidth="305.0">
                      <children>
-                        <Label fx:id="fruitNameLable2" alignment="CENTER" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable" alignment="CENTER" layoutY="74.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable1" alignment="CENTER" layoutY="146.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezione" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable11" alignment="CENTER" layoutY="215.0" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="215.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -60,7 +60,7 @@
                   </Pane>
                   <Pane prefHeight="269.0" prefWidth="298.0">
                      <children>
-                        <Label fx:id="fruitNameLable111" alignment="CENTER" layoutX="114.0" layoutY="83.0" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -76,7 +76,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="849.0" text="CASSA" textFill="#063c69">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="902.0" text="CASSA" textFill="#063c69">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
@@ -84,38 +84,31 @@
                      </children>
                   </HBox>
                   <Pane prefHeight="78.0" prefWidth="902.0" />
-                  <GridPane prefHeight="472.0" prefWidth="841.0">
+                  <GridPane prefHeight="423.0" prefWidth="842.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="171.99997997283936" minHeight="10.0" prefHeight="133.99997997283936" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="292.999994913737" minHeight="10.0" prefHeight="254.99995930989581" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="249.9999796549479" minHeight="10.0" prefHeight="82.3333740234375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="37.333353678385414" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="249.9999796549479" minHeight="10.0" prefHeight="249.9999796549479" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TableView editable="true" fixedCellSize="0.0" prefHeight="163.0" prefWidth="842.0" GridPane.rowIndex="1">
+                        <TableView fx:id="tabella" editable="true" fixedCellSize="0.0" prefHeight="250.0" prefWidth="825.0" GridPane.rowIndex="1">
                            <columns>
-                              <TableColumn prefWidth="113.99996948242188" text="Seleziona" />
-                              <TableColumn prefWidth="354.0" text="Username" />
-                              <TableColumn prefWidth="372.66668701171875" text="Password" />
+                              <TableColumn fx:id="colonnaUser" prefWidth="399.3332824707031" text="User" />
+                              <TableColumn fx:id="colonnaPassword" prefWidth="442.666748046875" text="Password" />
                            </columns>
                         </TableView>
                         <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="842.0" spacing="10.0">
                            <children>
-                              <Pane prefHeight="123.0" prefWidth="844.0">
+                              <Pane prefHeight="83.0" prefWidth="842.0">
                                  <children>
-                                    <TextField layoutX="46.0" layoutY="66.0" prefHeight="25.0" prefWidth="245.0" styleClass="controls" stylesheets="@style.css">
-                                       <font>
-                                          <Font name="Cambria" size="18.0" />
-                                       </font>
-                                    </TextField>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons8-cerca-di-più-24.png" />
                                        </image>
                                     </ImageView>
-                                    <Button graphicTextGap="15.0" layoutX="648.0" layoutY="58.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="       Aggiungi CASSA" textFill="#fffefe">
+                                    <Button fx:id="aggiungi" graphicTextGap="15.0" layoutX="648.0" layoutY="58.0" mnemonicParsing="false" onMousePressed="#aggiungiCassa" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="   Aggiungi CASSA" textFill="#fffefe">
                                        <font>
                                           <Font name="Cambria" size="18.0" />
                                        </font>
@@ -129,20 +122,25 @@
                               </Pane>
                            </children>
                         </HBox>
-                        <Pane prefHeight="214.0" prefWidth="842.0" GridPane.rowIndex="2">
-                           <children>
-                              <Button contentDisplay="RIGHT" graphicTextGap="15.0" layoutX="648.0" layoutY="15.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi CASSA" textFill="#fffefe">
-                                 <font>
-                                    <Font name="Cambria" size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </Pane>
                      </children>
                      <VBox.margin>
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                   </GridPane>
+                  <Pane prefHeight="214.0" prefWidth="842.0">
+                     <children>
+                        <Button fx:id="rimuovi" contentDisplay="RIGHT" graphicTextGap="15.0" layoutX="677.0" layoutY="24.0" mnemonicParsing="false" onMousePressed="#rimuoviCassa" prefHeight="51.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi CASSA" textFill="#fffefe">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="userCassa" layoutX="537.0" layoutY="31.0" prefHeight="37.0" prefWidth="102.0" promptText="User" styleClass="controls" stylesheets="@style.css">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
                </children>
             </VBox>
          </center>

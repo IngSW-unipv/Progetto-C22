@@ -12,6 +12,10 @@ public class Acquirente {
 		this.user = user;
 		this.password = password;
 	}
+	
+	public Acquirente(String user) {
+		this.user = user;
+	}
 	public String getUser() {
 		return user;
 	}

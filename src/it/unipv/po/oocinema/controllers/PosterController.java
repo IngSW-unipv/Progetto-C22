@@ -25,20 +25,14 @@ public class PosterController {
     @FXML
     private Label titolo;
     
-    private Film film;
-    
    private MyListener myListener;
 
-    @FXML
-    void click(MouseEvent event) {
-    	myListener.onClickListener(film);
-    }
+
     public void setData(Film film, MyListener myListener) {
-        this.film = film;
         this.myListener = myListener;
-        titolo = new Label(film.getTitolo());
+        titolo= new Label(film.getTitolo());
         Image image = readImage(new File(film.getCoverPath()));
-        locandina = new ImageView(image);
+        locandina= new ImageView(image);
     }
     
     public Image readImage(File file) { 

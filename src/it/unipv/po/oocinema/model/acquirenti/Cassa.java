@@ -10,6 +10,10 @@ public class Cassa extends Acquirente{
 	public Cassa(String user, String pw_cassa) {
 		super(user,pw_cassa);
 	}
+	
+	public Cassa(String user) {
+		super(user);
+	}
 
 	@Override
 	public Date getCompleanno() {
