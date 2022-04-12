@@ -50,22 +50,19 @@ public class Proiezione {
 	}
 
 	public boolean checkPostoDisponibile(int row, int col) {
-		return posti.get(row).get(col).isAvailable();
+		if(posti.get(row).get(col).getPrenotazione()!= null)
+			return false;
+		else
+			return true;
 	}
 	
-	public int getPostiOccupati() {
-		int count = 0;
-		for(int i = 0; i < getSala().getRighe(); i++) {
-			for (int j = 0; j < getSala().getColonne(); j++) {
-				if(!posti.get(i).get(j).isAvailable()) {
-					count++;
-				}
-			}
-		}
-		return count;
-	}
+	/*
+	 * public int getPostiOccupati() { int count = 0; for(int i = 0; i <
+	 * getSala().getRighe(); i++) { for (int j = 0; j < getSala().getColonne(); j++)
+	 * { if(!posti.get(i).get(j).isAvailable()) { count++; } } } return count; }
+	 */
 	
-	public boolean occupaPosto(int riga, int colonna) {
+	public boolean occupaPosto(int riga, int colonna, ) {
 		if (posti.get(riga).get(colonna).isAvailable()) {
 			posti.get(riga).get(colonna).setAvailable(false);
 			return true;
@@ -112,7 +109,7 @@ public class Proiezione {
 		for (int i = 0; i < sala.getRighe(); i++) {
 			ArrayList<Posto> riga = new ArrayList<Posto>();
 			for (int j = 0; j < sala.getColonne(); j++) {
-				riga.add(new Posto(i,j,true));
+				riga.add(new Posto(i,j, null));
 			}
 			posti.add(riga);
 		}

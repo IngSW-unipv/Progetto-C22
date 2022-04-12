@@ -1,17 +1,18 @@
 package it.unipv.po.oocinema.model.cinema;
 
+import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
+
 public class Posto { 
 	
 	private int riga;
 	private int colonna;
+	private Prenotazione prenotazione;
 	
-	private boolean available;
 	
-	
-	public Posto(int riga, int colonna, boolean available) {
+	public Posto(int riga, int colonna, Prenotazione prenotazione) {
 		this.riga = riga;
 		this.colonna = colonna;
-		this.available = available;
+		this.prenotazione = prenotazione;
 	}
 	
 	public int getRiga() {
@@ -27,12 +28,12 @@ public class Posto {
 		this.colonna = colonna;
 	}
 
-	public boolean isAvailable() {
-		return available;
+	public Prenotazione getPrenotazione() {
+		return prenotazione;
 	}
 
-	public void setAvailable(boolean available) {
-		this.available = available;
+	public void setPrenotazione(Prenotazione prenotazione) {
+		this.prenotazione = prenotazione;
 	}
 	
 	@Override
