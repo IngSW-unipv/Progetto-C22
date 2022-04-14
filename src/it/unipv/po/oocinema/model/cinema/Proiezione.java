@@ -109,7 +109,7 @@ public class Proiezione {
 		for (int i = 0; i < sala.getRighe(); i++) {
 			ArrayList<Posto> riga = new ArrayList<Posto>();
 			for (int j = 0; j < sala.getColonne(); j++) {
-				riga.add(new Posto(i,j, null));
+				riga.add(new Posto(i,j, null));  //PRENOTAZIONE NULLA PER POSTI LIBERI
 			}
 			posti.add(riga);
 		}
