@@ -78,7 +78,7 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="902.0" text="FILM" textFill="#063c69">
                            <font>
-                              <Font name="Cambria Bold" size="24.0" />
+                              <Font name="Cambria Bold" size="30.0" />
                            </font>
                         </Label>
                      </children>
@@ -93,7 +93,7 @@
                         <RowConstraints maxHeight="249.9999796549479" minHeight="10.0" prefHeight="249.9999796549479" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TableView fx:id="tabella" editable="true" fixedCellSize="0.0" prefHeight="250.0" prefWidth="825.0" GridPane.rowIndex="1">
+                        <TableView fx:id="tabella" editable="true" fixedCellSize="0.0" prefHeight="250.0" prefWidth="825.0" stylesheets="@style.css" GridPane.rowIndex="1">
                            <columns>
                               <TableColumn fx:id="colonnaId" prefWidth="145.99996948242188" text="ID" />
                               <TableColumn fx:id="colonnaTitolo" prefWidth="509.3332824707031" text="Titolo" />

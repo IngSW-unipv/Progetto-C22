@@ -20,19 +20,22 @@ import javafx.scene.input.MouseEvent;
 public class PosterController {
 
     @FXML
-    private ImageView locandina;
+    private ImageView locandina = new ImageView();
 
     @FXML
-    private Label titolo;
+    private Label titolo = new Label();
     
    private MyListener myListener;
 
-
+   Film f = new Film("Prova");
+  
     public void setData(Film film, MyListener myListener) {
+    	f.setId(2);
+    	f.setCoverPath("../resources/locandine/download.png");
         this.myListener = myListener;
-        titolo= new Label(film.getTitolo());
-        Image image = readImage(new File(film.getCoverPath()));
-        locandina= new ImageView(image);
+        titolo.setText(f.getTitolo());
+        //Image image = readImage(new File(f.getCoverPath()));
+        locandina.setImage(new Image(getClass().getResourceAsStream("../resources/locandine/download.png")));
     }
     
     public Image readImage(File file) { 
@@ -40,8 +43,9 @@ public class PosterController {
     		BufferedImage bimg = ImageIO.read(file); 
     		return SwingFXUtils.toFXImage(bimg, null); 
     		} catch( IOException e ) {
+    			return null;
     	}
-    	return null;
+    	
     }
 
 }

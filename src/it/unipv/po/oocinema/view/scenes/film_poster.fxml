@@ -13,7 +13,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="38.0" prefHeight="247.0" prefWidth="201.0" styleClass="film_scelto" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="titolo" alignment="CENTER" prefHeight="49.0" prefWidth="202.0" styleClass="film_scelto" stylesheets="@style.css" text="titolo" textFill="WHITE">
+            <Label fx:id="titolo" alignment="CENTER" prefHeight="49.0" prefWidth="202.0" styleClass="film_scelto" stylesheets="@style.css" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
