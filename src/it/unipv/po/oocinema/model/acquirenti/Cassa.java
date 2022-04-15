@@ -16,7 +16,7 @@ public class Cassa extends Acquirente{
 	}
 
 	@Override
-	public Date getCompleanno() {
+	public String getCompleanno() {
 		return null;
 	}
 	

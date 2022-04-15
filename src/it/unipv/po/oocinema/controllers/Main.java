@@ -28,13 +28,14 @@ public class Main extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception{
 		
-		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/aggiungiProiezione.fxml"));
+		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/cassa.fxml"));
 		  primaryStage.setTitle("Home OOCinema"); 
 		  primaryStage.setScene(new Scene(root)); 
-		  primaryStage.setHeight(670); 
+		  primaryStage.setHeight(637); 
 		  primaryStage.setWidth(1210);
 		  primaryStage.centerOnScreen(); 
 		  primaryStage.show();
+		  primaryStage.setResizable(false);
 
     }
 

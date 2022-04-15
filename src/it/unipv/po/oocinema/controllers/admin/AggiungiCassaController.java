@@ -28,7 +28,7 @@ public class AggiungiCassaController extends MenuController{
 	private TextField username;
 
 	@FXML
-	void aggiungiCassa(MouseEvent event) {
+	public void aggiungiCassa(MouseEvent event) {
     	Cassa c = new Cassa(username.getText(),password.getText());
     	try {
     		facade.aggiungiCassa(c);

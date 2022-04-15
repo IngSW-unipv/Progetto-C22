@@ -55,6 +55,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.setInt(3, inputProiezione.getFilm().getId());
 		st1.setInt(4, inputProiezione.getSala().getId());
 		st1.setString(5, inputProiezione.getGiorno());
+		System.out.println(inputProiezione.getGiorno());
 		st1.setString(6, inputProiezione.getOrario());
 		
 		st1.executeUpdate();

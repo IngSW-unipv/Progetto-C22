@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Cliente extends Acquirente {
 	
-	private Date compleanno;
+	private String compleanno;
 	private String nome;
 	private String cognome;
 
 
-	public Cliente(String email, String psw, String nome, String cognome, Date compleanno) {
+	public Cliente(String email, String psw, String nome, String cognome, String compleanno) {
 		super(email,psw);
 		this.nome = nome;
 		this.cognome = cognome;
@@ -17,7 +17,7 @@ public class Cliente extends Acquirente {
 	}
 
 	@Override
-	public Date getCompleanno() {
+	public String getCompleanno() {
 		return compleanno;
 	}
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.AggiungiCassaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.admin.AggiungiCassaController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
          <left>
@@ -40,7 +40,7 @@
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezioni" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezione" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>

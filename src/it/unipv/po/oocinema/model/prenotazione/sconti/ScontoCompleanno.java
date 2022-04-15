@@ -13,7 +13,7 @@ public class ScontoCompleanno implements IScontoPrenotazioneStrategy{
 	// Decidere se sconto è nel giorno dell'acquisto o nel giorno della proiezione
 	@Override
 	public double getTotale(Prenotazione p) {
-		if(Date.valueOf(LocalDate.now()) == p.getAcquirente().getCompleanno()) {
+		if(Date.valueOf(LocalDate.now()).toString().equals(p.getAcquirente().getCompleanno()) ) {
 			return p.getPrezzoTot()*PERCENTUALE;
 		} else {
 			return p.getPrezzoTot();

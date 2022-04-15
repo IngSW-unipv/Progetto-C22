@@ -11,10 +11,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e8e7e3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e8e7e3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.LoginController">
    <children>
-      <PasswordField id="passwordTxt" fx:id="pswTxt" layoutX="348.0" layoutY="141.0" prefHeight="30.0" prefWidth="225.0" promptText="Password" style="-fx-border-color: #6495ED;" />
-      <Label id="forgotBtn" fx:id="pswDimenticataLabel" alignment="CENTER" layoutX="337.0" layoutY="188.0" onMouseClicked="#passwordDimenticata" prefHeight="23.0" prefWidth="125.0" text="Password dimenticata" textFill="#000ffa" underline="true">
+      <PasswordField id="passwordTxt" fx:id="password" layoutX="348.0" layoutY="141.0" prefHeight="30.0" prefWidth="225.0" promptText="Password" style="-fx-border-color: #6495ED;" />
+      <Label id="forgotBtn" fx:id="dimenticata" alignment="CENTER" layoutX="337.0" layoutY="188.0" onMouseReleased="#passwordDimenticata" prefHeight="23.0" prefWidth="125.0" text="Password dimenticata" textFill="#000ffa" underline="true">
          <font>
             <Font name="Segoe UI" size="10.0" />
          </font>
@@ -25,13 +25,13 @@
             <Font name="Segoe UI" size="12.0" />
          </font>
       </Label>
-      <TextField id="usernameTxt" fx:id="userTxt" layoutX="348.0" layoutY="90.0" prefHeight="30.0" prefWidth="225.0" promptText="Username" style="-fx-border-color: #6495ED;" />
-      <Button id="signUpBtn" fx:id="registratiBtn" layoutX="355.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#paginaRegistrazione" prefHeight="27.0" prefWidth="217.0" text="Registrati" />
-      <Button id="signInBtn" fx:id="loginBtn" layoutX="463.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#login" prefHeight="28.0" prefWidth="106.0" style="-fx-background-color: #6495ED;" text="Login" textFill="#090086" />
+      <TextField id="usernameTxt" fx:id="user" layoutX="348.0" layoutY="90.0" prefHeight="30.0" prefWidth="225.0" promptText="Username" style="-fx-border-color: #6495ED;" />
+      <Button id="signUpBtn" fx:id="registrati" layoutX="355.0" layoutY="272.0" mnemonicParsing="false" onMousePressed="#registrati" prefHeight="27.0" prefWidth="217.0" text="Registrati" />
+      <Button id="signInBtn" fx:id="login" layoutX="463.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#login" onMousePressed="#login" prefHeight="28.0" prefWidth="106.0" style="-fx-background-color: #6495ED;" text="Login" textFill="#090086" />
       <Text layoutX="23.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contatti:" />
-      <Text fx:id="telefonoText" layoutX="183.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel. " />
-      <Text fx:id="indirizzoText" layoutX="23.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="indirizzo" />
-      <Text fx:id="emailText" layoutX="183.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
+      <Text fx:id="telLabel" layoutX="183.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel. " />
+      <Text fx:id="indirizzoLabel" layoutX="23.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="indirizzo" />
+      <Text fx:id="emailLabel" layoutX="183.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
       <ImageView fitHeight="176.0" fitWidth="217.0" layoutX="75.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../assets/logo.png" />

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
@@ -14,10 +15,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -52,10 +56,10 @@ public class ProiezioneController extends MenuController implements Initializabl
     private TableColumn<Proiezione, String> colonnaOra;
 
     @FXML
-    private TableColumn<Proiezione, String> colonnaSala;
+    private TableColumn<Proiezione, Sala> colonnaSala;
 
     @FXML
-    private TableColumn<Proiezione, String> colonnaTitolo;
+    private TableColumn<Proiezione, Film> colonnaTitolo;
 
     
     ObservableList<Proiezione> datiTabella = FXCollections.observableArrayList();
@@ -64,9 +68,9 @@ public class ProiezioneController extends MenuController implements Initializabl
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	
     	colonnaGiorno.setCellValueFactory(new PropertyValueFactory<>("giorno"));
-		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
+		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("film"));
 		colonnaSala.setCellValueFactory(new PropertyValueFactory<>("sala"));
-		colonnaOra.setCellValueFactory(new PropertyValueFactory<>("ora"));
+		colonnaOra.setCellValueFactory(new PropertyValueFactory<>("orario"));
 		colonnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 
 		aggiorna();
@@ -75,12 +79,27 @@ public class ProiezioneController extends MenuController implements Initializabl
 
     @FXML
     void aggiungiProiezione(MouseEvent event) {
-
+    	WindowsHandler.openWindow(getClass(), "aggiungiProiezione.fxml");
+	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void rimuoviProiezione(MouseEvent event) {
-
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Verranno rimossi tutti i dati associati alla proiezione");
+    	alert.showAndWait(); 
+    	
+    	if(alert.getResult().equals(ButtonType.OK)) {
+    	Film f = new Film();
+    	f.setId(Integer.parseInt(idLabel.getText()));
+    	try {
+			facade.rimuoviFilm(f);	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	aggiorna();
+    	}
     }
 
     public void aggiorna() {

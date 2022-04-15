@@ -50,8 +50,8 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		
 		st1.setString(1, inputCliente.getUser());
 		st1.setString(2, inputCliente.getPassword());
-		st1.setDate(3, inputCliente.getCompleanno());
-		st1.setString(4, "CLIENTE");
+		st1.setString(3, inputCliente.getCompleanno());
+		st1.setString(4, "L");
 		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
@@ -66,8 +66,8 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		
 		st1.setString(1, inputCassa.getUser());
 		st1.setString(2, inputCassa.getPassword());
-		st1.setDate(3, inputCassa.getCompleanno());
-		st1.setString(4, "CASSA");
+		st1.setString(3, inputCassa.getCompleanno());
+		st1.setString(4, "C");
 		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
@@ -93,7 +93,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		
 		String query = "SELECT * FROM acquirente where tipo= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, "CASSA");
+		st1.setString(1, "C");
 		ResultSet result = st1.executeQuery();
 		
 		ArrayList<Cassa> casse = new ArrayList<Cassa>();

@@ -29,7 +29,7 @@ public class Acquirente {
 		this.password = password;
 	}
 
-	public Date getCompleanno() {
+	public String getCompleanno() {
 		return null;
 	}
 }
