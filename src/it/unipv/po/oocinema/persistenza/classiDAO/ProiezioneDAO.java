@@ -37,7 +37,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		s.setId(result.getInt("sala_id"));
 		SalaDAO salaDAO= new SalaDAO();
 		s=salaDAO.getSalaById(s);
-		Proiezione proiezione = new Proiezione( inputProiezione.getId() ,f, result.getDate("giorno"), s
+		Proiezione proiezione = new Proiezione( inputProiezione.getId() ,f, result.getString("giorno"), s
 								,result.getDouble("prezzo"), result.getString("orario"));
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
@@ -47,14 +47,14 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "INSERT INTO film VALUES(?,?,?,?,?,?)";
+		String query = "INSERT INTO proiezione VALUES(?,?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		
 		st1.setInt(1, inputProiezione.getId());
 		st1.setDouble(2, inputProiezione.getPrezzo());
 		st1.setInt(3, inputProiezione.getFilm().getId());
 		st1.setInt(4, inputProiezione.getSala().getId());
-		st1.setDate(5, inputProiezione.getGiorno());
+		st1.setString(5, inputProiezione.getGiorno());
 		st1.setString(6, inputProiezione.getOrario());
 		
 		st1.executeUpdate();
@@ -78,7 +78,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "SELECT * FROM proiezioni where giorno>curdate();";
+		String query = "SELECT * FROM proiezione where giorno>curdate();";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		ResultSet result=st1.executeQuery(query);
 		
@@ -93,7 +93,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 			s.setId(result.getInt("sala_id"));
 			SalaDAO salaDAO= new SalaDAO();
 			s=salaDAO.getSalaById(s);
-			p.add(new Proiezione(result.getInt("id"),f, result.getDate("giorno"), s, 
+			p.add(new Proiezione(result.getInt("id"),f, result.getString("giorno"), s, 
 					result.getDouble("prezzo"), result.getString("orario")));
 		}
 		MySQLConnectionFactory.closeConnection(conn);

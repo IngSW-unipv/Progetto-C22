@@ -67,11 +67,11 @@ public class AggiungiProiezioneController extends MenuController implements Init
 
 	@FXML
     void aggiungiProiezione(MouseEvent event) throws NumberFormatException, ParseException {
-		Date d = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(giorno.getPromptText());
+	
 		try {
-			Film f = facade.getFilmbyTitolo(new Film(filmCombo.getPromptText()));
-			Sala s = facade.getSalaById(new Sala (Integer.parseInt(salaCombo.getPromptText()),0,0));
-	    	Proiezione p = new Proiezione(f,d,s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
+			Film f = facade.getFilmbyTitolo(new Film(filmCombo.getValue()));
+			Sala s = facade.getSalaById(new Sala (Integer.parseInt(salaCombo.getValue().substring(5)),0,0));
+	    	Proiezione p = new Proiezione(f,giorno.getValue().toString(),s,Double.parseDouble(prezzo.getText()),oraCombo.getValue());
 	    	
 	    	facade.aggiungiProiezione(p);
 	    	
@@ -87,6 +87,7 @@ public class AggiungiProiezioneController extends MenuController implements Init
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		initializeFilm();
 		initializeSala();
+		initializeOra();
 	}
 	
 	public void initializeFilm() {
@@ -138,8 +139,7 @@ public class AggiungiProiezioneController extends MenuController implements Init
 			e.printStackTrace();
 		}
 		
-       
-        ObservableList<String> obList = FXCollections.observableList(ore);
+		ObservableList<String> obList = FXCollections.observableList(ore);
         oraCombo.getItems().clear();
         oraCombo.setItems(obList);
 		

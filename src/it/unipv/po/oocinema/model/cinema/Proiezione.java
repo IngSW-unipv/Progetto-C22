@@ -12,7 +12,7 @@ public class Proiezione {
 	private static int progressivo = 0;
 	private int id;
 	private Film film;
-	private Date giorno;
+	private String giorno;
 	private Sala sala;
 	private double prezzo;
 	private ArrayList<ArrayList<Posto>> posti;
@@ -22,7 +22,7 @@ public class Proiezione {
 	 * Costruttore con tutte le variabili
 	 */
 	
-	public Proiezione(int id, Film film, Date giorno, Sala sala, double prezzo, String orario) {
+	public Proiezione(int id, Film film, String giorno, Sala sala, double prezzo, String orario) {
 		this.id = id;
 		this.film = film;
 		this.giorno=giorno;
@@ -33,7 +33,7 @@ public class Proiezione {
 		this.setSala(sala);
 	}
 
-	public Proiezione(Film film, Date giorno, Sala sala, double prezzo, String orario) {
+	public Proiezione(Film film, String giorno, Sala sala, double prezzo, String orario) {
 		this.id = progressivo;
 		progressivo++;
 		this.film = film;
@@ -115,11 +115,11 @@ public class Proiezione {
 		this.prezzo = prezzo;
 	}
 	
-	public Date getGiorno() {
+	public String getGiorno() {
 		return giorno;
 	}
 
-	public void setGiorno(Date giorno) {
+	public void setGiorno(String giorno) {
 		this.giorno = giorno;
 	}
 	

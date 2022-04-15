@@ -31,12 +31,8 @@ public class PostoDAO implements IPostoDAO {
 		ArrayList<Posto> p = new ArrayList<Posto>();
 		
 		while (result.next()) {
-			Proiezione proiezione= new Proiezione();
-			proiezione.setId(result.getInt("id"));
-			ProiezioneDAO proiezioneDAO= new ProiezioneDAO();
-			proiezione=proiezioneDAO.getProiezioneById(proiezione);
-			p.add(new Prenotazione(result.getInt("id"), result.getDate("data_acquisto"), inputPrenotazione.getAcquirente(), proiezione
-					));}
-		return null;
+			p.add(new Posto(result.getInt("riga"),result.getInt("colonna"), inputPrenotazione));
+		}
+		return p;
 	}
 }

@@ -12,6 +12,7 @@ import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.classiDAO.AcquirenteDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.FilmDAO;
+import it.unipv.po.oocinema.persistenza.classiDAO.OraDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.PrenotazioneDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.ProiezioneDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.SalaDAO;
@@ -22,6 +23,8 @@ public class DBFacade {
 	ProiezioneDAO proiezioneDAO;
 	PrenotazioneDAO prenotazioneDAO;
 	SalaDAO salaDAO;
+	
+	OraDAO oraDAO;
 
 	public DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
@@ -29,6 +32,7 @@ public class DBFacade {
 		proiezioneDAO = new ProiezioneDAO();
 		prenotazioneDAO= new PrenotazioneDAO();
 		salaDAO=new SalaDAO();
+		oraDAO = new OraDAO();
 	}
 
 	public boolean login(Acquirente inputAcq) throws SQLException {
@@ -100,9 +104,8 @@ public class DBFacade {
 		return salaDAO.getSalaById(inputSala);
 	}
 
-	public ArrayList<String> getTutteOre() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<String> getTutteOre() throws SQLException {
+		return oraDAO.getTutteOre();
 	}
 	
 }

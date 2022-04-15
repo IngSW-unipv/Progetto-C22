@@ -29,7 +29,10 @@ public class SalaDAO implements ISalaDAO {
 		st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputSala.getId());
 		result = st1.executeQuery();
-		Sala sala = new Sala (result.getInt("id"), result.getInt("riga"), result.getInt("colonna"));
+		Sala sala;
+		if(result.next())
+			sala = new Sala (result.getInt("id"), result.getInt("n_righe"), result.getInt("n_col"));
+		else sala = null;
 		MySQLConnectionFactory.closeConnection(conn);
 		return sala;
 	}
@@ -45,7 +48,7 @@ public class SalaDAO implements ISalaDAO {
 		result = st1.executeQuery();
 		ArrayList<Sala> sala = new ArrayList<Sala>();
 		while (result.next()) {
-			sala.add(new Sala(result.getInt("id"), result.getInt("riga"), result.getInt("colonna")));
+			sala.add(new Sala(result.getInt("id"), result.getInt("n_righe"), result.getInt("n_col")));
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return sala;
