@@ -1,5 +1,6 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.admin;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;

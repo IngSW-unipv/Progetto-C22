@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.admin;
 
 import javafx.stage.Window;
 

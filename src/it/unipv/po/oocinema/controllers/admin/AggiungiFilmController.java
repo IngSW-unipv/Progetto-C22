@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.admin;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JFileChooser;
-
 
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;

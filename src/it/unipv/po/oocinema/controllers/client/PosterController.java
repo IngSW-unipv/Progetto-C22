@@ -1,5 +1,6 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.client;
 
+import it.unipv.po.oocinema.controllers.client.MyListener;
 import it.unipv.po.oocinema.model.cinema.Film;
 
 import java.awt.image.BufferedImage;
@@ -8,7 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import it.unipv.po.oocinema.controllers.MyListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

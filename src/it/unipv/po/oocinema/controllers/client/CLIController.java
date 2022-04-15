@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.client;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.embed.swing.SwingFXUtils;

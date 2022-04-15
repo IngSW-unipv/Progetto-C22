@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.admin;
 
 import java.net.URL;
 import javafx.beans.value.ObservableValue;
@@ -8,6 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.beans.property.SimpleIntegerProperty;

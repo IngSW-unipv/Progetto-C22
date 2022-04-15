@@ -1,26 +1,34 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.admin;
 
 
 
+import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.persistenza.DBFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
-public class AggiungiProiezioneController extends MenuController {
+public class AggiungiProiezioneController extends MenuController implements Initializable {
 	
 	private final String NOMEFILE = "aggiungiProiezione.fxml";
 	private DBFacade facade = new DBFacade();
@@ -46,7 +54,7 @@ public class AggiungiProiezioneController extends MenuController {
     private Label home;
 
     @FXML
-    private ComboBox<?> oraCombo;
+    private ComboBox<String> oraCombo;
 
     @FXML
     private TextField prezzo;
@@ -64,12 +72,62 @@ public class AggiungiProiezioneController extends MenuController {
 			Film f = facade.getFilmbyTitolo(new Film(filmCombo.getPromptText()));
 			Sala s = facade.getSalaById(new Sala (Integer.parseInt(salaCombo.getPromptText()),0,0));
 	    	Proiezione p = new Proiezione(f,d,s,Double.parseDouble(prezzo.getText()),oraCombo.getPromptText());
+	    	
 	    	facade.aggiungiProiezione(p);
+	    	
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
+			Alert errore = new Alert(AlertType.ERROR, "ERRORE");
+			errore.showAndWait();
 		}
     	
     }
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+	}
+	
+	public void initializeFilm() {
+		ArrayList<Film> films = new ArrayList<Film>();
+		ArrayList<String> titoli = new ArrayList<String>();
+		try {
+			films = facade.getTuttiFilm();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(Film f : films) {
+			titoli.add(f.getTitolo());
+		}
+       
+        ObservableList<String> obList = FXCollections.observableList(titoli);
+        filmCombo.getItems().clear();
+        filmCombo.setItems(obList);
+		
+	}
+	
+	public void initializeSala() {
+		ArrayList<Sala> sale = new ArrayList<Sala>();
+		ArrayList<String> id = new ArrayList<String>();
+		try {
+			sale = facade.getTutteSale();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(Sala s : sale) {
+			id.add("Sala "+s.getId());
+		}
+       
+        ObservableList<String> obList = FXCollections.observableList(sale);
+        filmCombo.getItems().clear();
+        filmCombo.setItems(obList);
+		
+	}
+	
 	
 	@Override
 	public String getNomeFile() {
@@ -79,4 +137,6 @@ public class AggiungiProiezioneController extends MenuController {
 	public Window getWindow() {
 	    return prezzo.getScene().getWindow(); // ATTENZIONE non molto corretto ma funzionante
 	}
+
+	
 }

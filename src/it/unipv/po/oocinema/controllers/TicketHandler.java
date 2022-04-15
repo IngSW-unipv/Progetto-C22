@@ -82,14 +82,11 @@ public class TicketHandler {
 	
 	public Paragraph createParagrafoPrenotazione(Prenotazione prenotazione, int i) {
 		
-		String giorno = ""+prenotazione.getProiezione().getGiorno().getDayOfWeek().getValue();
-		String mese = ""+prenotazione.getProiezione().getGiorno().getMonth().getValue();
-		String anno = ""+prenotazione.getProiezione().getGiorno().getYear();
-		String data = giorno + '/' + mese  + '/' + anno;
+		String giorno = ""+prenotazione.getProiezione().getGiorno().toString();
 		
 		Paragraph paragrafo = new Paragraph("Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()
-				+ "\n" + prenotazione.getProiezione().getSala().getID_sala() + " "+prenotazione.getPosti().get(i).toString()+
-				"\n" + data + "  alle  "+ prenotazione.getProiezione().getOrario().getHour()+":"+prenotazione.getProiezione().getOrario().getMinute());
+				+ "\n" + prenotazione.getProiezione().getSala().getId() + " "+prenotazione.getPosti().get(i).toString()+
+				"\n" + giorno + "  alle  "+ prenotazione.getProiezione().getOrario());
 
 		return paragrafo;
 	}
