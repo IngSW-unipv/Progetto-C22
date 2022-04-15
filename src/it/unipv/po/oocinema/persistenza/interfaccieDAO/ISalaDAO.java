@@ -7,7 +7,6 @@ import it.unipv.po.oocinema.model.cinema.Sala;
 
 
 public interface ISalaDAO {
+	public ArrayList<Sala> getTutteSale() throws SQLException;
 	public Sala getSalaById(Sala inputSala) throws SQLException;
-	public ArrayList<Sala> getAllSale() throws SQLException;
-	
 }

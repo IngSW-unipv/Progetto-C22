@@ -92,13 +92,12 @@ public class DBFacade {
 		return prenotazioneDAO.getPrenotazioniFutureByCliente(inputCliente);
 	}
 
+	public ArrayList<Sala> getTutteSale() throws SQLException {
+		return salaDAO.getTutteSale();
+	}
+	
 	public Sala getSalaById(Sala inputSala) throws SQLException{
 		return salaDAO.getSalaById(inputSala);
-	}
-
-	public ArrayList<Sala> getTutteSale() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public ArrayList<String> getTutteOre() {

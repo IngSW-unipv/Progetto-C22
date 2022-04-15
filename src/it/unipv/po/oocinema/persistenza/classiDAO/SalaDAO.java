@@ -35,7 +35,7 @@ public class SalaDAO implements ISalaDAO {
 	}
 	
 	@Override
-	public ArrayList<Sala> getAllSale() throws SQLException {
+	public ArrayList<Sala> getTutteSale() throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
