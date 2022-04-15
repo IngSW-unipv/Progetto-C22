@@ -19,8 +19,8 @@ public class PostoDAO implements IPostoDAO {
 		super();
 	}
 	
-	@Override
-	public ArrayList<Posto> getTuttiPostiByPrenotazione(Proiezione inputPrenotazione) throws SQLException{
+	
+	public ArrayList<Posto> getTuttiPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
 		String query = "SELECT * FROM posto where prenotazione_id=? ;";
@@ -35,7 +35,7 @@ public class PostoDAO implements IPostoDAO {
 			proiezione.setId(result.getInt("id"));
 			ProiezioneDAO proiezioneDAO= new ProiezioneDAO();
 			proiezione=proiezioneDAO.getProiezioneById(proiezione);
-			p.add(new Prenotazione(result.getInt("id"), result.getDate("data_acquisto"), inputCliente, proiezione
+			p.add(new Prenotazione(result.getInt("id"), result.getDate("data_acquisto"), inputPrenotazione.getAcquirente(), proiezione
 					));}
 		return null;
 	}

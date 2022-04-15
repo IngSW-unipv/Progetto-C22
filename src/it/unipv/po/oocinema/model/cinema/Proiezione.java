@@ -62,22 +62,6 @@ public class Proiezione {
 	 * { if(!posti.get(i).get(j).isAvailable()) { count++; } } } return count; }
 	 */
 	
-	public boolean occupaPosto(int riga, int colonna, ) {
-		if (posti.get(riga).get(colonna).isAvailable()) {
-			posti.get(riga).get(colonna).setAvailable(false);
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean liberaPosto(int riga, int colonna) {
-		if (!posti.get(riga).get(colonna).isAvailable()) {
-			posti.get(riga).get(colonna).setAvailable(true);
-			return true;
-		}
-		return false;
-		
-	}
 	
 	public Posto getPosto(int row, int col){
 		return this.getPosti().get(row).get(col);

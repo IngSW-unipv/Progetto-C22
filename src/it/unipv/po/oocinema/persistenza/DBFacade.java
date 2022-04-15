@@ -95,5 +95,15 @@ public class DBFacade {
 	public Sala getSalaById(Sala inputSala) throws SQLException{
 		return salaDAO.getSalaById(inputSala);
 	}
+
+	public ArrayList<Sala> getTutteSale() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<String> getTutteOre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

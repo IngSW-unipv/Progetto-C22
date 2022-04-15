@@ -89,20 +89,8 @@ public class Prenotazione {
 
 	
 	public void acquista(){
-		occupaPosti();
 		if(!pagamento()) {
-			liberaPosti();
 			posti.removeAll(posti);
-		}
-	}
-
-	public void occupaPosti() {
-		for (int i = 0; i < posti.size(); i++) {
-			int row = posti.get(i).getRiga();
-			int col = posti.get(i).getColonna();
-			if (proiezione.checkPostoDisponibile(row, col)){
-				proiezione.occupaPosto(row, col);
-			}
 		}
 	}
 
@@ -112,17 +100,6 @@ public class Prenotazione {
 			return true;
 		} else
 			return false;
-	}
-
-	
-	public void liberaPosti() {
-		for (int i = 0; i < posti.size(); i++) {
-			int row = posti.get(i).getRiga();
-			int col = posti.get(i).getColonna();
-			if (proiezione.checkPostoDisponibile(row, col)){
-				proiezione.liberaPosto(row, col);
-			}
-		}
 	}
 
 

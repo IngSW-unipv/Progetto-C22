@@ -85,7 +85,8 @@ public class AggiungiProiezioneController extends MenuController implements Init
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		initializeFilm();
+		initializeSala();
 	}
 	
 	public void initializeFilm() {
@@ -122,9 +123,25 @@ public class AggiungiProiezioneController extends MenuController implements Init
 			id.add("Sala "+s.getId());
 		}
        
-        ObservableList<String> obList = FXCollections.observableList(sale);
-        filmCombo.getItems().clear();
-        filmCombo.setItems(obList);
+        ObservableList<String> obList = FXCollections.observableList(id);
+        salaCombo.getItems().clear();
+        salaCombo.setItems(obList);
+		
+	}
+	
+	public void initializeOra() {
+		ArrayList<String> ore = new ArrayList<String>();
+		try {
+			ore = facade.getTutteOre();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+       
+        ObservableList<String> obList = FXCollections.observableList(ore);
+        oraCombo.getItems().clear();
+        oraCombo.setItems(obList);
 		
 	}
 	
