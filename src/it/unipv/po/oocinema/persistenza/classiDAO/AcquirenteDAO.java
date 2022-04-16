@@ -30,10 +30,10 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcq.getUser());
 
-		result=st1.executeQuery(query);
+		result=st1.executeQuery();
 
 		boolean log = false;
-		if(result.getString("psw").equals(inputAcq.getPassword())) {
+		if( result.next() && result.getString("psw").equals(inputAcq.getPassword())) {
 			log = true;
 		}
 			
@@ -45,13 +45,16 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	public void registrazione(Cliente inputCliente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "INSERT INTO acquirente VALUES(?,?,?,?)";
+		String query = "INSERT INTO acquirente VALUES(?,?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		
 		st1.setString(1, inputCliente.getUser());
 		st1.setString(2, inputCliente.getPassword());
-		st1.setString(3, inputCliente.getCompleanno());
-		st1.setString(4, "L");
+		st1.setString(3, "L");
+		st1.setString(4, inputCliente.getNome());
+		st1.setString(5, inputCliente.getCognome());
+		st1.setString(6, inputCliente.getCompleanno());
+		
 		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);

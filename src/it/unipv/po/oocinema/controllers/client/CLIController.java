@@ -58,7 +58,7 @@ public class CLIController implements Initializable {
     private ScrollPane scroll;
 
     @FXML
-    private Label titoloFilmSel;
+    private static Label titoloFilmSel;
     
     private Image image;
     
@@ -124,6 +124,12 @@ public class CLIController implements Initializable {
         titoloFilmSel.setText(film.getTitolo());
         image = readImage(new File(film.getCoverPath()));
         locandinaFilmSel.setImage(image);
+    }
+    
+    public static String getTitoloFilmSel() {
+    	
+    	return titoloFilmSel.getText();
+		
     }
 
     public Image readImage(File file) { 

@@ -107,5 +107,10 @@ public class DBFacade {
 	public ArrayList<String> getTutteOre() throws SQLException {
 		return oraDAO.getTutteOre();
 	}
+
+	public char getTipoByUser(Acquirente inputAcquirente) {
+		// TODO Auto-generated method stub
+		return 'L';
+	}
 	
 }

@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Window;
@@ -44,7 +46,19 @@ public class LoginController {
     @FXML
     void login(MouseEvent event) {
     	try {
-			facade.login(new Acquirente(user.getText(),password.getText()));
+    		Acquirente log = new Acquirente(user.getText(),password.getText());
+			
+    		if(!facade.login(log)) {
+    			Alert alert = new Alert(AlertType.WARNING, "Utente o password errati");
+    	    	alert.showAndWait(); 
+    		}else {
+				char tipo = facade.getTipoByUser(log);
+				if(tipo == 'A')
+					WindowsHandler.openWindow(getClass(), "homeADM.fxml");
+				else WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
+				
+			    WindowsHandler.closeWindow(getWindow());
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

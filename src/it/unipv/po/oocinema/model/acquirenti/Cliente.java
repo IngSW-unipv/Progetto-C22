@@ -11,13 +11,29 @@ public class Cliente extends Acquirente {
 
 	public Cliente(String email, String psw, String nome, String cognome, String compleanno) {
 		super(email,psw);
-		this.nome = nome;
-		this.cognome = cognome;
+		this.setNome(nome);
+		this.setCognome(cognome);
 		this.compleanno = compleanno;
 	}
 
 	@Override
 	public String getCompleanno() {
 		return compleanno;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
 }
