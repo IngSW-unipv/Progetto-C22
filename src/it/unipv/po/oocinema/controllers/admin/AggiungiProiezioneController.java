@@ -3,10 +3,8 @@ package it.unipv.po.oocinema.controllers.admin;
 
 
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 

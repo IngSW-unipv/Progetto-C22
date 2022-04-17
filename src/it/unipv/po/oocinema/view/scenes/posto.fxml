@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor" onMousePressed="#cambiaColore" prefHeight="42.0" prefWidth="48.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PostoController">
+<AnchorPane fx:id="anchor" onMousePressed="#cambiaImmagine" prefHeight="42.0" prefWidth="48.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.client.PostoController">
    <children>
       <ImageView fx:id="img" fitHeight="22.0" fitWidth="23.0" layoutX="13.0" layoutY="9.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>

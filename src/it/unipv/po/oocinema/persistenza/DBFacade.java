@@ -108,9 +108,29 @@ public class DBFacade {
 		return oraDAO.getTutteOre();
 	}
 
-	public char getTipoByUser(Acquirente inputAcquirente) {
+	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException{
 		// TODO Auto-generated method stub
 		return 'L';
+	}
+
+	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{
+		return null;
+		
+	}
+
+	public Sala getSalaByProiezione(Proiezione inputProiezione) throws SQLException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
