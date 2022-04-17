@@ -49,8 +49,8 @@ public class Proiezione {
 		
 	}
 
-	public boolean checkPostoDisponibile(int row, int col) {
-		if(posti.get(row).get(col).getPrenotazione()!= null)
+	public boolean checkPostoDisponibile(int riga, int colonna) {
+		if(posti.get(riga).get(colonna).getPrenotazione()!= null)
 			return false;
 		else
 			return true;
@@ -63,8 +63,8 @@ public class Proiezione {
 	 */
 	
 	
-	public Posto getPosto(int row, int col){
-		return this.getPosti().get(row).get(col);
+	public Posto getPosto(int riga, int colonna){
+		return this.getPosti().get(riga).get(colonna);
 	}
 	
 	public ArrayList<ArrayList<Posto>> getPosti() {

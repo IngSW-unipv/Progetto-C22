@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
+import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 
@@ -107,6 +108,25 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	
 		return casse;
+	}
+	
+	@Override
+	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "SELECT tipo FROM acquirente where user= ?;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		st1.setString(1, inputAcquirente.getUser());
+		ResultSet result = st1.executeQuery();
+		Character c;
+		if(result.next()) {
+			c=result.getCharacterStream("tipo"); //e' da mettere string oppure int
+		}else c = (Character) null;
+		MySQLConnectionFactory.closeConnection(conn);
+		return c;
+		
+		MySQLConnectionFactory.closeConnection(conn);
+		return 'L';
 	}
 
 }

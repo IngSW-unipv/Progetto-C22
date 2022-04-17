@@ -14,4 +14,5 @@ public interface IAcquirenteDAO {
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException;
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException;
 	public ArrayList<Cassa> getTutteCasse() throws SQLException;
+	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException;
 }

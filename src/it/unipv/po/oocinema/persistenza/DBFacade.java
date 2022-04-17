@@ -23,8 +23,9 @@ public class DBFacade {
 	ProiezioneDAO proiezioneDAO;
 	PrenotazioneDAO prenotazioneDAO;
 	SalaDAO salaDAO;
-	
 	OraDAO oraDAO;
+	
+	
 
 	public DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
@@ -53,6 +54,10 @@ public class DBFacade {
 	
 	public ArrayList<Cassa> getTutteCasse() throws SQLException {
 		return acquirenteDAO.getTutteCasse();
+	}
+	
+	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException{ 
+		return acquirenteDAO.getTipoByUser(inputAcquirente);
 	}
 
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
@@ -104,31 +109,26 @@ public class DBFacade {
 		return salaDAO.getSalaById(inputSala);
 	}
 
-	public ArrayList<String> getTutteOre() throws SQLException {
+	public ArrayList<String> getTutteOre() throws SQLException { 
 		return oraDAO.getTutteOre();
 	}
 
-	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException{
-		// TODO Auto-generated method stub
-		return 'L';
-	}
 
-	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{
+	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{ 
 		return null;
 		
 	}
 
-	public Sala getSalaByProiezione(Proiezione inputProiezione) throws SQLException{
+	public Sala getSalaByProiezione(Proiezione inputProiezione) throws SQLException{ // metodo della classe proiezione
+		return null;
+	}
+
+	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ //string non date?
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{
+	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ //non ho capito cosa fa
 		// TODO Auto-generated method stub
 		return null;
 	}
