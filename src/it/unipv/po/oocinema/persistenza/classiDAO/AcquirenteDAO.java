@@ -64,13 +64,14 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
-		String query = "INSERT INTO acquirente VALUES(?,?,?,?)";
+		String query = "INSERT INTO acquirente VALUES(?,?,?,?,null,null)";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		
 		st1.setString(1, inputCassa.getUser());
 		st1.setString(2, inputCassa.getPassword());
-		st1.setString(3, inputCassa.getCompleanno());
-		st1.setInt(4, 2);
+		st1.setInt(3, 2);
+		st1.setString(4, inputCassa.getCompleanno());
+		
 		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
@@ -96,7 +97,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		
 		String query = "SELECT * FROM acquirente where tipo= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, "C");
+		st1.setInt(1, 2);
 		ResultSet result = st1.executeQuery();
 		
 		ArrayList<Cassa> casse = new ArrayList<Cassa>();

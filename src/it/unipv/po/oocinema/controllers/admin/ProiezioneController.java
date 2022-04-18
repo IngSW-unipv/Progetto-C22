@@ -43,33 +43,34 @@ public class ProiezioneController extends MenuController implements Initializabl
     private Button rimuovi;
 
     @FXML
-    private TableView<Proiezione> tabella;
+    private TableView<InnerProiezione> tabella;
     
     @FXML
-    private TableColumn<Proiezione, Date> colonnaGiorno;
+    private TableColumn<InnerProiezione, String> colonnaGiorno;
 
     @FXML
-    private TableColumn<Proiezione, Integer> colonnaId;
+    private TableColumn<InnerProiezione, Integer> colonnaId;
 
     @FXML
-    private TableColumn<Proiezione, String> colonnaOra;
+    private TableColumn<InnerProiezione, String> colonnaOra;
 
     @FXML
-    private TableColumn<Proiezione, Sala> colonnaSala;
+    private TableColumn<InnerProiezione, String> colonnaSala;
 
     @FXML
-    private TableColumn<Proiezione, Film> colonnaTitolo;
+    private TableColumn<InnerProiezione, String> colonnaTitolo;
+    
 
     
-    ObservableList<Proiezione> datiTabella = FXCollections.observableArrayList();
+    ObservableList<InnerProiezione> datiTabella = FXCollections.observableArrayList();
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	
     	colonnaGiorno.setCellValueFactory(new PropertyValueFactory<>("giorno"));
-		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("film"));
+		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
 		colonnaSala.setCellValueFactory(new PropertyValueFactory<>("sala"));
-		colonnaOra.setCellValueFactory(new PropertyValueFactory<>("orario"));
+		colonnaOra.setCellValueFactory(new PropertyValueFactory<>("ora"));
 		colonnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 
 		aggiorna();
@@ -106,7 +107,7 @@ public class ProiezioneController extends MenuController implements Initializabl
 		tabella.setItems(datiTabella);
 	}
 	
-	public  void costruisciElementiTabella(ObservableList<Proiezione> datiTabella) {
+	public  void costruisciElementiTabella(ObservableList<InnerProiezione> datiTabella) {
 		
 		datiTabella.removeAll(datiTabella);
 		ArrayList<Proiezione> elencoProiezioni = new ArrayList<Proiezione>();
@@ -118,8 +119,11 @@ public class ProiezioneController extends MenuController implements Initializabl
 		
 
 		for(int i = 0; i < elencoProiezioni.size(); i++) {
-			Proiezione p = new Proiezione(elencoProiezioni.get(i).getId(),elencoProiezioni.get(i).getFilm(),elencoProiezioni.get(i).getGiorno(),
-					elencoProiezioni.get(i).getSala(),elencoProiezioni.get(i).getPrezzo(),elencoProiezioni.get(i).getOrario());
+			InnerProiezione p = new InnerProiezione(elencoProiezioni.get(i).getId(),
+					elencoProiezioni.get(i).getFilm().getTitolo(),
+					"Sala "+elencoProiezioni.get(i).getSala().getId(),
+					elencoProiezioni.get(i).getGiorno(),elencoProiezioni.get(i).getOrario());
+				
 			datiTabella.add(p);
 		}
 	}
@@ -135,5 +139,69 @@ public class ProiezioneController extends MenuController implements Initializabl
 		return NOMEFILE;
 	}
 	
+	public class InnerProiezione{
+		int id;
+		String titolo;
+		String sala;
+		String giorno;
+		String ora;
+		
+		public InnerProiezione(int id, String titolo, String sala, String giorno, String ora) {
+			super();
+			this.id = id;
+			this.titolo = titolo;
+			this.sala = sala;
+			this.giorno = giorno;
+			this.ora = ora;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getTitolo() {
+			return titolo;
+		}
+
+		public void setTitolo(String titolo) {
+			this.titolo = titolo;
+		}
+
+		public String getSala() {
+			return sala;
+		}
+
+		public void setSala(String sala) {
+			this.sala = sala;
+		}
+
+		public String getGiorno() {
+			return giorno;
+		}
+
+		public void setGiorno(String giorno) {
+			this.giorno = giorno;
+		}
+
+		public String getOra() {
+			return ora;
+		}
+
+		public void setOra(String ora) {
+			this.ora = ora;
+		}
+
+		@Override
+		public String toString() {
+			return "InnerProiezione [id=" + id + ", titolo=" + titolo + ", sala=" + sala + ", giorno=" + giorno
+					+ ", ora=" + ora + "]";
+		}
+		
+		
+	}
 
 }

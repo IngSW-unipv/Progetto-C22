@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 
 public class AggiungiCassaController extends MenuController{
@@ -26,12 +27,17 @@ public class AggiungiCassaController extends MenuController{
 
 	@FXML
 	private TextField username;
+	
+	@FXML
+    private ToggleButton aggiungi;
+
 
 	@FXML
 	public void aggiungiCassa(MouseEvent event) {
     	Cassa c = new Cassa(username.getText(),password.getText());
     	try {
     		facade.aggiungiCassa(c);
+    		System.out.println("va");
     	}catch(SQLException e) {
     		
     	}
