@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
-import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 
@@ -51,7 +50,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		
 		st1.setString(1, inputCliente.getUser());
 		st1.setString(2, inputCliente.getPassword());
-		st1.setString(3, "L");
+		st1.setInt(3, 1);
 		st1.setString(4, inputCliente.getNome());
 		st1.setString(5, inputCliente.getCognome());
 		st1.setString(6, inputCliente.getCompleanno());
@@ -71,7 +70,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		st1.setString(1, inputCassa.getUser());
 		st1.setString(2, inputCassa.getPassword());
 		st1.setString(3, inputCassa.getCompleanno());
-		st1.setString(4, "C");
+		st1.setInt(4, 2);
 		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
@@ -111,22 +110,19 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	}
 	
 	@Override
-	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException{
+	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		
 		String query = "SELECT tipo FROM acquirente where user= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcquirente.getUser());
 		ResultSet result = st1.executeQuery();
-		Character c;
+		int c;
 		if(result.next()) {
-			c=result.getCharacterStream("tipo"); //e' da mettere string oppure int
-		}else c = (Character) null;
+			c=result.getInt("tipo"); 
+		}else c = -1;
 		MySQLConnectionFactory.closeConnection(conn);
 		return c;
-		
-		MySQLConnectionFactory.closeConnection(conn);
-		return 'L';
 	}
 
 }

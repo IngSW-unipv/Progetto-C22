@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
-import it.unipv.po.oocinema.controllers.WindowsHandler;
+import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.embed.swing.SwingFXUtils;
@@ -33,7 +33,7 @@ import javafx.stage.Window;
 public class CLIController implements Initializable {
 
 	DBFacade facade = new DBFacade();
-    @FXML
+	@FXML
     private Label esci;
 
     @FXML
@@ -58,11 +58,11 @@ public class CLIController implements Initializable {
     private ScrollPane scroll;
 
     @FXML
-    private static Label titoloFilmSel;
+    private static Label titoloFilmSel = new Label();
+
     
     private Image image;
     
-    private MyListener myListener;
     
     ArrayList<Film> films = new ArrayList<Film>();
     
@@ -74,27 +74,17 @@ public class CLIController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        if (films.size() > 0) {
-            setFilmSel(films.get(0));
-            myListener = new MyListener() {
-            	
-				@Override
-				public void onClickListener(Film film) {
-					setFilmSel(film);
-					
-				}
-            };
-        }
+       
         int column = 0;
         int row = 1;
         try {
             for (int i = 0; i < films.size(); i++) {
             	
             	
-                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/scenes/film_poster.fxml"));
+                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../../view/scenes/film_poster.fxml"));
 
                 PosterController posterController = new PosterController();
-                posterController.setData(films.get(i),myListener);
+                posterController.setData(films.get(i));
 
                 if (column == 3) {
                     column = 0;

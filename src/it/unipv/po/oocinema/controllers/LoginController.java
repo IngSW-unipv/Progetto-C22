@@ -2,6 +2,7 @@ package it.unipv.po.oocinema.controllers;
 
 import java.sql.SQLException;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -52,8 +53,8 @@ public class LoginController {
     			Alert alert = new Alert(AlertType.WARNING, "Utente o password errati");
     	    	alert.showAndWait(); 
     		}else {
-				char tipo = facade.getTipoByUser(log);
-				if(tipo == 'A')
+				int tipo = facade.getTipoByUser(log);
+				if(tipo == 0)
 					WindowsHandler.openWindow(getClass(), "homeADM.fxml");
 				else WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
 				

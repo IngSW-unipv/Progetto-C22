@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.controllers.WindowsHandler;
+import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -38,7 +38,7 @@ public class SchedaController implements Initializable{
     private Label film;
 
     @FXML
-    private static ComboBox<String> giornoCombo;
+    private ComboBox<String> giornoCombo;
 
     @FXML
     private Label info;
@@ -47,7 +47,7 @@ public class SchedaController implements Initializable{
     private ImageView locandinaFilmSel;
 
     @FXML
-    private static ComboBox<String> oraCombo;
+    private  ComboBox<String> oraCombo;
 
     @FXML
     private Label ordini;
@@ -60,6 +60,9 @@ public class SchedaController implements Initializable{
 
     @FXML
     private Label trailer;
+    
+    private static String giorno;
+    private static String ora;
 
 
     
@@ -116,13 +119,6 @@ public class SchedaController implements Initializable{
 		
 	}
 	
-	public static String getGiorno() {
-		return giornoCombo.getValue();
-	}
-	
-	public static String getOra() {
-		return oraCombo.getValue();
-	}
 	
 	public void initializeGiorno() {
 		ArrayList<String> giorni = new ArrayList<String>();

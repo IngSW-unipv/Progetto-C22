@@ -56,7 +56,7 @@ public class DBFacade {
 		return acquirenteDAO.getTutteCasse();
 	}
 	
-	public char getTipoByUser(Acquirente inputAcquirente) throws SQLException{ 
+	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{ 
 		return acquirenteDAO.getTipoByUser(inputAcquirente);
 	}
 
@@ -132,5 +132,11 @@ public class DBFacade {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public boolean controllaUser(Cliente c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }

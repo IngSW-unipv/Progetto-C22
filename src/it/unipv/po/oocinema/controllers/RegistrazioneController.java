@@ -2,6 +2,7 @@ package it.unipv.po.oocinema.controllers;
 
 import java.sql.SQLException;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -53,7 +54,7 @@ public class RegistrazioneController {
 
     @FXML
     void login(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "registrazione.fxml");
+    	WindowsHandler.openWindow(getClass(), "login.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
@@ -64,7 +65,13 @@ public class RegistrazioneController {
 			errore.showAndWait();
     	}
     	try {
-			facade.registrazione(new Cliente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString()));
+    		Cliente c = new Cliente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString());
+    		if(facade.controllaUser(c)) 
+    			facade.registrazione(c);
+    		else {
+    			Alert errore = new Alert(AlertType.ERROR, "USER GIA' REGISTRATO");
+    			errore.showAndWait();
+    		}
 		} catch (SQLException e) {
 			Alert errore = new Alert(AlertType.ERROR, "ERRORE");
 			errore.showAndWait();

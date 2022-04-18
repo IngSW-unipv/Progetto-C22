@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;

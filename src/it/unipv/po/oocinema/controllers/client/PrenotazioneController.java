@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.controllers.WindowsHandler;
+import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.cinema.Proiezione;

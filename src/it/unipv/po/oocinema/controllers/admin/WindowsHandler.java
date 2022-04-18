@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.controllers;
+package it.unipv.po.oocinema.controllers.admin;
 
 /**
 * Classe che espone metodi per la gestione della finestra
@@ -17,7 +17,7 @@ public class WindowsHandler {
 	public static void openWindow(Class<?> c, String fxmlName) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(c.getResource("../view/scenes/" + fxmlName));
+			root = FXMLLoader.load(c.getResource("../../view/scenes/" + fxmlName));
 			Stage stage = new Stage();
 																														
 			stage.setScene(new Scene(root));

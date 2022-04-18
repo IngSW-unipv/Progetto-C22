@@ -85,7 +85,7 @@ public class AggiungiFilmController extends MenuController {
     public void caricaLocandina(MouseEvent event) throws IOException {
     	
     	JFileChooser fc = new JFileChooser();
-    	fc.setCurrentDirectory(new File("./resources/locandine").getCanonicalFile());
+    	fc.setCurrentDirectory(new File("src/it/unipv/po/oocinema/resources/locandine").getCanonicalFile());
         int checkInput = fc.showOpenDialog(null);
       
         if (checkInput == JFileChooser.APPROVE_OPTION) {
@@ -97,7 +97,7 @@ public class AggiungiFilmController extends MenuController {
     @FXML
     public void caricaTrailer(MouseEvent event) throws IOException {
     	JFileChooser fc = new JFileChooser();
-    	fc.setCurrentDirectory(new File("./resources/trailer").getCanonicalFile());
+    	fc.setCurrentDirectory(new File("src/it/unipv/po/oocinema/resources/trailer").getCanonicalFile());
         int checkInput = fc.showOpenDialog(null);
       
         if (checkInput == JFileChooser.APPROVE_OPTION) {
