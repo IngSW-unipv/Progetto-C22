@@ -151,15 +151,20 @@
                   </HBox>
                   <Pane prefHeight="435.0" prefWidth="895.0">
                      <children>
-                        <ComboBox layoutX="165.0" layoutY="159.0" prefHeight="25.0" prefWidth="95.0" promptText="Fila" styleClass="controls" stylesheets="@style.css" />
-                        <ComboBox layoutX="266.0" layoutY="159.0" prefHeight="25.0" prefWidth="95.0" promptText="Posto" styleClass="controls" stylesheets="@style.css" />
-                        <Label alignment="CENTER" layoutX="508.0" layoutY="120.0" prefHeight="234.0" prefWidth="333.0" styleClass="controls" stylesheets="@style.css" text="Label">
+                        <ComboBox fx:id="filaCombo" layoutX="165.0" layoutY="159.0" prefHeight="25.0" prefWidth="95.0" promptText="Fila" styleClass="controls" stylesheets="@style.css" />
+                        <ComboBox fx:id="postoCombo" layoutX="266.0" layoutY="159.0" onMousePressed="#scegliPosto" prefHeight="25.0" prefWidth="95.0" promptText="Posto" styleClass="controls" stylesheets="@style.css" />
+                        <Label fx:id="lista" alignment="CENTER" layoutX="508.0" layoutY="120.0" prefHeight="234.0" prefWidth="333.0" styleClass="controls" stylesheets="@style.css">
                            <font>
                               <Font name="Cambria" size="14.0" />
                            </font>
                         </Label>
                         <Label layoutX="508.0" layoutY="95.0" prefHeight="17.0" prefWidth="128.0" text="Elenco posti selezionati" />
-                        <Button fx:id="prenota1" layoutX="201.0" layoutY="305.0" mnemonicParsing="false" onMousePressed="#prenota" prefHeight="22.0" prefWidth="119.0" styleClass="menu_button" stylesheets="@style.css" text="Aggiungi" textFill="WHITE">
+                        <Button fx:id="aggiungi" layoutX="140.0" layoutY="304.0" mnemonicParsing="false" onMousePressed="#aggiungi" prefHeight="22.0" prefWidth="119.0" styleClass="menu_button" stylesheets="@style.css" text="Aggiungi" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="rimuovi" layoutX="274.0" layoutY="304.0" mnemonicParsing="false" onMousePressed="#rimuovi" prefHeight="22.0" prefWidth="119.0" styleClass="menu_button" stylesheets="@style.css" text="Rimuovi" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

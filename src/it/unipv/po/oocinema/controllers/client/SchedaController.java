@@ -60,11 +60,8 @@ public class SchedaController implements Initializable{
 
     @FXML
     private Label trailer;
-    
-    private static String giorno;
-    private static String ora;
 
-
+    private static Proiezione proiezione;
     
     DBFacade facade = new DBFacade();
 
@@ -104,13 +101,7 @@ public class SchedaController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		/*
-		 * Film film; try { film = facade.getFilmbyTitolo(new
-		 * Film(CLIController.getTitoloFilmSel())); // film che ci sono nelle proiezioni
-		 * } catch (SQLException e1) { // TODO Auto-generated catch block
-		 * e1.printStackTrace(); film = null; }
-		 */
-		 
+		
 		initializeGiorno();
 		descrizione.setText("ciao");
 		trailer.setText("https://youtu.be/i0in1cRXgE8");
@@ -166,6 +157,7 @@ public class SchedaController implements Initializable{
 	@FXML
     void prenota(MouseEvent event) {
 		if(giornoCombo.getValue()!=null && oraCombo.getValue()!=null) {
+			setProiezione(costruisciProiezione());
 			WindowsHandler.openWindow(getClass(), "prenotazione.fxml");
 		    WindowsHandler.closeWindow(getWindow());
 		} else {
@@ -173,5 +165,28 @@ public class SchedaController implements Initializable{
 	    	alert.showAndWait(); 
 		}
     }
+	
+	public Proiezione costruisciProiezione() {
+		Proiezione p = new Proiezione();
+		p.setFilm(new Film(CLIController.getTitoloFilmSel()));
+		p.setGiorno(giornoCombo.getValue());
+		p.setOrario(oraCombo.getValue());
+		try {
+			return facade.getProiezioneByFilmOraGiorno(p);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public static Proiezione getProiezione() {
+		return proiezione;
+	}
+
+
+	public static void setProiezione(Proiezione proiezione) {
+		SchedaController.proiezione = proiezione;
+	}
 
 }

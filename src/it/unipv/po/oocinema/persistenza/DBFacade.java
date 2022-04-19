@@ -7,6 +7,7 @@ import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
@@ -123,19 +124,34 @@ public class DBFacade {
 		return null;
 	}
 
-	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ //string non date?
+	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ 
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ //non ho capito cosa fa
-		// TODO Auto-generated method stub
+	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ 
+		// TODO Auto-generated method stub  // Restituisce le ore in cui in quel giorno quel film è proiettato
 		return null;
 	}
 
-	public boolean controllaUser(Cliente c) {
+	public boolean controllaUser(Cliente c) throws SQLException{ // true se non ci sono utenti che hanno gia quel nome utente
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public Proiezione getProiezioneByFilmOraGiorno(Proiezione p) throws SQLException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Posto> getTuttiPostiLiberi(Proiezione proiezione) throws SQLException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void aggiungiPrenotazione(Prenotazione p) throws SQLException{
+		// TODO Auto-generated method stub
+		
 	}
 
 	
