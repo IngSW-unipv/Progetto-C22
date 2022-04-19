@@ -30,26 +30,16 @@ import javafx.scene.layout.Region;
 import javafx.stage.Window;
 
 
-public class CLIController implements Initializable {
+public class CLIController extends MenuController implements Initializable {
 
 	DBFacade facade = new DBFacade();
-	@FXML
-    private Label esci;
-
-    @FXML
-    private Label film;
 
     @FXML
     private GridPane grid;
 
-    @FXML
-    private Label info;
 
     @FXML
     private ImageView locandinaFilmSel;
-
-    @FXML
-    private Label ordini;
 
     @FXML
     private Button schedaFilm;
@@ -130,39 +120,10 @@ public class CLIController implements Initializable {
     	}
     	return null;
     }
-    
-    @FXML
-    void esci(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "login.fxml");
-	    WindowsHandler.closeWindow(getWindow());
-    }
 
-    @FXML
-    void film(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
-	    WindowsHandler.closeWindow(getWindow());
-    }
-
-    @FXML
-    void info(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "info.fxml");
-	    WindowsHandler.closeWindow(getWindow());
-    }
-
-    @FXML
-    void ordini(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "ordini.fxml");
-	    WindowsHandler.closeWindow(getWindow());
-    }
-
-    @FXML
-    void schedaFilm(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "schedaFilm.fxml");
-	    WindowsHandler.closeWindow(getWindow());
-    }
-
+    @Override
     public Window getWindow() {
-    	return film.getScene().getWindow();
+    	return scroll.getScene().getWindow();
     }
 	
 

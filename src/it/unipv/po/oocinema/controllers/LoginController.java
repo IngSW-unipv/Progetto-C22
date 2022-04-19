@@ -3,6 +3,7 @@ package it.unipv.po.oocinema.controllers;
 import java.sql.SQLException;
 
 import it.unipv.po.oocinema.controllers.WindowsHandler;
+import it.unipv.po.oocinema.controllers.client.MenuController;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -57,7 +58,7 @@ public class LoginController {
 				if(tipo == 0)
 					WindowsHandler.openWindow(getClass(), "homeADM.fxml");
 				else WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
-				
+				MenuController.setCliente(log);
 			    WindowsHandler.closeWindow(getWindow());
 			}
 		} catch (SQLException e) {

@@ -97,8 +97,8 @@ public class DBFacade {
 		return proiezioneDAO.getTutteProiezioniFuture();
 	}
 	
-	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Cliente inputCliente) throws SQLException{
-		return prenotazioneDAO.getPrenotazioniFutureByCliente(inputCliente);
+	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente acquirente) throws SQLException{
+		return prenotazioneDAO.getPrenotazioniFutureByCliente(acquirente);
 	}
 
 	public ArrayList<Sala> getTutteSale() throws SQLException {

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.admin.MenuController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
          <left>
@@ -28,22 +28,22 @@
                   <Pane prefHeight="67.0" prefWidth="305.0" />
                   <Pane prefHeight="362.0" prefWidth="305.0">
                      <children>
-                        <Label fx:id="fruitNameLable2" alignment="CENTER" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable" alignment="CENTER" layoutY="74.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable1" alignment="CENTER" layoutY="146.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                        <Label fx:id="proiezione" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezione" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="fruitNameLable11" alignment="CENTER" layoutY="215.0" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="215.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -52,7 +52,7 @@
                   </Pane>
                   <Pane prefHeight="269.0" prefWidth="298.0">
                      <children>
-                        <Label fx:id="fruitNameLable111" alignment="CENTER" layoutX="114.0" layoutY="83.0" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
@@ -75,6 +75,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <Label fx:id="messaggio" alignment="CENTER" prefHeight="467.0" prefWidth="904.0" styleClass="controls" stylesheets="@style.css" text="Label">
+                     <font>
+                        <Font name="Cambria Italic" size="36.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </center>

@@ -1,12 +1,10 @@
 package it.unipv.po.oocinema.model.prenotazione;
 
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.sql.Date;
+
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.cinema.Posto;
@@ -19,7 +17,7 @@ public class Prenotazione {
 	
 	private final int id;
 
-	private Date dataAcquisto;
+	private String dataAcquisto;
 
 	
 	private Acquirente acquirente;
@@ -34,9 +32,7 @@ public class Prenotazione {
 	
 	public Prenotazione(int id, Acquirente acquirente,Proiezione proiezione) throws ParseException {
 		this.id = id;
-		DateFormat d=new SimpleDateFormat("dd/MM/yyyy");
-		Calendar c= Calendar.getInstance();
-		this.dataAcquisto = (Date) d.parse(c.getTime().toString());
+		this.dataAcquisto = LocalDate.now().toString();
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
 		this.proiezione = proiezione;
@@ -44,7 +40,7 @@ public class Prenotazione {
 		strategy = f.getScontoStartegy();
 	}
 	
-	public Prenotazione(int id, Date dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
+	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
 		this.id = id;
 		this.dataAcquisto=dataAcquisto;
 		this.acquirente = acquirente;
@@ -103,12 +99,12 @@ public class Prenotazione {
 	}
 
 
-	public Date getDataAcquisto() {
+	public String getDataAcquisto() {
 		return dataAcquisto;
 	}
 
 
-	public void setDataAcquisto(Date dataAcquisto) {
+	public void setDataAcquisto(String dataAcquisto) {
 		this.dataAcquisto = dataAcquisto;
 	}
 
