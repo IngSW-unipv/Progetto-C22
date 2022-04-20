@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.admin.AggiungiProiezioneController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="298.0" style="-fx-background-color: #D3D3D3;">
+               <children>
+                  <Pane prefHeight="325.0" prefWidth="298.0">
+                     <children>
+                        <ImageView fitHeight="175.0" fitWidth="199.0" layoutX="53.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@logo_small.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="67.0" prefWidth="305.0" />
+                  <Pane prefHeight="362.0" prefWidth="305.0">
+                     <children>
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="223.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="344.0" prefWidth="298.0">
+                     <children>
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="0.0" prefWidth="298.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="600.0" prefWidth="991.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="977.0" text="AGGIUNGI PROIEZIONI" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="535.0" prefWidth="895.0">
+                     <children>
+                        <ComboBox fx:id="filmCombo" layoutX="226.0" layoutY="135.0" prefHeight="36.0" prefWidth="180.0" styleClass="controls" stylesheets="@style.css" />
+                        <Label layoutX="174.0" layoutY="142.0" text="Film:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="salaCombo" layoutX="226.0" layoutY="215.0" prefHeight="36.0" prefWidth="180.0" styleClass="controls" stylesheets="@style.css" />
+                        <Label layoutX="174.0" layoutY="220.0" prefHeight="22.0" prefWidth="40.0" text="Sala:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="giorno" layoutX="532.0" layoutY="135.0" prefHeight="36.0" prefWidth="180.0" showWeekNumbers="true" styleClass="controls" stylesheets="@style.css" />
+                        <Label layoutX="464.0" layoutY="142.0" text="Giorno:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="oraCombo" layoutX="532.0" layoutY="215.0" prefHeight="36.0" prefWidth="180.0" styleClass="controls" stylesheets="@style.css" />
+                        <Label layoutX="473.0" layoutY="220.0" prefHeight="22.0" prefWidth="40.0" text="Ora:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <ToggleButton fx:id="aggiungiProiezione" layoutX="550.0" layoutY="425.0" mnemonicParsing="false" onMousePressed="#aggiungiProiezione" prefHeight="51.0" prefWidth="162.0" styleClass="menu_button" stylesheets="@style.css" text="   Aggiungi" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                        </ToggleButton>
+                        <ImageView fitHeight="29.0" fitWidth="26.0" layoutX="566.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons8-aggiungi-24.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="prezzo" alignment="CENTER" layoutX="292.0" layoutY="281.0" prefHeight="36.0" prefWidth="49.0" styleClass="controls" stylesheets="@style.css" />
+                        <Label layoutX="174.0" layoutY="288.0" prefHeight="22.0" prefWidth="60.0" text="Prezzo:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

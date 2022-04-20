@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.client.SchedaController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@style.css">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="305.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="42.0" prefWidth="435.0" />
+                  <Pane>
+                     <children>
+                        <Label layoutX="70.0" layoutY="2.0" prefHeight="49.0" prefWidth="161.0" text="OOCINEMA" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="37.0" prefWidth="435.0" />
+                  <Pane>
+                     <children>
+                        <VBox alignment="CENTER" layoutX="40.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
+                           <children>
+                              <Pane prefHeight="0.0" prefWidth="297.0" />
+                              <Label fx:id="titoloFilmSel" alignment="CENTER" prefHeight="0.0" prefWidth="222.0" text="Titolo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="locandinaFilmSel" fitHeight="170.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <image>
+                                    <Image url="@icons8-cerca-di-più-24.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER" prefHeight="31.0" prefWidth="159.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Separator prefHeight="10.0" prefWidth="125.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="background" />
+                              <String fx:value="film_scelto" />
+                           </styleClass>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="102.0" prefWidth="305.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="600.0" prefWidth="991.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="film" alignment="CENTER" contentDisplay="CENTER" onMousePressed="#film" prefHeight="62.0" prefWidth="165.0" text="Film" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ordini" alignment="CENTER" onMousePressed="#ordini" prefHeight="62.0" prefWidth="165.0" text="I miei ORDINI" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="info" alignment="CENTER" onMousePressed="#info" prefHeight="62.0" prefWidth="165.0" text="Info" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="65.0" prefWidth="291.0" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="esci" onMousePressed="#esci" prefHeight="62.0" prefWidth="102.0" text="Esci" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="280.0" styleClass="free-delivery-card" stylesheets="@style.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="407.0">
+                                 <children>
+                                    <Label prefHeight="29.0" prefWidth="171.0" text="Il film che hai scelto" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="20.0" prefWidth="90.0" text="da OOCinema" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="285.0" styleClass="shopping-online-card" stylesheets="@style.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="407.0">
+                                 <children>
+                                    <Label prefHeight="29.0" prefWidth="181.0" text="Emercgenza Covid-19" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="21.0" prefWidth="194.0" text="Mascherina FFP2 e GreenPass " textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="395.0" prefWidth="895.0">
+                     <children>
+                        <ComboBox fx:id="giornoCombo" layoutX="618.0" layoutY="235.0" prefHeight="36.0" prefWidth="180.0" promptText="Scegli il GIORNO" styleClass="controls" stylesheets="@style.css" />
+                        <ComboBox fx:id="oraCombo" layoutX="618.0" layoutY="321.0" onAction="#scegliOra" prefHeight="36.0" prefWidth="180.0" promptText="Scegli l'ORA" styleClass="controls" stylesheets="@style.css" />
+                        <Label fx:id="descrizione" alignment="CENTER" layoutX="54.0" layoutY="45.0" prefHeight="310.0" prefWidth="496.0" styleClass="controls" stylesheets="@style.css" text="Label">
+                           <font>
+                              <Font name="Cambria" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="trailer" alignment="CENTER" contentDisplay="CENTER" layoutX="578.0" layoutY="93.0" prefHeight="34.0" prefWidth="261.0" styleClass="controls" stylesheets="@style.css" text="Label">
+                           <font>
+                              <Font name="Cambria" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Pane prefHeight="85.0" prefWidth="511.0" />
+                        <ToggleButton fx:id="prenota" mnemonicParsing="false" onMousePressed="#prenota" prefHeight="51.0" prefWidth="162.0" styleClass="menu_button" stylesheets="@style.css" text="Prenota" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                        </ToggleButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

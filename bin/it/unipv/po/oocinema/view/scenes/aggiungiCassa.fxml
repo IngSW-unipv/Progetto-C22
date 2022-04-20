@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.admin.AggiungiCassaController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="298.0" style="-fx-background-color: #D3D3D3;">
+               <children>
+                  <Pane prefHeight="325.0" prefWidth="298.0">
+                     <children>
+                        <ImageView fitHeight="175.0" fitWidth="199.0" layoutX="53.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@logo_small.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="67.0" prefWidth="305.0" />
+                  <Pane prefHeight="362.0" prefWidth="305.0">
+                     <children>
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="proiezioni" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezione" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="215.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="269.0" prefWidth="298.0">
+                     <children>
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="0.0" prefWidth="298.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="600.0" prefWidth="991.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="977.0" text="AGGIUNGI CASSA" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="535.0" prefWidth="895.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Label layoutX="296.0" layoutY="167.0" text="Username:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="297.0" layoutY="260.0" text="Password:">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                        <ToggleButton fx:id="aggiungi" accessibleRole="BUTTON" layoutX="510.0" layoutY="373.0" mnemonicParsing="false" onMousePressed="#aggiungiCassa" prefHeight="51.0" prefWidth="162.0" styleClass="menu_button" stylesheets="@style.css" text="    Aggiungi" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <ImageView fitHeight="29.0" fitWidth="26.0" layoutX="528.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons8-aggiungi-24.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="password" layoutX="422.0" layoutY="253.0" prefHeight="36.0" prefWidth="250.0" styleClass="controls" stylesheets="@style.css" />
+                        <TextField fx:id="username" layoutX="422.0" layoutY="160.0" prefHeight="36.0" prefWidth="250.0" styleClass="controls" stylesheets="@style.css" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
