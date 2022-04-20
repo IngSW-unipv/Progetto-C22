@@ -49,7 +49,7 @@ public class MySQLConnectionFactory {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://34.123.56.32:3306/oocinema","root","Natale2012!");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/oocinema","cinema_user","Password2021!");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
