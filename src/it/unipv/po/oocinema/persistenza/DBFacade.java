@@ -27,7 +27,6 @@ public class DBFacade {
 	OraDAO oraDAO;
 	
 	
-
 	public DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
 		filmDAO = new FilmDAO();
@@ -37,8 +36,8 @@ public class DBFacade {
 		oraDAO = new OraDAO();
 	}
 
-	public boolean login(Acquirente inputAcq) throws SQLException {
-		return acquirenteDAO.login(inputAcq);
+	public boolean login(Acquirente inputAcquirente) throws SQLException {
+		return acquirenteDAO.login(inputAcquirente);
 	}
 	
 	public void registrazione(Cliente inputCliente) throws SQLException{
@@ -101,6 +100,18 @@ public class DBFacade {
 	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente acquirente) throws SQLException{
 		return prenotazioneDAO.getPrenotazioniFutureByCliente(acquirente);
 	}
+	
+	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{ //possibilita di cambiare e togliere questo restituendo un array di proiezioni al metodo sotto
+		return proiezioneDAO.getProiezioneByFilmGiornoOra(inputProiezione);
+	}
+	
+	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ 
+		return proiezioneDAO.getOreByProiezione(inputProiezione);
+	}
+	
+	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ 
+		return proiezioneDAO.getGiorniByFilm(inputFilm);
+	}
 
 	public ArrayList<Sala> getTutteSale() throws SQLException {
 		return salaDAO.getTutteSale();
@@ -114,35 +125,11 @@ public class DBFacade {
 		return oraDAO.getTutteOre();
 	}
 
-
-	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{ 
-		return null;
-		
-	}
-
-	public Sala getSalaByProiezione(Proiezione inputProiezione) throws SQLException{ // metodo della classe proiezione
-		return null;
-	}
-
-	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ 
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ 
-		// TODO Auto-generated method stub  // Restituisce le ore in cui in quel giorno quel film è proiettato
-		return null;
-	}
-
-	public boolean controllaUser(Cliente c) throws SQLException{ // true se non ci sono utenti che hanno gia quel nome utente
+	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{ // true se non ci sono utenti che hanno gia quel nome utente
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public Proiezione getProiezioneByFilmOraGiorno(Proiezione p) throws SQLException{
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public ArrayList<Posto> getTuttiPostiLiberi(Proiezione proiezione) throws SQLException{
 		// TODO Auto-generated method stub

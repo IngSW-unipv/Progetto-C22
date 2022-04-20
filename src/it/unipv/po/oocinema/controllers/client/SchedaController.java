@@ -172,7 +172,7 @@ public class SchedaController implements Initializable{
 		p.setGiorno(giornoCombo.getValue());
 		p.setOrario(oraCombo.getValue());
 		try {
-			return facade.getProiezioneByFilmOraGiorno(p);
+			return facade.getProiezioneByFilmGiornoOra(p);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

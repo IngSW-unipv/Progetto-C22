@@ -15,4 +15,5 @@ public interface IAcquirenteDAO {
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException;
 	public ArrayList<Cassa> getTutteCasse() throws SQLException;
 	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException;
+	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException;
 }

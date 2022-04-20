@@ -1,4 +1,4 @@
-package it.unipv.po.oocinema.persistenza.classiDAO;
+package it.unipv.po.oocinema.persistenza.classiDAO; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -124,6 +124,25 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		}else c = -1;
 		MySQLConnectionFactory.closeConnection(conn);
 		return c;
+	}
+	
+	@Override
+	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "SELECT user FROM acquirente where user= ?;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		st1.setString(1, inputAcquirente.getUser());
+		ResultSet result = st1.executeQuery();
+		if(result.next()) {
+			MySQLConnectionFactory.closeConnection(conn);
+			return false;
+		}
+		else {
+			MySQLConnectionFactory.closeConnection(conn);
+			return true;
+		}
+
 	}
 
 }
