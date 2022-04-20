@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.oocinema.controllers.admin.MenuController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../style.css">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="298.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="325.0" prefWidth="298.0">
+                     <children>
+                        <ImageView fitHeight="175.0" fitWidth="199.0" layoutX="53.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@logo_small.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="67.0" prefWidth="305.0" />
+                  <Pane prefHeight="362.0" prefWidth="305.0">
+                     <children>
+                        <Label fx:id="home" alignment="CENTER" onMousePressed="#home" prefHeight="44.0" prefWidth="297.0" styleClass="selected_button" stylesheets="@style.css" text="HOME" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="film" alignment="CENTER" layoutY="74.0" onMousePressed="#film" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="FILM" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="proiezione" alignment="CENTER" layoutY="146.0" onMousePressed="#proiezione" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="PROIEZIONI" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="cassa" alignment="CENTER" layoutY="215.0" onMousePressed="#cassa" prefHeight="44.0" prefWidth="297.0" styleClass="menu_button" stylesheets="@style.css" text="CASSA" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="269.0" prefWidth="298.0">
+                     <children>
+                        <Label fx:id="esci" alignment="CENTER" layoutX="114.0" layoutY="83.0" onMousePressed="#esci" prefHeight="44.0" prefWidth="78.0" styleClass="exit_button" stylesheets="@style.css" text="ESCI" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="0.0" prefWidth="298.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="600.0" prefWidth="901.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="977.0" text="HOME" textFill="#063c69">
+                           <font>
+                              <Font name="Cambria Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="messaggio" alignment="CENTER" prefHeight="467.0" prefWidth="904.0" styleClass="controls" stylesheets="@style.css" text="Label">
+                     <font>
+                        <Font name="Cambria Italic" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
