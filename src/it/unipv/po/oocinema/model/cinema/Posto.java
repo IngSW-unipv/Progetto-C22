@@ -8,13 +8,11 @@ public class Posto {
 	private int colonna;
 	private Prenotazione prenotazione;
 	
-	
 	public Posto(int riga, int colonna, Prenotazione prenotazione) {
 		this.riga = riga;
 		this.colonna = colonna;
 		this.prenotazione = prenotazione;
 	}
-	
 	
 	public Posto(int riga, int colonna) {
 		super();
@@ -22,7 +20,10 @@ public class Posto {
 		this.colonna = colonna;
 	}
 
-
+	public Posto(int riga) {
+		this.riga = riga;
+	}
+	
 	public int getRiga() {
 		return riga;
 	}
