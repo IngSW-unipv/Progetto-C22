@@ -15,6 +15,14 @@ public class Posto {
 		this.prenotazione = prenotazione;
 	}
 	
+	
+	public Posto(int riga, int colonna) {
+		super();
+		this.riga = riga;
+		this.colonna = colonna;
+	}
+
+
 	public int getRiga() {
 		return riga;
 	}

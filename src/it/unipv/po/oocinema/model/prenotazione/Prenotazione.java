@@ -16,6 +16,8 @@ public class Prenotazione {
 	
 	
 	private final int id;
+	
+	private static int progressivo = 0;
 
 	private String dataAcquisto;
 
@@ -40,14 +42,20 @@ public class Prenotazione {
 		strategy = f.getScontoStartegy();
 	}
 	
-	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
-		this.id = id;
+	public Prenotazione(String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
+		this.id = progressivo;
+		progressivo++;
 		this.dataAcquisto=dataAcquisto;
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
 		this.proiezione = proiezione;
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
+	}
+
+	public Prenotazione() {
+		this.id = progressivo;
+		progressivo++;
 	}
 
 	public void addPosto(int row, int col) {

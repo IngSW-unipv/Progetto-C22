@@ -6,31 +6,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
-import it.unipv.po.oocinema.model.cinema.Film;
+import com.google.zxing.WriterException;
+
+import it.unipv.po.oocinema.controllers.TicketHandler;
 import it.unipv.po.oocinema.model.cinema.Posto;
-import it.unipv.po.oocinema.model.cinema.Proiezione;
-import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Window;
 
 public class PrenotazioneController extends MenuController implements Initializable{
@@ -57,32 +47,41 @@ public class PrenotazioneController extends MenuController implements Initializa
 	 private Label titoloFilmSel;
     
 	 ArrayList<Posto> posti = new ArrayList<Posto>();
+	 ArrayList<Posto> postiScelti = new ArrayList<Posto>();
     
 	 private DBFacade facade = new DBFacade();
 
 
     @FXML
     void prenota(MouseEvent event) {
-    	Prenotazione p = null; 
-    	try {
-			facade.aggiungiPrenotazione(p);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	Prenotazione p = new Prenotazione();
+    	p.setProiezione(SchedaController.getProiezione());
+    	p.setPosti(postiScelti);
+    	if (p.pagamento()) {
+	    	try {
+				facade.aggiungiPrenotazione(p);
+				TicketHandler ticket = new TicketHandler(p);
+			} catch (SQLException | WriterException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		titoloFilmSel.setText("aaa");
+		setLabelText();
 		initializeFila();	
-		initializePosto();
+		//initializePosto();
 	}
 	
 	public void initializeFila() {
 		//facade.getTuttiPostiLiberi(SchedaController.getProiezione());
-		posti.add(new Posto(1,2,null));
-		posti.add(new Posto(1,1,null));
+		posti.removeAll(posti);
+		posti.add(new Posto(1,2));
+		posti.add(new Posto(1,1));
+		posti.add(new Posto(2,1));
 		ArrayList<Character> file = new ArrayList<Character>();
 	
 		for(int i = 0; i <posti.size(); i++) {
@@ -109,10 +108,12 @@ public class PrenotazioneController extends MenuController implements Initializa
 		
 		
 		ArrayList<Integer> colonne = new ArrayList<Integer>();
-		
+		int index = 0;
 		for(int i = 0; i <posti.size(); i++) {
-			//if(filaCombo.getValue().equals(posti.get(i).getRiga()+'A'))
-				colonne.add(i, posti.get(i).getColonna());
+			if(filaCombo.getValue() == (char)posti.get(i).getRiga()+'A') {
+				colonne.add(index, posti.get(i).getColonna());
+				index++;
+			}
 		}
 		ObservableList<Integer> obListFila = FXCollections.observableList(colonne);
         
@@ -123,8 +124,8 @@ public class PrenotazioneController extends MenuController implements Initializa
 	 @FXML
 	 void aggiungi(MouseEvent event) {
 		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
-			 lista.setText(lista.getText()+"\n Fila: "+filaCombo.getValue()+ " - Posto: "+postoCombo.getValue());
-			 rimuoviPosto();
+			 
+			 postiScelti.add(new Posto((int)filaCombo.getValue()-'A',postoCombo.getValue()));
 			 initialize(null, null);
 		 } else {
 			 
@@ -134,15 +135,26 @@ public class PrenotazioneController extends MenuController implements Initializa
 	 
 	 @FXML
 	 void rimuovi(MouseEvent event) {
-		 
+		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
+			 for(int i = 0 ; i < postiScelti.size(); i++) {
+				 if((postiScelti.get(i).getColonna() == postoCombo.getValue()) && (postiScelti.get(i).getRiga()+'A' == filaCombo.getValue())) {
+					 postiScelti.remove(i);
+				 	initialize(null,null);
+				 }
+			 }
+		 } else {
+			 
+			 // FARE ALERT
+		 }
 	 }
 	
-	 public void rimuoviPosto() {
-		 for(int i = 0; i <posti.size(); i++) {
-			 if((filaCombo.getValue().equals(posti.get(i).getRiga()+'A')) && (posti.get(i).getColonna() == postoCombo.getValue())) {
-				 posti.remove(i);
-			 }
+	 public void setLabelText() {
+		 lista.setText("");
+		 for(int i = 0; i < postiScelti.size(); i++) {
+			 lista.setText(lista.getText()+"Fila: "+ (char)(postiScelti.get(i).getRiga()+'A')+ " - Posto: "+ postiScelti.get(i).getColonna()+"\n");
 		 }
+		 
+		 
 	 }
 	public Window getWindow() {
     	return lista.getScene().getWindow();
