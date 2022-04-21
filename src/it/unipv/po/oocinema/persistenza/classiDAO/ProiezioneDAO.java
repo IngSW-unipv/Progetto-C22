@@ -24,7 +24,6 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT * FROM proiezione WHERE id = ?;";
 		st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputProiezione.getId());
@@ -37,8 +36,11 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		s.setId(result.getInt("sala_id"));
 		SalaDAO salaDAO= new SalaDAO();
 		s=salaDAO.getSalaById(s);
-		Proiezione proiezione = new Proiezione( inputProiezione.getId() ,f, result.getString("giorno"), s
-								,result.getDouble("prezzo"), result.getString("orario"));
+		Proiezione proiezione;
+		if(result.next()) {
+			proiezione = new Proiezione( inputProiezione.getId() ,f, result.getString("giorno"), s
+										,result.getDouble("prezzo"), result.getString("orario"));
+		} else proiezione=null;
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
 	}
@@ -46,18 +48,14 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	@Override
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "INSERT INTO proiezione VALUES(?,?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
 		st1.setInt(1, inputProiezione.getId());
 		st1.setDouble(2, inputProiezione.getPrezzo());
 		st1.setInt(3, inputProiezione.getFilm().getId());
 		st1.setInt(4, inputProiezione.getSala().getId());
 		st1.setString(5, inputProiezione.getGiorno());
-		System.out.println(inputProiezione.getGiorno());
 		st1.setString(6, inputProiezione.getOrario());
-		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
@@ -65,11 +63,9 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	@Override
 	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "DELETE FROM proiezione where id= ?";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputProiezione.getId());
-		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
@@ -77,13 +73,10 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	@Override
 	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT * FROM proiezione where giorno>curdate();";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		ResultSet result=st1.executeQuery();
-		
 		ArrayList<Proiezione> p = new ArrayList<Proiezione>();
-		
 		while (result.next()) {
 			Film f=new Film();
 			f.setId(result.getInt("film_id")); 
@@ -102,11 +95,9 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	
 	@Override
 	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{
-
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT * FROM proiezione WHERE film_id = ? and giorno = ? and orario = ?;";
 		st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputProiezione.getFilm().getId());
@@ -117,29 +108,23 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		s.setId(result.getInt("sala_id"));
 		SalaDAO salaDAO= new SalaDAO();
 		s=salaDAO.getSalaById(s);
+		Proiezione proiezione;
 		if(result.next()) {
-			Proiezione proiezione = new Proiezione( result.getInt("id") ,inputProiezione.getFilm() , inputProiezione.getGiorno(), s
+			proiezione = new Proiezione( result.getInt("id") ,inputProiezione.getFilm() , inputProiezione.getGiorno(), s
 								,result.getDouble("prezzo"), inputProiezione.getOrario());
-			MySQLConnectionFactory.closeConnection(conn);	
-			return proiezione;
-		}
-		else{
-			MySQLConnectionFactory.closeConnection(conn);
-			return null;
-		}
+		}else proiezione=null;
+		MySQLConnectionFactory.closeConnection(conn);
+		return proiezione;
 	}
 	
 	@Override
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT giorno FROM proiezione where film_id=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputFilm.getId());
 		ResultSet result=st1.executeQuery();
-		
 		ArrayList<String> giorni = new ArrayList<String>();
-		
 		while (result.next()) {
 			giorni.add(result.getString("giorno"));
 		}
@@ -150,15 +135,12 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	@Override
 	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT orario FROM proiezione where film_id=? and giorno=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputProiezione.getId());
 		st1.setString(2, ""+inputProiezione.getGiorno());
 		ResultSet result=st1.executeQuery();
-		
 		ArrayList<String> ore = new ArrayList<String>();
-		
 		while (result.next()) {
 			ore.add(result.getString("orario"));
 		}

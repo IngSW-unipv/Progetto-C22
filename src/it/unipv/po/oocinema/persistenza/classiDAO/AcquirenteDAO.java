@@ -21,22 +21,18 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	}
 
 	@Override
-	public boolean login(Acquirente inputAcq) throws SQLException {
+	public boolean login(Acquirente inputAcquirente) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT psw from acquirente where user = ?;";
 		st1 = conn.prepareStatement(query);
-		st1.setString(1, inputAcq.getUser());
-
+		st1.setString(1, inputAcquirente.getUser());
 		result=st1.executeQuery();
-
 		boolean log = false;
-		if( result.next() && result.getString("psw").equals(inputAcq.getPassword())) {
+		if( result.next() && result.getString("psw").equals(inputAcquirente.getPassword())) {
 			log = true;
-		}
-			
+		}	
 		MySQLConnectionFactory.closeConnection(conn);
 		return log;
 	}	
@@ -44,18 +40,14 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	@Override
 	public void registrazione(Cliente inputCliente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "INSERT INTO acquirente VALUES(?,?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
 		st1.setString(1, inputCliente.getUser());
 		st1.setString(2, inputCliente.getPassword());
 		st1.setInt(3, 1);
 		st1.setString(4, inputCliente.getNome());
 		st1.setString(5, inputCliente.getCognome());
 		st1.setString(6, inputCliente.getCompleanno());
-		
-		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
@@ -63,16 +55,12 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	@Override
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "INSERT INTO acquirente VALUES(?,?,?,?,null,null)";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
 		st1.setString(1, inputCassa.getUser());
 		st1.setString(2, inputCassa.getPassword());
 		st1.setInt(3, 2);
 		st1.setString(4, inputCassa.getCompleanno());
-		
-		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
@@ -80,40 +68,31 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	@Override
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "DELETE FROM acquirente where user=?";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
 		st1.setString(1, inputCassa.getUser());
-		
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
-		
 	}
 
 	@Override
 	public ArrayList<Cassa> getTutteCasse() throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT * FROM acquirente where tipo= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, 2);
 		ResultSet result = st1.executeQuery();
-		
 		ArrayList<Cassa> casse = new ArrayList<Cassa>();
 		while (result.next()) {
 			casse.add(new Cassa(result.getString("user"),result.getString("psw")));
 		}
-		
 		MySQLConnectionFactory.closeConnection(conn);
-	
 		return casse;
 	}
 	
 	@Override
 	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT tipo FROM acquirente where user= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcquirente.getUser());
@@ -129,7 +108,6 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	@Override
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT user FROM acquirente where user= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcquirente.getUser());
@@ -143,5 +121,4 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 			return true;
 		}
 	}
-
 }

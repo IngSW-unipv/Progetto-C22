@@ -9,9 +9,7 @@ import it.unipv.po.oocinema.persistenza.interfaccieDAO.ICinemaInfoDAO;
 
 public class CinemaInfoDAO implements ICinemaInfoDAO {
 
-	
 	private Connection conn;
-
 
 	public CinemaInfoDAO() {
 		super();
@@ -22,15 +20,12 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT indirizzo FROM cinema_info;";
 		st1 = conn.prepareStatement(query);
-		result=st1.executeQuery(query);
-
-		String ris = result.getString("indirizzo");
+		result=st1.executeQuery(); //fare if?
+		String indirizzo = result.getString("indirizzo");
 		MySQLConnectionFactory.closeConnection(conn);
-		return ris;
-		
+		return indirizzo;
 	}
 
 	@Override
@@ -38,20 +33,25 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT telefono FROM cinema_info;";
 		st1 = conn.prepareStatement(query);
 		result=st1.executeQuery(query);
-		
-		String ris = result.getString("telefono");
+		String telefono = result.getString("telefono");
 		MySQLConnectionFactory.closeConnection(conn);
-		return ris;
+		return telefono;
 	}
 
 	@Override
 	public String getEmail() throws SQLException {
-		// METTERE EMAIL IN WORKBENCH
-		return null;
+		conn = MySQLConnectionFactory.connect(conn);
+		PreparedStatement st1;
+		ResultSet result;
+		String query = "SELECT email FROM cinema_info;";
+		st1 = conn.prepareStatement(query);
+		result=st1.executeQuery(query);
+		String email = result.getString("telefono");
+		MySQLConnectionFactory.closeConnection(conn);
+		return email;
 	}
 
 }

@@ -14,7 +14,6 @@ public class SalaDAO implements ISalaDAO {
 	
 	private Connection conn;
 
-
 	public SalaDAO() {
 		super();
 	}
@@ -24,7 +23,6 @@ public class SalaDAO implements ISalaDAO {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT * FROM sala WHERE id = ?;";
 		st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputSala.getId());
@@ -42,7 +40,6 @@ public class SalaDAO implements ISalaDAO {
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
 		ResultSet result;
-		
 		String query = "SELECT * FROM sala;";
 		st1 = conn.prepareStatement(query);
 		result = st1.executeQuery();

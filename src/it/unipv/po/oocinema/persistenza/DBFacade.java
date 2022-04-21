@@ -14,6 +14,7 @@ import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.classiDAO.AcquirenteDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.FilmDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.OraDAO;
+import it.unipv.po.oocinema.persistenza.classiDAO.PostoDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.PrenotazioneDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.ProiezioneDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.SalaDAO;
@@ -25,6 +26,7 @@ public class DBFacade {
 	PrenotazioneDAO prenotazioneDAO;
 	SalaDAO salaDAO;
 	OraDAO oraDAO;
+	PostoDAO postoDAO;
 	
 	
 	public DBFacade() {
@@ -34,6 +36,7 @@ public class DBFacade {
 		prenotazioneDAO= new PrenotazioneDAO();
 		salaDAO=new SalaDAO();
 		oraDAO = new OraDAO();
+		postoDAO=new PostoDAO();
 	}
 
 	public boolean login(Acquirente inputAcquirente) throws SQLException {
@@ -133,12 +136,12 @@ public class DBFacade {
 		return oraDAO.getTutteOre();
 	}
 
-	public ArrayList<Posto> getTuttiPostiLiberi(Proiezione inputProiezione) throws SQLException{
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws SQLException{  //riga e non fila cambiare nel database
+		return postoDAO.getRigheLibere(inputProiezione);
 	}
-
 	
-
-	
+	public ArrayList<Posto> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
+		return postoDAO.getPostiLiberiByRiga(inputProiezione, inputPosto);
+	}
+		
 }

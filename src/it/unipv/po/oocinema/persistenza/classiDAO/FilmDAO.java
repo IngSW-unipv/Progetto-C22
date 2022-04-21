@@ -15,7 +15,6 @@ public class FilmDAO implements IFilmDAO {
 
 	private Connection conn;
 
-
 	public FilmDAO() {
 		super();
 	}
@@ -23,10 +22,8 @@ public class FilmDAO implements IFilmDAO {
 	@Override
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "INSERT INTO film VALUES(?,?,?,?,?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
 		st1.setInt(1, inputFilm.getId());
 		st1.setString(2, inputFilm.getTitolo());
 		st1.setString(3, inputFilm.getDescrizione());
@@ -36,50 +33,39 @@ public class FilmDAO implements IFilmDAO {
 		st1.setString(7, inputFilm.getCast());
 		st1.setString(8, inputFilm.getCoverPath());
 		st1.setString(9, inputFilm.getTrailerPath());
-		
 		st1.executeUpdate();
-		
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
 	@Override
 	public void rimuoviFilm(Film inputFilm) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "DELETE FROM film where id=?";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		
 		st1.setInt(1, inputFilm.getId());
-		
 		st1.executeUpdate();
-		
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
 	@Override
 	public ArrayList<Film> getTuttiFilm() throws SQLException {
-		conn = MySQLConnectionFactory.connect(conn);
-				
+		conn = MySQLConnectionFactory.connect(conn);		
 		String query = "SELECT * FROM film;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		ResultSet result = st1.executeQuery();
-		
 		ArrayList<Film> film = new ArrayList<Film>();
 		while (result.next()) {
 			film.add(new Film(result.getInt("id"),result.getString("titolo"), result.getString("descrizione"),
 					result.getString("genere"), result.getInt("durata"), result.getString("regista"), 
 					result.getString("cast"), result.getString("coverPath"),	result.getString("trailerPath")));
 		}
-		
 		MySQLConnectionFactory.closeConnection(conn);
-	
 		return film;
 	}
 
 	@Override
 	public Film getFilmbyId(Film inputFilm) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-	
 		String query = "SELECT * FROM film where id=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, ""+inputFilm.getId());
@@ -97,7 +83,6 @@ public class FilmDAO implements IFilmDAO {
 	@Override
 	public Film getFilmbyTitolo(Film inputFilm) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		
 		String query = "SELECT * FROM film where titolo=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputFilm.getTitolo());
@@ -124,7 +109,6 @@ public class FilmDAO implements IFilmDAO {
 			r = result.getInt("NUM");
 		else r = 0;
 		MySQLConnectionFactory.closeConnection(conn);
-
 		return r;
 	}	
 }
