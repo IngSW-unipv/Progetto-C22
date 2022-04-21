@@ -59,6 +59,10 @@ public class DBFacade {
 	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{ 
 		return acquirenteDAO.getTipoByUser(inputAcquirente);
 	}
+	
+	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{ // true se non ci sono utenti 
+		return acquirenteDAO.controllaUser(inputAcquirente);
+	}
 
 	public void aggiungiFilm(Film inputFilm) throws SQLException {
 		filmDAO.aggiungiFilm(inputFilm);
@@ -97,10 +101,6 @@ public class DBFacade {
 		return proiezioneDAO.getTutteProiezioniFuture();
 	}
 	
-	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente acquirente) throws SQLException{
-		return prenotazioneDAO.getPrenotazioniFutureByCliente(acquirente);
-	}
-	
 	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{ //possibilita di cambiare e togliere questo restituendo un array di proiezioni al metodo sotto
 		return proiezioneDAO.getProiezioneByFilmGiornoOra(inputProiezione);
 	}
@@ -111,6 +111,14 @@ public class DBFacade {
 	
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ 
 		return proiezioneDAO.getGiorniByFilm(inputFilm);
+	}
+	
+	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente inputAcquirente) throws SQLException{
+		return prenotazioneDAO.getPrenotazioniFutureByCliente(inputAcquirente);
+	}
+	
+	public void aggiungiPrenotazione(Prenotazione inputProiezione) throws SQLException{
+		prenotazioneDAO.aggiungiPrenotazione(inputProiezione);
 	}
 
 	public ArrayList<Sala> getTutteSale() throws SQLException {
@@ -125,21 +133,12 @@ public class DBFacade {
 		return oraDAO.getTutteOre();
 	}
 
-	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{ // true se non ci sono utenti che hanno gia quel nome utente
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public ArrayList<Posto> getTuttiPostiLiberi(Proiezione proiezione) throws SQLException{
+	public ArrayList<Posto> getTuttiPostiLiberi(Proiezione inputProiezione) throws SQLException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void aggiungiPrenotazione(Prenotazione p) throws SQLException{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 }

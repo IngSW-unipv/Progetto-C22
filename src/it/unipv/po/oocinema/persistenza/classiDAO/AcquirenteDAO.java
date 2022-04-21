@@ -142,7 +142,6 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 			MySQLConnectionFactory.closeConnection(conn);
 			return true;
 		}
-
 	}
 
 }

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.cinema.Posto;
-import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IPostoDAO;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
-import it.unipv.po.oocinema.model.acquirenti.Cliente;
+import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IPrenotazioneDAO;
@@ -43,6 +43,34 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return p;
+	}
+	
+	@Override
+	public void aggiungiPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		
+		String query = "INSERT INTO prenotazione VALUES(?,?,?,?,?)";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		
+		st1.setInt(1, inputPrenotazione.getId());
+		st1.setString(2, inputPrenotazione.getDataAcquisto());
+		st1.setInt(3, inputPrenotazione.getNumPosti());
+		st1.setInt(4, inputPrenotazione.getProiezione().getId()); 
+		st1.setString(5, inputPrenotazione.getAcquirente().getUser());
+
+		st1.executeUpdate();
+		
+		for (Posto p : inputPrenotazione.getPosti()) {
+		query="INSERT INTO prenotazione VALUES(?,?,?)";
+		st1 = conn.prepareStatement(query);
+		
+		st1.setInt(1, p.getRiga());
+		st1.setInt(2, p.getColonna());
+		st1.setInt(3, inputPrenotazione.getId());
+
+		st1.executeUpdate();
+		}
+		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
 }
