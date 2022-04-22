@@ -75,12 +75,10 @@ public class SchedaController extends MenuController implements Initializable{
 		descrizione.setText(f.getDescrizione());
 		trailer.setText(f.getTrailerPath());
 		titoloFilmSel.setText(f.getTitolo());
-		System.out.println(f.getCoverPath());
 		Image image = new Image(getClass().getResourceAsStream(f.getCoverPath()));
 	    locandinaFilmSel.setImage(image);
 		oraCombo.setDisable(true);
-		
-		
+
 	}
 	
 	
