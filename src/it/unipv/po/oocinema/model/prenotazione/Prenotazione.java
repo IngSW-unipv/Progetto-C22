@@ -42,6 +42,16 @@ public class Prenotazione {
 		strategy = f.getScontoStartegy();
 	}
 	
+	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) throws ParseException {
+		this.id = id;
+		this.dataAcquisto = dataAcquisto;
+		this.acquirente = acquirente;
+		this.posti = new ArrayList<Posto>();
+		this.proiezione = proiezione;
+		ScontoFactory f = ScontoFactory.getInstance();
+		strategy = f.getScontoStartegy();
+	}
+	
 	public Prenotazione(String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
 		this.id = progressivo;
 		progressivo++;
