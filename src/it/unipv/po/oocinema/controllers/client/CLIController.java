@@ -1,19 +1,13 @@
 package it.unipv.po.oocinema.controllers.client;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import javax.imageio.ImageIO;
-
 import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,7 +39,9 @@ public class CLIController extends MenuController implements Initializable{
     private ScrollPane scroll;
 
     @FXML
-    private static Label titoloFilmSel = new Label();
+    private Label titoloFilmSel;
+    
+    private static String titolo;
 
     private DBFacade facade= new DBFacade();
     private MyListener myListener;
@@ -106,25 +102,18 @@ public class CLIController extends MenuController implements Initializable{
 
 		
     private void setFilmSel(Film film) {
-        titoloFilmSel.setText(film.getTitolo());
+    	titolo = film.getTitolo();        
+    	titoloFilmSel.setText(film.getTitolo());
         image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
         locandinaFilmSel.setImage(image);
     }
     
     public static String getTitoloFilmSel() {
     	
-    	return titoloFilmSel.getText();
+    	return titolo;
 		
     }
 
-    public Image readImage(File file) { 
-    	try { 
-    		BufferedImage bimg = ImageIO.read(file); 
-    		return SwingFXUtils.toFXImage(bimg, null); 
-    		} catch( IOException e ) {
-    	}
-    	return null;
-    }
 
     @FXML
     void schedaFilm(MouseEvent event) {

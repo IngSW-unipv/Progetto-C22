@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -62,11 +63,21 @@ public class SchedaController extends MenuController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
+		Film f ;
+		try {
+			f = facade.getFilmbyTitolo(new Film(CLIController.getTitoloFilmSel()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			f = null;
+			e.printStackTrace();
+		}
 		initializeGiorno();
-		descrizione.setText("ciao");
-		trailer.setText("https://youtu.be/i0in1cRXgE8");
+		descrizione.setText(f.getDescrizione());
+		trailer.setText(f.getTrailerPath());
+		titoloFilmSel.setText(f.getTitolo());
+		System.out.println(f.getCoverPath());
+		Image image = new Image(getClass().getResourceAsStream(f.getCoverPath()));
+	    locandinaFilmSel.setImage(image);
 		oraCombo.setDisable(true);
 		
 		
