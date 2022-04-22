@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
@@ -27,16 +28,20 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "SELECT * FROM prenotazione where acquirente_user=? and giorno>curdate();";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+inputAcquirente.getUser());
+		st1.setString(1, inputAcquirente.getUser());
 		ResultSet result=st1.executeQuery();
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		while (result.next()) {
-			Proiezione proiezione= new Proiezione();
+			Proiezione proiezione = new Proiezione();
 			proiezione.setId(result.getInt("id"));
 			ProiezioneDAO proiezioneDAO= new ProiezioneDAO();
 			proiezione=proiezioneDAO.getProiezioneById(proiezione);
-			prenotazioni.add(new Prenotazione(result.getInt("id"), result.getString("data_acquisto"), inputAcquirente, proiezione
-					));
+			try {
+				prenotazioni.add(new Prenotazione(result.getInt("id"), result.getString("data_acquisto"), inputAcquirente, proiezione));
+			} catch (ParseException | SQLException e) { // non capisco perchè è necessario parse exception
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return prenotazioni;

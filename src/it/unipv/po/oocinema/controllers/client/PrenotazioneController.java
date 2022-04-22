@@ -70,18 +70,20 @@ public class PrenotazioneController extends MenuController implements Initializa
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		titoloFilmSel.setText("aaa");
+		titoloFilmSel.setText("aa");
 		setLabelText();
-		initializeFila();	
-		//initializePosto();
+		initializeRighe();	
 	}
 	
-	public void initializeFila() {
-		//facade.getTuttiPostiLiberi(SchedaController.getProiezione());
+	public void initializeRighe() {
 		posti.removeAll(posti);
-		posti.add(new Posto(1,2));
-		posti.add(new Posto(1,1));
-		posti.add(new Posto(2,1));
+		try {
+			posti = facade.getRigheLibere(SchedaController.getProiezione());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		ArrayList<Character> file = new ArrayList<Character>();
 	
 		for(int i = 0; i <posti.size(); i++) {
@@ -106,12 +108,18 @@ public class PrenotazioneController extends MenuController implements Initializa
 		
     public void initializePosto() {
 		
-		
 		ArrayList<Integer> colonne = new ArrayList<Integer>();
+		ArrayList<Posto> c = new ArrayList<Posto>();
 		int index = 0;
 		for(int i = 0; i <posti.size(); i++) {
 			if(filaCombo.getValue() == (char)posti.get(i).getRiga()+'A') {
-				colonne.add(index, posti.get(i).getColonna());
+				try {
+					c = facade.getPostiLiberiByRiga(SchedaController.getProiezione(), posti.get(index));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				colonne.set(index, c.get(index).getColonna());
 				index++;
 			}
 		}

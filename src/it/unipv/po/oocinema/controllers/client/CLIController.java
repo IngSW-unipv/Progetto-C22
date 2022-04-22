@@ -30,13 +30,10 @@ import javafx.scene.layout.Region;
 import javafx.stage.Window;
 
 
-public class CLIController extends MenuController implements Initializable {
-
-	DBFacade facade = new DBFacade();
+public class CLIController extends MenuController implements Initializable{
 
     @FXML
     private GridPane grid;
-
 
     @FXML
     private ImageView locandinaFilmSel;
@@ -50,6 +47,8 @@ public class CLIController extends MenuController implements Initializable {
     @FXML
     private static Label titoloFilmSel = new Label();
 
+    private DBFacade facade= new DBFacade();
+    private MyListener myListener;
     
     private Image image;
     
@@ -64,17 +63,23 @@ public class CLIController extends MenuController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		setFilmSel(films.get(0));
+		myListener = new MyListener() {
+        	
+			@Override
+			public void onClickListener(Film film) {
+				setFilmSel(film);
+				
+			}
+        };
        
         int column = 0;
         int row = 1;
         try {
             for (int i = 0; i < films.size(); i++) {
-            	
-            	
+            	PosterController.setListener(myListener);
+            	PosterController.setFilm(films.get(i));
                 AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../../view/scenes/film_poster.fxml"));
-
-                PosterController posterController = new PosterController();
-                posterController.setData(films.get(i));
 
                 if (column == 3) {
                     column = 0;
@@ -102,7 +107,7 @@ public class CLIController extends MenuController implements Initializable {
 		
     private void setFilmSel(Film film) {
         titoloFilmSel.setText(film.getTitolo());
-        image = readImage(new File(film.getCoverPath()));
+        image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
         locandinaFilmSel.setImage(image);
     }
     
@@ -121,6 +126,11 @@ public class CLIController extends MenuController implements Initializable {
     	return null;
     }
 
+    @FXML
+    void schedaFilm(MouseEvent event) {
+    	WindowsHandler.openWindow(getClass(), "schedaFilm.fxml");
+	    WindowsHandler.closeWindow(getWindow());
+    }
     @Override
     public Window getWindow() {
     	return scroll.getScene().getWindow();
