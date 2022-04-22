@@ -118,7 +118,9 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	}
 	
 	@Override
-	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ // in film input cè solo il titolo non l'id bisogna fare una query per prendere l'id dato il titolo
+	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{
+		FilmDAO filmDAO= new FilmDAO(); //ho solo il titolo del film in inputFilm
+		inputFilm=filmDAO.getFilmbyTitolo(inputFilm);
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "SELECT giorno FROM proiezione where film_id=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
