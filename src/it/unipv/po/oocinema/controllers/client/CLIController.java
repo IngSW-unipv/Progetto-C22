@@ -5,6 +5,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -59,7 +60,9 @@ public class CLIController extends MenuController implements Initializable{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		setFilmSel(films.get(0));
+		if (films.size() > 0) 
+           setFilmSel(films.get(0));
+           
 		myListener = new MyListener() {
         	
 			@Override
@@ -73,10 +76,14 @@ public class CLIController extends MenuController implements Initializable{
         int row = 1;
         try {
             for (int i = 0; i < films.size(); i++) {
-            	PosterController.setListener(myListener);
-            	PosterController.setFilm(films.get(i));
-                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../../view/scenes/film_poster.fxml"));
+            	
+            	FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../../view/scenes/film_poster.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
+                PosterController posterController = fxmlLoader.getController();
+                posterController.setData(films.get(i), myListener);
+                
                 if (column == 3) {
                     column = 0;
                     row++;
@@ -109,9 +116,7 @@ public class CLIController extends MenuController implements Initializable{
     }
     
     public static String getTitoloFilmSel() {
-    	
     	return titolo;
-		
     }
 
 

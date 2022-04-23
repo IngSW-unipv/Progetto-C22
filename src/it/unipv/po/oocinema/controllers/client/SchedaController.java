@@ -1,5 +1,6 @@
 package it.unipv.po.oocinema.controllers.client;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,8 +24,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Window;
+import javafx.util.Duration;
 
 public class SchedaController extends MenuController implements Initializable{
 
@@ -49,17 +53,36 @@ public class SchedaController extends MenuController implements Initializable{
     private Label titoloFilmSel;
 
     @FXML
-    private Label trailer;
+    private MediaView trailer;
+    
 
     private static Proiezione proiezione;
     
-    DBFacade facade = new DBFacade();
+    private DBFacade facade = new DBFacade();
+    
+    private File file;
+    private Media media;
+    private MediaPlayer mediaPlayer;
 
     
     public Window getWindow() {
     	return prenota.getScene().getWindow();
     }
 
+    @FXML
+    void pause(MouseEvent event) {
+    	mediaPlayer.pause();
+    }
+
+    @FXML
+    void play(MouseEvent event) {
+    	mediaPlayer.play();
+    }
+    
+    @FXML
+    void reset(MouseEvent event) {
+    	mediaPlayer.seek(Duration.seconds(0.0));
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -71,13 +94,18 @@ public class SchedaController extends MenuController implements Initializable{
 			f = null;
 			e.printStackTrace();
 		}
+		
+		file = new File("src/it/unipv/po/oocinema/resources/trailer/trailer.mp4");
+		media = new Media(file.toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		trailer.setMediaPlayer(mediaPlayer);
+		
 		initializeGiorno();
-		descrizione.setText(f.getDescrizione());
-		trailer.setText(f.getTrailerPath());
+		descrizione.setText(f.toString());
 		titoloFilmSel.setText(f.getTitolo());
 		Image image = new Image(getClass().getResourceAsStream(f.getCoverPath()));
 	    locandinaFilmSel.setImage(image);
-		oraCombo.setDisable(true);
+		
 
 	}
 	

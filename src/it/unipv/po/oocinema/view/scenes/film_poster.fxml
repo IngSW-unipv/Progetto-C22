@@ -18,7 +18,7 @@
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Pane prefHeight="53.0" prefWidth="225.0" styleClass="background" stylesheets="@style.css" />
+            <Pane prefHeight="19.0" prefWidth="201.0" styleClass="background" stylesheets="@style.css" />
             <ImageView fx:id="locandina" fitHeight="144.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons8-cerca-di-più-24.png" />

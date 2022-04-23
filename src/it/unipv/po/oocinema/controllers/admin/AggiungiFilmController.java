@@ -65,7 +65,7 @@ public class AggiungiFilmController extends MenuController {
 	
 		 Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
 		 Integer.parseInt(durata.getText()),regista.getText(),cast.getText(),
-		 "/resources/locandine/"+l.getName(),"/resources/trailer/"+t.getName());
+		 "/resources/locandine/"+l.getName(),"src/it/unipv/po/oocinema/resources/trailer/"+t.getName());
 		
 		 try {
 			facade.aggiungiFilm(f);
