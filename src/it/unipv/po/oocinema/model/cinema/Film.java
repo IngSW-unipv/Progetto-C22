@@ -1,11 +1,15 @@
 package it.unipv.po.oocinema.model.cinema;
 
 /**
- * Classe che modella un oggetto di tipo Film
+ * Film che sarà proiettato al cinema.
+ * 
+ * @author Gruppo GoF
+ *
  */
 public class Film {
 	
 	private static int progressivo = 0;
+	
 	/**
 	 * 
 	 * Id del film.
@@ -21,13 +25,33 @@ public class Film {
 	 * Descrizione del film.
 	 */
 	private String descrizione;
+	/**
+	 * Genere del film.
+	 */
 	private String genere;
+	/**
+	 * Durata del film.
+	 */
 	private int durata;
+	/**
+	 * Regista del film.
+	 */
 	private String regista;
+	/**
+	 * Cast del film.
+	 */
 	private String cast;
+	/**
+	 * Percorso della locandina del film all'interno della cartella del progetto.
+	 */
 	private String coverPath;
+	
+	/**
+	 * Percorso del file trailer del film all'interno della cartella del progetto.
+	 */
 	private String trailerPath;
 
+	
 	public Film(String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
 		this.id = progressivo;
@@ -42,6 +66,22 @@ public class Film {
 		this.trailerPath = trailerPath;
 	}
 	
+	/**
+	 * Costruttore del film.
+	 * 
+	 * @param id          id del film.
+	 * @param titolo       titolo del film.
+	 * @param descrizione descrizione del film.
+	 * @param genere      generi del film.
+	 * @param regista   direttori del film.
+	 * @param cast        cast del film.
+	 * @param rating      valutazione del film (1-5 stelle).
+	 * @param duration    durata del film in minuti.
+	 * @param imageURL    URL della locandina del film (deve puntare a un'immagine
+	 *                    all'interno della cartella
+	 *                    src/main/resources/static/img/movie-posters).
+	 * @param trailerURL  URL del trailer del film (YouTube).
+	 */
 	public Film(int id, String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
 		this.id = id;

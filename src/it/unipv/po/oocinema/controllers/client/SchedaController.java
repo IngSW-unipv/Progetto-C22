@@ -44,8 +44,7 @@ public class SchedaController extends MenuController implements Initializable{
 
     @FXML
     private  ComboBox<String> oraCombo;
-
-
+    
     @FXML
     private ToggleButton prenota;
 
