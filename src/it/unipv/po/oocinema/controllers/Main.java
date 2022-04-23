@@ -1,20 +1,10 @@
 package it.unipv.po.oocinema.controllers;
 
-import java.sql.Date;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 
-import it.unipv.po.oocinema.model.cinema.Film;
-import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
