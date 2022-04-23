@@ -145,7 +145,7 @@
                   <Pane prefHeight="395.0" prefWidth="895.0">
                      <children>
                         <ComboBox fx:id="giornoCombo" layoutX="618.0" layoutY="235.0" prefHeight="36.0" prefWidth="180.0" promptText="Scegli il GIORNO" styleClass="controls" stylesheets="@style.css" />
-                        <ComboBox fx:id="oraCombo" layoutX="618.0" layoutY="321.0" onAction="#scegliOra" prefHeight="36.0" prefWidth="180.0" promptText="Scegli l'ORA" styleClass="controls" stylesheets="@style.css" />
+                        <ComboBox fx:id="oraCombo" layoutX="618.0" layoutY="321.0" onMousePressed="#scegliOra" prefHeight="36.0" prefWidth="180.0" promptText="Scegli l'ORA" styleClass="controls" stylesheets="@style.css" />
                         <Label fx:id="descrizione" layoutX="54.0" layoutY="45.0" prefHeight="310.0" prefWidth="496.0" styleClass="controls" stylesheets="@style.css" text="Label">
                            <font>
                               <Font name="Cambria" size="16.0" />

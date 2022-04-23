@@ -122,7 +122,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		FilmDAO filmDAO= new FilmDAO(); //ho solo il titolo del film in inputFilm
 		inputFilm=filmDAO.getFilmbyTitolo(inputFilm);
 		conn = MySQLConnectionFactory.connect(conn);
-		String query = "SELECT giorno FROM proiezione where film_id=?;";
+		String query = "SELECT distinct giorno FROM proiezione where film_id=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputFilm.getId());
 		ResultSet result=st1.executeQuery();
@@ -139,8 +139,8 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "SELECT orario FROM proiezione where film_id=? and giorno=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setInt(1, inputProiezione.getId());
-		st1.setString(2, ""+inputProiezione.getGiorno());
+		st1.setInt(1, inputProiezione.getFilm().getId());
+		st1.setString(2, inputProiezione.getGiorno());
 		ResultSet result=st1.executeQuery();
 		ArrayList<String> ore = new ArrayList<String>();
 		while (result.next()) {

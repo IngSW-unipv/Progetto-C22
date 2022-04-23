@@ -145,10 +145,9 @@ public class SchedaController extends MenuController implements Initializable{
 	}
 	
 	 @FXML
-	 void scegliOra(ActionEvent event) {
+	 void scegliOra(MouseEvent event) {
 		if(giornoCombo.getValue()!=null) {
 			initializeOra();
-			oraCombo.setDisable(false);
 		}
 	 }
 
