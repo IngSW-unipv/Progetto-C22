@@ -16,6 +16,9 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 
 	private Connection conn;
 
+	/**
+	 * Costruttore.
+	 */
 	public AcquirenteDAO() {
 		super();
 	}
