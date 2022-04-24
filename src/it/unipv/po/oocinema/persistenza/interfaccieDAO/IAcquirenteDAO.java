@@ -24,7 +24,7 @@ public interface IAcquirenteDAO {
 	 * 						  verificate
 	 * @return vero o falso a seconda se l'utente è registrato 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public boolean login(Acquirente inputAcquirente) throws SQLException;
 	
@@ -35,7 +35,7 @@ public interface IAcquirenteDAO {
 	 * @param inputCliente oggetto che contiene tutti gli attirbuti che andrnno
 	 * 					   registrati. 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public void registrazione(Cliente inputCliente) throws SQLException;
 	
@@ -45,7 +45,7 @@ public interface IAcquirenteDAO {
 	 * @param inputCassa oggetto che contiene tutti gli attributi che andranno 
 	 * 					 registrati.
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException;
 	
@@ -55,7 +55,7 @@ public interface IAcquirenteDAO {
 	 * @param inputCassa oggetto che contiene l'identificativo della cassa da 
 	 * 					 cancellare.
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException;
 	
@@ -65,7 +65,7 @@ public interface IAcquirenteDAO {
 	 * @return lista delle casse registrate con i loro identificativi e 
 	 * 		   password associate.
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public ArrayList<Cassa> getTutteCasse() throws SQLException;
 	
@@ -76,7 +76,7 @@ public interface IAcquirenteDAO {
 	 * @param inputCassa oggetto che contiene l'identificativo dell'utente.
 	 * @return numero intero: 0 per l'amministratore, 1 per il cliente e 2 per la cassa. 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException;
 	
@@ -84,10 +84,9 @@ public interface IAcquirenteDAO {
 	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
 	 * scelta non sia già registrata.
 	 * @param inputCassa oggetto che contiene i dati da registrate 
-	 * @return vero o falso rispettivamente se l'username non è già registrato o è presente 
-	 * 		   come persistenza. 
+	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest ultimo.
+	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException;
 }

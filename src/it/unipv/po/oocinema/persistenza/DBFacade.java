@@ -19,16 +19,63 @@ import it.unipv.po.oocinema.persistenza.classiDAO.PrenotazioneDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.ProiezioneDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.SalaDAO;
 
+/**
+ * Questa classe contiene tutti i metodi per interfacciare l'applicazione 
+ * con il gestore di persistenza dei dati.
+ * 
+ * @author GoF
+ */
+
 public class DBFacade {
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati riguardanti
+	 * i tre tipi di utenti: amministratore, cassa e cliente. 
+	 */
 	AcquirenteDAO acquirenteDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
+	 * i film in proiezione. 
+	 */
 	FilmDAO filmDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
+	 * le proiezioni.
+	 */
 	ProiezioneDAO proiezioneDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
+	 * le prenotazioni. 
+	 */
 	PrenotazioneDAO prenotazioneDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
+	 * le sale.
+	 */
 	SalaDAO salaDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
+	 * le fascie orarie in cui possono essere proiettati i film.
+	 */
 	OraDAO oraDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
+	 * i posti prenotati da un acquirente per una specifica proiezione.
+	 */
 	PostoDAO postoDAO;
 	
-	
+	/**
+	 * Costruttore.
+	 * 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
 		filmDAO = new FilmDAO();
@@ -38,32 +85,92 @@ public class DBFacade {
 		oraDAO = new OraDAO();
 		postoDAO=new PostoDAO();
 	}
-
+	
+	/**
+	 * Metodo usato per verificare le credenziali di un generico user:cliente online
+	 * cassa o amministratore. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene username e password che andranno
+	 * 						  verificate
+	 * @return vero o falso a seconda se l'utente è registrato 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public boolean login(Acquirente inputAcquirente) throws SQLException {
 		return acquirenteDAO.login(inputAcquirente);
 	}
 	
+	/**
+	 * Metodo usato per registrare le credenziali e le informazioni personali di un 
+	 * cliente online. 
+	 * 
+	 * @param inputCliente oggetto che contiene tutti gli attirbuti che andrnno
+	 * 					   registrati. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public void registrazione(Cliente inputCliente) throws SQLException{
 		acquirenteDAO.registrazione(inputCliente);
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per registrare una nuova cassa.
+	 * 
+	 * @param inputCassa oggetto che contiene tutti gli attributi che andranno 
+	 * 					 registrati.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException {
 		acquirenteDAO.aggiungiCassa(inputCassa);
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per rimuovere una cassa registrata.
+	 * 
+	 * @param inputCassa oggetto che contiene l'identificativo della cassa da 
+	 * 					 cancellare.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException {
 		acquirenteDAO.rimuoviCassa(inputCassa);
 	}
 	
+	/**
+	 * Metodo che restituisce tutte le casse registrate e i loro attributi. 
+	 * 
+	 * @return lista delle casse registrate con i loro identificativi e 
+	 * 		   password associate.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public ArrayList<Cassa> getTutteCasse() throws SQLException {
 		return acquirenteDAO.getTutteCasse();
 	}
 	
+	/**
+	 * Metodo che restituisce la tipologia di un utente tra: cliente online, cassa e 
+	 * amministratore
+	 * 
+	 * @param inputCassa oggetto che contiene l'identificativo dell'utente.
+	 * @return numero intero: 0 per l'amministratore, 1 per il cliente e 2 per la cassa. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{ 
 		return acquirenteDAO.getTipoByUser(inputAcquirente);
 	}
 	
-	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{ // true se non ci sono utenti 
+	/**
+	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
+	 * scelta non sia già registrata.
+	 * @param inputCassa oggetto che contiene i dati da registrate 
+	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{
 		return acquirenteDAO.controllaUser(inputAcquirente);
 	}
 
