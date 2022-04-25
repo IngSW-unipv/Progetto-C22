@@ -32,7 +32,7 @@ public class TicketHandler {
 	public void createTicket(Prenotazione prenotazione){
 		
 		try {
-			Document document = new Document(PageSize.A4);
+			Document document = new Document(PageSize.A5);
 			PdfWriter.getInstance(document, new FileOutputStream(file));
 			
 		    document.open();

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
@@ -53,13 +54,22 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		String query = "INSERT INTO prenotazione VALUES(?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputPrenotazione.getId());
-		st1.setString(2, inputPrenotazione.getDataAcquisto());
+		st1.setString(2, LocalDate.now().toString());
 		st1.setInt(3, inputPrenotazione.getNumPosti());
 		st1.setInt(4, inputPrenotazione.getProiezione().getId()); 
 		st1.setString(5, inputPrenotazione.getAcquirente().getUser());
 		st1.executeUpdate();
+		System.out.println(inputPrenotazione.getId());
+		MySQLConnectionFactory.closeConnection(conn);
+	}
+	
+	@Override
+	public void occupaPosti(Prenotazione inputPrenotazione) throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+
 		for (Posto p : inputPrenotazione.getPosti()) {
-			query="INSERT INTO posto VALUES(?,?,?)";
+			String query="INSERT INTO posto VALUES(?,?,?)";
+			PreparedStatement st1 = conn.prepareStatement(query);
 			st1 = conn.prepareStatement(query);
 			st1.setInt(1, p.getRiga());
 			st1.setInt(2, p.getColonna());

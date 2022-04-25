@@ -229,6 +229,7 @@ public class DBFacade {
 	
 	public void aggiungiPrenotazione(Prenotazione inputProiezione) throws SQLException{
 		prenotazioneDAO.aggiungiPrenotazione(inputProiezione);
+		prenotazioneDAO.occupaPosti(inputProiezione);
 	}
 
 	public ArrayList<Sala> getTutteSale() throws SQLException {
@@ -243,12 +244,14 @@ public class DBFacade {
 		return oraDAO.getTutteOre();
 	}
 
-	public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws SQLException{  //riga e non fila cambiare nel database
-		return postoDAO.getRigheLibere(inputProiezione);
-	}
+	/*
+	 * public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws
+	 * SQLException{ //riga e non fila cambiare nel database return
+	 * postoDAO.getRigheLibere(inputProiezione); }
+	 */
 	
 	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
-		return postoDAO.getPostiLiberiByRiga(inputProiezione, inputPosto);
+		return postoDAO.getPostiOccupatiByRiga(inputProiezione, inputPosto);
 	}
 		
 }

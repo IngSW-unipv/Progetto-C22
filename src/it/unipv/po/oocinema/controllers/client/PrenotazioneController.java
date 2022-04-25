@@ -1,5 +1,6 @@
 package it.unipv.po.oocinema.controllers.client;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import com.google.zxing.WriterException;
 
 import it.unipv.po.oocinema.controllers.LoginController;
 import it.unipv.po.oocinema.controllers.TicketHandler;
+import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -19,8 +21,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Window;
 
 public class PrenotazioneController extends MenuController implements Initializable{
@@ -46,8 +51,7 @@ public class PrenotazioneController extends MenuController implements Initializa
 
 	 @FXML
 	 private Label titoloFilmSel;
-    
-	 ArrayList<Posto> posti = new ArrayList<Posto>();
+   
 	 ArrayList<Posto> postiScelti = new ArrayList<Posto>();
     
 	 private DBFacade facade = new DBFacade();
@@ -59,6 +63,7 @@ public class PrenotazioneController extends MenuController implements Initializa
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
     	p.setAcquirente(MenuController.getCliente());
+    	p.setId(13);
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);
@@ -72,24 +77,32 @@ public class PrenotazioneController extends MenuController implements Initializa
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		setLabelText();
 		initializeRighe();	
+	
+		Film f;
+		try {
+			f = facade.getFilmbyTitolo(new Film(CLIController.getTitoloFilmSel()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			f = null;
+			e.printStackTrace();
+		}
+		
+		titoloFilmSel.setText(f.getTitolo());
+		Image image = new Image(getClass().getResourceAsStream(f.getCoverPath()));
+	    locandinaFilmSel.setImage(image);
+		
 	}
 	
 	public void initializeRighe() {
-		posti.removeAll(posti);
-		try {
-			posti = facade.getRigheLibere(SchedaController.getProiezione());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	
 		ArrayList<Character> righe = new ArrayList<Character>();
 	
-		for(int i = 0; i <posti.size(); i++) {
+		for(int i = 0; i <SchedaController.getProiezione().getSala().getRighe(); i++) {
 			
-			righe.add(i, (char) (posti.get(i).getRiga()+'A'));
+			righe.add(i, (char) (i + 'A'));
 		}
 		ObservableList<Character> obListFila = FXCollections.observableList(righe);
         
@@ -102,6 +115,7 @@ public class PrenotazioneController extends MenuController implements Initializa
 	@FXML
     void scegliPosto(MouseEvent event) {
 		if(filaCombo.getValue()!=null) {
+			
 			initializePosto();
 			
 		}
@@ -110,14 +124,21 @@ public class PrenotazioneController extends MenuController implements Initializa
     public void initializePosto() {
 		
 		ArrayList<Integer> colonne = new ArrayList<Integer>();
-		
+		ArrayList<Integer> colonneOccupate = new ArrayList<Integer>();
 		Posto p = new Posto(filaCombo.getValue()-'A');
 		
 		try {
-			colonne = facade.getPostiLiberiByRiga(SchedaController.getProiezione(), p);
+			colonneOccupate = facade.getPostiLiberiByRiga(SchedaController.getProiezione(), p);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		for(int i = 0; i<SchedaController.getProiezione().getSala().getColonne();i++) {
+			colonne.add(i+1);
+		}
+		
+		for(int i = 0; i< colonneOccupate.size();i++) {
+			colonne.remove(colonneOccupate.get(i));
 		}
 		
 		ObservableList<Integer> obListColonna = FXCollections.observableList(colonne);

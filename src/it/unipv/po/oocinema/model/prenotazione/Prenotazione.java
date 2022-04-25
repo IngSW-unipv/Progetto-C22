@@ -15,7 +15,7 @@ import it.unipv.po.oocinema.model.prenotazione.sconti.ScontoFactory;
 public class Prenotazione {
 	
 	
-	private final int id;
+	private int id;
 	
 	private static int progressivo = 0;
 
@@ -68,6 +68,9 @@ public class Prenotazione {
 		progressivo++;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 	public void addPosto(int row, int col) {
 		boolean duplicato = false;
 		if (proiezione.checkPostoDisponibile(row, col)) {
