@@ -5,9 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import com.google.zxing.WriterException;
 
+import it.unipv.po.oocinema.controllers.LoginController;
 import it.unipv.po.oocinema.controllers.TicketHandler;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
@@ -32,7 +32,8 @@ public class PrenotazioneController extends MenuController implements Initializa
 	 private ComboBox<Character> filaCombo;
 
 	 @FXML
-	 private Label lista;
+	 private Label lista = new Label();
+
 
 	 @FXML
 	 private ImageView locandinaFilmSel;
@@ -57,6 +58,7 @@ public class PrenotazioneController extends MenuController implements Initializa
     	Prenotazione p = new Prenotazione();
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
+    	p.setAcquirente(MenuController.getCliente());
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);
@@ -70,7 +72,6 @@ public class PrenotazioneController extends MenuController implements Initializa
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		titoloFilmSel.setText("aa");
 		setLabelText();
 		initializeRighe();	
 	}
@@ -84,13 +85,13 @@ public class PrenotazioneController extends MenuController implements Initializa
 			e.printStackTrace();
 		}
 	
-		ArrayList<Character> file = new ArrayList<Character>();
+		ArrayList<Character> righe = new ArrayList<Character>();
 	
 		for(int i = 0; i <posti.size(); i++) {
 			
-			file.add(i, (char) (posti.get(i).getRiga()+'A'));
+			righe.add(i, (char) (posti.get(i).getRiga()+'A'));
 		}
-		ObservableList<Character> obListFila = FXCollections.observableList(file);
+		ObservableList<Character> obListFila = FXCollections.observableList(righe);
         
 		filaCombo.getItems().clear();
         filaCombo.setItems(obListFila);
@@ -109,24 +110,20 @@ public class PrenotazioneController extends MenuController implements Initializa
     public void initializePosto() {
 		
 		ArrayList<Integer> colonne = new ArrayList<Integer>();
-		ArrayList<Posto> c = new ArrayList<Posto>();
-		int index = 0;
-		for(int i = 0; i <posti.size(); i++) {
-			if(filaCombo.getValue() == (char)posti.get(i).getRiga()+'A') {
-				try {
-					c = facade.getPostiLiberiByRiga(SchedaController.getProiezione(), posti.get(index));
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				colonne.set(index, c.get(index).getColonna());
-				index++;
-			}
+		
+		Posto p = new Posto(filaCombo.getValue()-'A');
+		
+		try {
+			colonne = facade.getPostiLiberiByRiga(SchedaController.getProiezione(), p);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		ObservableList<Integer> obListFila = FXCollections.observableList(colonne);
+		
+		ObservableList<Integer> obListColonna = FXCollections.observableList(colonne);
         
 		postoCombo.getItems().clear();
-        postoCombo.setItems(obListFila);
+        postoCombo.setItems(obListColonna);
     }
 	
 	 @FXML

@@ -5,16 +5,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -43,7 +39,7 @@ public class SchedaController extends MenuController implements Initializable{
     private ImageView locandinaFilmSel;
 
     @FXML
-    private  ComboBox<String> oraCombo;
+    private ComboBox<String> oraCombo;
     
     @FXML
     private ToggleButton prenota;
@@ -128,9 +124,10 @@ public class SchedaController extends MenuController implements Initializable{
 	public void initializeOra() {
 		ArrayList<String> ore = new ArrayList<String>();
 		Proiezione p = new Proiezione();
-		p.setFilm(new Film(CLIController.getTitoloFilmSel()));
-		p.setGiorno(giornoCombo.getValue());
 		try {
+			p.setFilm(facade.getFilmbyTitolo(new Film(CLIController.getTitoloFilmSel())) );
+			p.setGiorno(giornoCombo.getValue());
+		
 			ore = facade.getOreByProiezione(p);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -154,8 +151,8 @@ public class SchedaController extends MenuController implements Initializable{
 	@FXML
     void prenota(MouseEvent event) {
 		if(giornoCombo.getValue()!=null && oraCombo.getValue()!=null) {
-			setProiezione(costruisciProiezione());
-			WindowsHandler.openWindow(getClass(), "prenotazione.fxml");
+			costruisciProiezione();
+			WindowsHandler.openWindow(getClass(), "prenotazioneNOGRAFICA.fxml");
 		    WindowsHandler.closeWindow(getWindow());
 		} else {
 			Alert alert = new Alert(AlertType.WARNING, "Compilare i campi GIORNO e ORA");
@@ -163,16 +160,18 @@ public class SchedaController extends MenuController implements Initializable{
 		}
     }
 	
-	public Proiezione costruisciProiezione() {
+	public void costruisciProiezione() {
 		Proiezione p = new Proiezione();
-		p.setFilm(new Film(CLIController.getTitoloFilmSel()));
-		p.setGiorno(giornoCombo.getValue());
-		p.setOrario(oraCombo.getValue());
 		try {
-			return facade.getProiezioneByFilmGiornoOra(p);
+			p.setFilm(facade.getFilmbyTitolo(new Film(CLIController.getTitoloFilmSel())) );
+			p.setGiorno(giornoCombo.getValue());
+			p.setOrario(oraCombo.getValue());
+			
+			proiezione = facade.getProiezioneByFilmGiornoOra(p);
+			 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
+			
 		}
 	}
 

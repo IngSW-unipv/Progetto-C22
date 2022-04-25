@@ -97,22 +97,22 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		PreparedStatement st1;
+		Proiezione proiezione;
 		ResultSet result;
 		String query = "SELECT * FROM proiezione WHERE film_id = ? and giorno = ? and orario = ?;";
 		st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputProiezione.getFilm().getId());
-		st1.setString(2, ""+inputProiezione.getGiorno());
-		st1.setString(3, ""+inputProiezione.getOrario());
+		st1.setString(2, inputProiezione.getGiorno());
+		st1.setString(3, inputProiezione.getOrario());
 		result = st1.executeQuery();
 		Sala s=new Sala();
-		s.setId(result.getInt("sala_id"));
-		SalaDAO salaDAO= new SalaDAO();
-		s=salaDAO.getSalaById(s);
-		Proiezione proiezione;
-		if(result.next()) {
+		if(result.next()) { 
+			s.setId(result.getInt("sala_id"));
+			SalaDAO salaDAO= new SalaDAO();
+			s=salaDAO.getSalaById(s);
 			proiezione = new Proiezione( result.getInt("id") ,inputProiezione.getFilm() , inputProiezione.getGiorno(), s
 								,result.getDouble("prezzo"), inputProiezione.getOrario());
-		}else proiezione=null;
+		}else {proiezione = null;}
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
 	}
@@ -149,4 +149,6 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		MySQLConnectionFactory.closeConnection(conn);
 		return ore;
 	}
+
+	
 }

@@ -3,7 +3,6 @@ package it.unipv.po.oocinema.controllers.admin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class MenuController {

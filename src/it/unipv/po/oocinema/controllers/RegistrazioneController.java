@@ -1,8 +1,6 @@
 package it.unipv.po.oocinema.controllers;
 
 import java.sql.SQLException;
-
-import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;

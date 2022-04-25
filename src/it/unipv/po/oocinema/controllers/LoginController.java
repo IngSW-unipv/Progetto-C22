@@ -1,8 +1,6 @@
 package it.unipv.po.oocinema.controllers;
 
 import java.sql.SQLException;
-
-import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.controllers.client.MenuController;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -44,6 +42,7 @@ public class LoginController {
 
     @FXML
     private TextField user;
+   
 
     @FXML
     void login(MouseEvent event) {
@@ -80,6 +79,11 @@ public class LoginController {
     
     public Window getWindow() {
 		return user.getScene().getWindow();
+	}
+
+	public static Acquirente getAcquirente() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

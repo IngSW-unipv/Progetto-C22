@@ -1,7 +1,5 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
-import java.sql.Date;
-
 /**
  * Classe che modella un oggetto di tipo Cassa
  */

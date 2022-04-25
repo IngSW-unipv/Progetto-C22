@@ -247,7 +247,7 @@ public class DBFacade {
 		return postoDAO.getRigheLibere(inputProiezione);
 	}
 	
-	public ArrayList<Posto> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
+	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		return postoDAO.getPostiLiberiByRiga(inputProiezione, inputPosto);
 	}
 		

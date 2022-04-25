@@ -59,12 +59,12 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		st1.setString(5, inputPrenotazione.getAcquirente().getUser());
 		st1.executeUpdate();
 		for (Posto p : inputPrenotazione.getPosti()) {
-		query="INSERT INTO prenotazione VALUES(?,?,?)";
-		st1 = conn.prepareStatement(query);
-		st1.setInt(1, p.getRiga());
-		st1.setInt(2, p.getColonna());
-		st1.setInt(3, inputPrenotazione.getId());
-		st1.executeUpdate();
+			query="INSERT INTO posto VALUES(?,?,?)";
+			st1 = conn.prepareStatement(query);
+			st1.setInt(1, p.getRiga());
+			st1.setInt(2, p.getColonna());
+			st1.setInt(3, inputPrenotazione.getId());
+			st1.executeUpdate();
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 	}

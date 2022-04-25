@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
 
 public interface IProiezioneDAO {
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException;
@@ -15,5 +16,6 @@ public interface IProiezioneDAO {
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException;
 	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException;
 	//public ArrayList<Proiezione> getAllProiezioniByFilmId(Film inputFilm) throws SQLException;
+
 	
 }

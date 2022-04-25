@@ -37,13 +37,13 @@ public class PostoDAO implements IPostoDAO {
 	
 	@Override
 	public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws SQLException{
-		conn = MySQLConnectionFactory.connect(conn);
+		conn = MySQLConnectionFactory.connect(conn); //non va bene!!
 		String query = "select count(*) as NUM, riga\r\n"
 					 + "from posto A join prenotazione B on A.prenotazione_id=B.id\r\n"
-					 + "group by riga\r\n"
-					 + "having B.proiezione_id=? ;";
+					 + " where proiezione_id = ?\r\n"
+					 + "group by riga\r\n;";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+inputProiezione.getId());
+		st1.setInt(1, inputProiezione.getId());
 		ResultSet result=st1.executeQuery();
 		ArrayList<Posto> posti = new ArrayList<Posto>();
 		while (result.next()) {
@@ -55,19 +55,21 @@ public class PostoDAO implements IPostoDAO {
 	}
 	
 	@Override
-	public ArrayList<Posto> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
+	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		String query ="select colonna posto A join prenotazione B on A.prenotazione_id=B.id\r\n"
+		String query ="select colonna from posto A join prenotazione B on A.prenotazione_id=B.id\r\n"
 				     + "where B.proiezione_id=? and riga=?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, ""+inputProiezione.getId());
-		st1.setString(2, ""+inputPosto.getRiga());
-		ResultSet result=st1.executeQuery();
-		ArrayList<Posto> posti = new ArrayList<Posto>();
+		st1.setInt(1, inputProiezione.getId());
+		st1.setInt(2, inputPosto.getRiga());
+		System.out.println(inputProiezione.getId()+" "+inputPosto.getRiga());
+		ResultSet result=st1.executeQuery(); 
+		ArrayList<Integer> colonne = new ArrayList<Integer>();
 		while (result.next()) {
-			posti.add(new Posto(result.getInt("riga"), result.getInt("colonna")));
+			colonne.add(result.getInt("colonna"));
+			System.out.println(result.getInt("colonna"));
 		}
 		MySQLConnectionFactory.closeConnection(conn);
-		return posti;
+		return colonne;
 	}
 }

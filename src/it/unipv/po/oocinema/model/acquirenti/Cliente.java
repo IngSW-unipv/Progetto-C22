@@ -1,7 +1,5 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
-import java.sql.Date;
-
 public class Cliente extends Acquirente {
 	
 	private String compleanno;

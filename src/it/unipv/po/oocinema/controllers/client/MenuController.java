@@ -1,8 +1,7 @@
 package it.unipv.po.oocinema.controllers.client;
 
-import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
+
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
-import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
