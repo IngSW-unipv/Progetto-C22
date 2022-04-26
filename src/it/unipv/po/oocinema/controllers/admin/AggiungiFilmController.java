@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JFileChooser;
-
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -15,9 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Window;
 
-public class AggiungiFilmController extends MenuController {
+public class AggiungiFilmController extends AdminMenuController {
 	
 	private DBFacade facade = new DBFacade();
 
@@ -94,11 +92,6 @@ public class AggiungiFilmController extends MenuController {
         if (checkInput == JFileChooser.APPROVE_OPTION) {
             t = fc.getSelectedFile();
         }
-    }
-    
-    @Override
-    public Window getWindow() {
-    	return titolo.getScene().getWindow();
     }
     
 }

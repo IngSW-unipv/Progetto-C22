@@ -1,14 +1,11 @@
 package it.unipv.po.oocinema.controllers.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.google.zxing.WriterException;
-
-import it.unipv.po.oocinema.controllers.LoginController;
 import it.unipv.po.oocinema.controllers.TicketHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
@@ -24,11 +21,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Window;
 
-public class PrenotazioneController extends MenuController implements Initializable{
+public class PrenotazioneController extends ClientMenuController implements Initializable{
 
 	 @FXML
 	 private Button aggiungi;
@@ -62,8 +57,8 @@ public class PrenotazioneController extends MenuController implements Initializa
     	Prenotazione p = new Prenotazione();
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
-    	p.setAcquirente(MenuController.getCliente());
-    	p.setId(14);
+    	p.setAcquirente(ClientMenuController.getCliente());
+    	p.setId(22);
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);
@@ -182,9 +177,5 @@ public class PrenotazioneController extends MenuController implements Initializa
 		 
 		 
 	 }
-	public Window getWindow() {
-    	return lista.getScene().getWindow();
-    }
-	
 	
 }

@@ -22,10 +22,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.stage.Window;
 
 
-public class CLIController extends MenuController implements Initializable{
+public class CLIController extends ClientMenuController implements Initializable{
 
     @FXML
     private GridPane grid;
@@ -125,10 +124,5 @@ public class CLIController extends MenuController implements Initializable{
     	WindowsHandler.openWindow(getClass(), "../../view/scenes/schedaFilm.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
-    @Override
-    public Window getWindow() {
-    	return scroll.getScene().getWindow();
-    }
-	
 
 }

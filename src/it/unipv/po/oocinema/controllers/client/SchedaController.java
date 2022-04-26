@@ -25,10 +25,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Window;
 import javafx.util.Duration;
 
-public class SchedaController extends MenuController implements Initializable{
+public class SchedaController extends ClientMenuController implements Initializable{
 
 
     @FXML
@@ -61,11 +60,7 @@ public class SchedaController extends MenuController implements Initializable{
     private Media media;
     private MediaPlayer mediaPlayer;
 
-    
-    public Window getWindow() {
-    	return prenota.getScene().getWindow();
-    }
-
+ 
     @FXML
     void pause(MouseEvent event) {
     	mediaPlayer.pause();

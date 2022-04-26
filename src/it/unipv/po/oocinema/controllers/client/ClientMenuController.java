@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
-public class MenuController {
+public class ClientMenuController {
 
     @FXML
     private Label esci;

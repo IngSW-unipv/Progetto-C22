@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -21,9 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Window;
 
-public class FilmController extends MenuController implements Initializable{
+public class FilmController extends AdminMenuController implements Initializable{
 	private DBFacade facade = new DBFacade();
 	
     @FXML
@@ -74,12 +72,6 @@ public class FilmController extends MenuController implements Initializable{
     	aggiorna();
     	}
     }
-    
-  
-	@Override
-	public Window getWindow() {
-		return rimuovi.getScene().getWindow();
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

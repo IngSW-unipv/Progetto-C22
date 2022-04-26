@@ -24,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
-public class ProiezioneController extends MenuController implements Initializable{
+public class ProiezioneController extends AdminMenuController implements Initializable{
 
 	private DBFacade facade = new DBFacade();
 	
@@ -122,11 +122,6 @@ public class ProiezioneController extends MenuController implements Initializabl
 				
 			datiTabella.add(p);
 		}
-	}
-	
-	@Override
-	public Window getWindow() {
-		return rimuovi.getScene().getWindow();
 	}
 
 	public class InnerProiezione{

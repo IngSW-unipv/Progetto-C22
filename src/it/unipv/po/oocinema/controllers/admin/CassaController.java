@@ -22,9 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Window;
 
-public class CassaController extends MenuController implements Initializable {
+
+public class CassaController extends AdminMenuController implements Initializable {
 
 	private DBFacade facade = new DBFacade();
 	
@@ -102,11 +102,6 @@ public class CassaController extends MenuController implements Initializable {
 		for(int i = 0; i < elencoCasse.size(); i++) {
 			datiTabella.add(new Cassa(elencoCasse.get(i).getUser(),elencoCasse.get(i).getPassword()));
 		}
-	}
-	
-	@Override
-	public Window getWindow() {
-		return rimuovi.getScene().getWindow();
 	}
 
 }

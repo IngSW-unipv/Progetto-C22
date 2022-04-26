@@ -1,13 +1,10 @@
 package it.unipv.po.oocinema.controllers.admin;
 
-
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
@@ -24,9 +21,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Window;
 
-public class AggiungiProiezioneController extends MenuController implements Initializable {
+public class AggiungiProiezioneController extends AdminMenuController implements Initializable {
 	
 	private DBFacade facade = new DBFacade();
 	@FXML
@@ -141,11 +137,5 @@ public class AggiungiProiezioneController extends MenuController implements Init
         oraCombo.setItems(obList);
 		
 	}
-	
-
-	public Window getWindow() {
-	    return prezzo.getScene().getWindow(); // ATTENZIONE non molto corretto ma funzionante
-	}
-
 	
 }

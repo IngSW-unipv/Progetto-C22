@@ -47,7 +47,9 @@ public class TicketHandler {
 		document.addTitle("Prenotazione numero: " + prenotazione.getId());
 		document.addCreationDate();
 		document.addAuthor("Lo Staff di Oocinema");
-		Image locandina = Image.getInstance(new URL(prenotazione.getProiezione().getFilm().getCoverPath()));
+		String[] arr = prenotazione.getProiezione().getFilm().getCoverPath().split("/");
+		Image locandina = Image.getInstance(new URL("file:src/it/unipv/po/oocinema/resources/locandine/"+arr[arr.length-1]));
+		
 		for(int i = 0; i<prenotazione.getNumPosti();i++) {
 			
 			Paragraph p = createParagrafoPrenotazione(prenotazione,i);

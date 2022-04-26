@@ -27,7 +27,7 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 	@Override
 	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		String query = "SELECT * FROM prenotazione where acquirente_user=? and giorno>curdate();";
+		String query = "SELECT * FROM prenotazione where acquirente_user=? and data_acquisto>curdate();";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcquirente.getUser());
 		ResultSet result=st1.executeQuery();

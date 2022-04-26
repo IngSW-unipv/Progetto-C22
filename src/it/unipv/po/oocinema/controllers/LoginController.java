@@ -1,7 +1,7 @@
 package it.unipv.po.oocinema.controllers;
 
 import java.sql.SQLException;
-import it.unipv.po.oocinema.controllers.client.MenuController;
+import it.unipv.po.oocinema.controllers.client.ClientMenuController;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -57,7 +57,7 @@ public class LoginController {
 				if(tipo == 0)
 					WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");
 				else WindowsHandler.openWindow(getClass(), "../view/scenes/homeCLI.fxml");
-				MenuController.setCliente(log);
+				ClientMenuController.setCliente(log);
 			    WindowsHandler.closeWindow(getWindow());
 			}
 		} catch (SQLException e) {

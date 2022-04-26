@@ -1,6 +1,5 @@
 package it.unipv.po.oocinema.controllers.admin;
 
-import javafx.stage.Window;
 import java.sql.SQLException;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -9,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 
-public class AggiungiCassaController extends MenuController{
+public class AggiungiCassaController extends AdminMenuController{
 
 	private DBFacade facade = new DBFacade();
 	
@@ -34,8 +33,4 @@ public class AggiungiCassaController extends MenuController{
     	}
 	}
 
-	@Override
-	public Window getWindow() {
-		return username.getScene().getWindow();
-	}
 }

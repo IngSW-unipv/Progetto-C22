@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
-public class MenuController {
+public class AdminMenuController {
 	
 	@FXML
 	private Label proiezione;

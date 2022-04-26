@@ -15,7 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class OrdiniController extends MenuController implements Initializable{
+public class OrdiniController extends ClientMenuController implements Initializable{
 
     @FXML
     private TableColumn<InnerPrenotazione, String> colonnaDataAcquisto;
@@ -66,7 +66,7 @@ public class OrdiniController extends MenuController implements Initializable{
 		datiTabella.removeAll(datiTabella);
 		ArrayList<Prenotazione> elencoPrenotazioni = new ArrayList<Prenotazione>();
 		try {
-			elencoPrenotazioni = facade.getPrenotazioniFutureByCliente(MenuController.getCliente());
+			elencoPrenotazioni = facade.getPrenotazioniFutureByCliente(ClientMenuController.getCliente());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
