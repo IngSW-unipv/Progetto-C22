@@ -25,7 +25,7 @@ public class WindowsHandler {
 				stage.setHeight(450);
 		        stage.setWidth(600);
 			}else {
-				stage.setHeight(670);
+				stage.setHeight(637);
 		        stage.setWidth(1210);
 			}
 	        stage.centerOnScreen();
