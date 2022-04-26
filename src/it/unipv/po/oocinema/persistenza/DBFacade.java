@@ -12,6 +12,7 @@ import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.classiDAO.AcquirenteDAO;
+import it.unipv.po.oocinema.persistenza.classiDAO.CinemaInfoDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.FilmDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.OraDAO;
 import it.unipv.po.oocinema.persistenza.classiDAO.PostoDAO;
@@ -33,6 +34,12 @@ public class DBFacade {
 	 * i tre tipi di utenti: amministratore, cassa e cliente. 
 	 */
 	AcquirenteDAO acquirenteDAO;
+	
+	/**
+	 * Oggetto attraverso cui è gestita la persistenza dei dati riguardanti
+	 * le informazioni logistiche del cinema: indirizzo, telefono e email.
+	 */
+	CinemaInfoDAO cinemaInfoDAO;
 	
 	/**
 	 * Oggetto attraverso cui è gestita la persistenza dei dati rigurardanti
@@ -78,6 +85,7 @@ public class DBFacade {
 	 */
 	public DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
+		cinemaInfoDAO= new CinemaInfoDAO();
 		filmDAO = new FilmDAO();
 		proiezioneDAO = new ProiezioneDAO();
 		prenotazioneDAO= new PrenotazioneDAO();
@@ -172,6 +180,39 @@ public class DBFacade {
 	 */
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{
 		return acquirenteDAO.controllaUser(inputAcquirente);
+	}
+	
+	/**
+	 * Metodo usato per recuperare il numero di telefono del cinema memorizzato nel DB.
+	 * 
+	 * @return stringa che contiene l'indirizzo del cinema
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public String getIndirizzo() throws SQLException{
+		return cinemaInfoDAO.getIndirizzo();
+	}
+	
+	/**
+	 * Metodo usato per recuperare il numero di telefono del cinema memorizzato nel DB.
+	 * 
+	 * @return stringa che contiene il numero di telefono del cinema.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public String getTelefono() throws SQLException{
+		return cinemaInfoDAO.getTelefono();
+	}
+	
+	/**
+	 * Metodo usato per recuperare l'email del cinema memorizzato nel DB.
+	 * 
+	 * @return stringa che contiene l'email del cinema.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public String getEmail() throws SQLException {
+		return cinemaInfoDAO.getEmail();
 	}
 
 	public void aggiungiFilm(Film inputFilm) throws SQLException {

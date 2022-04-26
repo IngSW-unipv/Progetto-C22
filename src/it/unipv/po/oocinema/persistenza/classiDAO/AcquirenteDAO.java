@@ -12,8 +12,17 @@ import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 
+/**
+ * Classe che implementa l'interfaccia IAcquirenteDAO e quindi contiene i metodi per
+ * gestire la persistenza di dati degli acquirenti, online e fisici, e dell'amministratore. 
+ * 
+ * @author GoF
+ */
 public class AcquirenteDAO implements IAcquirenteDAO {
 
+	/**
+	 * Connessione al database.
+	 */
 	private Connection conn;
 
 	/**
@@ -22,7 +31,17 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	public AcquirenteDAO() {
 		super();
 	}
-
+	
+	/**
+	 * Metodo usato per verificare le credenziali di un generico user:cliente online
+	 * cassa o amministratore. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene username e password che andranno
+	 * 						  verificate
+	 * @return vero o falso a seconda se l'utente è registrato 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public boolean login(Acquirente inputAcquirente) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -40,6 +59,15 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		return log;
 	}	
 	
+	/**
+	 * Metodo usato per registrare le credenziali e le informazioni personali di un 
+	 * cliente online. 
+	 * 
+	 * @param inputCliente oggetto che contiene tutti gli attirbuti che andrnno
+	 * 					   registrati. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void registrazione(Cliente inputCliente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -55,6 +83,14 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per registrare una nuova cassa.
+	 * 
+	 * @param inputCassa oggetto che contiene tutti gli attributi che andranno 
+	 * 					 registrati.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void aggiungiCassa(Cassa inputCassa) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -68,6 +104,14 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per rimuovere una cassa registrata.
+	 * 
+	 * @param inputCassa oggetto che contiene l'identificativo della cassa da 
+	 * 					 cancellare.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -78,6 +122,14 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 
+	/**
+	 * Metodo che restituisce tutte le casse registrate e i loro attributi. 
+	 * 
+	 * @return lista delle casse registrate con i loro identificativi e 
+	 * 		   password associate.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<Cassa> getTutteCasse() throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -93,6 +145,15 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		return casse;
 	}
 	
+	/**
+	 * Metodo che restituisce la tipologia di un utente tra: cliente online, cassa e 
+	 * amministratore
+	 * 
+	 * @param inputCassa oggetto che contiene l'identificativo dell'utente.
+	 * @return numero intero: 0 per l'amministratore, 1 per il cliente e 2 per la cassa. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -108,6 +169,14 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		return c;
 	}
 	
+	/**
+	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
+	 * scelta non sia già registrata.
+	 * @param inputCassa oggetto che contiene i dati da registrate 
+	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
