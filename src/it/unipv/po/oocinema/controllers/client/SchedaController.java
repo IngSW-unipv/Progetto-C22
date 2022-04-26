@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -152,7 +154,7 @@ public class SchedaController extends MenuController implements Initializable{
     void prenota(MouseEvent event) {
 		if(giornoCombo.getValue()!=null && oraCombo.getValue()!=null) {
 			costruisciProiezione();
-			WindowsHandler.openWindow(getClass(), "prenotazioneNOGRAFICA.fxml");
+			WindowsHandler.openWindow(getClass(), "../../view/scenes/prenotazioneNOGRAFICA.fxml");
 		    WindowsHandler.closeWindow(getWindow());
 		} else {
 			Alert alert = new Alert(AlertType.WARNING, "Compilare i campi GIORNO e ORA");

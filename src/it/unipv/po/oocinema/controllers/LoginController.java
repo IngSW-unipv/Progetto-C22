@@ -55,8 +55,8 @@ public class LoginController {
     		}else {
 				int tipo = facade.getTipoByUser(log);
 				if(tipo == 0)
-					WindowsHandler.openWindow(getClass(), "homeADM.fxml");
-				else WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
+					WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");
+				else WindowsHandler.openWindow(getClass(), "../view/scenes/homeCLI.fxml");
 				MenuController.setCliente(log);
 			    WindowsHandler.closeWindow(getWindow());
 			}
@@ -73,17 +73,12 @@ public class LoginController {
 
     @FXML
     void registrati(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "registrazione.fxml");
+    	WindowsHandler.openWindow(getClass(), "../view/scenes/registrazione.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
     
     public Window getWindow() {
 		return user.getScene().getWindow();
-	}
-
-	public static Acquirente getAcquirente() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

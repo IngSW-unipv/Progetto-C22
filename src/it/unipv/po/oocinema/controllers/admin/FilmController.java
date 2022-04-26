@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
@@ -22,9 +24,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
 public class FilmController extends MenuController implements Initializable{
-
-	private final String NOMEFILE = "film.fxml";
-	
 	private DBFacade facade = new DBFacade();
 	
     @FXML
@@ -52,7 +51,7 @@ public class FilmController extends MenuController implements Initializable{
 
     @FXML
     void aggiungiFilm(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "aggiungiFilm.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/aggiungiFilm.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
@@ -80,12 +79,6 @@ public class FilmController extends MenuController implements Initializable{
 	@Override
 	public Window getWindow() {
 		return rimuovi.getScene().getWindow();
-	}
-
-
-	@Override
-	public String getNomeFile() {
-		return NOMEFILE;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package it.unipv.po.oocinema.controllers.client;
 
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -25,25 +26,25 @@ public class MenuController {
 
     @FXML
     void esci(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "login.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/login.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void film(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "homeCLI.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/homeCLI.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void info(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "info.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/info.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
     @FXML
     void ordini(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "ordini.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/ordini.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
     

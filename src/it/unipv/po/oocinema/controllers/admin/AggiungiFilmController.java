@@ -21,7 +21,6 @@ public class AggiungiFilmController extends MenuController {
 	
 	private DBFacade facade = new DBFacade();
 
-	private final String NOMEFILE = "aggiungiFilm.fxml";
     @FXML
     private ToggleButton aggiungiFilm;
 
@@ -96,11 +95,6 @@ public class AggiungiFilmController extends MenuController {
             t = fc.getSelectedFile();
         }
     }
-    
-    @Override
-	public String getNomeFile() {
-		return NOMEFILE;
-	}
     
     @Override
     public Window getWindow() {

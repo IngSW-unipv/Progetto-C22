@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.controllers.admin.WindowsHandler;
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -122,7 +122,7 @@ public class CLIController extends MenuController implements Initializable{
 
     @FXML
     void schedaFilm(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "schedaFilm.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/schedaFilm.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
     @Override

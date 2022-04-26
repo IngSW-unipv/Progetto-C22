@@ -28,7 +28,6 @@ import javafx.stage.Window;
 
 public class AggiungiProiezioneController extends MenuController implements Initializable {
 	
-	private final String NOMEFILE = "aggiungiProiezione.fxml";
 	private DBFacade facade = new DBFacade();
 	@FXML
     private ToggleButton aggiungiProiezione;
@@ -143,11 +142,6 @@ public class AggiungiProiezioneController extends MenuController implements Init
 		
 	}
 	
-	
-	@Override
-	public String getNomeFile() {
-		return NOMEFILE;
-	}
 
 	public Window getWindow() {
 	    return prezzo.getScene().getWindow(); // ATTENZIONE non molto corretto ma funzionante

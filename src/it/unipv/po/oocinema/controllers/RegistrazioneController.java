@@ -52,7 +52,7 @@ public class RegistrazioneController {
 
     @FXML
     void login(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "login.fxml");
+    	WindowsHandler.openWindow(getClass(), "../view/scenes/login.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 

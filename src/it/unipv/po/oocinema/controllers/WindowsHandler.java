@@ -17,7 +17,7 @@ public class WindowsHandler {
 	public static void openWindow(Class<?> c, String fxmlName) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(c.getResource("../view/scenes/" + fxmlName));
+			root = FXMLLoader.load(c.getResource(fxmlName));
 			Stage stage = new Stage();
 																														
 			stage.setScene(new Scene(root));

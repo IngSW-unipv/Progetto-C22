@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 
 public class AggiungiCassaController extends MenuController{
 
-	private final String NOMEFILE = "aggiungiCassa.fxml";
 	private DBFacade facade = new DBFacade();
 	
     @FXML
@@ -39,10 +38,4 @@ public class AggiungiCassaController extends MenuController{
 	public Window getWindow() {
 		return username.getScene().getWindow();
 	}
-
-	@Override
-	public String getNomeFile() {
-		return NOMEFILE;
-	}
-
 }

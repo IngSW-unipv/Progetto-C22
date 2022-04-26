@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
@@ -24,8 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
 public class CassaController extends MenuController implements Initializable {
-	
-	private final String NOMEFILE = "cassa.fxml";
 
 	private DBFacade facade = new DBFacade();
 	
@@ -54,7 +53,7 @@ public class CassaController extends MenuController implements Initializable {
 
     @FXML
     void aggiungiCassa(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "aggiungiCassa.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/aggiungiCassa.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
@@ -108,12 +107,6 @@ public class CassaController extends MenuController implements Initializable {
 	@Override
 	public Window getWindow() {
 		return rimuovi.getScene().getWindow();
-	}
-
-
-	@Override
-	public String getNomeFile() {
-		return NOMEFILE;
 	}
 
 }

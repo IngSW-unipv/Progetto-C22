@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
@@ -23,8 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
 public class ProiezioneController extends MenuController implements Initializable{
-
-	private final String NOMEFILE = "proiezione.fxml";
 
 	private DBFacade facade = new DBFacade();
 	
@@ -75,7 +75,7 @@ public class ProiezioneController extends MenuController implements Initializabl
 
     @FXML
     void aggiungiProiezione(MouseEvent event) {
-    	WindowsHandler.openWindow(getClass(), "aggiungiProiezione.fxml");
+    	WindowsHandler.openWindow(getClass(), "../../view/scenes/aggiungiProiezione.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
@@ -129,12 +129,6 @@ public class ProiezioneController extends MenuController implements Initializabl
 		return rimuovi.getScene().getWindow();
 	}
 
-
-	@Override
-	public String getNomeFile() {
-		return NOMEFILE;
-	}
-	
 	public class InnerProiezione{
 		int id;
 		String titolo;

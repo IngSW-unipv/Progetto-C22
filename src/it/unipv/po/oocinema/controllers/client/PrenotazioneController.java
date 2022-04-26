@@ -63,7 +63,7 @@ public class PrenotazioneController extends MenuController implements Initializa
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
     	p.setAcquirente(MenuController.getCliente());
-    	p.setId(13);
+    	p.setId(14);
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);
