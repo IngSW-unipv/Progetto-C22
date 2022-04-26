@@ -40,4 +40,6 @@ public interface ICinemaInfoDAO {
 	public String getEmail() throws SQLException;
 	
 	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException;
+
+	public Acquirente getAdmin() throws SQLException;
 }

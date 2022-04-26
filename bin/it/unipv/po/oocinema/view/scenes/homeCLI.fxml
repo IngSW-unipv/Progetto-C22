@@ -24,19 +24,14 @@
             <VBox prefHeight="600.0" prefWidth="305.0" style="-fx-background-color: #D3D3D3;" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="42.0" prefWidth="435.0" />
+                  <Pane />
+                  <Pane prefHeight="143.0" prefWidth="305.0">
+                     <children>
+                        <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" pickOnBounds="true" preserveRatio="true" />
+                     </children></Pane>
                   <Pane>
                      <children>
-                        <Label layoutX="70.0" layoutY="2.0" prefHeight="49.0" prefWidth="161.0" text="OOCINEMA" textFill="#063c69">
-                           <font>
-                              <Font name="Cambria Bold" size="30.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="37.0" prefWidth="435.0" />
-                  <Pane>
-                     <children>
-                        <VBox alignment="CENTER" layoutX="40.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
+                        <VBox alignment="CENTER" layoutX="42.0" layoutY="48.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
                            <children>
                               <Pane prefHeight="0.0" prefWidth="297.0" />
                               <Label fx:id="titoloFilmSel" alignment="CENTER" prefHeight="0.0" prefWidth="222.0" text="Titolo" textFill="WHITE">

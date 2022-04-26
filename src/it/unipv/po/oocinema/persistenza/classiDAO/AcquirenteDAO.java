@@ -194,4 +194,24 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		}
 	}
 
+	@Override
+	public Cliente getUtenteByUser(Acquirente inputAcquirente) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		String query = "SELECT * FROM acquirente where user= ?;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		st1.setString(1, inputAcquirente.getUser());
+		ResultSet result = st1.executeQuery();
+		
+		if(result.next()) {
+			Cliente c = new Cliente(result.getString("user"),result.getString("psw"),
+					result.getString("nome"),result.getString("cognome"),result.getString("compleanno"));
+			MySQLConnectionFactory.closeConnection(conn);
+			return c;
+		} else {
+			MySQLConnectionFactory.closeConnection(conn);
+			return null;
+		}
+			
+	}
+
 }

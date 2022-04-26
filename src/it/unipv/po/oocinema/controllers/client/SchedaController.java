@@ -32,6 +32,8 @@ public class SchedaController extends ClientMenuController implements Initializa
 
     @FXML
     private Label descrizione;
+    @FXML
+    private ImageView logo;
 
     @FXML
     private ComboBox<String> giornoCombo;
@@ -78,6 +80,8 @@ public class SchedaController extends ClientMenuController implements Initializa
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Image i = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
+        logo.setImage(i);
 		Film f ;
 		try {
 			f = facade.getFilmbyTitolo(new Film(CLIController.getTitoloFilmSel()));

@@ -42,6 +42,8 @@ public class LoginController {
 
     @FXML
     private TextField user;
+    
+    private static Acquirente utente;
    
 
     @FXML
@@ -50,16 +52,23 @@ public class LoginController {
     		Acquirente log = new Acquirente(user.getText(),password.getText());
 			
     		if(facade.loginAdmin(log)) {
+    			utente = facade.getAdmin();
     			WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");
+    			WindowsHandler.closeWindow(getWindow());
+    			
+    			
+    		} else {
+	    		if(!facade.login(log)) {
+	    			Alert alert = new Alert(AlertType.WARNING, "Utente o password errati");
+	    	    	alert.showAndWait(); 
+	    		}else {
+	    			 utente = facade.getUtentebyUser(log);
+					WindowsHandler.openWindow(getClass(), "../view/scenes/homeCLI.fxml");
+				    WindowsHandler.closeWindow(getWindow());
+				   
+				}
+	    		
     		}
-    		if(!facade.login(log)) {
-    			Alert alert = new Alert(AlertType.WARNING, "Utente o password errati");
-    	    	alert.showAndWait(); 
-    		}else {
-				WindowsHandler.openWindow(getClass(), "../view/scenes/homeCLI.fxml");
-				ClientMenuController.setCliente(log);
-			    WindowsHandler.closeWindow(getWindow());
-			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,5 +89,13 @@ public class LoginController {
     public Window getWindow() {
 		return user.getScene().getWindow();
 	}
+    
+    public static Acquirente getCliente() {
+    	return utente;
+    }
+    
+    public static void setCliente(Acquirente c) {
+    	utente = c;
+    }
 
 }

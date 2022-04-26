@@ -298,5 +298,13 @@ public class DBFacade {
 	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException {
 		return cinemaInfoDAO.loginAdmin(inputAcquirente);
 	}
+
+	public Acquirente getUtentebyUser(Acquirente inputAcquirente) throws SQLException {
+		return acquirenteDAO.getUtenteByUser(inputAcquirente);
+	}
+
+	public Acquirente getAdmin() throws SQLException{
+		return cinemaInfoDAO.getAdmin();
+	}
 		
 }

@@ -90,5 +90,7 @@ public interface IAcquirenteDAO {
 	 */
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException;
 
+	public Acquirente getUtenteByUser(Acquirente inputAcquirente)throws SQLException;
+
 	
 }

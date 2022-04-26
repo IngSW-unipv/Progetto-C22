@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.google.zxing.WriterException;
+
+import it.unipv.po.oocinema.controllers.LoginController;
 import it.unipv.po.oocinema.controllers.TicketHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
@@ -27,6 +29,9 @@ public class PrenotazioneController extends ClientMenuController implements Init
 
 	 @FXML
 	 private Button aggiungi;
+	 
+	 @FXML
+	 private ImageView logo;
 
 	 @FXML
 	 private ComboBox<Character> filaCombo;
@@ -57,7 +62,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
     	Prenotazione p = new Prenotazione();
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
-    	p.setAcquirente(ClientMenuController.getCliente());
+    	p.setAcquirente(LoginController.getCliente());
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);
@@ -71,7 +76,8 @@ public class PrenotazioneController extends ClientMenuController implements Init
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		Image i = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
+        logo.setImage(i);
 		setLabelText();
 		initializeRighe();	
 	

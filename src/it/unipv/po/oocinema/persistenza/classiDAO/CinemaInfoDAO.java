@@ -84,7 +84,7 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		String query = "SELECT email FROM cinema_info;";
 		st1 = conn.prepareStatement(query);
 		result=st1.executeQuery(query);
-		String email = result.getString("telefono");
+		String email = result.getString("email");
 		MySQLConnectionFactory.closeConnection(conn);
 		return email;
 	}
@@ -104,6 +104,26 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		}	
 		MySQLConnectionFactory.closeConnection(conn);
 		return log;
+	}
+	
+	@Override
+	public Acquirente getAdmin() throws SQLException {
+		conn = MySQLConnectionFactory.connect(conn);
+		PreparedStatement st1;
+		ResultSet result;
+		String query = "SELECT user,password from cinema_info;";
+		st1 = conn.prepareStatement(query);
+		result=st1.executeQuery();
+		
+		if( result.next()){
+			Acquirente a = new Acquirente(result.getString("user"),result.getString("password"));
+			MySQLConnectionFactory.closeConnection(conn);
+			return a;
+		}else {
+			MySQLConnectionFactory.closeConnection(conn);
+			return null;
+		}
+
 	}
 
 }

@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import it.unipv.po.oocinema.controllers.LoginController;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
@@ -14,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class OrdiniController extends ClientMenuController implements Initializable{
 
@@ -37,6 +41,8 @@ public class OrdiniController extends ClientMenuController implements Initializa
 
     @FXML
     private TableView<InnerPrenotazione> tabella;
+    @FXML
+    private ImageView logo;
     
     private DBFacade facade = new DBFacade();
 
@@ -44,6 +50,8 @@ public class OrdiniController extends ClientMenuController implements Initializa
    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
+        logo.setImage(image);
 		
 		colonnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		colonnaFilm.setCellValueFactory(new PropertyValueFactory<>("film"));
@@ -66,7 +74,7 @@ public class OrdiniController extends ClientMenuController implements Initializa
 		datiTabella.removeAll(datiTabella);
 		ArrayList<Prenotazione> elencoPrenotazioni = new ArrayList<Prenotazione>();
 		try {
-			elencoPrenotazioni = facade.getPrenotazioniFutureByCliente(ClientMenuController.getCliente());
+			elencoPrenotazioni = facade.getPrenotazioniFutureByCliente(LoginController.getCliente());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -25,17 +25,13 @@
                   <Pane prefHeight="42.0" prefWidth="435.0" />
                   <Pane>
                      <children>
-                        <Label layoutX="70.0" layoutY="2.0" prefHeight="49.0" prefWidth="161.0" text="OOCINEMA" textFill="#063c69">
-                           <font>
-                              <Font name="Cambria Bold" size="30.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
                   <Pane prefHeight="37.0" prefWidth="435.0" />
                   <Pane>
                      <children>
-                        <VBox alignment="CENTER" layoutX="40.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
+                        <VBox alignment="CENTER" layoutX="42.0" layoutY="37.0" prefHeight="363.0" prefWidth="222.0" stylesheets="@style.css">
                            <children>
                               <Pane prefHeight="0.0" prefWidth="297.0" />
                               <Label fx:id="titoloFilmSel" alignment="CENTER" prefHeight="0.0" prefWidth="222.0" text="Titolo" textFill="WHITE">
@@ -142,7 +138,7 @@
                         <Pane prefHeight="84.0" prefWidth="96.0" />
                      </children>
                   </HBox>
-                  <Pane prefHeight="395.0" prefWidth="895.0">
+                  <Pane fx:id="logo" prefHeight="395.0" prefWidth="895.0">
                      <children>
                         <ComboBox fx:id="giornoCombo" layoutX="618.0" layoutY="235.0" prefHeight="36.0" prefWidth="180.0" promptText="Scegli il GIORNO" styleClass="controls" stylesheets="@style.css" />
                         <ComboBox fx:id="oraCombo" layoutX="618.0" layoutY="321.0" onMousePressed="#scegliOra" prefHeight="36.0" prefWidth="180.0" promptText="Scegli l'ORA" styleClass="controls" stylesheets="@style.css" />
