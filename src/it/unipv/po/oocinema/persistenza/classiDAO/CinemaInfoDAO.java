@@ -44,7 +44,10 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		String query = "SELECT indirizzo FROM cinema_info;";
 		st1 = conn.prepareStatement(query);
 		result=st1.executeQuery(); //fare if?
-		String indirizzo = result.getString("indirizzo");
+		String indirizzo;
+		if(result.next()) {
+			indirizzo = result.getString("indirizzo");
+		} else indirizzo = "";
 		MySQLConnectionFactory.closeConnection(conn);
 		return indirizzo;
 	}
@@ -64,7 +67,10 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		String query = "SELECT telefono FROM cinema_info;";
 		st1 = conn.prepareStatement(query);
 		result=st1.executeQuery(query);
-		String telefono = result.getString("telefono");
+		String telefono;
+		if(result.next()) {
+			telefono = result.getString("telefono");
+		} else telefono = "";
 		MySQLConnectionFactory.closeConnection(conn);
 		return telefono;
 	}
@@ -84,7 +90,10 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		String query = "SELECT email FROM cinema_info;";
 		st1 = conn.prepareStatement(query);
 		result=st1.executeQuery(query);
-		String email = result.getString("email");
+		String email;
+		if(result.next()) {
+			email = result.getString("email");
+		} else email = "";
 		MySQLConnectionFactory.closeConnection(conn);
 		return email;
 	}

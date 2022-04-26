@@ -1,10 +1,14 @@
 package it.unipv.po.oocinema.controllers;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+
 import it.unipv.po.oocinema.controllers.client.ClientMenuController;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Window;
 
-public class LoginController {
+public class LoginController implements Initializable{
 	
 	DBFacade facade = new DBFacade();
 
@@ -97,5 +101,18 @@ public class LoginController {
     public static void setCliente(Acquirente c) {
     	utente = c;
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		try {
+			telLabel.setText(facade.getTelefono());
+			emailLabel.setText(facade.getEmail());
+			indirizzoLabel.setText(facade.getIndirizzo());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

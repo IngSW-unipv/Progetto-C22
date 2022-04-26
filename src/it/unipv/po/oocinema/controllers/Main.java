@@ -21,11 +21,12 @@ public class Main extends Application {
 		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/login.fxml"));
 		  primaryStage.setTitle("Home OOCinema"); 
 		  primaryStage.setScene(new Scene(root)); 
-		  primaryStage.setHeight(637); 
-		  primaryStage.setWidth(1210);
+		  primaryStage.setHeight(450); 
+		  primaryStage.setWidth(600);
 		  primaryStage.centerOnScreen(); 
-		  primaryStage.show();
 		  primaryStage.setResizable(false);
+		  primaryStage.show();
+		  
 
     }
 

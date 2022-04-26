@@ -17,15 +17,19 @@ public class WindowsHandler {
 	public static void openWindow(Class<?> c, String fxmlName) {
 		Parent root;
 		try {
-			System.out.println(fxmlName);
 			root = FXMLLoader.load(c.getResource(fxmlName));
 			Stage stage = new Stage();
 																														
 			stage.setScene(new Scene(root));
-			stage.setHeight(670);
-	        stage.setWidth(1210);
+			if(fxmlName.contains("registrazione") || fxmlName.contains("login")) {
+				stage.setHeight(450);
+		        stage.setWidth(600);
+			}else {
+				stage.setHeight(670);
+		        stage.setWidth(1210);
+			}
 	        stage.centerOnScreen();
-	   
+	        stage.setResizable(false);
 			stage.show();
 			
 		} catch (IOException e) {
