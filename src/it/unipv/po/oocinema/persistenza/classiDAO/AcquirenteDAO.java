@@ -193,4 +193,5 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 			return true;
 		}
 	}
+
 }

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.ICinemaInfoDAO;
 
@@ -85,6 +87,23 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		String email = result.getString("telefono");
 		MySQLConnectionFactory.closeConnection(conn);
 		return email;
+	}
+
+	@Override
+	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		PreparedStatement st1;
+		ResultSet result;
+		String query = "SELECT password from cinema_info where user = ?;";
+		st1 = conn.prepareStatement(query);
+		st1.setString(1, inputAcquirente.getUser());
+		result=st1.executeQuery();
+		boolean log = false;
+		if( result.next() && result.getString("password").equals(inputAcquirente.getPassword())) {
+			log = true;
+		}	
+		MySQLConnectionFactory.closeConnection(conn);
+		return log;
 	}
 
 }

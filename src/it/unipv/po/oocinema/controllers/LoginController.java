@@ -49,14 +49,14 @@ public class LoginController {
     	try {
     		Acquirente log = new Acquirente(user.getText(),password.getText());
 			
+    		if(facade.loginAdmin(log)) {
+    			WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");
+    		}
     		if(!facade.login(log)) {
     			Alert alert = new Alert(AlertType.WARNING, "Utente o password errati");
     	    	alert.showAndWait(); 
     		}else {
-				int tipo = facade.getTipoByUser(log);
-				if(tipo == 0)
-					WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");
-				else WindowsHandler.openWindow(getClass(), "../view/scenes/homeCLI.fxml");
+				WindowsHandler.openWindow(getClass(), "../view/scenes/homeCLI.fxml");
 				ClientMenuController.setCliente(log);
 			    WindowsHandler.closeWindow(getWindow());
 			}

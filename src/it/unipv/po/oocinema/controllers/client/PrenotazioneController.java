@@ -58,7 +58,6 @@ public class PrenotazioneController extends ClientMenuController implements Init
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
     	p.setAcquirente(ClientMenuController.getCliente());
-    	p.setId(22);
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);

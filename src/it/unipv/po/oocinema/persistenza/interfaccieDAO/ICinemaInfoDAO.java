@@ -2,6 +2,8 @@ package it.unipv.po.oocinema.persistenza.interfaccieDAO;
 
 import java.sql.SQLException;
 
+import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+
 /**
  * Interfaccia che contiene i metodi per gestire la persistenza dei dati 
  * dati logistici del cinema: indirizzo, telefono e email.  
@@ -36,4 +38,6 @@ public interface ICinemaInfoDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public String getEmail() throws SQLException;
+	
+	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException;
 }

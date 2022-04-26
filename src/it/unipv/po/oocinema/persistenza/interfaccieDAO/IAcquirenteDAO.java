@@ -89,4 +89,6 @@ public interface IAcquirenteDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException;
+
+	
 }

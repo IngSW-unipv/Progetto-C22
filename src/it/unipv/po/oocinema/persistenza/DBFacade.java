@@ -294,5 +294,9 @@ public class DBFacade {
 	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		return postoDAO.getPostiOccupatiByRiga(inputProiezione, inputPosto);
 	}
+
+	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException {
+		return cinemaInfoDAO.loginAdmin(inputAcquirente);
+	}
 		
 }
