@@ -24,6 +24,15 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		super();
 	}
 	
+	/**
+	 * Metodo che restituisce tutte le prenotazioni future effettuate da un cliente. 
+	 * 
+	 * @param inputAcquirente contiene l'identificativo del cliente di cui si vuole 
+	 * 						  conoscere le prenotazioni future.
+	 * @return lista delle prenotazioni future.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -50,6 +59,14 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		return prenotazioni;
 	}
 	
+	/**
+	 * Metodo usato per rendere persistente una nuova prenotazione.
+	 * 
+	 * @param inputPrenotazione oggetto che contiene gli attributi della prenotazione
+	 * 							da aggiungere.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void aggiungiPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -65,6 +82,13 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
+	/**
+	 * Metodo usato per registrare tutti i posti specifici occupati da una prenotazione.
+	 * 
+	 * @param inputPrenotazione oggetto che contiene gli attributi della prenotazione.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void occupaPosti(Prenotazione inputPrenotazione) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);

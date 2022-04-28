@@ -92,5 +92,4 @@ public interface IAcquirenteDAO {
 
 	public Acquirente getUtenteByUser(Acquirente inputAcquirente)throws SQLException;
 
-	
 }
