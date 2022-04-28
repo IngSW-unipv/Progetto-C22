@@ -30,9 +30,6 @@ public class CLIController extends ClientMenuController implements Initializable
     private GridPane grid;
     
     @FXML
-    private ImageView logo;
-
-    @FXML
     private ImageView locandinaFilmSel;
 
     @FXML
@@ -56,8 +53,7 @@ public class CLIController extends ClientMenuController implements Initializable
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
+  
 		try {
 			films = facade.getTuttiFilm();
 		} catch (SQLException e1) {
@@ -115,7 +111,8 @@ public class CLIController extends ClientMenuController implements Initializable
     private void setFilmSel(Film film) {
     	titolo = film.getTitolo();        
     	titoloFilmSel.setText(film.getTitolo());
-        image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
+    	System.out.println(film.getCoverPath());
+        image = new Image(getClass().getResourceAsStream("../.."+film.getCoverPath()));
         locandinaFilmSel.setImage(image);
     }
     

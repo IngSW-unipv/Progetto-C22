@@ -35,8 +35,6 @@ public class CassaController extends AdminMenuController implements Initializabl
 
     @FXML
     private Label proiezioni;
-    @FXML
-    private ImageView logo;
 
     @FXML
     private Button rimuovi;
@@ -80,8 +78,6 @@ public class CassaController extends AdminMenuController implements Initializabl
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
 
 		colonnaUser.setCellValueFactory(new PropertyValueFactory<>("user"));
 		colonnaPassword.setCellValueFactory(new PropertyValueFactory<>("password"));

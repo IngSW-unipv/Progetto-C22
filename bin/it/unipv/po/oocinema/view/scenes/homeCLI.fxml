@@ -27,7 +27,10 @@
                   <Pane />
                   <Pane prefHeight="143.0" prefWidth="305.0">
                      <children>
-                        <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/logo.png" />
+                           </image></ImageView>
                      </children></Pane>
                   <Pane>
                      <children>

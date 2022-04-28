@@ -12,6 +12,7 @@ import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -19,11 +20,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class AggiungiProiezioneController extends AdminMenuController{
+public class AggiungiProiezioneController extends AdminMenuController implements Initializable{
 	
 	private DBFacade facade = new DBFacade();
 	@FXML
@@ -35,8 +34,6 @@ public class AggiungiProiezioneController extends AdminMenuController{
     @FXML
     private Label esci;
 
-    @FXML
-    private ImageView logo;
     @FXML
     private Label film;
 
@@ -81,8 +78,6 @@ public class AggiungiProiezioneController extends AdminMenuController{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
 		initializeFilm();
 		initializeSala();
 		initializeOra();

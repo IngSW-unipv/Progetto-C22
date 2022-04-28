@@ -33,8 +33,6 @@ public class FilmController extends AdminMenuController implements Initializable
     private Button rimuovi;
     
     @FXML
-    private ImageView logo;
-    @FXML
     private TextField idFilm;
 
     @FXML
@@ -79,8 +77,6 @@ public class FilmController extends AdminMenuController implements Initializable
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
 		
 		colonnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));

@@ -79,6 +79,7 @@ public class RegistrazioneController implements Initializable{
 			errore.showAndWait();
 			e.printStackTrace();
 		}
+    	login(event);
     }
 
     

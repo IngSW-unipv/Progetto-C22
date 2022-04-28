@@ -31,9 +31,6 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	 private Button aggiungi;
 	 
 	 @FXML
-	 private ImageView logo;
-
-	 @FXML
 	 private ComboBox<Character> filaCombo;
 
 	 @FXML
@@ -76,8 +73,8 @@ public class PrenotazioneController extends ClientMenuController implements Init
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Image i = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(i);
+	
+        
 		setLabelText();
 		initializeRighe();	
 	

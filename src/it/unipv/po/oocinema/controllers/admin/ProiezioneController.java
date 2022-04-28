@@ -35,8 +35,6 @@ public class ProiezioneController extends AdminMenuController implements Initial
 
     @FXML
     private TextField idLabel;
-    @FXML
-    private ImageView logo;
 
     @FXML
     private Button rimuovi;
@@ -65,8 +63,7 @@ public class ProiezioneController extends AdminMenuController implements Initial
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
+
     	
     	colonnaGiorno.setCellValueFactory(new PropertyValueFactory<>("giorno"));
 		colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));

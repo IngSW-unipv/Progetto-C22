@@ -25,7 +25,10 @@
                   <Pane prefHeight="42.0" prefWidth="435.0" />
                   <Pane>
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/logo.png" />
+                           </image></ImageView>
                      </children>
                   </Pane>
                   <Pane prefHeight="37.0" prefWidth="435.0" />

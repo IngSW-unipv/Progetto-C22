@@ -41,17 +41,13 @@ public class OrdiniController extends ClientMenuController implements Initializa
 
     @FXML
     private TableView<InnerPrenotazione> tabella;
-    @FXML
-    private ImageView logo;
-    
+
     private DBFacade facade = new DBFacade();
 
     ObservableList<InnerPrenotazione> datiTabella = FXCollections.observableArrayList();
    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
 		
 		colonnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		colonnaFilm.setCellValueFactory(new PropertyValueFactory<>("film"));

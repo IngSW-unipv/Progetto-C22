@@ -1,19 +1,15 @@
 package it.unipv.po.oocinema.controllers.admin;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import it.unipv.po.oocinema.controllers.LoginController;
+
+
 import it.unipv.po.oocinema.controllers.WindowsHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
-public class AdminMenuController implements Initializable{
+public class AdminMenuController {
 	
 	@FXML
 	private Label proiezione;
@@ -27,9 +23,6 @@ public class AdminMenuController implements Initializable{
     private Label cassa;
     @FXML
     private Label home;
-    
-    @FXML
-    private ImageView logo;
 
 
 	 @FXML
@@ -65,11 +58,4 @@ public class AdminMenuController implements Initializable{
 	    	return home.getScene().getWindow();
 	    }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		Image image = new Image(getClass().getResourceAsStream("../../resources/logo.png"));
-        logo.setImage(image);
-        messaggio.setText("Ciao "+LoginController.getCliente().getUser());
-		
-	}
 }
