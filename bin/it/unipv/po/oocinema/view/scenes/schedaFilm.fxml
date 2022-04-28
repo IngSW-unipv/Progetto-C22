@@ -88,7 +88,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="65.0" prefWidth="291.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="esci" onMousePressed="#esci" prefHeight="62.0" prefWidth="102.0" text="Esci" textFill="#063c69">
+                        <Label fx:id="esci" onMousePressed="#esci" prefHeight="62.0" prefWidth="102.0" text="Esci" textFill="#db0000">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
@@ -157,6 +157,13 @@
                            <font>
                               <Font name="Cambria" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/icons/icons8-carrello-della-spesa-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </ToggleButton>
                      </children>
                   </HBox>
