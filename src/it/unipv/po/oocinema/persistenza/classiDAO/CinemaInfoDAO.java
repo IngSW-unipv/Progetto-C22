@@ -11,7 +11,8 @@ import it.unipv.po.oocinema.persistenza.interfaccieDAO.ICinemaInfoDAO;
 
 /**
  * Classe che implementa l'interfaccia ICinemaInfoDAO e quindi contiene i metodi per
- * gestire la persistenza dei dati logistici del cinema: indirizzo, telefono e email.  
+ * gestire la persistenza dei dati logistici del cinema: indirizzo, telefono e email;
+ * oltre alle credenziali dell'amminisratore.  
  * 
  * @author GoF
  */

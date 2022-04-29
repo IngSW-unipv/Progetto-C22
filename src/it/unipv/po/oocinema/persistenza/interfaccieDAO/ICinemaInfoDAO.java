@@ -6,7 +6,8 @@ import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 
 /**
  * Interfaccia che contiene i metodi per gestire la persistenza dei dati 
- * dati logistici del cinema: indirizzo, telefono e email.  
+ * dati logistici del cinema: indirizzo, telefono e email; 
+ * oltre alle credenziali dell'amministratore.  
  * 
  * @author GoF
  */

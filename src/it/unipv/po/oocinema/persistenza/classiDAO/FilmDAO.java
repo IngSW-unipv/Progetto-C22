@@ -10,11 +10,22 @@ import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IFilmDAO;
 
-
+/**
+ * Classe che implementa l'interfaccia IFilmDAO e quindi contiene i metodi per
+ * gestire la persistenza di dati riguardanti i film. 
+ * 
+ * @author GoF
+ */
 public class FilmDAO implements IFilmDAO {
-
+	
+	/**
+	 * Connessione al database.
+	 */
 	private Connection conn;
 
+	/**
+	 * Costruttore.
+	 */
 	public FilmDAO() {
 		super();
 	}

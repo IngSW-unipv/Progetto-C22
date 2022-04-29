@@ -9,7 +9,7 @@ import it.unipv.po.oocinema.model.acquirenti.Cliente;
 
 /**
  * Interfaccia che contiene i metodi per gestire la persistenza di dati degli 
- * acquirenti, online e fisici, e dell'amministratore. 
+ * acquirenti, online e fisici. 
  * 
  * @author GoF
  */

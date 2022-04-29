@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.cinema.Film;
 
+/**
+ * Interfaccia che contiene i metodi per gestire la persistenza di dati dei 
+ * film. 
+ * 
+ * @author GoF
+ */
 public interface IFilmDAO {
 	
 	/**

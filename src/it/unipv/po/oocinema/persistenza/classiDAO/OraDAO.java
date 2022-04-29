@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IOraDAO;
 
-public class OraDAO implements IOraDAO{ //sigelton?
+/**
+ * Classe che implementa l'interfaccia IOraDAO e quindi un metodo usato per
+ * recuperare le fascie orarie predefinite. 
+ * 
+ * @author GoF
+ */
+public class OraDAO implements IOraDAO{
 	
 	private Connection conn;
 

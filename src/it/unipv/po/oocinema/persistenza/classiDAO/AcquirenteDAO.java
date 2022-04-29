@@ -14,7 +14,7 @@ import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 
 /**
  * Classe che implementa l'interfaccia IAcquirenteDAO e quindi contiene i metodi per
- * gestire la persistenza di dati degli acquirenti, online e fisici, e dell'amministratore. 
+ * gestire la persistenza di dati degli acquirenti, online e fisici. 
  * 
  * @author GoF
  */
