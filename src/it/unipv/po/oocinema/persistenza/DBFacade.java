@@ -217,12 +217,28 @@ public class DBFacade {
 		return cinemaInfoDAO.getEmail();
 	}
 	
-	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException {
-		return cinemaInfoDAO.loginAdmin(inputAcquirente);
+	/**
+	 * Metodo usato per verificare le credenziali dell'amministratore. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene username e password dell'
+	 * 						  amministratore che andranno poi verificate.
+	 * @return true o false a seconda se le credenziali sono corrette. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public boolean loginAmministratore(Acquirente inputAcquirente) throws SQLException {
+		return cinemaInfoDAO.loginAmministratore(inputAcquirente);
 	}
-
-	public Acquirente getAdmin() throws SQLException{
-		return cinemaInfoDAO.getAdmin();
+	
+	/**
+	 * Metodo usato per recuperare username e password dell'aministratore.
+	 * 
+	 * @return oggetto Acquirente che contiene le credenziali dell'amministratore.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public Acquirente getAmministratore() throws SQLException{
+		return cinemaInfoDAO.getAmministratore();
 	}
 	
 	/**
@@ -289,6 +305,54 @@ public class DBFacade {
 		return filmDAO.getFilmbyTitolo(inputFilm);
 	}
 	
+	/**
+	 * Metodo che restituisce tutte le fascie orarie possibili in cui si può
+	 * programmare una proiezione. 
+	 * 
+	 * @return lista di tipo String in cui vi sono elencate tutte le fascie
+	 * orarie possibili in cui si può programmare una proiezione. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public ArrayList<String> getTutteOre() throws SQLException { 
+		return oraDAO.getTutteOre();
+	}
+	
+	public ArrayList<Posto> getTuttiPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
+		return postoDAO.getTuttiPostiByPrenotazione(inputPrenotazione);
+	}
+	
+	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
+		return postoDAO.getPostiLiberiByRiga(inputProiezione, inputPosto);
+	}	
+	
+	/**
+	 * Metodo che restituisce tutte le prenotazioni future effettuate da un cliente. 
+	 * 
+	 * @param inputAcquirente contiene l'identificativo del cliente di cui si vuole 
+	 * 						  conoscere le prenotazioni future.
+	 * @return lista delle prenotazioni future.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente inputAcquirente) throws SQLException{
+		return prenotazioneDAO.getPrenotazioniFutureByCliente(inputAcquirente);
+	}
+	
+	/**
+	 * Metodo usato per rendere persistente una nuova prenotazione specificando anche 
+	 * i singoli posti occupati.
+	 * 
+	 * @param inputPrenotazione oggetto che contiene gli attributi della prenotazione
+	 * 							da aggiungere.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public void aggiungiPrenotazione(Prenotazione inputProiezione) throws SQLException{
+		prenotazioneDAO.aggiungiPrenotazione(inputProiezione);
+		prenotazioneDAO.occupaPosti(inputProiezione);
+	}
+	
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
 		 proiezioneDAO.aggiungiProiezione(inputProiezione);
 	}
@@ -331,33 +395,6 @@ public class DBFacade {
 		return proiezioneDAO.getNumProiezioniByFilm(inputFilm);
 	}
 	
-	/**
-	 * Metodo che restituisce tutte le prenotazioni future effettuate da un cliente. 
-	 * 
-	 * @param inputAcquirente contiene l'identificativo del cliente di cui si vuole 
-	 * 						  conoscere le prenotazioni future.
-	 * @return lista delle prenotazioni future.
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente inputAcquirente) throws SQLException{
-		return prenotazioneDAO.getPrenotazioniFutureByCliente(inputAcquirente);
-	}
-	
-	/**
-	 * Metodo usato per rendere persistente una nuova prenotazione specificando anche 
-	 * i singoli posti occupati.
-	 * 
-	 * @param inputPrenotazione oggetto che contiene gli attributi della prenotazione
-	 * 							da aggiungere.
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	public void aggiungiPrenotazione(Prenotazione inputProiezione) throws SQLException{
-		prenotazioneDAO.aggiungiPrenotazione(inputProiezione);
-		prenotazioneDAO.occupaPosti(inputProiezione);
-	}
-	
 	public ArrayList<Sala> getTutteSale() throws SQLException {
 		return salaDAO.getTutteSale();
 	}
@@ -366,17 +403,10 @@ public class DBFacade {
 		return salaDAO.getSalaById(inputSala);
 	}
 
-	public ArrayList<String> getTutteOre() throws SQLException { 
-		return oraDAO.getTutteOre();
-	}
-
 	/*
 	 * public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws
 	 * SQLException{ //riga e non fila cambiare nel database return
 	 * postoDAO.getRigheLibere(inputProiezione); }
 	 */
 	
-	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
-		return postoDAO.getPostiOccupatiByRiga(inputProiezione, inputPosto);
-	}	
 }

@@ -62,7 +62,7 @@ public class PostoDAO implements IPostoDAO {
 	 */
 	
 	@Override
-	public ArrayList<Integer> getPostiOccupatiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
+	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		String query ="select colonna from posto A join prenotazione B on A.prenotazione_id=B.id\r\n"
 				     + "where B.proiezione_id=? and riga=?;";

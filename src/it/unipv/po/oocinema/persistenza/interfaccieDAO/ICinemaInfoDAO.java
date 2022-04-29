@@ -40,7 +40,23 @@ public interface ICinemaInfoDAO {
 	 */
 	public String getEmail() throws SQLException;
 	
-	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException;
-
-	public Acquirente getAdmin() throws SQLException;
+	/**
+	 * Metodo usato per verificare le credenziali dell'amministratore. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene username e password dell'
+	 * 						  amministratore che andranno poi verificate.
+	 * @return true o false a seconda se le credenziali sono corrette. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public boolean loginAmministratore(Acquirente inputAcquirente) throws SQLException;
+	
+	/**
+	 * Metodo usato per recuperare username e password dell'aministratore.
+	 * 
+	 * @return oggetto Acquirente che contiene le credenziali dell'amministratore.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public Acquirente getAmministratore() throws SQLException;
 }

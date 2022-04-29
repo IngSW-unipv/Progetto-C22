@@ -55,8 +55,8 @@ public class LoginController implements Initializable{
     	try {
     		Acquirente log = new Acquirente(user.getText(),password.getText());
 			
-    		if(facade.loginAdmin(log)) {
-    			utente = facade.getAdmin();
+    		if(facade.loginAmministratore(log)) {
+    			utente = facade.getAmministratore();
     			WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");
     			WindowsHandler.closeWindow(getWindow());
     			

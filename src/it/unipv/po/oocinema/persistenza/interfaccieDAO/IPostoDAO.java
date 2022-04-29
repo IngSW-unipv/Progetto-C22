@@ -14,7 +14,8 @@ import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
  * @author GoF
  */
 public interface IPostoDAO {
+	
 	public ArrayList<Posto> getTuttiPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException;
 	//public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws SQLException;
-	public ArrayList<Integer> getPostiOccupatiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException;
+	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException;
 }
