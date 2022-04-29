@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -67,9 +68,9 @@ public class RegistrazioneController implements Initializable{
 			errore.showAndWait();
     	}
     	try {
-    		Cliente c = new Cliente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString());
-    		if(facade.controllaUser(c)) 
-    			facade.registrazione(c);
+    		Acquirente a = new Acquirente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString());
+    		if(facade.controllaUser(a)) 
+    			facade.registrazione(a);
     		else {
     			Alert errore = new Alert(AlertType.ERROR, "USER GIA' REGISTRATO");
     			errore.showAndWait();

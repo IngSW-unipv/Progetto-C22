@@ -53,8 +53,8 @@ public class LoginController implements Initializable{
     @FXML
     void login(MouseEvent event) {
     	try {
-    		Acquirente log = new Acquirente(user.getText(),password.getText());
-			
+    		Acquirente log = new Acquirente(user.getText());
+			log.setPassword(password.getText());
     		if(facade.loginAmministratore(log)) {
     			utente = facade.getAmministratore();
     			WindowsHandler.openWindow(getClass(), "../view/scenes/homeADM.fxml");

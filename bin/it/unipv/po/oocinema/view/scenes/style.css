@@ -48,6 +48,10 @@
 .background{
 	-fx-background-color: #063c69;
 }
+
+.background_table{
+	-fx-background-color: #b7dcfa;
+}
 .menu_button{
     -fx-background-color: #063c69;
     -fx-background-radius: 30;

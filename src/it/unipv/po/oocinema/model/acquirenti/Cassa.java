@@ -6,16 +6,11 @@ package it.unipv.po.oocinema.model.acquirenti;
 public class Cassa extends Acquirente{
 
 	public Cassa(String user, String pw_cassa) {
-		super(user,pw_cassa);
+		super(user,pw_cassa,null,null,null);
 	}
 	
 	public Cassa(String user) {
 		super(user);
-	}
-
-	@Override
-	public String getCompleanno() {
-		return null;
 	}
 	
 }

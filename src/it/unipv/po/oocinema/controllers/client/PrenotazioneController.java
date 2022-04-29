@@ -60,19 +60,14 @@ public class PrenotazioneController extends ClientMenuController implements Init
     	Prenotazione p = new Prenotazione();
     	p.setProiezione(SchedaController.getProiezione());
     	p.setPosti(postiScelti);
-    	p.setId(10);
+    	p.setId(31);
     	p.setAcquirente(LoginController.getCliente());
     	if (p.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(p);
-				EmailController emailHandler = new EmailController("OOCINEMA", "oocinema.project@gmail.com","Password2021!","Pavia","");
-				try {
-					emailHandler.sendEmail(p);
-				} catch (WriterException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (SQLException e) {
+				EmailController.sendEmail(p); 
+			
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
