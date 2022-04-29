@@ -146,7 +146,8 @@ public class DBFacade {
 	}
 	
 	/**
-	 * Metodo che restituisce tutte le casse registrate e i loro attributi. 
+	 * Metodo che restituisce tutte le casse registrate e i loro attributi,
+	 * nel DB c'è un attributo tipo che è 1 per i clienti e 2 per le casse. 
 	 * 
 	 * @return lista delle casse registrate con i loro identificativi e 
 	 * 		   password associate.
@@ -155,19 +156,6 @@ public class DBFacade {
 	 */
 	public ArrayList<Cassa> getTutteCasse() throws SQLException {
 		return acquirenteDAO.getTutteCasse();
-	}
-	
-	/**
-	 * Metodo che restituisce la tipologia di un utente tra: cliente online, cassa e 
-	 * amministratore
-	 * 
-	 * @param inputCassa oggetto che contiene l'identificativo dell'utente.
-	 * @return numero intero: 0 per l'amministratore, 1 per il cliente e 2 per la cassa. 
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{ 
-		return acquirenteDAO.getTipoByUser(inputAcquirente);
 	}
 	
 	/**
@@ -180,6 +168,10 @@ public class DBFacade {
 	 */
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException{
 		return acquirenteDAO.controllaUser(inputAcquirente);
+	}
+	
+	public Acquirente getUtentebyUser(Acquirente inputAcquirente) throws SQLException {
+		return acquirenteDAO.getUtenteByUser(inputAcquirente);
 	}
 	
 	/**
@@ -213,6 +205,14 @@ public class DBFacade {
 	 */
 	public String getEmail() throws SQLException {
 		return cinemaInfoDAO.getEmail();
+	}
+	
+	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException {
+		return cinemaInfoDAO.loginAdmin(inputAcquirente);
+	}
+
+	public Acquirente getAdmin() throws SQLException{
+		return cinemaInfoDAO.getAdmin();
 	}
 	
 	/**
@@ -279,21 +279,6 @@ public class DBFacade {
 		return filmDAO.getFilmbyTitolo(inputFilm);
 	}
 	
-	/**
-	 * Metodo che restituisce il numero di proiezioni programmate dato l'identificativo di 
-	 * un film. 
-	 * 
-	 * @param inputFilm oggetto che contiene l'identificativo del film di cui contare le 
-	 * 		  proiezioni.
-	 * @return Numero di proiezioni programmate per il film fornito in input.
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException {
-		return filmDAO.getNumProiezioniByFilm(inputFilm);
-	}
-	
-	
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
 		 proiezioneDAO.aggiungiProiezione(inputProiezione);
 	}
@@ -320,6 +305,20 @@ public class DBFacade {
 	
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ 
 		return proiezioneDAO.getGiorniByFilm(inputFilm);
+	}
+	
+	/**
+	 * Metodo che restituisce il numero di proiezioni programmate dato l'identificativo di 
+	 * un film. 
+	 * 
+	 * @param inputFilm oggetto che contiene l'identificativo del film di cui contare le 
+	 * 		  proiezioni.
+	 * @return Numero di proiezioni programmate per il film fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException {
+		return proiezioneDAO.getNumProiezioniByFilm(inputFilm);
 	}
 	
 	/**
@@ -369,18 +368,5 @@ public class DBFacade {
 	
 	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		return postoDAO.getPostiOccupatiByRiga(inputProiezione, inputPosto);
-	}
-
-	public boolean loginAdmin(Acquirente inputAcquirente) throws SQLException { //non fa il login come gli altri?
-		return cinemaInfoDAO.loginAdmin(inputAcquirente);
-	}
-
-	public Acquirente getUtentebyUser(Acquirente inputAcquirente) throws SQLException {
-		return acquirenteDAO.getUtenteByUser(inputAcquirente);
-	}
-
-	public Acquirente getAdmin() throws SQLException{
-		return cinemaInfoDAO.getAdmin();
-	}
-		
+	}	
 }

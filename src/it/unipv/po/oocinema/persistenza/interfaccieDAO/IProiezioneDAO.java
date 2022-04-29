@@ -15,7 +15,16 @@ public interface IProiezioneDAO {
 	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException; //non è possibile avere lo stesso film contemporaneamente in due sale diverse
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException;
 	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException;
-	//public ArrayList<Proiezione> getAllProiezioniByFilmId(Film inputFilm) throws SQLException;
-
 	
+	/**
+	 * Metodo che restituisce il numero di proiezioni programmate dato l'identificativo di 
+	 * un film. 
+	 * 
+	 * @param inputFilm oggetto che contiene l'identificativo del film di cui contare le 
+	 * 		  proiezioni.
+	 * @return Numero di proiezioni programmate per il film fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException; //non va in proiezioneDAO?
 }

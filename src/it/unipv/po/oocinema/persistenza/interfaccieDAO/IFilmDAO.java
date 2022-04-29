@@ -60,16 +60,4 @@ public interface IFilmDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public Film getFilmbyTitolo(Film inputFilm) throws SQLException; //può essercene più di uno?
-	
-	/**
-	 * Metodo che restituisce il numero di proiezioni programmate dato l'identificativo di 
-	 * un film. 
-	 * 
-	 * @param inputFilm oggetto che contiene l'identificativo del film di cui contare le 
-	 * 		  proiezioni.
-	 * @return Numero di proiezioni programmate per il film fornito in input.
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException; //non va in proiezioneDAO?
 }

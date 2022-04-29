@@ -140,31 +140,6 @@ public class FilmDAO implements IFilmDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 		return f;
 	}
-	
-	/**
-	 * Metodo che restituisce il numero di proiezioni programmate dato l'identificativo di 
-	 * un film. 
-	 * 
-	 * @param inputFilm oggetto che contiene l'identificativo del film di cui contare le 
-	 * 		  proiezioni.
-	 * @return Numero di proiezioni programmate per il film fornito in input.
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	@Override
-	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException { //conta anche quelle passate
-		conn = MySQLConnectionFactory.connect(conn);
-		int r;
-		String query = "SELECT count(*) as NUM FROM proiezione GROUP BY film_id having film_id = ?";
-		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setInt(1, inputFilm.getId());
-		ResultSet result = st1.executeQuery();
-		if(result.next())
-			r = result.getInt("NUM");
-		else r = 0;
-		MySQLConnectionFactory.closeConnection(conn);
-		return r;
-	}	
 }
 
 

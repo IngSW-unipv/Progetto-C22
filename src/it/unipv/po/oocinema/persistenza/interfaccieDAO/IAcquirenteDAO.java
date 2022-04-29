@@ -60,7 +60,8 @@ public interface IAcquirenteDAO {
 	public void rimuoviCassa(Cassa inputCassa) throws SQLException;
 	
 	/**
-	 * Metodo che restituisce tutte le casse registrate e i loro attributi. 
+	 * Metodo che restituisce tutte le casse registrate e i loro attributi,
+	 * nel DB c'è un attributo tipo che è 1 per i clienti e 2 per le casse. 
 	 * 
 	 * @return lista delle casse registrate con i loro identificativi e 
 	 * 		   password associate.
@@ -68,26 +69,7 @@ public interface IAcquirenteDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public ArrayList<Cassa> getTutteCasse() throws SQLException;
-	
-	/**
-	 * Metodo che restituisce la tipologia di un utente tra: cliente online, cassa e 
-	 * amministratore
-	 * 
-	 * @param inputCassa oggetto che contiene l'identificativo dell'utente.
-	 * @return numero intero: 0 per l'amministratore, 1 per il cliente e 2 per la cassa. 
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException;
-	
-	/**
-	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
-	 * scelta non sia già registrata.
-	 * @param inputCassa oggetto che contiene i dati da registrate 
-	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
+
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException;
 
 	public Acquirente getUtenteByUser(Acquirente inputAcquirente)throws SQLException;

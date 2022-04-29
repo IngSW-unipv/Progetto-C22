@@ -123,7 +123,8 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	}
 
 	/**
-	 * Metodo che restituisce tutte le casse registrate e i loro attributi. 
+	 * Metodo che restituisce tutte le casse registrate e i loro attributi,
+	 * nel DB c'è un attributo tipo che è 1 per i clienti e 2 per le casse. 
 	 * 
 	 * @return lista delle casse registrate con i loro identificativi e 
 	 * 		   password associate.
@@ -143,30 +144,6 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return casse;
-	}
-	
-	/**
-	 * Metodo che restituisce la tipologia di un utente tra: cliente online, cassa e 
-	 * amministratore
-	 * 
-	 * @param inputCassa oggetto che contiene l'identificativo dell'utente.
-	 * @return numero intero: 0 per l'amministratore, 1 per il cliente e 2 per la cassa. 
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
-	 */
-	@Override
-	public int getTipoByUser(Acquirente inputAcquirente) throws SQLException{
-		conn = MySQLConnectionFactory.connect(conn);
-		String query = "SELECT tipo FROM acquirente where user= ?;";
-		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, inputAcquirente.getUser());
-		ResultSet result = st1.executeQuery();
-		int c;
-		if(result.next()) {
-			c=result.getInt("tipo"); 
-		}else c = -1;
-		MySQLConnectionFactory.closeConnection(conn);
-		return c;
 	}
 	
 	/**
@@ -209,8 +186,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		} else {
 			MySQLConnectionFactory.closeConnection(conn);
 			return null;
-		}
-			
+		}	
 	}
 
 }
