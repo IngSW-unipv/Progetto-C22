@@ -66,6 +66,9 @@ public class Prenotazione {
 	public Prenotazione() {
 		this.id = progressivo;
 		progressivo++;
+		this.posti = new ArrayList<Posto>();
+		ScontoFactory f = ScontoFactory.getInstance();
+		strategy = f.getScontoStartegy();
 	}
 
 	public void setId(int id) {

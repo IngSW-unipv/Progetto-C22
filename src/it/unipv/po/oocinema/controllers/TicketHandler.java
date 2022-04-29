@@ -29,6 +29,13 @@ public class TicketHandler {
 		file = "tickets/"+prenotazione.getId()+".pdf";
 		createTicket(prenotazione);
 	}
+	
+	
+	public String getFile() {
+		return file;
+	}
+
+
 	public void createTicket(Prenotazione prenotazione){
 		
 		try {
