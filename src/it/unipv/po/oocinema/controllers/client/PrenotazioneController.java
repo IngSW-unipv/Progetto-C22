@@ -3,6 +3,7 @@ package it.unipv.po.oocinema.controllers.client;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.google.zxing.WriterException;
@@ -48,22 +49,23 @@ public class PrenotazioneController extends ClientMenuController implements Init
 
 	 @FXML
 	 private Label titoloFilmSel;
-   
-	 ArrayList<Posto> postiScelti = new ArrayList<Posto>();
     
 	 private DBFacade facade = new DBFacade();
+	 
+	 private Prenotazione prenotazione;
 
 
     @FXML
     void prenota(MouseEvent event) {
-    	Prenotazione p = new Prenotazione();
-    	p.setProiezione(SchedaController.getProiezione());
-    	p.setPosti(postiScelti);
-    	p.setAcquirente(LoginController.getCliente());
-    	if (p.pagamento()) {
+    	
+    	prenotazione.setProiezione(SchedaController.getProiezione());
+    	prenotazione.setAcquirente(LoginController.getCliente());
+    	prenotazione.setDataAcquisto(LocalDate.now().toString());
+    	if (prenotazione.pagamento()) {
+    		prenotazione.acquista();
 	    	try {
-				facade.aggiungiPrenotazione(p);
-				TicketHandler ticket = new TicketHandler(p);
+				facade.aggiungiPrenotazione(prenotazione);
+				TicketHandler ticket = new TicketHandler(prenotazione);
 			} catch (SQLException | WriterException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -74,9 +76,8 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
-        
-		setLabelText();
-		initializeRighe();	
+        prenotazione = new Prenotazione();
+		
 	
 		Film f;
 		try {
@@ -91,6 +92,12 @@ public class PrenotazioneController extends ClientMenuController implements Init
 		Image image = new Image(getClass().getResourceAsStream(f.getCoverPath()));
 	    locandinaFilmSel.setImage(image);
 		
+	}
+	
+	public void aggiorna() {
+		setLabelText();
+		initializeRighe();	
+		postoCombo.setValue(null);
 	}
 	
 	public void initializeRighe() {
@@ -148,7 +155,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	 void aggiungi(MouseEvent event) {
 		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
 			 
-			 postiScelti.add(new Posto((int)filaCombo.getValue()-'A',postoCombo.getValue()));
+			 prenotazione.aggiungiPosto((int)(filaCombo.getValue()-'A'),postoCombo.getValue());
 			 initialize(null, null);
 		 } else {
 			 
@@ -159,9 +166,9 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	 @FXML
 	 void rimuovi(MouseEvent event) {
 		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
-			 for(int i = 0 ; i < postiScelti.size(); i++) {
-				 if((postiScelti.get(i).getColonna() == postoCombo.getValue()) && (postiScelti.get(i).getRiga()+'A' == filaCombo.getValue())) {
-					 postiScelti.remove(i);
+			 for(int i = 0 ; i <prenotazione.getNumPosti(); i++) {
+				 if((prenotazione.getPosti().get(i).getColonna() == postoCombo.getValue()) && (prenotazione.getPosti().get(i).getRiga()+'A' == filaCombo.getValue())) {
+					 prenotazione.rimuoviPosto(i);
 				 	initialize(null,null);
 				 }
 			 }
@@ -173,8 +180,8 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	
 	 public void setLabelText() {
 		 lista.setText("");
-		 for(int i = 0; i < postiScelti.size(); i++) {
-			 lista.setText(lista.getText()+"Fila: "+ (char)(postiScelti.get(i).getRiga()+'A')+ " - Posto: "+ postiScelti.get(i).getColonna()+"\n");
+		 for(int i = 0; i < prenotazione.getNumPosti(); i++) {
+			 lista.setText(lista.getText()+"Fila: "+ (char)(prenotazione.getPosti().get(i).getRiga()+'A')+ " - Posto: "+ prenotazione.getPosti().get(i).getColonna()+"\n");
 		 }
 		 
 		 

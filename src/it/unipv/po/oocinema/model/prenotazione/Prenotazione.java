@@ -71,7 +71,7 @@ public class Prenotazione {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void addPosto(int row, int col) {
+	public void aggiungiPosto(int row, int col) {
 		boolean duplicato = false;
 		if (proiezione.checkPostoDisponibile(row, col)) {
 			for (Posto s : posti) {
@@ -86,8 +86,8 @@ public class Prenotazione {
 	}
 
 
-	public void removePosto(int row, int col){
-		posti.remove(proiezione.getPosto(row, col));
+	public void rimuoviPosto(int i){
+		posti.remove(i);
 	}
 
 	

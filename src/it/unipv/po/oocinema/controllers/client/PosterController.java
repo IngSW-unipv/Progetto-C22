@@ -29,7 +29,7 @@ public class PosterController {
 		 this.film = film;
 	     this.myListener = myListener;
 	     titolo.setText(film.getTitolo());
-	     Image image = new Image(getClass().getResourceAsStream("../.."+film.getCoverPath()));
+	     Image image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
 	     locandina.setImage(image);
 	}
 	

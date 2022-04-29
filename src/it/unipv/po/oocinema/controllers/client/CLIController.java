@@ -111,8 +111,7 @@ public class CLIController extends ClientMenuController implements Initializable
     private void setFilmSel(Film film) {
     	titolo = film.getTitolo();        
     	titoloFilmSel.setText(film.getTitolo());
-    	System.out.println(film.getCoverPath());
-        image = new Image(getClass().getResourceAsStream("../.."+film.getCoverPath()));
+        image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
         locandinaFilmSel.setImage(image);
     }
     
