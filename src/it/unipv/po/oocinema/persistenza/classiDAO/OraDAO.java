@@ -17,8 +17,14 @@ import it.unipv.po.oocinema.persistenza.interfaccieDAO.IOraDAO;
  */
 public class OraDAO implements IOraDAO{
 	
+	/**
+	 * Connessione al database.
+	 */
 	private Connection conn;
 
+	/**
+	 * Costruttore.
+	 */
 	public OraDAO() {
 		super();
 	}

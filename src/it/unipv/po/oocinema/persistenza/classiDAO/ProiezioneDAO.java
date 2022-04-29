@@ -12,9 +12,22 @@ import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
 
+/**
+ * Classe che implementa l'interfaccia IProiezioneDAO e quindi contiene i metodi per
+ * gestire la persistenza di dati delle proiezioni.
+ * 
+ * @author GoF
+ */
 public class ProiezioneDAO implements IProiezioneDAO{
-	private Connection conn;
 	
+	/**
+	 * Connessione al database.
+	 */
+	private Connection conn;
+
+	/**
+	 * Costruttore.
+	 */	
 	public ProiezioneDAO() {
 		super();
 	}

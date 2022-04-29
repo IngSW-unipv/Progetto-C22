@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 
-
+/**
+ * Interfaccia che contiene i metodi per gestire la persistenza di dati
+ * delle prenotazioni completate. 
+ * 
+ * @author GoF
+ */
 public interface IPrenotazioneDAO {
 	
 	/**

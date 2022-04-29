@@ -10,10 +10,22 @@ import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.ISalaDAO;
 import it.unipv.po.oocinema.model.cinema.Sala; 
 
+/**
+ * Classe che implementa l'interfaccia ISalaDAO e quindi contiene i metodi per
+ * gestire la persistenza di dati delle sale. 
+ * 
+ * @author GoF
+ */
 public class SalaDAO implements ISalaDAO {
 	
+	/**
+	 * Connessione al database.
+	 */
 	private Connection conn;
 
+	/**
+	 * Costruttore.
+	 */
 	public SalaDAO() {
 		super();
 	}

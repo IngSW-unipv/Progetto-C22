@@ -5,8 +5,13 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
-import it.unipv.po.oocinema.model.cinema.Sala;
 
+/**
+ * Interfaccia che contiene i metodi per gestire la persistenza di dati 
+ * delle proiezioni. 
+ * 
+ * @author GoF
+ */
 public interface IProiezioneDAO {
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException;
 	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException;

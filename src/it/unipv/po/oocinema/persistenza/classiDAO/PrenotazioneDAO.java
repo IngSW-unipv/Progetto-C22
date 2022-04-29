@@ -16,10 +16,22 @@ import it.unipv.po.oocinema.persistenza.interfaccieDAO.IPrenotazioneDAO;
 
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 
-
+/**
+ * Classe che implementa l'interfaccia IPrenotazioneDAO e quindi contiene i metodi per
+ * gestire la persistenza di dati delle prenotazioni completate. 
+ * 
+ * @author GoF
+ */
 public class PrenotazioneDAO implements IPrenotazioneDAO {
+	
+	/**
+	 * Connessione al database.
+	 */
 	private Connection conn;
 
+	/**
+	 * Costruttore.
+	 */
 	public PrenotazioneDAO() {
 		super();
 	}

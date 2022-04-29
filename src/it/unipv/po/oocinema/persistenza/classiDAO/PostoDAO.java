@@ -12,10 +12,22 @@ import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IPostoDAO;
 
+/**
+ * Classe che implementa l'interfaccia IPostoDAO e quindi contiene i metodi per
+ * gestire la persistenza di dati dei posti occupati per una specifica prenotazione. 
+ * 
+ * @author GoF
+ */
 public class PostoDAO implements IPostoDAO {
 	
+	/**
+	 * Connessione al database.
+	 */
 	private Connection conn;
 
+	/**
+	 * Costruttore.
+	 */
 	public PostoDAO() {
 		super();
 	}
