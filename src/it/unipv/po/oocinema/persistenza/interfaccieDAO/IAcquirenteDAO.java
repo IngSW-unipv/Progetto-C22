@@ -69,9 +69,27 @@ public interface IAcquirenteDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public ArrayList<Cassa> getTutteCasse() throws SQLException;
-
+	
+	/**
+	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
+	 * scelta non sia già registrata.
+	 * @param inputCassa oggetto che contiene i dati da registrate 
+	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public boolean controllaUser(Acquirente inputAcquirente) throws SQLException;
-
+	
+	/**
+	 * Metodo che restituisce tutti gli attributi di un acquirente dato il suo user. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene l'identificativo dell'acquirente da 
+	 * 						  recuperare.
+	 * @return Oggetto cliente con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public Acquirente getUtenteByUser(Acquirente inputAcquirente)throws SQLException;
 
 }

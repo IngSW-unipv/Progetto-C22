@@ -170,6 +170,16 @@ public class DBFacade {
 		return acquirenteDAO.controllaUser(inputAcquirente);
 	}
 	
+	/**
+	 * Metodo che restituisce tutti gli attributi di un acquirente dato il suo user. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene l'identificativo dell'acquirente da 
+	 * 						  recuperare.
+	 * @return Oggetto cliente con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public Acquirente getUtentebyUser(Acquirente inputAcquirente) throws SQLException {
 		return acquirenteDAO.getUtenteByUser(inputAcquirente);
 	}

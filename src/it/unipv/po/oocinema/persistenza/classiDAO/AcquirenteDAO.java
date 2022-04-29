@@ -38,7 +38,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	 * 
 	 * @param inputAcquirente oggetto che contiene username e password che andranno
 	 * 						  verificate
-	 * @return vero o falso a seconda se l'utente è registrato 
+	 * @return true o false a seconda se l'utente è registrato 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
@@ -149,6 +149,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	/**
 	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
 	 * scelta non sia già registrata.
+	 * 
 	 * @param inputCassa oggetto che contiene i dati da registrate 
 	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
@@ -170,7 +171,17 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 			return true;
 		}
 	}
-
+	
+	/**
+	 * Metodo che restituisce tutti gli attributi di un acquirente dato il suo user. 
+	 * 
+	 * @param inputAcquirente oggetto che contiene l'identificativo dell'acquirente da 
+	 * 						  recuperare.
+	 * @return Oggetto cliente con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public Cliente getUtenteByUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -188,5 +199,4 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 			return null;
 		}	
 	}
-
 }
