@@ -31,13 +31,14 @@ public class DBFacade {
 	
 	/**
 	 * Oggetto attraverso cui è gestita la persistenza dei dati riguardanti
-	 * i tre tipi di utenti: amministratore, cassa e cliente. 
+	 * i due tipi di utenti: cassa e cliente. 
 	 */
 	AcquirenteDAO acquirenteDAO;
 	
 	/**
 	 * Oggetto attraverso cui è gestita la persistenza dei dati riguardanti
-	 * le informazioni logistiche del cinema: indirizzo, telefono e email.
+	 * le informazioni logistiche del cinema: indirizzo, telefono e email; 
+	 * oltre alle credenziali dell'amministratore.
 	 */
 	CinemaInfoDAO cinemaInfoDAO;
 	
@@ -92,8 +93,8 @@ public class DBFacade {
 	}
 	
 	/**
-	 * Metodo usato per verificare le credenziali di un generico user:cliente online
-	 * cassa o amministratore. 
+	 * Metodo usato per verificare le credenziali di un user:cliente online
+	 * o cassa. 
 	 * 
 	 * @param inputAcquirente oggetto che contiene username e password che andranno
 	 * 						  verificate
