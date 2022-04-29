@@ -79,9 +79,6 @@ public class DBFacade {
 	
 	/**
 	 * Costruttore.
-	 * 
-	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
-	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	public DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
@@ -318,10 +315,26 @@ public class DBFacade {
 		return oraDAO.getTutteOre();
 	}
 	
+	/**
+	 * Metodo che restituisce tutti i singoli posti prenotati attraverso una 
+	 * prenotazione effettuata da un acquirente. 
+	 * 
+	 * @return lista dei posti prenotati.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public ArrayList<Posto> getTuttiPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
 		return postoDAO.getTuttiPostiByPrenotazione(inputPrenotazione);
 	}
 	
+	/**
+	 * Metodo che restituisce tutti i posti liberi di una specifica proiezione selezionata una 
+	 * riga. 
+	 * 
+	 * @return lista dei posti liberi scelta una prenotazione e una riga.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		return postoDAO.getPostiLiberiByRiga(inputProiezione, inputPosto);
 	}	
@@ -353,32 +366,100 @@ public class DBFacade {
 		prenotazioneDAO.occupaPosti(inputProiezione);
 	}
 	
-	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
-		 proiezioneDAO.aggiungiProiezione(inputProiezione);
-	}
-	
-	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException {
-		proiezioneDAO.rimuoviProiezione(inputProiezione);
-	}
-	
+	/**
+	 * Metodo che restituisce tutti gli attributi di una proiezione dato il suo identificativo. 
+	 * 
+	 * @param inputProiezione oggetto che contiene l'identificativo della proiezione da 
+	 * 					      recuperare.
+	 * @return Oggetto Proiezione con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public Proiezione getProiezioneById(Proiezione inputProiezione) throws SQLException{
 		return proiezioneDAO.getProiezioneById(inputProiezione);
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per registrare una nuova proiezione.
+	 * 
+	 * @param inputProiezione oggetto che contiene tutti gli attributi che andranno 
+	 * 					 	  registrati.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
+		 proiezioneDAO.aggiungiProiezione(inputProiezione);
+	}
+	
+	/**
+	 * Metodo usato dall'amministratore per rimuovere una proiezione registrata.
+	 * 
+	 * @param inputProiezione oggetto che contiene l'identificativo della proiezione da 
+	 * 					      cancellare.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException {
+		proiezioneDAO.rimuoviProiezione(inputProiezione);
+	}
+	
+	/**
+	 * Metodo che restituisce tutte le proiezioni future programmate. 
+	 * 
+	 * @return lista delle proiezioni future programmate con tutti i loro 
+	 * 		   attributi.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
 		return proiezioneDAO.getTutteProiezioniFuture();
 	}
 	
+	/**
+	 * Metodo che restituisce la proiezione selezionando film, data e ora;
+	 * non è possibile programmare lo stesso film contemporaneamente in due sale 
+	 * diverse. 
+	 * 
+	 * @param inputProiezione oggetto che contiene il film, la data e
+	 * 						  l'ora scelti. 
+	 * @return oggetto Proiezione i cui attributi film, ora e data corrispondono a  
+	 * 		   quelli da input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{ //possibilita di cambiare e togliere questo restituendo un array di proiezioni al metodo sotto
 		return proiezioneDAO.getProiezioneByFilmGiornoOra(inputProiezione);
 	}
 	
-	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ 
-		return proiezioneDAO.getOreByProiezione(inputProiezione);
-	}
-	
+	/**
+	 * Metodo che restituisce tutti i giorni futuri in cui un film sarà 
+	 * priettato.
+	 * 
+	 * @param inputFilm oggetto che contiene il film per il quale si vuole conoscere
+	 * 					i gironi di proiezione. 
+	 * @return lista di tipo String contenente tutti i giorni in cui il film scelto viene
+	 * 		   proiettato. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{ 
 		return proiezioneDAO.getGiorniByFilm(inputFilm);
+	}
+	
+	/**
+	 * Metodo che restituisce tutte le ore in cui un film sarà priettato scelto un giorno
+	 * specifico.
+	 * 
+	 * @param inputProiezione oggetto che contiene il film e il giorno per cui si vuole conoscere
+	 * 						  gli orari di proiezione. 
+	 * @return lista di tipo String contenente tutte le ore in cui il film scelto viene
+	 * 		   proiettato nel giorno selezionato. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{ 
+		return proiezioneDAO.getOreByProiezione(inputProiezione);
 	}
 	
 	/**
@@ -395,13 +476,32 @@ public class DBFacade {
 		return proiezioneDAO.getNumProiezioniByFilm(inputFilm);
 	}
 	
+	/**
+	 * Metodo che restituisce tutti gli attributi di una sala dato il suo identificativo. 
+	 * 
+	 * @param inputSala oggetto che contiene l'identificativo della sala da 
+	 * 					recuperare.
+	 * @return Oggetto sala con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
+	public Sala getSalaById(Sala inputSala) throws SQLException{
+		return salaDAO.getSalaById(inputSala);
+	}
+	
+	/**
+	 * Metodo che restituisce tutte le sale registrate e i loro attributi. 
+	 * 
+	 * @return lista delle sale registrate con i loro attributi.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public ArrayList<Sala> getTutteSale() throws SQLException {
 		return salaDAO.getTutteSale();
 	}
 	
-	public Sala getSalaById(Sala inputSala) throws SQLException{
-		return salaDAO.getSalaById(inputSala);
-	}
+	
 
 	/*
 	 * public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws

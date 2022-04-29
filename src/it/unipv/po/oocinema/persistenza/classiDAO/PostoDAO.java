@@ -32,6 +32,14 @@ public class PostoDAO implements IPostoDAO {
 		super();
 	}
 	
+	/**
+	 * Metodo che restituisce tutti i singoli posti prenotati attraverso una 
+	 * prenotazione effettuata da un acquirente. 
+	 * 
+	 * @return lista dei posti prenotati.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<Posto> getTuttiPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -61,6 +69,14 @@ public class PostoDAO implements IPostoDAO {
 	 * MySQLConnectionFactory.closeConnection(conn); return posti; }
 	 */
 	
+	/**
+	 * Metodo che restituisce tutti i posti liberi di una specifica proiezione selezionata una 
+	 * riga. 
+	 * 
+	 * @return lista dei posti liberi scelta una prenotazione e una riga.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<Integer> getPostiLiberiByRiga(Proiezione inputProiezione, Posto inputPosto) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);

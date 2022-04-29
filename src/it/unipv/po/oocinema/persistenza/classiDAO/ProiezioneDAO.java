@@ -32,6 +32,16 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		super();
 	}
 	
+	/**
+	 * Metodo che restituisce tutti gli attributi di una proiezione dato il suo identificativo. 
+	 * 
+	 * @param inputProiezione oggetto che contiene l'identificativo della proiezione da 
+	 * 					      recuperare.
+	 * @return Oggetto Proiezione con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public Proiezione getProiezioneById(Proiezione inputProiezione) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -58,6 +68,14 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		return proiezione;
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per registrare una nuova proiezione.
+	 * 
+	 * @param inputProiezione oggetto che contiene tutti gli attributi che andranno 
+	 * 					 	  registrati.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -73,6 +91,14 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
+	/**
+	 * Metodo usato dall'amministratore per rimuovere una proiezione registrata.
+	 * 
+	 * @param inputProiezione oggetto che contiene l'identificativo della proiezione da 
+	 * 					      cancellare.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public void rimuoviProiezione(Proiezione inputProiezione) throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -82,7 +108,15 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
-
+	
+	/**
+	 * Metodo che restituisce tutte le proiezioni future programmate. 
+	 * 
+	 * @return lista delle proiezioni future programmate con tutti i loro 
+	 * 		   attributi.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<Proiezione> getTutteProiezioniFuture() throws SQLException {
 		conn = MySQLConnectionFactory.connect(conn);
@@ -106,6 +140,18 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		return p;
 	}
 	
+	/**
+	 * Metodo che restituisce la proiezione selezionando film, data e ora;
+	 * non è possibile programmare lo stesso film contemporaneamente in due sale 
+	 * diverse. 
+	 * 
+	 * @param inputProiezione oggetto che contiene il film, la data e
+	 * 						  l'ora scelti. 
+	 * @return oggetto Proiezione i cui attributi film, ora e data corrispondono a  
+	 * 		   quelli da input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public Proiezione getProiezioneByFilmGiornoOra(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
@@ -130,6 +176,17 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		return proiezione;
 	}
 	
+	/**
+	 * Metodo che restituisce tutti i giorni futuri in cui un film sarà 
+	 * priettato.
+	 * 
+	 * @param inputFilm oggetto che contiene il film per il quale si vuole conoscere
+	 * 					i gironi di proiezione. 
+	 * @return lista di tipo String contenente tutti i giorni in cui il film scelto viene
+	 * 		   proiettato. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{
 		FilmDAO filmDAO= new FilmDAO(); //ho solo il titolo del film in inputFilm
@@ -147,6 +204,17 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		return giorni;
 	}
 	
+	/**
+	 * Metodo che restituisce tutte le ore in cui un film sarà priettato scelto un giorno
+	 * specifico.
+	 * 
+	 * @param inputProiezione oggetto che contiene il film e il giorno per cui si vuole conoscere
+	 * 						  gli orari di proiezione. 
+	 * @return lista di tipo String contenente tutte le ore in cui il film scelto viene
+	 * 		   proiettato nel giorno selezionato. 
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	@Override
 	public ArrayList<String> getOreByProiezione(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
