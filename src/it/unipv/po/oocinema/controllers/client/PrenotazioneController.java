@@ -10,7 +10,8 @@ import com.google.zxing.WriterException;
 
 import it.unipv.po.oocinema.controllers.EmailController;
 import it.unipv.po.oocinema.controllers.LoginController;
-import it.unipv.po.oocinema.controllers.TicketHandler;
+import it.unipv.po.oocinema.controllers.TicketController;
+import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
@@ -19,9 +20,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -66,9 +69,21 @@ public class PrenotazioneController extends ClientMenuController implements Init
     		prenotazione.acquista();
 	    	try {
 				facade.aggiungiPrenotazione(prenotazione);
-				EmailController.sendEmail(prenotazione);
-	    	} catch (Exception e) {
-				// TODO Auto-generated catch block
+				try {
+					EmailController e = new EmailController();
+					e.sendEmail(prenotazione).run();
+					Alert a = new Alert(AlertType.INFORMATION, "MAIL INVIATA CON SUCCESSO");
+					a.showAndWait();
+					WindowsHandler.openWindow(getClass(), "../../view/scenes/homeCLI.fxml");
+	    			WindowsHandler.closeWindow(getWindow());
+				} catch (Exception e1) {
+					Alert errore = new Alert(AlertType.ERROR, "MAIL NON INVIATA");
+					errore.showAndWait();
+					e1.printStackTrace();
+				}
+	    	} catch (SQLException e) {
+	    		Alert errore = new Alert(AlertType.ERROR, "QUALCOSA E' ANDATO STORTO");
+				errore.showAndWait();
 				e.printStackTrace();
 			}
     	}
@@ -78,7 +93,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
         prenotazione = new Prenotazione();
-		
+		prenotazione.setProiezione(SchedaController.getProiezione());
 	
 		Film f;
 		try {
@@ -98,7 +113,6 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	public void aggiorna() {
 		setLabelText();
 		initializeRighe();	
-		postoCombo.setValue(null);
 	}
 	
 	public void initializeRighe() {
@@ -157,7 +171,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
 			 
 			 prenotazione.aggiungiPosto((int)(filaCombo.getValue()-'A'),postoCombo.getValue());
-			 initialize(null, null);
+			 aggiorna();
 		 } else {
 			 
 			 // FARE ALERT
@@ -170,7 +184,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 			 for(int i = 0 ; i <prenotazione.getNumPosti(); i++) {
 				 if((prenotazione.getPosti().get(i).getColonna() == postoCombo.getValue()) && (prenotazione.getPosti().get(i).getRiga()+'A' == filaCombo.getValue())) {
 					 prenotazione.rimuoviPosto(i);
-				 	initialize(null,null);
+				 	 aggiorna();
 				 }
 			 }
 		 } else {

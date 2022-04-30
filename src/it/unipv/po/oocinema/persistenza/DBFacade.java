@@ -507,6 +507,13 @@ public class DBFacade {
 	public ArrayList<Sala> getTutteSale() throws SQLException {
 		return salaDAO.getTutteSale();
 	}
+
+	
+	public void initializeDB() {
+		// eliminare il contenuto del db e inserire i campi fondamentali
+		// admin, sale , ore, cinemainfo
+		
+	}
 	
 	
 

@@ -17,7 +17,7 @@ public class Prenotazione {
 	
 	private int id;
 	
-	private static int progressivo = 0;
+	private static int progressivo = 19;
 
 	private String dataAcquisto;
 
@@ -28,6 +28,8 @@ public class Prenotazione {
 
 	
 	private Proiezione proiezione;
+	
+	private String ticketPath;
 
 	public IScontoPrenotazioneStrategy strategy;
 
@@ -53,8 +55,8 @@ public class Prenotazione {
 	}
 	
 	public Prenotazione(String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
-		this.id = progressivo;
 		progressivo++;
+		this.id = progressivo;
 		this.dataAcquisto=dataAcquisto;
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
@@ -64,8 +66,8 @@ public class Prenotazione {
 	}
 
 	public Prenotazione() {
-		this.id = progressivo;
 		progressivo++;
+		this.id = progressivo;
 		this.posti = new ArrayList<Posto>();
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
@@ -164,6 +166,14 @@ public class Prenotazione {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getTicketPath() {
+		return ticketPath;
+	}
+	
+	public void setTicketPath(String ticketPath) {
+		this.ticketPath = ticketPath;
 	}
 	
 	

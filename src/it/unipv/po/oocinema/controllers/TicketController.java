@@ -21,12 +21,13 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
-public class TicketHandler {
+public class TicketController {
 	
 	private final String file;
 
-	public TicketHandler(Prenotazione prenotazione) throws WriterException, IOException {
+	public TicketController(Prenotazione prenotazione) throws WriterException, IOException {
 		file = "tickets/"+prenotazione.getId()+".pdf";
+		prenotazione.setTicketPath(file);
 		createTicket(prenotazione);
 	}
 	
