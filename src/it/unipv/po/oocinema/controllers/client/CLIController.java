@@ -43,7 +43,7 @@ public class CLIController extends ClientMenuController implements Initializable
     
     private static String titolo;
 
-    private DBFacade facade= new DBFacade();
+    private DBFacade facade= DBFacade.getInstance();
     private MyListener myListener;
     
     private Image image;

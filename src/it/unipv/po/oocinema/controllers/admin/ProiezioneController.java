@@ -28,7 +28,7 @@ import javafx.stage.Window;
 
 public class ProiezioneController extends AdminMenuController implements Initializable{
 
-	private DBFacade facade = new DBFacade();
+	private DBFacade facade = DBFacade.getInstance();
 	
     @FXML
     private Button aggiungi;

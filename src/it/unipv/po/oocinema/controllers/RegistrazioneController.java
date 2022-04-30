@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
-import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,7 +20,7 @@ import javafx.fxml.Initializable;
 
 public class RegistrazioneController implements Initializable{
 
-	DBFacade facade = new DBFacade();
+	DBFacade facade = DBFacade.getInstance();
     @FXML
     private DatePicker compleanno;
 

@@ -42,7 +42,7 @@ public class OrdiniController extends ClientMenuController implements Initializa
     @FXML
     private TableView<InnerPrenotazione> tabella;
 
-    private DBFacade facade = new DBFacade();
+    private DBFacade facade = DBFacade.getInstance();
 
     ObservableList<InnerPrenotazione> datiTabella = FXCollections.observableArrayList();
    

@@ -142,7 +142,8 @@ public class CinemaInfoDAO implements ICinemaInfoDAO {
 		result=st1.executeQuery();
 		
 		if( result.next()){
-			Acquirente a = new Acquirente(result.getString("user"),result.getString("password"));
+			Acquirente a = new Acquirente(result.getString("user"));
+			a.setPassword(result.getString("password"));
 			MySQLConnectionFactory.closeConnection(conn);
 			return a;
 		}else {

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
-import it.unipv.po.oocinema.model.acquirenti.Cliente;
 
 /**
  * Interfaccia che contiene i metodi per gestire la persistenza di dati degli 
@@ -37,7 +36,7 @@ public interface IAcquirenteDAO {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	public void registrazione(Cliente inputCliente) throws SQLException;
+	public void registrazione(Acquirente inputAcquirente) throws SQLException;
 	
 	/**
 	 * Metodo usato dall'amministratore per registrare una nuova cassa.

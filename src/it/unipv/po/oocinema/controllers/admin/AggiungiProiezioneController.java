@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 
 public class AggiungiProiezioneController extends AdminMenuController implements Initializable{
 	
-	private DBFacade facade = new DBFacade();
+	private DBFacade facade = DBFacade.getInstance();
 	@FXML
     private ToggleButton aggiungiProiezione;
 

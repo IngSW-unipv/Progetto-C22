@@ -23,7 +23,7 @@ import javafx.scene.input.MouseEvent;
 
 public class AggiungiFilmController extends AdminMenuController implements Initializable{
 	
-	private DBFacade facade = new DBFacade();
+	private DBFacade facade = DBFacade.getInstance();
 
     @FXML
     private ToggleButton aggiungiFilm;

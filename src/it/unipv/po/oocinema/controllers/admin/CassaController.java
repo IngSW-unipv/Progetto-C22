@@ -28,7 +28,7 @@ import javafx.scene.input.MouseEvent;
 
 public class CassaController extends AdminMenuController implements Initializable {
 
-	private DBFacade facade = new DBFacade();
+	private DBFacade facade = DBFacade.getInstance();
 	
     @FXML
     private TextField userCassa;

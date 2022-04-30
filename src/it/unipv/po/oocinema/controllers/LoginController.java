@@ -21,7 +21,7 @@ import javafx.stage.Window;
 
 public class LoginController implements Initializable{
 	
-	DBFacade facade = new DBFacade();
+	DBFacade facade = DBFacade.getInstance();
 
     @FXML
     private Label dimenticata;

@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 public class AggiungiCassaController extends AdminMenuController {
 
-	private DBFacade facade = new DBFacade();
+	private DBFacade facade = DBFacade.getInstance();
 	
     @FXML
     private TextField password;

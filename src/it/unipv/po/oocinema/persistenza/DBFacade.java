@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
-import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
@@ -28,6 +27,8 @@ import it.unipv.po.oocinema.persistenza.classiDAO.SalaDAO;
  */
 
 public class DBFacade {
+	
+	static DBFacade instance;
 	
 	/**
 	 * Oggetto attraverso cui è gestita la persistenza dei dati riguardanti
@@ -81,7 +82,7 @@ public class DBFacade {
 	/**
 	 * Costruttore.
 	 */
-	public DBFacade() {
+	private DBFacade() {
 		acquirenteDAO = new AcquirenteDAO();
 		cinemaInfoDAO= new CinemaInfoDAO();
 		filmDAO = new FilmDAO();
@@ -90,6 +91,11 @@ public class DBFacade {
 		salaDAO=new SalaDAO();
 		oraDAO = new OraDAO();
 		postoDAO=new PostoDAO();
+	}
+	
+	public static synchronized DBFacade getInstance() {
+		if(instance == null) instance = new DBFacade();
+		return instance;
 	}
 	
 	/**
@@ -115,8 +121,8 @@ public class DBFacade {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	public void registrazione(Cliente inputCliente) throws SQLException{
-		acquirenteDAO.registrazione(inputCliente);
+	public void registrazione(Acquirente inputAcquirente) throws SQLException{
+		acquirenteDAO.registrazione(inputAcquirente);
 	}
 	
 	/**

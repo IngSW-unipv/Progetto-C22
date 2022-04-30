@@ -24,7 +24,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
 public class FilmController extends AdminMenuController implements Initializable{
-	private DBFacade facade = new DBFacade();
+	private DBFacade facade = DBFacade.getInstance();
 	
     @FXML
     private Button aggiungi;

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.model.acquirenti.Cassa;
-import it.unipv.po.oocinema.model.acquirenti.Cliente;
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IAcquirenteDAO;
 
@@ -69,16 +68,16 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	@Override
-	public void registrazione(Cliente inputCliente) throws SQLException{
+	public void registrazione(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "INSERT INTO acquirente VALUES(?,?,?,?,?,?)";
 		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setString(1, inputCliente.getUser());
-		st1.setString(2, inputCliente.getPassword());
+		st1.setString(1, inputAcquirente.getUser());
+		st1.setString(2, inputAcquirente.getPassword());
 		st1.setInt(3, 1);
-		st1.setString(4, inputCliente.getNome());
-		st1.setString(5, inputCliente.getCognome());
-		st1.setString(6, inputCliente.getCompleanno());
+		st1.setString(4, inputAcquirente.getNome());
+		st1.setString(5, inputAcquirente.getCognome());
+		st1.setString(6, inputAcquirente.getCompleanno());
 		st1.executeUpdate();
 		MySQLConnectionFactory.closeConnection(conn);
 	}
@@ -183,17 +182,17 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	@Override
-	public Cliente getUtenteByUser(Acquirente inputAcquirente) throws SQLException{
+	public Acquirente getUtenteByUser(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "SELECT * FROM acquirente where user= ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcquirente.getUser());
 		ResultSet result = st1.executeQuery();
 		if(result.next()) {
-			Cliente c = new Cliente(result.getString("user"),result.getString("psw"),
+			Acquirente a = new Acquirente(result.getString("user"),result.getString("psw"),
 					result.getString("nome"),result.getString("cognome"),result.getString("compleanno"));
 			MySQLConnectionFactory.closeConnection(conn);
-			return c;
+			return a;
 		} else {
 			MySQLConnectionFactory.closeConnection(conn);
 			return null;

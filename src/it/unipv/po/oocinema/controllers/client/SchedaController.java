@@ -54,7 +54,7 @@ public class SchedaController extends ClientMenuController implements Initializa
 
     private static Proiezione proiezione;
     
-    private DBFacade facade = new DBFacade();
+    private DBFacade facade = DBFacade.getInstance();
     
     private File file;
     private Media media;
