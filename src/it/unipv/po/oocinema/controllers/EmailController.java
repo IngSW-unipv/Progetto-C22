@@ -174,7 +174,7 @@ public class EmailController {
 		String filename = reservation.getTicketPath();
 		DataSource source = new FileDataSource(filename);
 		messageBodyPart2.setDataHandler(new DataHandler(source));
-		messageBodyPart2.setFileName("Reservation_" + Long.toString(reservation.getId()) + ".pdf");
+		messageBodyPart2.setFileName("Prenotazione_" + Integer.toString(reservation.getId()) + ".pdf");
 		return messageBodyPart2;
 	}
 

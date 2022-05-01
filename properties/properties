@@ -1,6 +1,6 @@
 #discount.strategy.class.name = it.unipv.po.oocinema.model.prenotazione.sconti.ScontoNatale
-#discount.strategy.class.name = it.unipv.po.oocinema.model.prenotazione.prenotazione.sconti.ScontoPercentuale
-discount.strategy.class.name = it.unipv.po.oocinema.model.prenotazione.sconti.ScontoCompleanno
+discount.strategy.class.name = it.unipv.po.oocinema.model.prenotazione.sconti.ScontoPercentuale
+#discount.strategy.class.name = it.unipv.po.oocinema.model.prenotazione.sconti.ScontoCompleanno
 
 DB_driver = "com.mysql.cj.jdbc.Driver"
 DB_url = "jdbc:mysql://localhost:3306/oocinema"

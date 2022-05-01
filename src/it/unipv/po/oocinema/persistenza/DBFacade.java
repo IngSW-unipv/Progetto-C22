@@ -512,7 +512,12 @@ public class DBFacade {
 	public void initializeDB() {
 		// eliminare il contenuto del db e inserire i campi fondamentali
 		// admin, sale , ore, cinemainfo
+		// eliminare proiezioni scadute
 		
+	}
+
+	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
+		return prenotazioneDAO.getNumPostiByPrenotazione(inputPrenotazione);
 	}
 	
 	

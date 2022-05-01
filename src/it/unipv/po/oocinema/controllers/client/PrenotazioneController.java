@@ -58,7 +58,6 @@ public class PrenotazioneController extends ClientMenuController implements Init
 	 
 	 private Prenotazione prenotazione;
 
-
     @FXML
     void prenota(MouseEvent event) {
     	
@@ -66,7 +65,6 @@ public class PrenotazioneController extends ClientMenuController implements Init
     	prenotazione.setAcquirente(LoginController.getCliente());
     	prenotazione.setDataAcquisto(LocalDate.now().toString());
     	if (prenotazione.pagamento()) {
-    		prenotazione.acquista();
 	    	try {
 				facade.aggiungiPrenotazione(prenotazione);
 				try {
@@ -74,6 +72,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 					e.sendEmail(prenotazione).run();
 					Alert a = new Alert(AlertType.INFORMATION, "MAIL INVIATA CON SUCCESSO");
 					a.showAndWait();
+					
 					WindowsHandler.openWindow(getClass(), "../../view/scenes/homeCLI.fxml");
 	    			WindowsHandler.closeWindow(getWindow());
 				} catch (Exception e1) {

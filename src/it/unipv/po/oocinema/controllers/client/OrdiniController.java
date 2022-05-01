@@ -65,25 +65,28 @@ public class OrdiniController extends ClientMenuController implements Initializa
 		tabella.setItems(datiTabella);
 	}
 	
-	public  void costruisciElementiTabella(ObservableList<InnerPrenotazione> datiTabella) {
+	public void costruisciElementiTabella(ObservableList<InnerPrenotazione> datiTabella) {
 		
 		datiTabella.removeAll(datiTabella);
 		ArrayList<Prenotazione> elencoPrenotazioni = new ArrayList<Prenotazione>();
 		try {
 			elencoPrenotazioni = facade.getPrenotazioniFutureByCliente(LoginController.getCliente());
+			int numPosti;
+		
+			for(int i = 0; i < elencoPrenotazioni.size(); i++) {
+				InnerPrenotazione ip = new InnerPrenotazione();
+				ip.setId(elencoPrenotazioni.get(i).getId());
+				ip.setFilm(elencoPrenotazioni.get(i).getProiezione().getFilm().getTitolo());
+				ip.setGiorno(elencoPrenotazioni.get(i).getProiezione().getGiorno());
+				ip.setDataAcquisto(elencoPrenotazioni.get(i).getDataAcquisto());
+				numPosti = facade.getNumPostiByPrenotazione(elencoPrenotazioni.get(i));
+				ip.setNumTicket(numPosti);
+				elencoPrenotazioni.get(i).setNumPosti(numPosti);
+				ip.setPrezzo(elencoPrenotazioni.get(i).getTotale());
+				datiTabella.add(ip);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		for(int i = 0; i < elencoPrenotazioni.size(); i++) {
-			InnerPrenotazione ip = new InnerPrenotazione();
-			ip.setId(elencoPrenotazioni.get(i).getId());
-			ip.setFilm(elencoPrenotazioni.get(i).getProiezione().getFilm().getTitolo());
-			ip.setGiorno(elencoPrenotazioni.get(i).getProiezione().getGiorno());
-			ip.setDataAcquisto(elencoPrenotazioni.get(i).getDataAcquisto());
-			ip.setNumTicket(elencoPrenotazioni.get(i).getNumPosti());
-			ip.setPrezzo(elencoPrenotazioni.get(i).getPrezzoTot());
-			datiTabella.add(ip);
 		}
 	}
 

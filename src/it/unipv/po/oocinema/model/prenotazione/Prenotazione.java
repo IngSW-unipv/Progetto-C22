@@ -17,7 +17,7 @@ public class Prenotazione {
 	
 	private int id;
 	
-	private static int progressivo = 19;
+	private static int progressivo = 24;
 
 	private String dataAcquisto;
 
@@ -26,6 +26,7 @@ public class Prenotazione {
 
 	private ArrayList<Posto> posti;
 
+	private int numPosti;
 	
 	private Proiezione proiezione;
 	
@@ -34,32 +35,12 @@ public class Prenotazione {
 	public IScontoPrenotazioneStrategy strategy;
 
 	
-	public Prenotazione(int id, Acquirente acquirente,Proiezione proiezione) throws ParseException {
-		this.id = id;
-		this.dataAcquisto = LocalDate.now().toString();
-		this.acquirente = acquirente;
-		this.posti = new ArrayList<Posto>();
-		this.proiezione = proiezione;
-		ScontoFactory f = ScontoFactory.getInstance();
-		strategy = f.getScontoStartegy();
-	}
-	
-	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) throws ParseException {
+	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
 		this.id = id;
 		this.dataAcquisto = dataAcquisto;
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
-		this.proiezione = proiezione;
-		ScontoFactory f = ScontoFactory.getInstance();
-		strategy = f.getScontoStartegy();
-	}
-	
-	public Prenotazione(String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
-		progressivo++;
-		this.id = progressivo;
-		this.dataAcquisto=dataAcquisto;
-		this.acquirente = acquirente;
-		this.posti = new ArrayList<Posto>();
+		numPosti = posti.size();
 		this.proiezione = proiezione;
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
@@ -69,6 +50,7 @@ public class Prenotazione {
 		progressivo++;
 		this.id = progressivo;
 		this.posti = new ArrayList<Posto>();
+		numPosti = posti.size();
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
 	}
@@ -102,7 +84,7 @@ public class Prenotazione {
 
 	
 	public double getPrezzoTot() {
-		return Math.round(getNumPosti() * proiezione.getPrezzo()* 100.0) / 100.0;
+		return Math.round(numPosti * proiezione.getPrezzo()* 100.0) / 100.0;
 	}
 
 	public int getNumPosti() {
@@ -150,6 +132,10 @@ public class Prenotazione {
 	}
 
 
+	public void setNumPosti(int numPosti) {
+		this.numPosti = numPosti;
+	}
+	
 	public void setPosti(ArrayList<Posto> posti) {
 		this.posti = posti;
 	}

@@ -48,21 +48,21 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 	@Override
 	public ArrayList<Prenotazione> getPrenotazioniFutureByCliente(Acquirente inputAcquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		String query = "SELECT * \r\n"
+		String query = "SELECT PRE.id as id_pre, PRO.id as id_pro, PRE.data_acquisto \r\n"
 				+ "FROM prenotazione PRE join proiezione PRO on PRE.proiezione_id = PRO.id\r\n"
-				+ "where PRE.acquirente_user=\"m\" and PRO.giorno>curdate();";
+				+ "where PRE.acquirente_user= ?  and giorno > curdate();";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setString(1, inputAcquirente.getUser());
 		ResultSet result=st1.executeQuery();
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		while (result.next()) {
 			Proiezione proiezione = new Proiezione();
-			proiezione.setId(result.getInt("id"));
+			proiezione.setId(result.getInt("id_pro"));
 			ProiezioneDAO proiezioneDAO= new ProiezioneDAO();
 			proiezione=proiezioneDAO.getProiezioneById(proiezione);
 			try {
-				prenotazioni.add(new Prenotazione(result.getInt("id"), result.getString("data_acquisto"), inputAcquirente, proiezione));
-			} catch (ParseException | SQLException e) { // non capisco perchè è necessario parse exception
+				prenotazioni.add(new Prenotazione(result.getInt("id_pre"), result.getString("data_acquisto"), inputAcquirente, proiezione));
+			} catch (SQLException e) { 
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -108,12 +108,25 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		for (Posto p : inputPrenotazione.getPosti()) {
 			String query="INSERT INTO posto VALUES(?,?,?)";
 			PreparedStatement st1 = conn.prepareStatement(query);
-			st1 = conn.prepareStatement(query);
 			st1.setInt(1, p.getRiga());
 			st1.setInt(2, p.getColonna());
 			st1.setInt(3, inputPrenotazione.getId());
 			st1.executeUpdate();
 		}
 		MySQLConnectionFactory.closeConnection(conn);
+	}
+
+	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		String query = "select count(*) as num from posto where prenotazione_id = ?;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		st1.setInt(1, inputPrenotazione.getId());
+		ResultSet result=st1.executeQuery();
+		int num;
+		if(result.next()) num = result.getInt("num");
+		else num = 0;
+		
+		MySQLConnectionFactory.closeConnection(conn);
+		return num;
 	}
 }

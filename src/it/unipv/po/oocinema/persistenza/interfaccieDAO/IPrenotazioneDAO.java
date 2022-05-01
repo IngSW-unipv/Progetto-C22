@@ -42,5 +42,7 @@ public interface IPrenotazioneDAO {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	void occupaPosti(Prenotazione inputPrenotazione) throws SQLException;
+	public void occupaPosti(Prenotazione inputPrenotazione) throws SQLException;
+	
+	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException;
 }

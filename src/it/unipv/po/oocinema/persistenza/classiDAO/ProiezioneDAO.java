@@ -52,18 +52,19 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		st1.setString(1, ""+inputProiezione.getId());
 		result = st1.executeQuery();
 		Film f=new Film();
-		f.setId(result.getInt("film_id"));
-		FilmDAO filmDAO= new FilmDAO();
-		f=filmDAO.getFilmbyId(f);
-		Sala s=new Sala();
-		s.setId(result.getInt("sala_id"));
-		SalaDAO salaDAO= new SalaDAO();
-		s=salaDAO.getSalaById(s);
-		Proiezione proiezione;
-		if(result.next()) {
+		Proiezione proiezione = null;
+		while(result.next()) {
+			f.setId(result.getInt("film_id"));
+			FilmDAO filmDAO= new FilmDAO();
+			f=filmDAO.getFilmbyId(f);
+			Sala s=new Sala();
+			s.setId(result.getInt("sala_id"));
+			SalaDAO salaDAO= new SalaDAO();
+			s=salaDAO.getSalaById(s);
 			proiezione = new Proiezione( inputProiezione.getId() ,f, result.getString("giorno"), s
-										,result.getDouble("prezzo"), result.getString("orario"));
-		} else proiezione=null;
+											,result.getDouble("prezzo"), result.getString("orario"));
+			
+		}
 		MySQLConnectionFactory.closeConnection(conn);
 		return proiezione;
 	}
