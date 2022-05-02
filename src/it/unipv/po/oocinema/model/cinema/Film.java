@@ -184,5 +184,18 @@ public class Film {
 				+ ", durata=" + durata + ", regista=" + regista + ", cast=" + cast + ", coverPath=" + coverPath
 				+ ", trailerPath=" + trailerPath + "]";
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		//System.out.println(obj.getClass() + " " + getClass());
+		// ))
+		if (obj != null && getClass().equals(obj.getClass())){
+			Film film = (Film) obj;
+			return (film.getId() == id) && (film.getTitolo().equals(titolo)) && (film.getDescrizione().equals(descrizione)) &&
+					(film.getGenere().equals(genere)) && (film.getDurata()== durata) && (film.getRegista().equals(regista)) &&
+					(film.getCast().equals(cast)) && (film.getCoverPath().equals(coverPath)) && (film.getTrailerPath().equals(trailerPath));
+		}
+		else return false;
+	}
 
 }
