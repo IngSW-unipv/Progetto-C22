@@ -82,7 +82,7 @@ public class OrdiniController extends ClientMenuController implements Initializa
 				numPosti = facade.getNumPostiByPrenotazione(elencoPrenotazioni.get(i));
 				ip.setNumTicket(numPosti);
 				elencoPrenotazioni.get(i).setNumPosti(numPosti);
-				ip.setPrezzo(elencoPrenotazioni.get(i).getTotale());
+				ip.setPrezzo(elencoPrenotazioni.get(i).getTotale()); // problema ogni volta che cambio sconto cambia anche prezzo
 				datiTabella.add(ip);
 			}
 		} catch (SQLException e) {

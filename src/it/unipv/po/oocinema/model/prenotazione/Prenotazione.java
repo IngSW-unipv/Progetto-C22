@@ -34,6 +34,7 @@ public class Prenotazione {
 
 	public IScontoPrenotazioneStrategy strategy;
 
+
 	
 	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
 		this.id = id;
