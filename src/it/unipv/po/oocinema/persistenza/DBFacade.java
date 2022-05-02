@@ -383,6 +383,11 @@ public class DBFacade {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
+	
+	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
+		return prenotazioneDAO.getNumPostiByPrenotazione(inputPrenotazione);
+	}
+	
 	public Proiezione getProiezioneById(Proiezione inputProiezione) throws SQLException{
 		return proiezioneDAO.getProiezioneById(inputProiezione);
 	}
@@ -513,11 +518,7 @@ public class DBFacade {
 		// eliminare il contenuto del db e inserire i campi fondamentali
 		// admin, sale , ore, cinemainfo
 		// eliminare proiezioni scadute
-		
-	}
 
-	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
-		return prenotazioneDAO.getNumPostiByPrenotazione(inputPrenotazione);
 	}
 	
 	

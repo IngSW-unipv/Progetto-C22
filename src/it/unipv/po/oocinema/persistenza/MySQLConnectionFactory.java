@@ -48,8 +48,8 @@ public class MySQLConnectionFactory {
 			closeConnection(conn);
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/oocinema","cinema_user","Password2021!");
+			Class.forName(DB_driver);
+			conn = DriverManager.getConnection(DB_url,DB_user,DB_psw);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
