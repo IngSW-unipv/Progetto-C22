@@ -22,13 +22,6 @@ import com.google.zxing.WriterException;
 
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
-/**
- * Gestisce l'invio dell'e-mail, da parte del cinema, all'utente che ha concluso
- * una prenotazione.
- * 
- * @author Screaming Hairy Armadillo Team
- *
- */
 public class EmailController {
 
 	/**

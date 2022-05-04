@@ -3,13 +3,18 @@ package it.unipv.po.oocinema.controllers.admin;
 
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import it.unipv.po.oocinema.controllers.LoginController;
 import it.unipv.po.oocinema.controllers.WindowsHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
-public class AdminMenuController {
+public class AdminMenuController implements Initializable{
 	
 	@FXML
 	private Label proiezione;
@@ -57,5 +62,11 @@ public class AdminMenuController {
 	 public Window getWindow() {
 	    	return home.getScene().getWindow();
 	    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		messaggio.setText("Ciao " + LoginController.getCliente().getUser()+", \na lato puoi trovare il menù che puoi utilizzare \n"
+				+ "per gestire il tuo cinema");
+	}
 
 }
