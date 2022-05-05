@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import com.google.zxing.BarcodeFormat;
@@ -19,6 +21,11 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+import it.unipv.po.oocinema.model.cinema.Film;
+import it.unipv.po.oocinema.model.cinema.Proiezione;
+import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
 public class TicketController {
@@ -96,7 +103,7 @@ public class TicketController {
 	}  
 		
 	public void printQRcode(Prenotazione prenotazione, int i) throws WriterException, IOException{   
-		String str= "Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()+ ".\n Posto: "+prenotazione.getPosti().get(i).toString()+"\n ID: "+prenotazione.getId();
+		String str= "Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()+ ".\n"+prenotazione.getPosti().get(i).toString()+"\n ID: "+prenotazione.getId();
 		String path = "tickets/QRcodes/"+prenotazione.getId()+"_"+i+".png";  
 		String charset = "UTF-8";  
 		Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();  
@@ -110,17 +117,20 @@ public class TicketController {
 	
 	
 	
+	
 	/*
 	 * public static void main(String[] args) throws WriterException, IOException {
-	 * Acquirente a = new Acquirente("user","psw"); Film f = new Film(2,"Avengers",
-	 * null,"Fantastico", 180,"Regi","sta","file:assets/2.jpeg",null); Proiezione p
-	 * = new Proiezione(f, LocalDate.now(), new Sala("SALA 1",2,2),LocalTime.now());
-	 * Prenotazione prenotazione = new Prenotazione(10,a,p);
-	 * prenotazione.addPosto(0, 1); prenotazione.addPosto(0, 0);
-	 * prenotazione.acquista(); TicketHandler t = new TicketHandler(prenotazione);
+	 * Acquirente a = new Acquirente("user",null,null,null,null); Film f = new
+	 * Film(2,"Avengers", null,"Fantastico",
+	 * 180,"Regi","sta","file:assets/2.jpeg",null); Proiezione p = new Proiezione(1,
+	 * f,LocalDate.now().toString(), new Sala(2,2),8.0,LocalTime.now().toString());
+	 * Prenotazione prenotazione = new Prenotazione(10," oggi ",a,p);
+	 * prenotazione.aggiungiPosto(0, 1); prenotazione.aggiungiPosto(0, 0);
+	 * prenotazione.acquista(); TicketController t = new
+	 * TicketController(prenotazione);
 	 * 
 	 * }
+	 * 
 	 */
-	
 	
 }

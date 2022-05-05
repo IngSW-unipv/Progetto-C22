@@ -34,7 +34,7 @@
          </image>
       </ImageView>
       <PasswordField id="passwordTxt" fx:id="conferma" layoutX="349.0" layoutY="106.0" prefHeight="30.0" prefWidth="225.0" promptText="Conferma Password" style="-fx-border-color: #6495ED;" />
-      <DatePicker fx:id="compleanno" layoutX="349.0" layoutY="149.0" prefHeight="30.0" prefWidth="225.0" promptText="Compleanno" style="-fx-border-color: #6495ED;" />
+      <DatePicker fx:id="compleanno" editable="false" layoutX="349.0" layoutY="149.0" prefHeight="30.0" prefWidth="225.0" promptText="Compleanno" style="-fx-border-color: #6495ED;" />
       <TextField fx:id="nome" layoutX="349.0" layoutY="195.0" prefHeight="30.0" prefWidth="225.0" promptText="Nome" style="-fx-border-color: #6495ED;" />
       <TextField fx:id="cognome" layoutX="349.0" layoutY="240.0" prefHeight="30.0" prefWidth="225.0" promptText="Cognome" style="-fx-border-color: #6495ED;" />
    </children>

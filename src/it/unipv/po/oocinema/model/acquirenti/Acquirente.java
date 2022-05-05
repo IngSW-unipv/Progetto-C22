@@ -1,5 +1,8 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
+import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Acquirente {
 	
@@ -22,7 +25,7 @@ public class Acquirente {
 		this.cognome = cognome;
 	}
 	
-	public Acquirente(String user) {
+	public Acquirente(String user){
 		this.user = user;
 	}
 
@@ -63,7 +66,5 @@ public class Acquirente {
 		this.cognome = cognome;
 	}
 
-	
-	
 	
 }

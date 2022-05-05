@@ -2,8 +2,10 @@ package it.unipv.po.oocinema.controllers;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;
@@ -60,28 +62,40 @@ public class RegistrazioneController implements Initializable{
 	    WindowsHandler.closeWindow(getWindow());
     }
 
+   
     @FXML
     void registrazione(MouseEvent event) {
     	while(!password.getText().equals(conferma.getText())) {
     		Alert errore = new Alert(AlertType.ERROR, "LE PASSWORD NON COINCIDONO");
 			errore.showAndWait();
     	}
-    	try {
+    	
+    	
+    	
+    	if (controllaInput()) {
     		Acquirente a = new Acquirente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString());
-    		if(facade.controllaUser(a)) 
-    			facade.registrazione(a);
-    		else {
-    			Alert errore = new Alert(AlertType.ERROR, "USER GIA' REGISTRATO");
-    			errore.showAndWait();
-    		}
-		} catch (SQLException e) {
-			Alert errore = new Alert(AlertType.ERROR, "ERRORE");
+    	
+    		try {
+	    		if(facade.controllaUser(a)) 
+	    			facade.registrazione(a);
+	    		else {
+	    			Alert error = new Alert(AlertType.ERROR, "USER GIA' REGISTRATO");
+	    			error.showAndWait();
+	    		}
+			} catch (SQLException e) {
+				Alert errore = new Alert(AlertType.ERROR, "ERRORE");
+				errore.showAndWait();
+				e.printStackTrace();
+			}
+    		
+    		login(event);
+    		
+		}else {
+			Alert errore = new Alert(AlertType.ERROR, "Controlla i dati inseriti");
 			errore.showAndWait();
-			e.printStackTrace();
+    	
 		}
-    	login(event);
     }
-
     
     public Window getWindow() {
 		return password.getScene().getWindow();
@@ -97,6 +111,21 @@ public class RegistrazioneController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	private boolean controllaInput() {
+		Pattern p = Pattern.compile("^(.+)@(.+)$");
+	    Matcher m = p.matcher(email.getText());
+	    boolean b;
+	    if(compleanno.getPromptText()!=null) {
+	    	if(compleanno.getValue().isBefore(LocalDate.now())) {
+	    		b = true;
+	    	} else b = false;
+	    } else b = false;
+
+		return (email.getText()!= null && password.getText()!=null && b
+				&& nome.getText()!=null && cognome.getText()!=null && m.find());
 		
 	}
 
