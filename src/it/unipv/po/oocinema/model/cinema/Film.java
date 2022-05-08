@@ -187,8 +187,6 @@ public class Film {
 	
 	@Override
 	public boolean equals(Object obj) {
-		//System.out.println(obj.getClass() + " " + getClass());
-		// ))
 		if (obj != null && getClass().equals(obj.getClass())){
 			Film film = (Film) obj;
 			return (film.getId() == id) && (film.getTitolo().equals(titolo)) && (film.getDescrizione().equals(descrizione)) &&

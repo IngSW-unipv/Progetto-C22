@@ -28,6 +28,9 @@ public class Acquirente {
 	public Acquirente(String user){
 		this.user = user;
 	}
+	
+	public Acquirente(){
+	}
 
 	public String getUser() {
 		return user;

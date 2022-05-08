@@ -18,9 +18,19 @@ public class TestFilm {
 	
 	@Before
 	public void intTest() throws Exception {
-		filmA=new Film(53,"titolo","descrizione","genere", 90,"regista","cast","coverPath","trailerPath");
+		filmA=new Film(2,"titolo","descrizione","genere", 90,"regista","cast","coverPath","trailerPath"); //incrementa sempre
 		filmB=new Film();
 		facade = DBFacade.getInstance();
+	}
+	
+	@Test
+	public void testGetFilmById(){
+		try {
+			filmB=facade.getFilmbyId(filmA);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		assertTrue(filmA.equals(filmB)); 
 	}
 	
 	@Test
@@ -34,4 +44,15 @@ public class TestFilm {
 		assertTrue(filmA.equals(filmB)); 
 	}
 
+	@Test
+	public void testRimuoviFilm(){
+		try {
+			facade.aggiungiFilm(filmA);
+			facade.rimuoviFilm(filmA);
+			filmB=facade.getFilmbyId(filmA);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		assertNull(filmB); 
+	}
 }
