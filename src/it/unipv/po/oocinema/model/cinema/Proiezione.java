@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 /**
- * Classe che modella un oggetto di tipo Proiezione
+ * Classe che modella un oggetto di tipo Proiezione.
  */
 
 public class Proiezione {

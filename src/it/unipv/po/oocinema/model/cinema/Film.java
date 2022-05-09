@@ -1,7 +1,7 @@
 package it.unipv.po.oocinema.model.cinema;
 
 /**
- * Film che sarà proiettato al cinema.
+ * classe che modella un film che sarà proiettato al cinema.
  * 
  * @author Gruppo GoF
  *

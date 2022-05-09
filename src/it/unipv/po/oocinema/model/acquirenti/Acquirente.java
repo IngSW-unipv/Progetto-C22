@@ -1,15 +1,19 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
-import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+/*
+ * Classe che modella un generico acquirente del cinema con i suoi 
+ * attributi e metodi utili.
+ * 
+ * @author Gruppo GoF
+ */
 
 public class Acquirente {
 	
 	private String user;
+	
 	private String password;
 	
-	private String compleanno;
+	private String compleanno; //specificare il formato. 
 	
 	private String nome;
 	

@@ -2,6 +2,12 @@ package it.unipv.po.oocinema.model.cinema;
 
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
+/*
+ * Classe che modella un posto occupato da una prenotazione.
+ * Se l'attributo prenotazione è nullo allora il posto non è ancora 
+ * stato prenotato. 
+ */
+
 public class Posto { 
 	
 	private int riga;

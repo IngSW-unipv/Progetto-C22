@@ -1,7 +1,10 @@
 package it.unipv.po.oocinema.model.acquirenti;
 
 /**
- * Classe che modella un oggetto di tipo Cassa
+ * Classe che estende Acquirente e modella un oggetto di tipo Cassa, 
+ * rappresentazione di una cassa fisica presente nel cinema.
+ * 
+ * @author Gruppo GoF
  */
 public class Cassa extends Acquirente{
 
