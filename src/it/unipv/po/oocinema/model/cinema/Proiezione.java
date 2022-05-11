@@ -45,7 +45,8 @@ public class Proiezione {
 	}
 	
 	public Proiezione() {
-		
+		this.id = progressivo;
+		progressivo++;
 	}
 
 	public boolean checkPostoDisponibile(int riga, int colonna) {

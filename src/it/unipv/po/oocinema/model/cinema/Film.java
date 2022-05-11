@@ -181,8 +181,7 @@ public class Film {
 	@Override
 	public String toString() {
 		return "titolo=" + titolo +"\n"+ " descrizione=" + descrizione +"\n"+ " genere=" + genere+"\n"
-				+ " durata=" + durata+"\n" + " regista=" + regista+"\n" + " cast=" + cast+"\n" + " coverPath=" + coverPath+"\n"
-				+ " trailerPath=" + trailerPath +"\n";
+				+ " durata=" + durata+"\n" + " regista=" + regista+"\n" + " cast=" + cast+"\n" ;
 	}
 	
 	@Override

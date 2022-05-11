@@ -1,5 +1,11 @@
 package it.unipv.po.oocinema.persistenza;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -514,13 +520,34 @@ public class DBFacade {
 	}
 
 	
-	public void initializeDB() {
-		// eliminare il contenuto del db e inserire i campi fondamentali
-		// admin, sale , ore, cinemainfo
-		// eliminare proiezioni scadute
-
+	public void initializeDB() throws SQLException, IOException {
+		/*
+		 * Connection conn = null; conn = MySQLConnectionFactory.connect(conn); String
+		 * query = getQuery();
+		 * 
+		 * PreparedStatement st1 = conn.prepareStatement(query);
+		 * 
+		 * st1.executeUpdate(); MySQLConnectionFactory.closeConnection(conn);
+		 */
 	}
 	
+	public String getQuery() throws IOException {
+		String query = "";
+		String line;
+		FileReader f = new FileReader("initializeDB.sql");
+	    BufferedReader b = new BufferedReader(f);
+	    
+	    while(true) {
+	        line = b.readLine();
+	        if(line == null)
+	          break;
+	        query = query + line;
+	      }
+	    
+	    b.close();
+		return query;
+		
+	}
 	
 
 	/*
