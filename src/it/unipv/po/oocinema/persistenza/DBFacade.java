@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
@@ -522,11 +523,27 @@ public class DBFacade {
 	
 	public void initializeDB() throws SQLException, IOException {
 		Connection conn = null; conn = MySQLConnectionFactory.connect(conn); 
-		String query = getQuery();
+	
+		String query = "";       
+		Statement st1 = conn.createStatement();
 		  
-		PreparedStatement st1 = conn.prepareStatement(query);
-		  
-		st1.execute(); 
+		st1.execute("SET SQL_SAFE_UPDATES = 0;"); 
+		st1.executeUpdate("DELETE FROM cinema_info;");
+		st1.executeUpdate("DELETE FROM posto;");
+		st1.executeUpdate("DELETE FROM prenotazione;");
+		st1.executeUpdate("DELETE FROM proiezione;");
+		st1.executeUpdate("DELETE FROM film;");
+		st1.executeUpdate("DELETE FROM sala;");
+		st1.executeUpdate("DELETE FROM ora;");
+		
+		st1.executeUpdate("INSERT INTO `oocinema`.`cinema_info` (`nome`, `telefono`, `user`, `email`, `password`, `indirizzo`) "
+				+ "VALUES ('OOCINEMA - PAVIA', '0382 - 000000', 'admin', 'oocinema.project@gmail.com', 'admin', 'Via Ferrata 5 - 27100 - Italia');");
+		st1.executeUpdate("INSERT INTO `oocinema`.`ora` (`ora`) VALUES ('18:00');");
+		st1.executeUpdate("INSERT INTO `oocinema`.`ora` (`ora`) VALUES ('19:30');");
+		st1.executeUpdate("INSERT INTO `oocinema`.`ora` (`ora`) VALUES ('21 :00');");
+		st1.executeUpdate("INSERT INTO `oocinema`.`sala` (`id`, `n_righe`, `n_col`) VALUES (1, 15, 20);");
+		st1.executeUpdate("INSERT INTO `oocinema`.`sala` (`id`, `n_righe`, `n_col`) VALUES (2, 15, 20);");
+		st1.executeUpdate("INSERT INTO `oocinema`.`sala` (`id`, `n_righe`, `n_col`) VALUES (3, 10, 25);");
 		MySQLConnectionFactory.closeConnection(conn);
 		 
 	}
