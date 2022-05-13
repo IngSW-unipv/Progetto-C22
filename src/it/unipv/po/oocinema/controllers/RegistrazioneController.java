@@ -65,16 +65,22 @@ public class RegistrazioneController implements Initializable{
    
     @FXML
     void registrazione(MouseEvent event) {
-    	while(!password.getText().equals(conferma.getText())) {
+    	if(!password.getText().equals(conferma.getText())) {
     		Alert errore = new Alert(AlertType.ERROR, "LE PASSWORD NON COINCIDONO");
 			errore.showAndWait();
+			return;
     	}
     	
     	
     	
     	if (controllaInput()) {
-    		Acquirente a = new Acquirente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString());
-    	
+    		Acquirente a = null;
+    		try {
+    			a = new Acquirente(email.getText(), password.getText(),nome.getText(),cognome.getText(),compleanno.getValue().toString());
+    		}catch(Exception e) {
+    			Alert al = new Alert(AlertType.WARNING, "Controlla i dati inseriti");
+    			al.showAndWait();
+    		}
     		try {
 	    		if(facade.controllaUser(a)) 
 	    			facade.registrazione(a);
@@ -117,13 +123,15 @@ public class RegistrazioneController implements Initializable{
 	private boolean controllaInput() {
 		Pattern p = Pattern.compile("^(.+)@(.+)$");
 	    Matcher m = p.matcher(email.getText());
-	    boolean b;
+	    boolean b = false;
+	    try {
 	    if(compleanno.getPromptText()!=null) {
 	    	if(compleanno.getValue().isBefore(LocalDate.now())) {
 	    		b = true;
 	    	} else b = false;
 	    } else b = false;
-
+	    }catch(Exception e) {Alert errore = new Alert(AlertType.ERROR, "Controlla i dati inseriti");
+		errore.showAndWait();}
 		return (email.getText()!= null && password.getText()!=null && b
 				&& nome.getText()!=null && cognome.getText()!=null && m.find());
 		

@@ -89,8 +89,8 @@ public class TicketController {
 		String giorno = ""+prenotazione.getProiezione().getGiorno().toString();
 		
 		Paragraph paragrafo = new Paragraph("Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()
-				+ "\n" + prenotazione.getProiezione().getSala().getId() + " "+prenotazione.getPosti().get(i).toString()+
-				"\n" + giorno + "  alle  "+ prenotazione.getProiezione().getOrario());
+				+ "\n Sala " + prenotazione.getProiezione().getSala().getId() + " "+prenotazione.getPosti().get(i).toString()+
+				"\n" + giorno + "  alle  "+ prenotazione.getProiezione().getOrario() +"\nPrezzo: "+prenotazione.getTotale());
 
 		return paragrafo;
 	}

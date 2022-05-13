@@ -43,6 +43,7 @@ public class EmailController {
 	 * Ubicazione del cinema.
 	 */
 	private String location;
+	private String messaggio;
 
 	/**
 	 * URL del logo del cinema.
@@ -58,8 +59,8 @@ public class EmailController {
 	 * @param location ubicazione del cinema.
 	 * @param logoURL  URL del logo del cinema (iconfinder.com).
 	 */
-	public EmailController() {
-	
+	public EmailController(String messaggio) {
+		this.messaggio = messaggio;
 		this.password = "Password2021!";
 	}
 
@@ -104,7 +105,7 @@ public class EmailController {
 				}
 			}
 		};
-		emailThread.start();
+		//emailThread.start();
 		return emailThread;
 	}
 
@@ -181,11 +182,7 @@ public class EmailController {
 	private BodyPart createMailBody(Prenotazione reservation) throws MessagingException {
 		BodyPart messageBodyPart1 = new MimeBodyPart();
 		messageBodyPart1.setText("Ciao " + reservation.getAcquirente().getNome() + " "
-				+  ",\n\n" + "grazie per aver scelto il nostro Cinema!\n\n\n"
-				+ "In allegato trovi la ricevuta di avvenuto pagamento che conferma il tuo acquisto.\n"
-				+ "Stampa la prenotazione e presentala quando verrai a guardare il film.\n\n"
-				+ "Ti aspettiamo, buona giornata!\n" + "\n\n"
-				+ "Non rispondere alla presente e-mail. Messaggio generato automaticamente.\n");
+				+  ",\n\n" + messaggio);
 		return messageBodyPart1;
 	}
 

@@ -87,14 +87,15 @@ public class ProiezioneController extends AdminMenuController implements Initial
     	alert.showAndWait(); 
     	
     	if(alert.getResult().equals(ButtonType.OK)) {
-    	Film f = new Film();
-    	f.setId(Integer.parseInt(idLabel.getText()));
+    	Proiezione p = new Proiezione();
     	try {
-			facade.rimuoviFilm(f);	
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	p.setId(Integer.parseInt(idLabel.getText()));
+    	facade.rimuoviProiezione(p);	
+    	}catch(Exception e) {
+    		Alert errore = new Alert(AlertType.WARNING, "Controlla i dati inseriti");
+			errore.showAndWait();
+    	}
+    	
     	
     	aggiorna();
     	}

@@ -1,15 +1,13 @@
 SET SQL_SAFE_UPDATES = 0;
-#SHOW VARIABLES LIKE "sql_safe_updates";
 
-DELETE FROM `oocinema`.`cinema_info`;
-DELETE FROM `oocinema`.`film`;
-DELETE FROM `oocinema`.`sala`;
-DELETE FROM `oocinema`.`ora`;
-DELETE FROM `oocinema`.`acquirente`;
-DELETE FROM `oocinema`.`posto`;
-DELETE FROM `oocinema`.`prenotazione`;
-DELETE FROM `oocinema`.`proiezione`;
+DELETE FROM cinema_info;
+DELETE FROM posto;
+DELETE FROM prenotazione;
+DELETE FROM proiezione;
 
+DELETE FROM film;
+DELETE FROM sala;
+DELETE FROM ora;
 
 INSERT INTO `oocinema`.`cinema_info`
 (`nome`,
@@ -67,5 +65,5 @@ VALUES
 10,
 25);
 
-SET SQL_SAFE_UPDATES = 1;
+
 

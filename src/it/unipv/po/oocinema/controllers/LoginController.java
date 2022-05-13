@@ -81,7 +81,7 @@ public class LoginController implements Initializable{
 
     @FXML
     void passwordDimenticata(MouseEvent event) {
-    	//Email handler magari
+    	
     }
 
     @FXML

@@ -61,17 +61,17 @@ public class PrenotazioneController extends ClientMenuController implements Init
     @FXML
     void prenota(MouseEvent event) {
     	
-    	prenotazione.setProiezione(SchedaController.getProiezione());
     	prenotazione.setAcquirente(LoginController.getCliente());
     	prenotazione.setDataAcquisto(LocalDate.now().toString());
+    	System.out.println(prenotazione.getTotale());
     	if (prenotazione.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(prenotazione);
 				try {
-					EmailController e = new EmailController();
+					String messaggio = "grazie per aver scelto OOCINEMA. \nIn allegato troverai i biglietti "
+							+ "che ti permetteranno di accedere alle proiezioni.\n A presto! \nLo staff di OOCINEMA";
+					EmailController e = new EmailController(messaggio);
 					e.sendEmail(prenotazione).run();
-					Alert a = new Alert(AlertType.INFORMATION, "MAIL INVIATA CON SUCCESSO");
-					a.showAndWait();
 					
 					WindowsHandler.openWindow(getClass(), "../../view/scenes/homeCLI.fxml");
 	    			WindowsHandler.closeWindow(getWindow());
@@ -85,6 +85,8 @@ public class PrenotazioneController extends ClientMenuController implements Init
 				errore.showAndWait();
 				e.printStackTrace();
 			}
+	    	Alert al = new Alert(AlertType.CONFIRMATION, "Complimenti! Prenotazione effettuata con successo. \nTotale pagato: "+prenotazione.getTotale()+"€");
+			al.showAndWait();
     	}
     }
 

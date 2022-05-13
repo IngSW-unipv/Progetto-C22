@@ -63,7 +63,11 @@ public class FilmController extends AdminMenuController implements Initializable
     	
     	if(alert.getResult().equals(ButtonType.OK)) {
     	Film f = new Film();
-    	f.setId(Integer.parseInt(idFilm.getText()));
+    	try {
+    		f.setId(Integer.parseInt(idFilm.getText()));
+    	}catch(Exception e) {
+    		Alert al = new Alert(AlertType.WARNING, "Controlla il dato inserito");
+    		al.showAndWait(); }
     	try {
 			facade.rimuoviFilm(f);	
 		} catch (SQLException e) {

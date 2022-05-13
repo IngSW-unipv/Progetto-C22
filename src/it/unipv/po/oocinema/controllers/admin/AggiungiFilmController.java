@@ -60,15 +60,18 @@ public class AggiungiFilmController extends AdminMenuController implements Initi
     private File t;
     @FXML
     public void aggiungiFilm(MouseEvent event) {
-	
-		 Film f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
+    	 Film f = null;
+    	try {
+		  f = new Film(titolo.getText(),descrizione.getText(), genere.getText(),
 		 Integer.parseInt(durata.getText()),regista.getText(),cast.getText(),
 		 "../../resources/locandine/"+l.getName(),"src/it/unipv/po/oocinema/resources/trailer/"+t.getName());
-		
+    	}catch(Exception e) {Alert errore = new Alert(AlertType.WARNING, "Controlla i dati inseriti");
+		errore.showAndWait();
+		return;}
 		 try {
 			facade.aggiungiFilm(f);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			Alert errore = new Alert(AlertType.ERROR, "ERRORE");
 			errore.showAndWait();
 		}

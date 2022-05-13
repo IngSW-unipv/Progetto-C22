@@ -521,30 +521,31 @@ public class DBFacade {
 
 	
 	public void initializeDB() throws SQLException, IOException {
-		/*
-		 * Connection conn = null; conn = MySQLConnectionFactory.connect(conn); String
-		 * query = getQuery();
-		 * 
-		 * PreparedStatement st1 = conn.prepareStatement(query);
-		 * 
-		 * st1.executeUpdate(); MySQLConnectionFactory.closeConnection(conn);
-		 */
+		Connection conn = null; conn = MySQLConnectionFactory.connect(conn); 
+		String query = getQuery();
+		  
+		PreparedStatement st1 = conn.prepareStatement(query);
+		  
+		st1.execute(); 
+		MySQLConnectionFactory.closeConnection(conn);
+		 
 	}
 	
 	public String getQuery() throws IOException {
 		String query = "";
 		String line;
-		FileReader f = new FileReader("initializeDB.sql");
+		FileReader f = new FileReader("src/it/unipv/po/oocinema/persistenza/initializeDB.sql");
 	    BufferedReader b = new BufferedReader(f);
 	    
 	    while(true) {
 	        line = b.readLine();
 	        if(line == null)
 	          break;
-	        query = query + line;
+	        query = query + " "+line;
 	      }
 	    
 	    b.close();
+	    System.out.println(query);
 		return query;
 		
 	}

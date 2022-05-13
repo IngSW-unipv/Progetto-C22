@@ -17,7 +17,7 @@ public class Prenotazione {
 	
 	private int id;
 	
-	private static int progressivo = 24;
+	private static int progressivo = 0;
 
 	private String dataAcquisto;
 
@@ -85,7 +85,7 @@ public class Prenotazione {
 
 	
 	public double getPrezzoTot() {
-		return Math.round(numPosti * proiezione.getPrezzo()* 100.0) / 100.0;
+		return getNumPosti() * proiezione.getPrezzo();
 	}
 
 	public int getNumPosti() {

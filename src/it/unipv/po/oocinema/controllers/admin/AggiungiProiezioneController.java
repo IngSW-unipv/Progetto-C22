@@ -59,7 +59,7 @@ public class AggiungiProiezioneController extends AdminMenuController implements
     private ComboBox<String> salaCombo;
 
 	@FXML
-    void aggiungiProiezione(MouseEvent event) throws NumberFormatException, ParseException {
+    void aggiungiProiezione(MouseEvent event) {
 	
 		try {
 			Film f = facade.getFilmbyTitolo(new Film(filmCombo.getValue()));
@@ -67,10 +67,12 @@ public class AggiungiProiezioneController extends AdminMenuController implements
 	    	Proiezione p = new Proiezione(f,giorno.getValue().toString(),s,Double.parseDouble(prezzo.getText()),oraCombo.getValue());
 	    	
 	    	facade.aggiungiProiezione(p);
+	    	Alert a = new Alert(AlertType.CONFIRMATION, "Proiezione aggiunta con successo");
+			a.showAndWait();
 	    	
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Alert errore = new Alert(AlertType.ERROR, "ERRORE");
+		} catch (Exception e) {
+			
+			Alert errore = new Alert(AlertType.WARNING, "Controlla i dati inseriti");
 			errore.showAndWait();
 		}
     	
