@@ -65,7 +65,14 @@ public class CassaController extends AdminMenuController implements Initializabl
     	alert.showAndWait(); 
     	
     	if(alert.getResult().equals(ButtonType.OK)) {
-	    	Cassa c = new Cassa(userCassa.getText());
+    		
+    		Cassa c = null;
+    		try {
+	    	 c = new Cassa(userCassa.getText());
+	    	 }catch(Exception e){
+	    		 Alert al = new Alert(AlertType.WARNING, "Controlla i dati inseriti");
+	 			al.showAndWait();
+	    	 }
 	    	try {
 				facade.rimuoviCassa(c);	
 			} catch (SQLException e) {
