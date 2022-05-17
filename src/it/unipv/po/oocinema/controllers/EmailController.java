@@ -1,5 +1,6 @@
 package it.unipv.po.oocinema.controllers;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -22,59 +23,59 @@ import com.google.zxing.WriterException;
 
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
+/**
+* Classe che implementa il Controller per l'invio dell'email ai clienti
+* 
+* @author GoF
+*/
 public class EmailController {
+
+	private static final String PROPERTYUSER = "EMAIL";
+	private static final String PROPERTYPSW = "EMAIL_PSW";
 
 	/**
 	 * E-mail del cinema.
 	 */
-	private String email;
-
+	private String user;
+	
 	/**
 	 * Password dell'e-mail del cinema.
 	 */
 	private String password;
 
 	/**
-	 * Nome del cinema.
+	 * Messaggio che è scritto nell'email
 	 */
-	private String name;
-
-	/**
-	 * Ubicazione del cinema.
-	 */
-	private String location;
 	private String messaggio;
-
-	/**
-	 * URL del logo del cinema.
-	 */
-	private String logoURL;
 
 	/**
 	 * Costruttore del gestore dell'e-mail.
 	 * 
-	 * @param name     nome del cinema.
-	 * @param email    e-mail del cinema.
-	 * @param password password dell'e-mail del cinema.
-	 * @param location ubicazione del cinema.
-	 * @param logoURL  URL del logo del cinema (iconfinder.com).
+	 * @param messaggio messaggio che è scritto nell'email
 	 */
 	public EmailController(String messaggio) {
 		this.messaggio = messaggio;
-		this.password = "Password2021!";
+		Properties p = new Properties(System.getProperties());
+		try {
+			p.load(new FileInputStream("properties/properties"));
+			user = p.getProperty(PROPERTYUSER);
+			password = p.getProperty(PROPERTYPSW);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Invia l'e-mail allo spettatore.
+	 * Invia l'e-mail al cliente.
 	 * 
-	 * @param reservation prenotazione da inviare.
-	 * @return il Thread, già avviato, utilizzato per l'invio asincrono dell'e-mail
+	 * @param prenotazione prenotazione da inviare.
+	 * @return il Thread utilizzato per l'invio asincrono dell'e-mail
 	 *         allo spettatore.
-	 * @throws HandlerException se ci fosse un problema nella spedizione del report
-	 *                          o nella sua generazione.
+	 * 
 	 */
 	public Thread sendEmail(Prenotazione prenotazione) {
 		try {
+			@SuppressWarnings("unused")
 			TicketController ticketController = new TicketController(prenotazione);
 		} catch (WriterException | IOException e) {
 			// TODO Auto-generated catch block
@@ -84,28 +85,20 @@ public class EmailController {
 			@Override
 			public void run() {
 				try {
-					// Prima di inviare l'email si verifica che il report sia già stato generato,
-					// se non è ancora stato generato lo genero
 					
+					String to = prenotazione.getAcquirente().getUser(); 
 
-					// Stabilisce le informazioni sul sender ed il receiver dell'email
-					String to = prenotazione.getAcquirente().getUser(); // Receiver email
-					String user = "oocinema.project@gmail.com"; // Sender email (cinema)
-
-					// Configura le proprietà dell'email
 					Properties properties = setUpMainProperties(user, password);
 
-					// Genera una nuova sessione mail
 					Session session = startNewSession(user, password, properties);
 
-					// Tenta la composizione del messaggio e l'invio dell'email
 					createMessageAndSendEmail(session, user, to, prenotazione);
 				} catch (Exception exception) {
 					System.out.println(exception.getMessage());
 				}
 			}
 		};
-		//emailThread.start();
+
 		return emailThread;
 	}
 
@@ -114,27 +107,21 @@ public class EmailController {
 	 * 
 	 * @param session     sessione e-mail generata per la specifica prenotazione.
 	 * @param user        mittente dell'e-mail (cinema).
-	 * @param to          destinatario dell'e-mail (spettatore).
-	 * @param reservation prenotazione da inviare.
-	 * @throws HandlerException se ci fosse un problema nella spedizione del report
-	 *                          o nella sua generazione.
+	 * @param to          destinatario dell'e-mail (cliente).
+	 * @param prenotazione prenotazione da inviare.
+	 * 
 	 */
-	private void createMessageAndSendEmail(Session session, String user, String to, Prenotazione reservation)
-			{
+	private void createMessageAndSendEmail(Session session, String user, String to, Prenotazione prenotazione){
 		try {
-			// Configura le proprietà basilari dell'email
-			Message message = createBasicMailProperties(session, user, to, reservation);
+			
+			Message message = createBasicMailProperties(session, user, to, prenotazione);
 
-			// Crea il body dell'email
-			BodyPart messageBodyPart1 = createMailBody(reservation);
+			BodyPart messageBodyPart1 = createMailBody(prenotazione);
 
-			// Aggiunge, all'email, il report della prenotazione in allegato
-			MimeBodyPart messageBodyPart2 = createMailReport(reservation);
+			MimeBodyPart messageBodyPart2 = createMailReport(prenotazione);
 
-			// Crea un campo multipart comprendente body e allegato
 			addBodyAndReportToMail(message, messageBodyPart1, messageBodyPart2);
 
-			// Invia l'email
 			Transport.send(message);
 		} catch (MessagingException ex) {
 			}
@@ -148,8 +135,7 @@ public class EmailController {
 	 * @param messageBodyPart2 allegato dell'e-mail.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */
-	private void addBodyAndReportToMail(Message message, BodyPart messageBodyPart1, MimeBodyPart messageBodyPart2)
-			throws MessagingException {
+	private void addBodyAndReportToMail(Message message, BodyPart messageBodyPart1, MimeBodyPart messageBodyPart2) throws MessagingException {
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(messageBodyPart1);
 		multipart.addBodyPart(messageBodyPart2);
@@ -163,12 +149,12 @@ public class EmailController {
 	 * @return il report allegato all'email.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */
-	private MimeBodyPart createMailReport(Prenotazione reservation) throws MessagingException {
+	private MimeBodyPart createMailReport(Prenotazione prenotazione) throws MessagingException {
 		MimeBodyPart messageBodyPart2 = new MimeBodyPart();
-		String filename = reservation.getTicketPath();
+		String filename = prenotazione.getTicketPath();
 		DataSource source = new FileDataSource(filename);
 		messageBodyPart2.setDataHandler(new DataHandler(source));
-		messageBodyPart2.setFileName("Prenotazione_" + Integer.toString(reservation.getId()) + ".pdf");
+		messageBodyPart2.setFileName("Prenotazione_" + Integer.toString(prenotazione.getId()) + ".pdf");
 		return messageBodyPart2;
 	}
 
@@ -179,9 +165,9 @@ public class EmailController {
 	 * @return il body dell'e-mail.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */
-	private BodyPart createMailBody(Prenotazione reservation) throws MessagingException {
+	private BodyPart createMailBody(Prenotazione prenotazione) throws MessagingException {
 		BodyPart messageBodyPart1 = new MimeBodyPart();
-		messageBodyPart1.setText("Ciao " + reservation.getAcquirente().getNome() + " "
+		messageBodyPart1.setText("Ciao " + prenotazione .getAcquirente().getNome() + " "
 				+  ",\n\n" + messaggio);
 		return messageBodyPart1;
 	}
@@ -193,17 +179,17 @@ public class EmailController {
 	 * @param session     sessione e-mail generata per la specifica prenotazione.
 	 * @param user        mittente dell'e-mail (cinema).
 	 * @param to          destinatario dell'e-mail (spettatore).
-	 * @param reservation prenotazione da inviare.
+	 * @param prenotazione prenotazione da inviare.
 	 * @return il contenitore, che accoglierà: l'oggetto, il body e l'allegato, con
 	 *         le proprietà dell'email.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */
-	private Message createBasicMailProperties(Session session, String user, String to, Prenotazione reservation)
+	private Message createBasicMailProperties(Session session, String user, String to, Prenotazione prenotazione)
 			throws MessagingException {
 		MimeMessage message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(user));
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-		message.setSubject("Prenotazione numero " + reservation.getId() + " - Ti aspettiamo!");
+		message.setSubject("Prenotazione numero " + prenotazione.getId() + " - Ti aspettiamo!");
 		return message;
 	}
 

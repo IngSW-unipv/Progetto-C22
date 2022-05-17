@@ -15,50 +15,76 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-
+/**
+* Classe che implementa il Controller per la gestione delle cassiere da parte dell'amministratore
+* 
+* @author GoF
+*/
 public class CassaController extends AdminMenuController implements Initializable {
 
+	/**
+	 * Istanza del gestore del DataBase
+	 */
 	private DBFacade facade = DBFacade.getInstance();
 	
+	/**
+	 * Username della cassa da eliminare
+	 */
     @FXML
     private TextField userCassa;
+   
 
-    @FXML
-    private Label proiezioni;
-
+    /**
+	 * Bottone per rimuovere la cassa selezionata
+	 */
     @FXML
     private Button rimuovi;
     
+    /**
+	 * Bottone per andare alla pagina di aggiunta di una nuova cassa
+	 */
     @FXML
     private Button aggiungi;
 
+    /**
+	 * Tabella con l'elenco di tutte le casse presenti
+	 */
     @FXML
     private TableView<Cassa> tabella;
 
+    /**
+	 * Colonna dell'username
+	 */
     @FXML
     private TableColumn<Cassa, String> colonnaUser;
 
+    /**
+	 * Colonna della password
+	 */
     @FXML
     private TableColumn<Cassa, String> colonnaPassword;
     
-    ObservableList<Cassa> datiTabella = FXCollections.observableArrayList();
+    private ObservableList<Cassa> datiTabella = FXCollections.observableArrayList();
 
+    /**
+	 * Porta alla pagina di aggiunta di una nuova cassa
+	 */
     @FXML
     void aggiungiCassa(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "../../view/scenes/aggiungiCassa.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
+    /**
+	 * Rimuove la cassa selezionata
+	 */
     @FXML
     void rimuoviCassa(MouseEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION, "Verranno rimossi tutti i dati associati alla cassa");
@@ -83,6 +109,9 @@ public class CassaController extends AdminMenuController implements Initializabl
     	}
     }
 
+    /**
+	 * Inizializza la tabella
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -93,11 +122,17 @@ public class CassaController extends AdminMenuController implements Initializabl
 		
 	}
 	
+	/**
+	 * Aggiorna il contenuto della tabella
+	 */
 	public void aggiorna() {
 		costruisciElementiTabella(datiTabella);
 		tabella.setItems(datiTabella);
 	}
 	
+	/**
+	 * Costruisce una tabella a pertire da @param datiTabella
+	 */
 	public  void costruisciElementiTabella(ObservableList<Cassa> datiTabella) {
 		
 		datiTabella.removeAll(datiTabella);
