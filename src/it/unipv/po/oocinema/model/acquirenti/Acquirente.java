@@ -72,6 +72,5 @@ public class Acquirente {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-
 	
 }

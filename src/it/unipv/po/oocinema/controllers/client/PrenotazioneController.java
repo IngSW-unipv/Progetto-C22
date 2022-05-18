@@ -63,16 +63,20 @@ public class PrenotazioneController extends ClientMenuController implements Init
     	
     	prenotazione.setAcquirente(LoginController.getCliente());
     	prenotazione.setDataAcquisto(LocalDate.now().toString());
-    	System.out.println(prenotazione.getTotale());
     	if (prenotazione.pagamento()) {
 	    	try {
 				facade.aggiungiPrenotazione(prenotazione);
 				try {
 					String messaggio = "grazie per aver scelto OOCINEMA. \nIn allegato troverai i biglietti "
 							+ "che ti permetteranno di accedere alle proiezioni.\n A presto! \nLo staff di OOCINEMA";
-					EmailController e = new EmailController(messaggio);
-					e.sendEmail(prenotazione).run();
 					
+					if(facade.getTipoByAcquirente(prenotazione.getAcquirente()) == '1') {
+						EmailController e = new EmailController(messaggio);
+						e.sendEmail(prenotazione).run();
+					}else {
+						
+						//Invio biglietti alla stampante
+					}
 					WindowsHandler.openWindow(getClass(), "../../view/scenes/homeCLI.fxml");
 	    			WindowsHandler.closeWindow(getWindow());
 				} catch (Exception e1) {

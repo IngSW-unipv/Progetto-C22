@@ -198,4 +198,21 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 			return null;
 		}	
 	}
+
+	public int getTipoByAcquirente(Acquirente acquirente) throws SQLException{
+		conn = MySQLConnectionFactory.connect(conn);
+		String query = "SELECT tipo FROM acquirente where user= ?;";
+		PreparedStatement st1 = conn.prepareStatement(query);
+		st1.setString(1, acquirente.getUser());
+		ResultSet result = st1.executeQuery();
+		int tipo = -1;
+		if(result.next()) {
+			tipo = result.getInt("tipo");
+		} 
+		
+		MySQLConnectionFactory.closeConnection(conn);
+		
+		return tipo;
+			
+	}
 }

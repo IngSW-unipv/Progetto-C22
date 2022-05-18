@@ -523,8 +523,7 @@ public class DBFacade {
 	
 	public void initializeDB() throws SQLException, IOException {
 		Connection conn = null; conn = MySQLConnectionFactory.connect(conn); 
-	
-		String query = "";       
+	     
 		Statement st1 = conn.createStatement();
 		  
 		st1.execute("SET SQL_SAFE_UPDATES = 0;"); 
@@ -562,16 +561,12 @@ public class DBFacade {
 	      }
 	    
 	    b.close();
-	    System.out.println(query);
 		return query;
 		
 	}
-	
 
-	/*
-	 * public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws
-	 * SQLException{ //riga e non fila cambiare nel database return
-	 * postoDAO.getRigheLibere(inputProiezione); }
-	 */
+	public char getTipoByAcquirente(Acquirente acquirente) throws SQLException{
+		return acquirenteDAO.getTipoByAcquirente(acquirente);
+	}
 	
 }
