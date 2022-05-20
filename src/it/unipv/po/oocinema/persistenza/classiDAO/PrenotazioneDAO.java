@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
@@ -90,7 +91,6 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		st1.setInt(4, inputPrenotazione.getProiezione().getId()); 
 		st1.setString(5, inputPrenotazione.getAcquirente().getUser());
 		st1.executeUpdate();
-		System.out.println(inputPrenotazione.getId());
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 	
@@ -116,17 +116,21 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 
-	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
+	@Override
+	public ArrayList<Posto> getPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		String query = "select count(*) as num from posto where prenotazione_id = ?;";
+		String query = "select * from posto where prenotazione_id = ?;";
 		PreparedStatement st1 = conn.prepareStatement(query);
 		st1.setInt(1, inputPrenotazione.getId());
 		ResultSet result=st1.executeQuery();
-		int num;
-		if(result.next()) num = result.getInt("num");
-		else num = 0;
+		ArrayList<Posto> p = new ArrayList<Posto>();
+		while (result.next()) {
+			p.add(new Posto(result.getInt("riga"),result.getInt("colonna")));
+		}
 		
 		MySQLConnectionFactory.closeConnection(conn);
-		return num;
+		return p;
 	}
+
+	
 }

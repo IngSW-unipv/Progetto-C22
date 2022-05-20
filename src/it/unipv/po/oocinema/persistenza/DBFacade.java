@@ -391,8 +391,8 @@ public class DBFacade {
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	
-	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
-		return prenotazioneDAO.getNumPostiByPrenotazione(inputPrenotazione);
+	public ArrayList<Posto> getPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException {
+		return prenotazioneDAO.getPostiByPrenotazione(inputPrenotazione);
 	}
 	
 	public Proiezione getProiezioneById(Proiezione inputProiezione) throws SQLException{
@@ -565,7 +565,7 @@ public class DBFacade {
 		
 	}
 
-	public char getTipoByAcquirente(Acquirente acquirente) throws SQLException{
+	public int getTipoByAcquirente(Acquirente acquirente) throws SQLException{
 		return acquirenteDAO.getTipoByAcquirente(acquirente);
 	}
 	

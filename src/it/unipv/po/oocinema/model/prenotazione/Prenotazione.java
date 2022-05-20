@@ -25,8 +25,6 @@ public class Prenotazione {
 	private Acquirente acquirente;
 
 	private ArrayList<Posto> posti;
-
-	private int numPosti;
 	
 	private Proiezione proiezione;
 	
@@ -41,7 +39,6 @@ public class Prenotazione {
 		this.dataAcquisto = dataAcquisto;
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
-		numPosti = posti.size();
 		this.proiezione = proiezione;
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
@@ -51,7 +48,6 @@ public class Prenotazione {
 		progressivo++;
 		this.id = progressivo;
 		this.posti = new ArrayList<Posto>();
-		numPosti = posti.size();
 		ScontoFactory f = ScontoFactory.getInstance();
 		strategy = f.getScontoStartegy();
 	}
@@ -133,9 +129,6 @@ public class Prenotazione {
 	}
 
 
-	public void setNumPosti(int numPosti) {
-		this.numPosti = numPosti;
-	}
 	
 	public void setPosti(ArrayList<Posto> posti) {
 		this.posti = posti;

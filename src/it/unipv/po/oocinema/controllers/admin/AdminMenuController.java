@@ -19,7 +19,7 @@ public class AdminMenuController implements Initializable{
 	@FXML
 	private Label proiezione;
 	@FXML
-	private Label messaggio;
+	private Label messaggio = new Label();
     @FXML
     private Label esci;
     @FXML

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
+import it.unipv.po.oocinema.model.cinema.Posto;
 
 /**
  * Interfaccia che contiene i metodi per gestire la persistenza di dati
@@ -44,5 +45,5 @@ public interface IPrenotazioneDAO {
 	 */
 	public void occupaPosti(Prenotazione inputPrenotazione) throws SQLException;
 	
-	public int getNumPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException;
+	public ArrayList<Posto> getPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException;
 }

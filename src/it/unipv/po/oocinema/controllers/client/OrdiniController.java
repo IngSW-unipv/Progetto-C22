@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import it.unipv.po.oocinema.controllers.LoginController;
+import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.collections.FXCollections;
@@ -71,7 +72,7 @@ public class OrdiniController extends ClientMenuController implements Initializa
 		ArrayList<Prenotazione> elencoPrenotazioni = new ArrayList<Prenotazione>();
 		try {
 			elencoPrenotazioni = facade.getPrenotazioniFutureByCliente(LoginController.getCliente());
-			int numPosti;
+			ArrayList<Posto> numPosti = new ArrayList<Posto>();
 		
 			for(int i = 0; i < elencoPrenotazioni.size(); i++) {
 				InnerPrenotazione ip = new InnerPrenotazione();
@@ -79,9 +80,9 @@ public class OrdiniController extends ClientMenuController implements Initializa
 				ip.setFilm(elencoPrenotazioni.get(i).getProiezione().getFilm().getTitolo());
 				ip.setGiorno(elencoPrenotazioni.get(i).getProiezione().getGiorno());
 				ip.setDataAcquisto(elencoPrenotazioni.get(i).getDataAcquisto());
-				numPosti = facade.getNumPostiByPrenotazione(elencoPrenotazioni.get(i));
-				ip.setNumTicket(numPosti);
-				elencoPrenotazioni.get(i).setNumPosti(numPosti);
+				numPosti = facade.getPostiByPrenotazione(elencoPrenotazioni.get(i));
+				ip.setNumTicket(numPosti.size());
+				elencoPrenotazioni.get(i).setPosti(numPosti);
 				ip.setPrezzo(elencoPrenotazioni.get(i).getTotale()); // problema ogni volta che cambio sconto cambia anche prezzo
 				datiTabella.add(ip);
 			}
