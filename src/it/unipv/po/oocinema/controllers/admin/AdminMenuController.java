@@ -1,8 +1,6 @@
 package it.unipv.po.oocinema.controllers.admin;
 
 
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

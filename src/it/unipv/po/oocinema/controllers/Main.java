@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -20,7 +21,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 		
 		  Parent root = FXMLLoader.load(getClass().getResource("../view/scenes/login.fxml"));
-		  primaryStage.setTitle("Home OOCinema"); 
+		  primaryStage.setTitle("OOCinema");
+		  primaryStage.getIcons().add(new Image("file:src/it/unipv/po/oocinema/resources/logo.png"));
 		  primaryStage.setScene(new Scene(root)); 
 		  primaryStage.setHeight(450); 
 		  primaryStage.setWidth(600);

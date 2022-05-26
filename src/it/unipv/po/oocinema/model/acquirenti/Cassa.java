@@ -8,10 +8,19 @@ package it.unipv.po.oocinema.model.acquirenti;
  */
 public class Cassa extends Acquirente{
 
+	/**
+	 * Costruttore completo
+	 * @param user username dell'utente
+	 * @param pw_cassa password dell'utente
+	 */ 
 	public Cassa(String user, String pw_cassa) {
 		super(user,pw_cassa,null,null,null);
 	}
 	
+	/**
+	 * Costruttore 
+	 * @param user username dell'utente
+	 */ 
 	public Cassa(String user) {
 		super(user);
 	}

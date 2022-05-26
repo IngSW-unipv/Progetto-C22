@@ -1,19 +1,23 @@
 package it.unipv.po.oocinema.model.prenotazione.sconti;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
+/**
+ * Applica uno sconto
+ * @author Gof
+ *
+ */
 public class ScontoCompleanno implements IScontoPrenotazioneStrategy{
 	
+	/**
+	 * Percentuale che l'utente dovrà pagare
+	 */
 	private static final double PERCENTUALE = 0.75;
 	
 	
-	// Decidere se sconto è nel giorno dell'acquisto o nel giorno della proiezione
 	@Override
 	public double getTotale(Prenotazione p) {
-		if(Date.valueOf(LocalDate.now()).toString().equals(p.getAcquirente().getCompleanno()) ) {
+		if(p.getProiezione().getGiorno().equals(p.getAcquirente().getCompleanno())) {
 			return p.getPrezzoTot()*PERCENTUALE;
 		} else {
 			return p.getPrezzoTot();

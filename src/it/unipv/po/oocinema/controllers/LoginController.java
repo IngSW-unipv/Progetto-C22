@@ -3,8 +3,6 @@ package it.unipv.po.oocinema.controllers;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import it.unipv.po.oocinema.controllers.client.ClientMenuController;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 import javafx.fxml.FXML;

@@ -8,6 +8,9 @@ package it.unipv.po.oocinema.model.cinema;
  */
 public class Film {
 	
+	/**
+	 * Attributo che contiene l'id da assegnare al prossimo film
+	 */
 	private static int progressivo = 0;
 	
 	/**
@@ -52,6 +55,22 @@ public class Film {
 	private String trailerPath;
 
 	
+	/**
+	 * Costruttore del film. Id generato incrementando un contatore
+	 * 
+	 * @param titolo       titolo del film.
+	 * @param descrizione descrizione del film.
+	 * @param genere      generi del film.
+	 * @param regista   direttori del film.
+	 * @param cast        cast del film.
+	 * @param durata    durata del film in minuti.
+	 * @param coverPath    URL della locandina del film (deve puntare a un'immagine
+	 *                    all'interno della cartella
+	 *                    src/it/unipv/po/oocinema/resorces/locandine).
+	 * @param trailerPath  URL del trailer del film (deve puntare a un video
+	 *                    all'interno della cartella
+	 *                    src/it/unipv/po/oocinema/resorces/trailer).
+	 */
 	public Film(String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
 		this.id = progressivo;
@@ -75,12 +94,13 @@ public class Film {
 	 * @param genere      generi del film.
 	 * @param regista   direttori del film.
 	 * @param cast        cast del film.
-	 * @param rating      valutazione del film (1-5 stelle).
-	 * @param duration    durata del film in minuti.
-	 * @param imageURL    URL della locandina del film (deve puntare a un'immagine
+	 * @param durata    durata del film in minuti.
+	 * @param coverPath    URL della locandina del film (deve puntare a un'immagine
 	 *                    all'interno della cartella
-	 *                    src/main/resources/static/img/movie-posters).
-	 * @param trailerURL  URL del trailer del film (YouTube).
+	 *                    src/it/unipv/po/oocinema/resorces/locandine).
+	 * @param trailerPath  URL del trailer del film (deve puntare a un video
+	 *                    all'interno della cartella
+	 *                    src/it/unipv/po/oocinema/resorces/trailer).
 	 */
 	public Film(int id, String titolo, String descrizione, String genere, int durata, String regista,
 			String cast, String coverPath, String trailerPath) {
@@ -95,95 +115,176 @@ public class Film {
 		this.trailerPath = trailerPath;
 	}
 	
+	/** Costruttore vuoto                   
+	 */
 	public Film() {		
 	}
 	
+	/** Costruttore con titolo
+	 * @param titolo                   
+	 */
 	public Film(String titolo) {		
 		this.titolo = titolo;
 	}
 
 	/**
-	 * Getter and Setter
+	 * Setter del parametro id
+	 * @param id
 	 */
-
-	public void setId(int iD_film) {
-		id = iD_film;
+	public void setId(int id) {
+		this.id = id;
 	}	
 
+	/**
+	 * Setter del parametro titolo
+	 * @param titolo
+	 */
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
 
+	/**
+	 * Setter del parametro descrizione
+	 * @param descrizione
+	 */
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
 
+	/**
+	 * Setter del parametro genere
+	 * @param genere
+	 */
 	public void setGenere(String genere) {
 		this.genere = genere;
 	}
 
+	/**
+	 * Setter del parametro durata
+	 * @param durata
+	 */
 	public void setDurata(int durata) {
 		this.durata = durata;
 	}
 
+	/**
+	 * Setter del parametro regista
+	 * @param regista
+	 */
 	public void setRegista(String regista) {
 		this.regista = regista;
 	}
 
+	/**
+	 * Setter del parametro cast
+	 * @param cast
+	 */
 	public void setCast(String cast) {
 		this.cast = cast;
 	}
 
+	/**
+	 * Getter del parametro id
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Getter del parametro titolo
+	 * @return titolo
+	 */
 	public String getTitolo() {
 		return titolo;
 	}
 
+	/**
+	 * Getter del parametro descrizione
+	 * @return descrizione
+	 */
 	public String getDescrizione() {
 		return descrizione;
 	}
 
+	/**
+	 * Getter del parametro genere
+	 * @return genere
+	 */
 	public String getGenere() {
 		return genere;
 	}
 
+	/**
+	 * Getter del parametro durata
+	 * @return durata
+	 */
 	public int getDurata() {
 		return durata;
 	}
 
+	/**
+	 * Getter del parametro regista
+	 * @return regista
+	 */
 	public String getRegista() {
 		return regista;
 	}
 
+	/**
+	 * Getter del parametro cast
+	 * @return cast
+	 */
 	public String getCast() {
 		return cast;
 	}
 
+	/**
+	 * Getter del parametro trailerPath
+	 * @return trailerPath
+	 */
 	public String getTrailerPath() {
 		return trailerPath;
 	}
 
+	/**
+	 * Getter del parametro coverPath
+	 * @return coverPath
+	 */
 	public String getCoverPath() {
 		return coverPath;
 	}
 
+	/**
+	 * Setter del parametro trailerPath
+	 * @param trailerPath
+	 */
 	public void setTrailerPath(String trailerPath) {
 		this.trailerPath = trailerPath;
 	}
 
+	/**
+	 * Setter del parametro coverPath
+	 * @param coverPath
+	 */
 	public void setCoverPath(String coverPath) {
 		this.coverPath = coverPath;
 	}
 
+	/**
+	 * Restituisce una breve descrizione degli attributi del film
+	 */
 	@Override
 	public String toString() {
 		return "titolo=" + titolo +"\n"+ " descrizione=" + descrizione +"\n"+ " genere=" + genere+"\n"
 				+ " durata=" + durata+"\n" + " regista=" + regista+"\n" + " cast=" + cast+"\n" ;
 	}
 	
+	/**
+	 * Confronto fra due film. 
+	 * @return true se i due film sono uguali
+	 * @return false se i due film sono diversi
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj != null && getClass().equals(obj.getClass())){
