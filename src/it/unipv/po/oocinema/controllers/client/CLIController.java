@@ -23,32 +23,61 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
-
+/**
+ * Classe controller per la pagina home del cliente
+ * @author GoF
+ *
+ */
 public class CLIController extends ClientMenuController implements Initializable{
 
+	/**
+	 * Layout della pagina che contiene i poster
+	 */
     @FXML
     private GridPane grid;
     
+    /**
+	 * Locandina del film selezionato
+	 */
     @FXML
     private ImageView locandinaFilmSel;
 
+    /**
+	 * Bottone che porta alla scheda del film selezionato
+	 */
     @FXML
     private Button schedaFilm;
 
+    /**
+	 * Pannello con scroll laterale
+	 */
     @FXML
     private ScrollPane scroll;
 
+    /**
+	 * Label titolo film slezionato
+	 */
     @FXML
     private Label titoloFilmSel;
     
+    /**
+	 * Titolo del film selezionato
+	 */
     private static String titolo;
 
+    /**
+	 * Istanza della classe che comunica con il DB
+	 */
     private DBFacade facade= DBFacade.getInstance();
-    private MyListener myListener;
     
-    private Image image;
+    /**
+	 * Listener del poster del film
+	 */
+    private FilmListener myListener;
     
-    
+    /**
+	 * Istanza della classe che comunica con il DB
+	 */
     ArrayList<Film> films = new ArrayList<Film>();
     
     @Override
@@ -63,7 +92,7 @@ public class CLIController extends ClientMenuController implements Initializable
 		if (films.size() > 0) 
            setFilmSel(films.get(0));
            
-		myListener = new MyListener() {
+		myListener = new FilmListener() {
         	
 			@Override
 			public void onClickListener(Film film) {
@@ -107,19 +136,28 @@ public class CLIController extends ClientMenuController implements Initializable
         }
     }
 
-		
+	/**
+	 * Imposta il film selezoinato nel menù a sinistra	
+	 * @param film
+	 */
     private void setFilmSel(Film film) {
     	titolo = film.getTitolo();        
     	titoloFilmSel.setText(film.getTitolo());
-        image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
+        Image image = new Image(getClass().getResourceAsStream(film.getCoverPath()));
         locandinaFilmSel.setImage(image);
     }
     
+    /**
+     * 
+     * @return il titolo del film selezionato
+     */
     public static String getTitoloFilmSel() {
     	return titolo;
     }
 
-
+    /**
+	 * Passa alla pagina della scheda tecnica del film selezionato
+	 */
     @FXML
     void schedaFilm(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "../../view/scenes/schedaFilm.fxml");

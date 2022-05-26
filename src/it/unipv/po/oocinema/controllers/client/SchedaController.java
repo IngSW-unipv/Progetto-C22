@@ -27,55 +27,108 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
+/**
+ * Classe controller per la scheda tecnica del film
+ * @author GoF
+ *
+ */
 public class SchedaController extends ClientMenuController implements Initializable{
 
-
+	/**
+	 * Label descrizione
+	 */
     @FXML
     private Label descrizione;
 
+    /**
+	 * Elenco dei giorni disponibili
+	 */
     @FXML
     private ComboBox<String> giornoCombo;
 
+    /**
+	 * Locandina del film
+	 */
     @FXML
     private ImageView locandinaFilmSel;
 
+    /**
+	 * Elenco delle ore disponibili
+	 */
     @FXML
     private ComboBox<String> oraCombo;
     
+    /**
+	 * Bottone per passare alla pagina di prenotazione
+	 */
     @FXML
     private ToggleButton prenota;
 
+    /**
+	 * Label titolo film
+	 */
     @FXML
     private Label titoloFilmSel;
 
+    /**
+	 * Video trailer del film
+	 */
     @FXML
     private MediaView trailer;
     
-
+    /**
+	 * Proiezione scelta
+	 */
     private static Proiezione proiezione;
     
+    /**
+	 * Istanza della classe che comunica con il DB
+	 */
     private DBFacade facade = DBFacade.getInstance();
     
+    /**
+	 * File del trailer
+	 */
     private File file;
+    
+    /**
+	 * Media del trailer
+	 */
     private Media media;
+    
+    /**
+	 * MediaPlayer del trailer
+	 */
     private MediaPlayer mediaPlayer;
 
  
+    /**
+     * Mette in pausa il video
+     */
     @FXML
     void pause(MouseEvent event) {
     	mediaPlayer.pause();
     }
 
+    /**
+     * Riavvia il video
+     */
     @FXML
     void play(MouseEvent event) {
     	mediaPlayer.play();
     }
     
+    /**
+     * Resetta il video
+     */
     @FXML
     void reset(MouseEvent event) {
     	mediaPlayer.seek(Duration.seconds(0.0));
     }
 
+    /**
+     * Inizializza la pagina
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Film f ;
@@ -101,7 +154,9 @@ public class SchedaController extends ClientMenuController implements Initializa
 
 	}
 	
-	
+	/**
+	 * Inizializza l'elenco dei giorni
+	 */
 	public void initializeGiorno() {
 		ArrayList<String> giorni = new ArrayList<String>();
 		try {
@@ -117,7 +172,9 @@ public class SchedaController extends ClientMenuController implements Initializa
 		
 	}
 	
-	
+	/**
+	 * Inizializza l'elenco delle ore
+	 */
 	public void initializeOra() {
 		ArrayList<String> ore = new ArrayList<String>();
 		Proiezione p = new Proiezione();
@@ -144,7 +201,9 @@ public class SchedaController extends ClientMenuController implements Initializa
 		}
 	 }
 
-	
+	/**
+	 * Passa alla pagina di prenotazione
+	 */
 	@FXML
     void prenota(MouseEvent event) {
 		if(giornoCombo.getValue()!=null && oraCombo.getValue()!=null) {
@@ -157,6 +216,9 @@ public class SchedaController extends ClientMenuController implements Initializa
 		}
     }
 	
+	 /**
+     * Costruisce la proiezione in base ai dati inseriti
+     */
 	public void costruisciProiezione() {
 		Proiezione p = new Proiezione();
 		try {
@@ -171,13 +233,20 @@ public class SchedaController extends ClientMenuController implements Initializa
 			
 		}
 	}
-
-
+	
+	
+	/**
+	 * 
+	 * @return la proiezione selezionata
+	 */
 	public static Proiezione getProiezione() {
 		return proiezione;
 	}
 
-
+	/**
+	 * Setter
+	 * @param proiezione
+	 */
 	public static void setProiezione(Proiezione proiezione) {
 		SchedaController.proiezione = proiezione;
 	}

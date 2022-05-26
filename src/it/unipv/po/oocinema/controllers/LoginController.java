@@ -17,37 +17,74 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Window;
 
+/**
+ * Classe controller della pagina di login
+ * @author GoF
+ *
+ */
 public class LoginController implements Initializable{
 	
-	DBFacade facade = DBFacade.getInstance();
+	/**
+	 * Istanza della classe che comunica con il DB
+	 */
+	private DBFacade facade = DBFacade.getInstance();
 
+	/**
+	 * Label password dimenticata
+	 */
     @FXML
     private Label dimenticata;
 
+    /**
+	 * Label email del cinema
+	 */
     @FXML
     private Text emailLabel;
 
+    /**
+	 * Label indirizzo cinema
+	 */
     @FXML
     private Text indirizzoLabel;
 
+    /**
+	 * Bottone di conferma login
+	 */
     @FXML
     private Button login;
 
+    /**
+	 * Input password
+	 */
     @FXML
     private PasswordField password;
 
+    /**
+	 * Bottone per passare alla pagine di registrazione
+	 */
     @FXML
     private Button registrati;
 
+    /**
+	 * Label telefono cinema
+	 */
     @FXML
     private Text telLabel;
 
+    /**
+	 * Input username
+	 */
     @FXML
     private TextField user;
     
+    /**
+	 * Utente che ha effettuato il login
+	 */
     private static Acquirente utente;
    
-
+    /**
+	 * Effettua il login e passa alla pagina successiva
+	 */
     @FXML
     void login(MouseEvent event) {
     	try {
@@ -77,29 +114,46 @@ public class LoginController implements Initializable{
 		}
     }
 
+   
     @FXML
     void passwordDimenticata(MouseEvent event) {
     	
     }
 
+    /**
+	 * Passa alla pagina di registrazione
+	 */
     @FXML
     void registrati(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "../view/scenes/registrazione.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
     
+    /**
+	 * @return la finestra corrente
+	 */
     public Window getWindow() {
 		return user.getScene().getWindow();
 	}
     
+    /**
+	 * @return il cliente che ha effettuato il login
+	 */
     public static Acquirente getCliente() {
     	return utente;
     }
     
+    /**
+     * Setter
+     * @param c cliente
+     */
     public static void setCliente(Acquirente c) {
     	utente = c;
     }
 
+    /**
+     * Inizializza la pagina di login
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {

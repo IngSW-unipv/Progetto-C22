@@ -1,16 +1,13 @@
 package it.unipv.po.oocinema.controllers.client;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import com.google.zxing.WriterException;
 
 import it.unipv.po.oocinema.controllers.EmailController;
 import it.unipv.po.oocinema.controllers.LoginController;
-import it.unipv.po.oocinema.controllers.TicketController;
 import it.unipv.po.oocinema.controllers.WindowsHandler;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
@@ -28,36 +25,69 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Window;
 
+/**
+ * Classe controller per la prenotazione dei posti
+ * @author GoF
+ *
+ */
 public class PrenotazioneController extends ClientMenuController implements Initializable{
 
+	/**
+	 * Bottone per aggiungere il posto selezionato
+	 */
 	 @FXML
 	 private Button aggiungi;
 	 
+	 /**
+	  * Elenco delle file
+	  */
 	 @FXML
 	 private ComboBox<Character> filaCombo;
 
+	 /**
+	  * Lista dei posti scelti
+	  */
 	 @FXML
 	 private Label lista = new Label();
 
-
+	 /**
+	  * Locandina del film selezionato
+	  */
 	 @FXML
 	 private ImageView locandinaFilmSel;
 
+	 /**
+	  * Elenco della colonna dei posti
+	  */
 	 @FXML
 	 private ComboBox<Integer> postoCombo;
 
+	 /**
+	  * Bottone per confermare la prenotazione
+	  */
 	 @FXML
 	 private Button prenota;
 
+	 /**
+	  * Label titolo film selezionato
+	  */
 	 @FXML
 	 private Label titoloFilmSel;
     
+	 /**
+	  * Istanza della classe che comunica con il DB
+	  */
 	 private DBFacade facade = DBFacade.getInstance();
 	 
+	 /**
+	  * Prenotaziond creata
+	  */
 	 private Prenotazione prenotazione;
 
+	 /**
+	  * Prenota i posti selezionati
+	  */
     @FXML
     void prenota(MouseEvent event) {
     	
@@ -115,11 +145,17 @@ public class PrenotazioneController extends ClientMenuController implements Init
 		aggiorna();
 	}
 	
+	/**
+	 * Aggiorna interfaccia grafica
+	 */
 	public void aggiorna() {
 		setLabelText();
 		initializeRighe();	
 	}
 	
+	/**
+	 * Inizializza elenco righe
+	 */
 	public void initializeRighe() {
 	
 		ArrayList<Character> righe = new ArrayList<Character>();
@@ -144,7 +180,10 @@ public class PrenotazioneController extends ClientMenuController implements Init
 			
 		}
     }
-		
+	
+	/**
+	 * Inizializza l'elenco delle colonne
+	 */
     public void initializePosto() {
 		
 		ArrayList<Integer> colonne = new ArrayList<Integer>();
@@ -171,6 +210,9 @@ public class PrenotazioneController extends ClientMenuController implements Init
         postoCombo.setItems(obListColonna);
     }
 	
+    /**
+     * Aggiunge il posto alla lista 
+     */
 	 @FXML
 	 void aggiungi(MouseEvent event) {
 		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
@@ -183,6 +225,9 @@ public class PrenotazioneController extends ClientMenuController implements Init
 		 }
 	 }
 	 
+	 /**
+	  * Rimuove un posto dalla lista
+	  */
 	 @FXML
 	 void rimuovi(MouseEvent event) {
 		 if(filaCombo.getValue() != null && postoCombo.getValue() != null) {
@@ -198,6 +243,9 @@ public class PrenotazioneController extends ClientMenuController implements Init
 		 }
 	 }
 	
+	 /**
+	  * Scrive la lista dei posti nella label
+	  */
 	 public void setLabelText() {
 		 lista.setText("");
 		 for(int i = 0; i < prenotazione.getNumPosti(); i++) {

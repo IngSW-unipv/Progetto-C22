@@ -20,49 +20,96 @@ import javafx.scene.text.Text;
 import javafx.stage.Window;
 import javafx.fxml.Initializable;
 
+/**
+ * Classe controller per la registrazione di un nuovo cliente
+ * @author GoF
+ *
+ */
 public class RegistrazioneController implements Initializable{
 
-	DBFacade facade = DBFacade.getInstance();
+	/**
+	 * Istanza della classe che comunica con il DB
+	 */
+	private DBFacade facade = DBFacade.getInstance();
+	
+	/**
+	 * Input compleanno
+	 */
     @FXML
     private DatePicker compleanno;
 
+    /**
+     * Input conferma password
+     */
     @FXML
     private PasswordField conferma;
 
+    /**
+	 * Input user( email ) del cliente
+	 */
     @FXML
     private TextField email;
 
+    /**
+	 * Label email cinema
+	 */
     @FXML
     private Text emailLabel;
 
+    /**
+	 * Label indirizzo cinema
+	 */
     @FXML
     private Text indirizzoLabel;
 
+    /**
+	 * Bottone per pagina di login
+	 */
     @FXML
     private Button login;
 
+    /**
+	 * Input password
+	 */
     @FXML
     private PasswordField password;
 
+    /**
+	 * Bottone conferma registrazione
+	 */
     @FXML
     private Button registrati;
 
+    /**
+	 * Label telfono cinema
+	 */
     @FXML
     private Text telLabel;
     
+    /**
+	 * Input cognome
+	 */
     @FXML
     private TextField cognome;
     
+    /**
+	 * Input nome
+	 */
     @FXML
     private TextField nome;
 
+    /**
+	 * Va alla pagina di login
+	 */
     @FXML
     void login(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "../view/scenes/login.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
-   
+    /**
+	 * Crea l'utente e lo aggiunge al DB
+	 */
     @FXML
     void registrazione(MouseEvent event) {
     	if(!password.getText().equals(conferma.getText())) {
@@ -103,10 +150,17 @@ public class RegistrazioneController implements Initializable{
 		}
     }
     
+    /**
+     * 
+     * @return finestra corrente
+     */
     public Window getWindow() {
 		return password.getScene().getWindow();
 	}
 
+    /**
+     * Inizializza la pagina
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
@@ -120,6 +174,10 @@ public class RegistrazioneController implements Initializable{
 		
 	}
 	
+	/**
+	 * Controllo sui dati inseriti
+	 * @return true se il controllo dei dati è positivo
+	 */
 	private boolean controllaInput() {
 		Pattern p = Pattern.compile("^(.+)@(.+)$");
 	    Matcher m = p.matcher(email.getText());
