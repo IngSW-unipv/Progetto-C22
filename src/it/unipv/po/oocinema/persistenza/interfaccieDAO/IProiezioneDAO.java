@@ -34,7 +34,7 @@ public interface IProiezioneDAO {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException;
+	public boolean aggiungiProiezione(Proiezione inputProiezione) throws SQLException;
 	
 	/**
 	 * Metodo usato dall'amministratore per rimuovere una proiezione registrata.

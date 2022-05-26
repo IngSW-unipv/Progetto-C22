@@ -2,7 +2,6 @@ package it.unipv.po.oocinema.controllers.admin;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import it.unipv.po.oocinema.model.cinema.Film;
@@ -66,12 +65,12 @@ public class AggiungiProiezioneController extends AdminMenuController implements
 			Sala s = facade.getSalaById(new Sala (Integer.parseInt(salaCombo.getValue().substring(5)),0,0));
 	    	Proiezione p = new Proiezione(f,giorno.getValue().toString(),s,Double.parseDouble(prezzo.getText()),oraCombo.getValue());
 	    	
-	    	facade.aggiungiProiezione(p);
-	    	Alert a = new Alert(AlertType.CONFIRMATION, "Proiezione aggiunta con successo");
-			a.showAndWait();
-	    	
+	    	boolean check = facade.aggiungiProiezione(p);
+	    	if (check) {
+		    	Alert a = new Alert(AlertType.CONFIRMATION, "Proiezione aggiunta con successo");
+				a.showAndWait();
+	    	}
 		} catch (Exception e) {
-			
 			Alert errore = new Alert(AlertType.WARNING, "Controlla i dati inseriti");
 			errore.showAndWait();
 		}

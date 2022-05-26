@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import it.unipv.po.oocinema.persistenza.MySQLConnectionFactory;
 import it.unipv.po.oocinema.persistenza.interfaccieDAO.IProiezioneDAO;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.cinema.Sala;
@@ -78,18 +80,48 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	@Override
-	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException{
+	public boolean aggiungiProiezione(Proiezione inputProiezione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
-		String query = "INSERT INTO proiezione VALUES(?,?,?,?,?,?)";
-		PreparedStatement st1 = conn.prepareStatement(query);
-		st1.setInt(1, inputProiezione.getId());
-		st1.setDouble(2, inputProiezione.getPrezzo());
-		st1.setInt(3, inputProiezione.getFilm().getId());
-		st1.setInt(4, inputProiezione.getSala().getId());
-		st1.setString(5, inputProiezione.getGiorno());
-		st1.setString(6, inputProiezione.getOrario());
-		st1.executeUpdate();
+		
+		String query_check = "select \r\n"
+				+ "case \r\n"
+				+ "	when giorno != ? then 0\r\n"
+				+ "    when sala_id != ? then 0\r\n"
+				+ "    when orario != ? then 0\r\n"
+				+ "    else 1\r\n"
+				+ "end as c\r\n"
+				+ "from proiezione";
+		
+		PreparedStatement st = conn.prepareStatement(query_check);
+		st.setString(1, inputProiezione.getGiorno());
+		st.setInt(2, inputProiezione.getSala().getId());
+		st.setString(3,inputProiezione.getOrario());
+		ResultSet result = st.executeQuery();
+		boolean c = false;
+		while(result.next()) {
+			if (result.getInt("c")==1) {
+				c = true;
+				break;
+			}
+		}
+		
+		if(!c) {
+			String query = "INSERT INTO proiezione VALUES(?,?,?,?,?,?)";
+			PreparedStatement st1 = conn.prepareStatement(query);
+			st1.setInt(1, inputProiezione.getId());
+			st1.setDouble(2, inputProiezione.getPrezzo());
+			st1.setInt(3, inputProiezione.getFilm().getId());
+			st1.setInt(4, inputProiezione.getSala().getId());
+			st1.setString(5, inputProiezione.getGiorno());
+			st1.setString(6, inputProiezione.getOrario());
+			st1.executeUpdate();
+			
+		}else {
+			Alert alert = new Alert(AlertType.WARNING, "Attenzione ai dati inseriti");
+	    	alert.showAndWait(); 
+		}
 		MySQLConnectionFactory.closeConnection(conn);
+		return c;
 	}
 	
 	/**
@@ -256,5 +288,6 @@ public class ProiezioneDAO implements IProiezioneDAO{
 		MySQLConnectionFactory.closeConnection(conn);
 		return r;
 	}	
+	
 	
 }

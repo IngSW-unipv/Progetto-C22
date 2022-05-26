@@ -1,9 +1,5 @@
 package it.unipv.po.oocinema.controllers;
 
-/**
-* Classe che espone metodi per la gestione della finestra
-
-*/
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
@@ -13,8 +9,18 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+/**
+ * Classe che permette di passare da una finestra a un'altra nell'interfaccia grafica
+ * @author GoF
+ *
+ */
 public class WindowsHandler {
 	
+	/**
+	 * 
+	 * @param c Classe dalla quale viene invocato il metodo
+	 * @param fxmlName - file fxml da aprire nella nuova finestra
+	 */
 	public static void openWindow(Class<?> c, String fxmlName) {
 		Parent root;
 		try {
@@ -41,6 +47,10 @@ public class WindowsHandler {
 		}
 	}
 	
+	/**
+	 * Chiude la finestra
+	 * @param window
+	 */
 	public static void closeWindow(Window window) {
 		window.hide();
 	}

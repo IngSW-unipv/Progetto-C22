@@ -407,8 +407,8 @@ public class DBFacade {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	public void aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
-		 proiezioneDAO.aggiungiProiezione(inputProiezione);
+	public boolean aggiungiProiezione(Proiezione inputProiezione) throws SQLException {
+		return proiezioneDAO.aggiungiProiezione(inputProiezione);
 	}
 	
 	/**

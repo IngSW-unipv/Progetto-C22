@@ -5,8 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import com.google.zxing.BarcodeFormat;
@@ -21,29 +19,44 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-
-import it.unipv.po.oocinema.model.acquirenti.Acquirente;
-import it.unipv.po.oocinema.model.cinema.Film;
-import it.unipv.po.oocinema.model.cinema.Proiezione;
-import it.unipv.po.oocinema.model.cinema.Sala;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
 
+/**
+ * Classe che crea i biglietti da dare agli utenti
+ * @author GoF
+ *
+ */
 public class TicketController {
 	
+	/**
+	 * File di destinazione
+	 */
 	private final String file;
 
+	/**
+	 * Costruttore 
+	 * @param prenotazione per la quale creare i biglietti
+	 * @throws WriterException
+	 * @throws IOException
+	 */
 	public TicketController(Prenotazione prenotazione) throws WriterException, IOException {
 		file = "tickets/"+prenotazione.getId()+".pdf";
 		prenotazione.setTicketPath(file);
 		createTicket(prenotazione);
 	}
 	
-	
+	/**
+	 * Getter
+	 * @return percorso del file
+	 */
 	public String getFile() {
 		return file;
 	}
 
-
+	/**
+	 * Crea il biglietto
+	 * @param prenotazione
+	 */
 	public void createTicket(Prenotazione prenotazione){
 		
 		try {
@@ -58,6 +71,15 @@ public class TicketController {
 		}
 	}
 	
+	/**
+	 * Aggiunge al documento alcune informazioni e contenuti
+	 * @param document
+	 * @param prenotazione
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws DocumentException
+	 * @throws WriterException
+	 */
 	public void addInformazioniPrenotazione(Document document, Prenotazione prenotazione) throws MalformedURLException, IOException, DocumentException, WriterException {
 		document.addTitle("Prenotazione numero: " + prenotazione.getId());
 		document.addCreationDate();
@@ -84,6 +106,12 @@ public class TicketController {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param prenotazione
+	 * @param i - numero del biglietto nella prenotazione
+	 * @return paragrafo da aggiungere al documento
+	 */
 	public Paragraph createParagrafoPrenotazione(Prenotazione prenotazione, int i) {
 		
 		String giorno = ""+prenotazione.getProiezione().getGiorno().toString();
@@ -95,13 +123,30 @@ public class TicketController {
 		return paragrafo;
 	}
  
-	
+	/**
+	 * crea il qrcode
+	 * @param data
+	 * @param path
+	 * @param charset
+	 * @param map
+	 * @param h
+	 * @param w
+	 * @throws WriterException
+	 * @throws IOException
+	 */
 	public void generateQRcode(String data, String path, String charset, Map<EncodeHintType, ErrorCorrectionLevel> map, int h, int w) throws WriterException, IOException {  
 		
 		com.google.zxing.common.BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);  
 		MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));  
 	}  
-		
+	
+	/**
+	 * Stampa il qrcode
+	 * @param prenotazione
+	 * @param i - numero del qrcode relativo al biglietto
+	 * @throws WriterException
+	 * @throws IOException
+	 */
 	public void printQRcode(Prenotazione prenotazione, int i) throws WriterException, IOException{   
 		String str= "Prenotazione effettuata da: " + prenotazione.getAcquirente().getUser()+ ".\n"+prenotazione.getPosti().get(i).toString()+"\n ID: "+prenotazione.getId();
 		String path = "tickets/QRcodes/"+prenotazione.getId()+"_"+i+".png";  
@@ -113,24 +158,5 @@ public class TicketController {
 		generateQRcode(str, path, charset, hashMap, 500, 500);
 	}  
 		
-	
-	
-	
-	
-	
-	/*
-	 * public static void main(String[] args) throws WriterException, IOException {
-	 * Acquirente a = new Acquirente("user",null,null,null,null); Film f = new
-	 * Film(2,"Avengers", null,"Fantastico",
-	 * 180,"Regi","sta","file:assets/2.jpeg",null); Proiezione p = new Proiezione(1,
-	 * f,LocalDate.now().toString(), new Sala(2,2),8.0,LocalTime.now().toString());
-	 * Prenotazione prenotazione = new Prenotazione(10," oggi ",a,p);
-	 * prenotazione.aggiungiPosto(0, 1); prenotazione.aggiungiPosto(0, 0);
-	 * prenotazione.acquista(); TicketController t = new
-	 * TicketController(prenotazione);
-	 * 
-	 * }
-	 * 
-	 */
 	
 }
