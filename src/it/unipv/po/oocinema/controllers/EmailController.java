@@ -44,17 +44,11 @@ public class EmailController {
 	private String password;
 
 	/**
-	 * Messaggio che è scritto nell'email
-	 */
-	private String messaggio;
-
-	/**
 	 * Costruttore del gestore dell'e-mail.
 	 * 
 	 * @param messaggio messaggio che è scritto nell'email
 	 */
-	public EmailController(String messaggio) {
-		this.messaggio = messaggio;
+	public EmailController() {;
 		Properties p = new Properties(System.getProperties());
 		try {
 			p.load(new FileInputStream("properties/properties"));
@@ -98,7 +92,7 @@ public class EmailController {
 				}
 			}
 		};
-
+		emailThread.start();
 		return emailThread;
 	}
 
@@ -116,13 +110,12 @@ public class EmailController {
 			
 			Message message = createBasicMailProperties(session, user, to, prenotazione);
 
-			BodyPart messageBodyPart1 = createMailBody(prenotazione);
-
-			MimeBodyPart messageBodyPart2 = createMailReport(prenotazione);
-
-			addBodyAndReportToMail(message, messageBodyPart1, messageBodyPart2);
-
+			MimeBodyPart messageBodyPart = createMailReport(prenotazione);
+			
+			addBodyAndReportToMail(message, messageBodyPart);
+			
 			Transport.send(message);
+			
 		} catch (MessagingException ex) {
 			}
 	}
@@ -131,45 +124,29 @@ public class EmailController {
 	 * Aggiunge all'e-mail il body ed il report in allegato.
 	 * 
 	 * @param message          contenitore con le proprietà dell'email.
-	 * @param messageBodyPart1 body dell'e-mail.
-	 * @param messageBodyPart2 allegato dell'e-mail.
+	 * @param messageBodyPart allegato dell'e-mail.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */
-	private void addBodyAndReportToMail(Message message, BodyPart messageBodyPart1, MimeBodyPart messageBodyPart2) throws MessagingException {
+	private void addBodyAndReportToMail(Message message,  MimeBodyPart messageBodyPart) throws MessagingException {
 		Multipart multipart = new MimeMultipart();
-		multipart.addBodyPart(messageBodyPart1);
-		multipart.addBodyPart(messageBodyPart2);
+		multipart.addBodyPart(messageBodyPart);
 		message.setContent(multipart);
 	}
 
 	/**
 	 * Crea l'allegato dell'e-mail. Allega il report della prenotazione.
 	 * 
-	 * @param reservation prenotazione da inviare.
-	 * @return il report allegato all'email.
+	 * @param prenotazione prenotazione da inviare.
+	 * @return i biglietti allegato all'email.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */
 	private MimeBodyPart createMailReport(Prenotazione prenotazione) throws MessagingException {
-		MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+		MimeBodyPart messageBodyPart = new MimeBodyPart();
 		String filename = prenotazione.getTicketPath();
 		DataSource source = new FileDataSource(filename);
-		messageBodyPart2.setDataHandler(new DataHandler(source));
-		messageBodyPart2.setFileName("Prenotazione_" + Integer.toString(prenotazione.getId()) + ".pdf");
-		return messageBodyPart2;
-	}
-
-	/**
-	 * Crea il testo principale (body) dell'email.
-	 * 
-	 * @param reservation prenotazione da inviare.
-	 * @return il body dell'e-mail.
-	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
-	 */
-	private BodyPart createMailBody(Prenotazione prenotazione) throws MessagingException {
-		BodyPart messageBodyPart1 = new MimeBodyPart();
-		messageBodyPart1.setText("Ciao " + prenotazione .getAcquirente().getNome() + " "
-				+  ",\n\n" + messaggio);
-		return messageBodyPart1;
+		messageBodyPart.setDataHandler(new DataHandler(source));
+		messageBodyPart.setFileName("Prenotazione_" + Integer.toString(prenotazione.getId()) + ".pdf");
+		return messageBodyPart;
 	}
 
 	/**
@@ -189,7 +166,7 @@ public class EmailController {
 		MimeMessage message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(user));
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-		message.setSubject("Prenotazione numero " + prenotazione.getId() + " - Ti aspettiamo!");
+		message.setSubject("OOCINEMA _ Prenotazione numero " + prenotazione.getId() + " - Ti aspettiamo!");
 		return message;
 	}
 

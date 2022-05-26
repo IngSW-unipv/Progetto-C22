@@ -29,7 +29,6 @@ public class Main extends Application {
 		  primaryStage.centerOnScreen(); 
 		  primaryStage.setResizable(false);
 		  primaryStage.show();
-		  
 		  DBFacade.getInstance().initializeDB(); 
     }
 
