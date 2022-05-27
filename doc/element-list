@@ -1,0 +1,11 @@
+it.unipv.po.oocinema.controllers
+it.unipv.po.oocinema.controllers.admin
+it.unipv.po.oocinema.controllers.client
+it.unipv.po.oocinema.model.acquirenti
+it.unipv.po.oocinema.model.cinema
+it.unipv.po.oocinema.model.prenotazione
+it.unipv.po.oocinema.model.prenotazione.sconti
+it.unipv.po.oocinema.persistenza
+it.unipv.po.oocinema.persistenza.classiDAO
+it.unipv.po.oocinema.persistenza.interfaccieDAO
+it.unipv.po.oocinema.test
