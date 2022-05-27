@@ -149,7 +149,7 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 	 * Metodo usato in fase di registrazione di un nuovo utente che controlla che l'username 
 	 * scelta non sia già registrata.
 	 * 
-	 * @param inputCassa oggetto che contiene i dati da registrate 
+	 * @param inputAcquirente oggetto che contiene i dati da registrate 
 	 * @return vero se l'username non è già registrato, false se è presente come persistenza. 
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
@@ -199,6 +199,13 @@ public class AcquirenteDAO implements IAcquirenteDAO {
 		}	
 	}
 
+	/**
+	 * 
+	 * @param acquirente
+	 * @return tipo dell'acquirente dato l'user
+	 * @throws SQLException
+	 */
+	@Override
 	public int getTipoByAcquirente(Acquirente acquirente) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "SELECT tipo FROM acquirente where user= ?;";

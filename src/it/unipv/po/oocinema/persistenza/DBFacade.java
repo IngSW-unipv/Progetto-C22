@@ -395,6 +395,16 @@ public class DBFacade {
 		return prenotazioneDAO.getPostiByPrenotazione(inputPrenotazione);
 	}
 	
+	/**
+	 * Metodo che restituisce tutti gli attributi di una proiezione dato il suo identificativo. 
+	 * 
+	 * @param inputProiezione oggetto che contiene l'identificativo della proiezione da 
+	 * 					      recuperare.
+	 * @return Oggetto Proiezione con tutti i suoi attributi il cui identificativo è uguale
+	 * 		   a quello fornito in input.
+	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
+	 * 						altri errori di relazione con quest'ultimo.
+	 */
 	public Proiezione getProiezioneById(Proiezione inputProiezione) throws SQLException{
 		return proiezioneDAO.getProiezioneById(inputProiezione);
 	}
@@ -520,7 +530,11 @@ public class DBFacade {
 		return salaDAO.getTutteSale();
 	}
 
-	
+	/**
+	 * Inizializza il DB all'avvio dell'applicazione
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public void initializeDB() throws SQLException, IOException {
 		Connection conn = null; conn = MySQLConnectionFactory.connect(conn); 
 	     
@@ -547,6 +561,11 @@ public class DBFacade {
 		 
 	}
 	
+	/**
+	 * 
+	 * @return Query di inizializzazione DB
+	 * @throws IOException
+	 */
 	public String getQuery() throws IOException {
 		String query = "";
 		String line;
@@ -565,6 +584,12 @@ public class DBFacade {
 		
 	}
 
+	/**
+	 * 
+	 * @param acquirente
+	 * @return tipo dell'acquirente dato l'user
+	 * @throws SQLException
+	 */
 	public int getTipoByAcquirente(Acquirente acquirente) throws SQLException{
 		return acquirenteDAO.getTipoByAcquirente(acquirente);
 	}

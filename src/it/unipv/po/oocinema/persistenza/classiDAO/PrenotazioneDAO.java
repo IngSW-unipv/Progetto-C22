@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
-import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.model.cinema.Posto;
 import it.unipv.po.oocinema.model.cinema.Proiezione;
 import it.unipv.po.oocinema.model.prenotazione.Prenotazione;
@@ -116,6 +114,11 @@ public class PrenotazioneDAO implements IPrenotazioneDAO {
 		MySQLConnectionFactory.closeConnection(conn);
 	}
 
+	/**
+	 * @param inputPrenotazione
+	 * @return l'elenco dei posti occupati dalla prenotazione di input
+	 * @throws SQLException
+	 */
 	@Override
 	public ArrayList<Posto> getPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException{
 		conn = MySQLConnectionFactory.connect(conn);

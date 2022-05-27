@@ -55,19 +55,6 @@ public class PostoDAO implements IPostoDAO {
 		return posti;
 	}
 	
-	/*
-	 * @Override public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione)
-	 * throws SQLException{ conn = MySQLConnectionFactory.connect(conn); //non va
-	 * bene!! String query = "select count(*) as NUM, riga\r\n" +
-	 * "from posto A join prenotazione B on A.prenotazione_id=B.id\r\n" +
-	 * " where proiezione_id = ?\r\n" + "group by riga\r\n;"; PreparedStatement st1
-	 * = conn.prepareStatement(query); st1.setInt(1, inputProiezione.getId());
-	 * ResultSet result=st1.executeQuery(); ArrayList<Posto> posti = new
-	 * ArrayList<Posto>(); while (result.next()) {
-	 * if(result.getInt("NUM")<inputProiezione.getSala().getColonne()) posti.add(new
-	 * Posto(result.getInt("riga"))); }
-	 * MySQLConnectionFactory.closeConnection(conn); return posti; }
-	 */
 	
 	/**
 	 * Metodo che restituisce tutti i posti liberi di una specifica proiezione selezionata una 

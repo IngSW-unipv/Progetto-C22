@@ -45,5 +45,10 @@ public interface IPrenotazioneDAO {
 	 */
 	public void occupaPosti(Prenotazione inputPrenotazione) throws SQLException;
 	
+	/**
+	 * @param inputPrenotazione
+	 * @return l'elenco dei posti occupati dalla prenotazione di input
+	 * @throws SQLException
+	 */
 	public ArrayList<Posto> getPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException;
 }

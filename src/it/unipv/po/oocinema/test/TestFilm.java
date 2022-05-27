@@ -10,12 +10,27 @@ import org.junit.Test;
 import it.unipv.po.oocinema.model.cinema.Film;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 
+/**
+ * Classe di test per la classe Film
+ * @author GoF
+ *
+ */
 public class TestFilm {
 	
+	/**
+	 * Film di test
+	 */
 	private Film filmA, filmB;
 	
+	/**
+	 * Istanza della classe che comunica con il DB
+	 */
 	private DBFacade facade; 
 	
+	/**
+	 * Inizializzazione delle variabili, prima del test
+	 * @throws Exception
+	 */
 	@Before
 	public void intTest() throws Exception {
 		filmA=new Film(2,"titolo","descrizione","genere", 90,"regista","cast","coverPath","trailerPath"); //incrementa sempre
@@ -23,6 +38,9 @@ public class TestFilm {
 		facade = DBFacade.getInstance();
 	}
 	
+	/**
+	 * Test sul film contenuto nel DB. Si verifica che i dati nel DB sono quelli aspettati
+	 */
 	@Test
 	public void testGetFilmById(){
 		try {
@@ -33,6 +51,9 @@ public class TestFilm {
 		assertTrue(filmA.equals(filmB)); 
 	}
 	
+	/**
+	 * Test sull'aggiunte di un film nel DB
+	 */
 	@Test
 	public void testAggiungiFilm(){
 		try {
@@ -44,6 +65,9 @@ public class TestFilm {
 		assertTrue(filmA.equals(filmB)); 
 	}
 
+	/**
+	 * TEst sulla rimozione di un film dal DB
+	 */
 	@Test
 	public void testRimuoviFilm(){
 		try {

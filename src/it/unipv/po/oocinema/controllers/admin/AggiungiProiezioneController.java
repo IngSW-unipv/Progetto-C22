@@ -1,6 +1,7 @@
 package it.unipv.po.oocinema.controllers.admin;
 
 import java.net.URL;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -15,48 +16,62 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Classe controller per l'aggiunta di una nuova proiezione
+ * @author GoF
+ *
+ */
 public class AggiungiProiezioneController extends AdminMenuController implements Initializable{
 	
+	/**
+	 * Istanza della classe che comunica con il DB
+	 */
 	private DBFacade facade = DBFacade.getInstance();
+	
+	/**
+	 * Bottone per la conferma dell'aggiunta di una nuova prenotazione
+	 */
 	@FXML
     private ToggleButton aggiungiProiezione;
 
-    @FXML
-    private Label cassa;
-
-    @FXML
-    private Label esci;
-
-    @FXML
-    private Label film;
-
+	/**
+	 * Elenco dei film
+	 */
     @FXML
     private ComboBox<String> filmCombo;
 
+    /**
+	 * Calendario per la scelta del giorno
+	 */
     @FXML
     private DatePicker giorno;
 
-    @FXML
-    private Label home;
-
+    /**
+	 * Elenco delle ore
+	 */
     @FXML
     private ComboBox<String> oraCombo;
 
+    /**
+	 * Input - prezzo
+	 */
     @FXML
     private TextField prezzo;
 
-    @FXML
-    private Label proiezioni;
-
+    /**
+     * Elenco delle sale
+     */
     @FXML
     private ComboBox<String> salaCombo;
 
+    /**
+     * Aggiunge una proiezione al DB e alla tabella
+     */
 	@FXML
     void aggiungiProiezione(MouseEvent event) {
 	
@@ -84,6 +99,10 @@ public class AggiungiProiezioneController extends AdminMenuController implements
 		initializeOra();
 	}
 	
+
+	/**
+	 * Iniizializzazione della lista dei film
+	 */
 	public void initializeFilm() {
 		ArrayList<Film> films = new ArrayList<Film>();
 		ArrayList<String> titoli = new ArrayList<String>();
@@ -104,6 +123,9 @@ public class AggiungiProiezioneController extends AdminMenuController implements
 		
 	}
 	
+	/**
+	 * Inizializzazione della lista delle sale
+	 */
 	public void initializeSala() {
 		ArrayList<Sala> sale = new ArrayList<Sala>();
 		ArrayList<String> id = new ArrayList<String>();
@@ -124,6 +146,9 @@ public class AggiungiProiezioneController extends AdminMenuController implements
 		
 	}
 	
+	/**
+	 * Inizializzazione della lista delle ore
+	 */
 	public void initializeOra() {
 		ArrayList<String> ore = new ArrayList<String>();
 		try {

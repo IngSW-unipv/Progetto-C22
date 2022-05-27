@@ -91,4 +91,12 @@ public interface IAcquirenteDAO {
 	 */
 	public Acquirente getUtenteByUser(Acquirente inputAcquirente)throws SQLException;
 
+	/**
+	 * 
+	 * @param acquirente
+	 * @return tipo dell'acquirente dato l'user
+	 * @throws SQLException
+	 */
+	public int getTipoByAcquirente(Acquirente acquirente) throws SQLException;
+
 }

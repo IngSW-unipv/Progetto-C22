@@ -157,7 +157,7 @@ public class EmailController {
 	 * @param user        mittente dell'e-mail (cinema).
 	 * @param to          destinatario dell'e-mail (spettatore).
 	 * @param prenotazione prenotazione da inviare.
-	 * @return il contenitore, che accoglierà: l'oggetto, il body e l'allegato, con
+	 * @return il contenitore, che accoglierà: l'oggetto e l'allegato, con
 	 *         le proprietà dell'email.
 	 * @throws MessagingException se ci sono problemi nella generazione dell'e-mail.
 	 */

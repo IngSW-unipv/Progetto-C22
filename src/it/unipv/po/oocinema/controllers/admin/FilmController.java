@@ -21,39 +21,77 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Classe controller per la gestione dei film
+ * @author GoF
+ *
+ */
 public class FilmController extends AdminMenuController implements Initializable{
+	
+	/**
+	 * Istanza della classe che comunica con il DB
+	 */
 	private DBFacade facade = DBFacade.getInstance();
 	
+	/**
+	 * Bottone per passare alal finestra di aggiunta di un nuovo film
+	 */
     @FXML
     private Button aggiungi;
    
+    /**
+	 * Bottone per la rimozione del film selezionato
+	 */
     @FXML
     private Button rimuovi;
     
+    /**
+	 * Id del film da rimuovere
+	 */
     @FXML
     private TextField idFilm;
 
+    /**
+	 * Tabella dei film
+	 */
     @FXML
     private TableView<InnerFilm> tabella;
     
+    /**
+	 * Colonna tabella - id del film
+	 */
     @FXML
     private TableColumn<InnerFilm,Integer> colonnaId;
 
+    /**
+	 * Colonna tabella - numero di proiezioni associate con quel film
+	 */
     @FXML
     private TableColumn<InnerFilm,Integer> colonnaNumero;
 
+    /**
+	 * Colonna tabella - titolo del film
+	 */
     @FXML
     private TableColumn<InnerFilm,String> colonnaTitolo;
     
-    ObservableList<InnerFilm> datiTabella = FXCollections.observableArrayList();
+    /**
+	 * Dati da inserire nella tabella
+	 */
+    private ObservableList<InnerFilm> datiTabella = FXCollections.observableArrayList();
 
+    /**
+     * Passa alla pagina di aggiunta di un nuovo film
+     */
     @FXML
     void aggiungiFilm(MouseEvent event) {
     	WindowsHandler.openWindow(getClass(), "../../view/scenes/aggiungiFilm.fxml");
 	    WindowsHandler.closeWindow(getWindow());
     }
 
-
+    /**
+     * Rimuove il film selezionato
+     */
     @FXML
     void rimuoviFilm(MouseEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION, "Verranno rimossi tutti i dati associati al film");
@@ -88,6 +126,10 @@ public class FilmController extends AdminMenuController implements Initializable
 		
 	}
 	
+	/**
+	 * Inserisce i daiti nella tabella
+	 * @param datiTabella
+	 */
 	public  void costruisciElementiTabella(ObservableList<InnerFilm> datiTabella) {
 		
 		datiTabella.removeAll(datiTabella);
@@ -107,16 +149,42 @@ public class FilmController extends AdminMenuController implements Initializable
 		}
 	}
 	
+	/**
+	 * Aggiorna il contenuto della tabella
+	 */
 	public void aggiorna() {
 		costruisciElementiTabella(datiTabella);
 		tabella.setItems(datiTabella);
 	}
     
+	/**
+	 * Classe nested di film che serve per far combaciare i dati della tabella con un oggetto
+	 * @author GoF
+	 *
+	 */
 	 public class InnerFilm{
-		 int id;
-		 String titolo;
-		 int np;
+		 
+		 /**
+		  * Id del film
+		  */
+		 private int id;
+		 
+		 /**
+		  * Titolo del film
+		  */
+		 private String titolo;
+		 
+		 /**
+		  * Numero di proiezioni
+		  */
+		 private int np;
 
+		 /**
+		  * Costruttore completo.
+		  * @param id
+		  * @param titolo
+		  * @param np
+		  */
 		public InnerFilm(int id, String titolo, int np) {
 			super();
 			this.id = id;
@@ -124,26 +192,50 @@ public class FilmController extends AdminMenuController implements Initializable
 			this.np = np;
 		}
 
+		/**
+		 * Getter
+		 * @return id del titolo
+		 */
 		public int getId() {
 			return id;
 		}
 
+		/**
+		 * Setter
+		 * @param id
+		 */
 		public void setId(int id) {
 			this.id = id;
 		}
 
+		/**
+		 * Getter
+		 * @return titolo del film
+		 */
 		public String getTitolo() {
 			return titolo;
 		}
 
+		/**
+		 * Setter
+		 * @param titolo
+		 */
 		public void setTitolo(String titolo) {
 			this.titolo = titolo;
 		}
 
+		/**
+		 * Getter
+		 * @return numero di prenotazioni
+		 */
 		public int getNp() {
 			return np;
 		}
 
+		/**
+		 * Setter
+		 * @param np
+		 */
 		public void setNp(int np) {
 			this.np = np;
 		}

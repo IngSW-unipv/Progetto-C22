@@ -10,14 +10,32 @@ import org.junit.Test;
 import it.unipv.po.oocinema.model.acquirenti.Acquirente;
 import it.unipv.po.oocinema.persistenza.DBFacade;
 
+/**
+ * Classe di test per la classe Acquirente
+ * @author GoF
+ *
+ */
 public class TestAcquirente {
 	
+	/**
+	 * Istanza della classe che comunica con il DB
+	 */
 	private DBFacade facade; 
 
+	/**
+	 * Acquirenti di test
+	 */
 	private Acquirente a1, a2;
 	
+	/**
+	 * Risultato del test
+	 */
 	private boolean result;
 	
+	/**
+	 * Inizializzazione delle variabili, prima del test
+	 * @throws Exception
+	 */
 	@Before
 	public void intTest() throws Exception {
 		a1=new Acquirente("A5", "password", "nome", "cognome", "compleanno");
@@ -25,6 +43,9 @@ public class TestAcquirente {
 		facade = DBFacade.getInstance();
 	}
 	
+	/**
+	 * Test sul login 
+	 */
 	@Test
 	public void testLogin(){
 		try {
@@ -36,6 +57,9 @@ public class TestAcquirente {
 		assertTrue(result); 
 	}
 	
+	/**
+	 * Test sulla presenza dell'utente nel db
+	 */
 	@Test
 	public void testControllaUser(){
 		try {
