@@ -12,7 +12,7 @@ public class ScontoPercentuale implements IScontoPrenotazioneStrategy{
 	/**
 	 * Percentuale che l'utente dovrà pagare
 	 */
-	private static final double PERCENTUALE = 0.85;
+	private static final double PERCENTUALE = 0.9;
 	
 	@Override
 	public double getTotale(Prenotazione p) {

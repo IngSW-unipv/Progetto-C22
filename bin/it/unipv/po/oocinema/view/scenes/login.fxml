@@ -34,7 +34,7 @@
       <Text fx:id="emailLabel" layoutX="183.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
       <ImageView fitHeight="176.0" fitWidth="217.0" layoutX="75.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../assets/logo.png" />
+            <Image url="@../../resources/logo.png" />
          </image>
       </ImageView>
    </children>
