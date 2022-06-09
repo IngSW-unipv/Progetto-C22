@@ -90,6 +90,7 @@ public class EmailController {
 					System.out.println(exception.getMessage());
 				}
 			}
+			
 		};
 		emailThread.start();
 		return emailThread;

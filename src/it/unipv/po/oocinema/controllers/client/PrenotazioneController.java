@@ -101,6 +101,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 					if(facade.getTipoByAcquirente(prenotazione.getAcquirente()) == 1) {
 						EmailController e = new EmailController();
 						e.sendEmail(prenotazione);
+	
 					}else {
 						
 						//Invio biglietti alla stampante
