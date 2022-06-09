@@ -7,7 +7,7 @@ Progetto studenti (gruppo GoF)
 Eseguire su MySQL Workbench il file ```./src/it/unipv/po/oocinema/persistenza/create_schema.sql```
 
 ## Setup Eclipse
-Nelle Run Configuration del progetto è necessario inserire:
+Nelle Run Configuration del progetto (Arguments -> VM arguments) è necessario inserire:
 ```
 --module-path "path\to\javafx\lib" 
 --add-modules javafx.controls,javafx.fxml
