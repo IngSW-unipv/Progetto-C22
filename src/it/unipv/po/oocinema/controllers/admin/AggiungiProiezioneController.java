@@ -81,7 +81,7 @@ public class AggiungiProiezioneController extends AdminMenuController implements
 	    	Proiezione p = new Proiezione(f,giorno.getValue().toString(),s,Double.parseDouble(prezzo.getText()),oraCombo.getValue());
 	    	
 	    	boolean check = facade.aggiungiProiezione(p);
-	    	if (check) {
+	    	if (!check) {
 		    	Alert a = new Alert(AlertType.CONFIRMATION, "Proiezione aggiunta con successo");
 				a.showAndWait();
 	    	}
