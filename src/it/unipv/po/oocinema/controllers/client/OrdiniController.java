@@ -134,7 +134,7 @@ public class OrdiniController extends ClientMenuController implements Initializa
 	 * @author GoF
 	 *
 	 */
-	public class InnerPrenotazione{
+	public static class InnerPrenotazione{
 		/**
 		 * Id prenotazione
 		 */

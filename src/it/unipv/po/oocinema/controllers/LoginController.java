@@ -117,7 +117,8 @@ public class LoginController implements Initializable{
    
     @FXML
     void passwordDimenticata(MouseEvent event) {
-    	
+    	Alert al = new Alert(AlertType.INFORMATION, "Funzionalità non gestita");
+		al.showAndWait();
     }
 
     /**

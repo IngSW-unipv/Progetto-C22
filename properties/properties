@@ -10,4 +10,5 @@ DB_psw = Password2021!
 
 EMAIL = oocinema.project@gmail.com
 EMAIL_PSW = jwhojstvgizfjych
-#EMAIL_PSW = fgubphiktryyfovp
+#EMAIL_PSW = fgubphiktryyfovp 
+#La seconda EMAIL_PSW funziona con Mac, la prima con Windows

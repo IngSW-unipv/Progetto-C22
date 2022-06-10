@@ -177,7 +177,7 @@ public class ProiezioneController extends AdminMenuController implements Initial
 	 * @author GoF
 	 *
 	 */
-	public class InnerProiezione{
+	public static class InnerProiezione{
 		
 		/**
 		 * Id della proiezione

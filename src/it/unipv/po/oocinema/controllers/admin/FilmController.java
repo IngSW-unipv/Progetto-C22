@@ -162,7 +162,7 @@ public class FilmController extends AdminMenuController implements Initializable
 	 * @author GoF
 	 *
 	 */
-	 public class InnerFilm{
+	 public static class InnerFilm{
 		 
 		 /**
 		  * Id del film

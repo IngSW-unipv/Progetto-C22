@@ -132,12 +132,12 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="407.0">
                                  <children>
-                                    <Label prefHeight="29.0" prefWidth="181.0" text="Emercgenza Covid-19" textFill="#878787">
+                                    <Label prefHeight="29.0" prefWidth="181.0" text="Emergenza Covid-19" textFill="#878787">
                                        <font>
                                           <Font name="Cambria Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="21.0" prefWidth="194.0" text="Mascherina FFP&quot; e GreenPass " textFill="#878787">
+                                    <Label prefHeight="21.0" prefWidth="199.0" text="Mascherina FFP2 e GreenPass " textFill="#878787">
                                        <font>
                                           <Font name="Cambria" size="15.0" />
                                        </font>
