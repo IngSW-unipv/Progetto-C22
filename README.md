@@ -13,5 +13,5 @@ Nelle Run Configuration del progetto (Arguments -> VM arguments) è necessario i
 --add-modules javafx.controls,javafx.fxml
 --add-modules javafx.controls,javafx.media
 ```
-## Presentazione
-[Link presentazione](https://github.com/IngSW-unipv/Progetto-C22/files/8883437/presentazioneOOCINEMA.pdf)
+## Presentazione del Progetto
+[Scarica la presentazione](https://github.com/IngSW-unipv/Progetto-C22/files/8883441/presentazioneOOCINEMA.pdf)
