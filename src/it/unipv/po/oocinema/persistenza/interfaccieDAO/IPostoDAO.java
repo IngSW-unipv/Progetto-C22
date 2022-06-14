@@ -25,8 +25,6 @@ public interface IPostoDAO {
 	 */
 	public ArrayList<Posto> getTuttiPostiByPrenotazione(Prenotazione inputPrenotazione) throws SQLException;
 	
-	//public ArrayList<Posto> getRigheLibere(Proiezione inputProiezione) throws SQLException;
-	
 	/**
 	 * Metodo che restituisce tutti i posti liberi di una specifica proiezione selezionata una 
 	 * riga. 

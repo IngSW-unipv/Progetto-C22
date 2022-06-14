@@ -236,10 +236,7 @@ public class PrenotazioneController extends ClientMenuController implements Init
 				 	 aggiorna();
 				 }
 			 }
-		 } else {
-			 
-			 // FARE ALERT
-		 }
+		 } 
 	 }
 	
 	 /**

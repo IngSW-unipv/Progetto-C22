@@ -48,7 +48,7 @@ public class Proiezione {
 	/**
 	 * Orario della proiezione
 	 */
-	private String orario;  //problema con il confronto delle proiezioni
+	private String orario;  
 
 	/**
 	 * Costruttore con tutte le variabili

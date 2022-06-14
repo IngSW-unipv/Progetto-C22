@@ -222,7 +222,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	 */
 	@Override
 	public ArrayList<String> getGiorniByFilm(Film inputFilm) throws SQLException{
-		FilmDAO filmDAO= new FilmDAO(); //ho solo il titolo del film in inputFilm
+		FilmDAO filmDAO= new FilmDAO(); 
 		inputFilm=filmDAO.getFilmbyTitolo(inputFilm);
 		conn = MySQLConnectionFactory.connect(conn);
 		String query = "SELECT distinct giorno FROM proiezione where film_id=?;";
@@ -275,7 +275,7 @@ public class ProiezioneDAO implements IProiezioneDAO{
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
 	@Override
-	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException { //conta anche quelle passate
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException { 
 		conn = MySQLConnectionFactory.connect(conn);
 		int r;
 		String query = "SELECT count(*) as NUM FROM proiezione GROUP BY film_id having film_id = ?";

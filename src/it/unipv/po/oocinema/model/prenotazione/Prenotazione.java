@@ -64,7 +64,7 @@ public class Prenotazione {
 	 */
 	public Prenotazione(int id, String dataAcquisto, Acquirente acquirente,Proiezione proiezione) {
 		this.id = id;
-		this.dataAcquisto = dataAcquisto;  // non si può mettere now???
+		this.dataAcquisto = dataAcquisto;  
 		this.acquirente = acquirente;
 		this.posti = new ArrayList<Posto>();
 		this.proiezione = proiezione;

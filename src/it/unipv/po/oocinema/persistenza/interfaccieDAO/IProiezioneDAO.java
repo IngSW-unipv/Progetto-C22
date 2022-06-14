@@ -106,5 +106,5 @@ public interface IProiezioneDAO {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException; //non va in proiezioneDAO?
+	public int getNumProiezioniByFilm(Film inputFilm) throws SQLException; 
 }

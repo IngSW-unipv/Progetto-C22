@@ -65,5 +65,5 @@ public interface IFilmDAO {
 	 * @throws SQLException fornisce informazioni su un errore di accesso al database o 
 	 * 						altri errori di relazione con quest'ultimo.
 	 */
-	public Film getFilmbyTitolo(Film inputFilm) throws SQLException; //può essercene più di uno?
+	public Film getFilmbyTitolo(Film inputFilm) throws SQLException; 
 }

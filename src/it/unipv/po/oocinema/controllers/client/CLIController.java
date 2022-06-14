@@ -118,7 +118,7 @@ public class CLIController extends ClientMenuController implements Initializable
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row); //(child,column,row)
+                grid.add(anchorPane, column++, row); 
                 //set grid width
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
